@@ -14,11 +14,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-var sessionStore = new MySQLStore()
+var sessionStore = new MySQLStore({
+  host: "localhost",
+  user: "root",
+  password: "password",
+  database: "qline"
+})
 
 
 app.use(session({
-  secret: 'this is a secret',
+  secret: 'zaiiiiidiiidiii',
   store: sessionStore,
   resave: false,
   saveUninitialized: false
