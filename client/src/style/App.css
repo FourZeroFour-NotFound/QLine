@@ -12,7 +12,7 @@ html, body {
 
 body {
     background-color: #e7ebf0;
-    background: url("https://images.pexels.com/photos/1690379/pexels-photo-1690379.jpeg?cs=srgb&dl=beach-daylight-grass-1690379.jpg&fm=jpg");
+    /* background: url("https://images.pexels.com/photos/1690379/pexels-photo-1690379.jpeg?cs=srgb&dl=beach-daylight-grass-1690379.jpg&fm=jpg"); */
     background-attachment: fixed;
     background-size: cover;
 }
@@ -294,3 +294,10 @@ input[type="checkbox"].switch:checked + div > div {
   border-radius: 50%;
   color:white;
   }
+  p{
+    padding-top: 30%;
+    white-space: pre-line;
+  }
+input .bottom{
+ color:#a077a7;
+}

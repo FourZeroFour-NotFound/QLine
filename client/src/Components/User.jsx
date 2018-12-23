@@ -12,8 +12,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import '../style/App.css';
-
-
 import logo from '../style/qline1.jpg';
 const styles = () => ({
 
@@ -30,9 +28,6 @@ const styles = () => ({
   color: {
     backgroundColor: '#aa1256',
   },
-
- 
- 
 });
 
 
