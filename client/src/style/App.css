@@ -12,7 +12,7 @@ html, body {
 
 body {
     background-color: #e7ebf0;
-    background: url("https://images.pexels.com/photos/1690379/pexels-photo-1690379.jpeg?cs=srgb&dl=beach-daylight-grass-1690379.jpg&fm=jpg");
+    background-attachment: fixed;
     background-size: cover;
 }
 /*******************- HEADER -*******************/
@@ -264,6 +264,7 @@ body {
   border-top: 4px solid #7aeac2;
   font-weight: 500;
 }
+
 
 /**************-LogIn and SignUp*************/
 *, *:before, *:after {
@@ -615,4 +616,4 @@ input {
 .forLogin {
   text-align: center;
   margin-left: 50px;
-}
+

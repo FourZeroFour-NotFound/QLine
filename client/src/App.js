@@ -1,10 +1,15 @@
 
 import React, { Component } from 'react';
+
+
+import User from './Components/User'
+
 import Header from './Header';
 import logo from './style/qline1.jpg';
 import Login from './LogIn.jsx';
 import SignUp from './SignUp.jsx';
 import { Grid } from '@material-ui/core';
+
 
 class App extends Component {
   constructor(props) {
