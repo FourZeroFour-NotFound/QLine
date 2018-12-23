@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import logo from './style/qline1.jpg';
-import Login from './LogInandSignUp.jsx';
+import Login from './LogIn.jsx';
+import SignUp from './SignUp.jsx';
 import { Grid } from '@material-ui/core';
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
         <Header logo={logo} toggleSignup={this.toggleSignup} toggleLogin={this.toggleLogin} />
       </Grid>
       <Login show={this.state.isOpenSignIn} onClose={this.toggleLogin}></Login>
+      <SignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></SignUp>
       </Grid>
     );
   }
