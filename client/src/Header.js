@@ -24,12 +24,10 @@ class Header extends Component {
                 backgroundImage: 'url(' + this.props.logo + ')'
                 }} className="menu__logo">QLine</h1>
                 <Grid>
-                <Grid className="switch-container">
-                    <label>
-                        <input ref="switch" checked={ this.state.isChecked } onChange={ this._handleChange } className="switch" type="checkbox"/>
-                            <Grid>
-                                <Grid></Grid>
-                            </Grid>
+                <Grid class="can-toggle demo-rebrand-1">
+                <input id="d" type="checkbox"/>
+                    <label for="d">
+                        <Grid class="can-toggle__switch" data-checked="USER" data-unchecked="Business"></Grid>
                     </label>
                 </Grid>
                 </Grid>
@@ -43,8 +41,8 @@ class Header extends Component {
                 </Grid>
                 <Grid className="menu__right">
                     <ul className="menu__list">
-                    <li class="menu__list-item"><a class="menu__link">LogIn</a></li>
-                    <li class="menu__list-item"><a class="menu__link menu__link--active">Sign Up</a></li>
+                    <li class="menu__list-item"><a class="menu__link" onClick={this.props.toggleLogin}>LogIn</a></li>
+                    <li class="menu__list-item"><a class="menu__link menu__link--active" onClick={this.props.toggleSignup}>Sign Up</a></li>
                     </ul>
                 </Grid>
             </nav>
