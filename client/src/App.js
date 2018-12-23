@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 
 
-
 import User from './Components/User'
 
 import Header from './Header';
@@ -15,15 +14,16 @@ class App extends Component {
 
     return (
 
-    
-     
-    
+
      
 
       <div className="container center">
         <Header logo={logo} />
+
         {/* <User logo={logo}/> */}
         <User/>
+
+
       </div>
      
     );
