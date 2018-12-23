@@ -6,7 +6,9 @@
     "@material-ui/core": "^3.7.0",
     "@material-ui/icons": "^3.0.1",
     "react": "^16.6.3",
+    "react-browser-router": "^2.1.2",
     "react-dom": "^16.6.3",
+    "react-download": "0.0.1",
     "react-scripts": "2.1.1"
   },
   "scripts": {
