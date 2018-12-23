@@ -1,8 +1,7 @@
 
 import React, { Component } from 'react';
 
-import logo from './logo.svg';
-import './App.css';
+
 import User from './Components/User'
 
 import Header from './Header';
@@ -15,14 +14,18 @@ class App extends Component {
 
     return (
 
-      <div className="App">
-      <User/>
+
      
 
       <div className="container center">
         <Header logo={logo} />
+
+        {/* <User logo={logo}/> */}
+        <User/>
+
+
       </div>
-      
+     
     );
   }
 }
