@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #e7ebf0;
+    background: url("https://images.pexels.com/photos/1690379/pexels-photo-1690379.jpeg?cs=srgb&dl=beach-daylight-grass-1690379.jpg&fm=jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container {
+    width: 1800px;
+    margin: 10px auto;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.menu {
+  background-color: white;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  width: 1800px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: fixed;
+}
+
+.menu__right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.menu__list {
+  list-style-type: none;
+  padding: 0;
+  height: 100%;
+  margin: 0;
+  margin-right: 40px;
+}
+
+.menu__list-item {
+  display: inline-block;
+  height: 100%;
+  margin-right: 20px;
+}
+
+.menu__list-item:last-child {
+  margin-right: 0;
+}
+
+.menu__link {
+  color: #000;
+  display: inline-block;
+  height: 100%;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+  cursor: pointer;
+}
+
+.menu__link:hover {
+  color: #7aeac2;
+}
+
+.menu__link:active {
+  color: #7aeac2;
+  border-top: 4px solid #7aeac2;
+  font-weight: 500;
+}
+
+.menu__link--active {
+  color: #7aeac2;
+  border-top: 4px solid #7aeac2;
+  font-weight: 500;
+}
+.menu__link--active:active {
+  color: #7aeac2;
+  border-top: 4px solid #7aeac2;
+  font-weight: 300;
+}
+
+.menu__logo {
+  text-indent: -9999999px;
+  display: inline-block;
+  height: 100%;
+  width: 112px;
+  background-size: cover 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0;
+  margin-left: -30px;
+}
+
+.centerNav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.centerNavMenu{
+  list-style-type: none;
+  padding: 0;
+  height: 100%;
+  margin: 0;
+  margin-right: 40px;
+}
+
+.menuItem{
+  display: inline-block;
+  height: 100%;
+  margin-right: 40px;
+}
+
+.itemLink{
+  color: #000;
+  display: inline-block;
+  height: 100%;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-top: 4px solid #fff;
+}
+
+.itemLink:hover {
+  color: #7aeac2;
+}
+
+.itemLink:active{
+  color: #7aeac2;
+  border-top: 4px solid #7aeac2;
+  font-weight: 500;
+}
