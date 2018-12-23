@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 
 
 
-
+//creat table sessions in data bsee 
 var sessionStore = new MySQLStore({
   host: "localhost",
   user: "root",
@@ -50,7 +50,7 @@ app.use(passport.session());
 //   primum:0
 // }
 app.post('/sign-up', function (req, res) {
-
+  // orderthe data in the same way it sabous to be 
   var user = {
     "firstName": req.body.firstName,
     "lastName": req.body.lastName,
@@ -60,10 +60,10 @@ app.post('/sign-up', function (req, res) {
     "phoneNumber": req.body.phoneNumber,
     "primum": req.body.primum
   }
-
+  //chick if the acout is already exist befor add him if its exist alredy redirict him to sign in page 
   db.isacountExest(req.body.email, function (err, result) {
     if (err) {
-      console.log(err)
+      console.log("server ", err)
     } else {
       if (result.length !== 0) {
         res.send({
@@ -71,31 +71,70 @@ app.post('/sign-up', function (req, res) {
           success: "userExist",
         });
 
-      } else {
+      } else { //if its new user add him to the user table 
         db.insertNewUser(user, function (err, result) {
           if (err) {
             console.log(err)
           } else {
-            console.log("new user id ", result.insertId)
-
+            console.log("server new user id ", result.insertId)
+            //creat session for him using login 
             req.login(result.insertId, function (err) {
-              console.log("zaiiiiiiiiid", user)
-              user.id = result.insertId
+              console.log("server user data after creat and log in ", user)
+
+              user.id = result.insertId // add the id to the object user and send it to the front end //this way is esyer to know the user id 
               res.send({
                 status: 200,
                 success: "Successed !",
                 data: user
               });
             });
-
-
           }
-
-
-
         })
       }
+    }
+  })
+})
 
+////////////////////////////////////////////////////////////////
+//post function to sign in 
+
+//req.body = {
+//   email:"zaid@gmail.com",
+//   password : "zaid"
+// }
+app.post('/sign-in', function (req, res) {
+  console.log(req.body)
+  db.isacountExest(req.body.email, function (err, result) {
+    if (err) {
+      console.log("server ", err)
+    } else {
+      if (result.length == 0) {
+        res.send({
+          status: 404,
+          success: "email is wrong",
+        });
+      } else {
+        if (req.body.password == result[0].password) {
+          //if the password corect creat session 
+          req.login(result[0].user_id, function (err) {
+            console.log("server user data after creat and log in ", result[0])
+
+
+            res.send({
+              status: 200,
+              success: "Successed !",
+              data: result[0]
+            });
+          });
+        } else {
+          res.send({
+            status: 404,
+            success: "password not corect",
+            data: result[0].password
+          });
+        }
+
+      }
     }
   })
 
@@ -103,6 +142,20 @@ app.post('/sign-up', function (req, res) {
 })
 
 
+app.get('/log-out', function (req,res){
+//console.log("zaiiiiid",req.user)
+//console.log(req.isAuthenticated());
+var x = req.user
+  req.logOut()
+  res.send({
+    success : `user ${ x} is log out `
+  })
+})
+
+
+
+
+//stor data in session data base  using id and it will be saved in cookies 
 passport.serializeUser(function (user_id, done) {
   done(null, user_id);
 });
@@ -111,7 +164,7 @@ passport.deserializeUser(function (user_id, done) {
   done(null, user_id);
 });
 
-//Used to restrict access to particular pages in combination with Passport.js
+//use this function to control acsses to some get reqest and post requst 
 function authenticationMiddleware() {
   return (req, res, next) => {
     console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
