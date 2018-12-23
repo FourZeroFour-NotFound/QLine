@@ -7,6 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
 
 const styles = {
   root: {
@@ -28,10 +31,15 @@ export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      auth: true,
     }
   }
+  handleChange = event => {
+    this.setState({ auth: event.target.checked });
+  };
+
   render() {
+    const { auth } = this.state;
     return (
       <div style={styles.root}>
         <AppBar  position="static" style={styles.uper}>
@@ -41,7 +49,16 @@ export default class Header extends React.Component {
             <Button color="inherit">Sign Out</Button>
           </Toolbar>
         </AppBar>
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Switch checked={auth} onChange={this.handleChange} aria-label="RoleSwitch" />
+            }
+            label={auth ? 'Admin' : 'User'}
+          />
+        </FormGroup>
       </div>
+      
     );
   }
 }
