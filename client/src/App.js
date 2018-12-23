@@ -1,26 +1,50 @@
+
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+
+import User from './Components/User'
+
+import Header from './Header';
+import logo from './style/qline1.jpg';
+import Login from './LogIn.jsx';
+import SignUp from './SignUp.jsx';
+import { Grid } from '@material-ui/core';
+
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpenSignUp: false,
+      isOpenSignIn: false
+    };
+  }
+
+  toggleSignup = () => {
+    this.setState({
+      isOpenSignUp: !this.state.isOpenSignUp,
+      isOpenSignIn: false
+    });
+  }
+
+
+  toggleLogin = () => {
+    this.setState({
+      isOpenSignIn: !this.state.isOpenSignIn,
+      isOpenSignUp: false
+    });
+  }
+
   render() {
+    
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Grid>
+      <Grid className="container center">
+        <Header logo={logo} toggleSignup={this.toggleSignup} toggleLogin={this.toggleLogin} />
+      </Grid>
+      <Login show={this.state.isOpenSignIn} onClose={this.toggleLogin}></Login>
+      <SignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></SignUp>
+      </Grid>
     );
   }
 }

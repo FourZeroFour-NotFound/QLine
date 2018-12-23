@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './style/App.css';
 import App from './App';
+import User from './Components/User';
 import * as serviceWorker from './serviceWorker';
+//import a from "./LogInandSignUp.jsx";
 
-ReactDOM.render(<App />, document.getElementById('root'));
-serviceWorker.unregister();
+import Profile from './Components/Profile';
+
+
+ReactDOM.render(<Profile/>, document.getElementById('root'));
+
+ 

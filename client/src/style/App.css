@@ -1,0 +1,619 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #e7ebf0;
+    background-attachment: fixed;
+    background-size: cover;
+}
+/*******************- HEADER -*******************/
+
+.can-toggle *, .can-toggle *:before, .can-toggle *:after {
+  box-sizing: border-box;
+}
+.can-toggle input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.can-toggle{
+  margin-left: -350px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.can-toggle input[type="checkbox"][disabled] ~ label {
+  pointer-events: none;
+}
+.can-toggle input[type="checkbox"][disabled] ~ label .can-toggle__switch {
+  opacity: 0.4;
+}
+.can-toggle input[type="checkbox"]:checked ~ label .can-toggle__switch:before {
+  content: attr(data-unchecked);
+  left: 0;
+}
+.can-toggle input[type="checkbox"]:checked ~ label .can-toggle__switch:after {
+  content: attr(data-checked);
+}
+.can-toggle label {
+  user-select: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+.can-toggle label .can-toggle__switch:before {
+  content: attr(data-checked);
+  position: absolute;
+  top: 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+.can-toggle label .can-toggle__switch:after {
+  content: attr(data-unchecked);
+  position: absolute;
+  z-index: 5;
+  text-transform: uppercase;
+  text-align: center;
+  background: #efa24a;
+  transform: translate3d(0, 0, 0);
+}
+
+.can-toggle input[type="checkbox"]:checked ~ label .can-toggle__switch:after {
+  transform: translate3d(80px, 0, 0);
+}
+
+/*adjusting width of button*/
+.can-toggle label .can-toggle__switch {
+  height: 36px;
+  flex: 0 0 150px;
+  border-radius: 999px;
+}
+.can-toggle label .can-toggle__switch:before {
+  left: 67px;
+  font-size: 12px;
+  line-height: 36px;
+  width: 67px;
+  padding: 0 10px;
+}
+.can-toggle label .can-toggle__switch:after {
+  top: 2px;
+  left: 2px;
+  border-radius: 999px;
+  width: 65px;
+  line-height: 32px;
+  font-size: 12px;
+}
+
+.can-toggle.demo-rebrand-1 input[type="checkbox"]:focus ~ label .can-toggle__switch, .can-toggle.demo-rebrand-1 input[type="checkbox"]:hover ~ label .can-toggle__switch {
+  background-color: #7aeac2;
+}
+
+.can-toggle.demo-rebrand-1 input[type="checkbox"]:checked ~ label:hover {
+  color: #39916a;
+}
+.can-toggle.demo-rebrand-1 input[type="checkbox"]:checked ~ label .can-toggle__switch {
+  background-color: #aa1256;
+}
+.can-toggle.demo-rebrand-1 input[type="checkbox"]:checked ~ label .can-toggle__switch:after {
+  color: #aa1256;
+}
+.can-toggle.demo-rebrand-1 input[type="checkbox"]:checked:focus ~ label .can-toggle__switch, .can-toggle.demo-rebrand-1 input[type="checkbox"]:checked:hover ~ label .can-toggle__switch {
+  background-color: #aa1256;
+}
+.can-toggle.demo-rebrand-1 input[type="checkbox"]:checked:focus ~ label .can-toggle__switch:after, .can-toggle.demo-rebrand-1 input[type="checkbox"]:checked:hover ~ label .can-toggle__switch:after {
+  color: #aa1256;
+}
+.can-toggle.demo-rebrand-1 label .can-toggle__label-text {
+  flex: 1;
+}
+.can-toggle.demo-rebrand-1 label .can-toggle__switch {
+  transition: background-color 0.3s ease-in-out;
+  background: #7aeac2;
+}
+.can-toggle.demo-rebrand-1 label .can-toggle__switch:before {
+  color: rgba(255, 255, 255, 0.6);
+}
+.can-toggle.demo-rebrand-1 label .can-toggle__switch:after {
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  color: #7aeac2;
+}
+
+.container {
+    width: 1800px;
+    margin: 10px auto;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.menu {
+  background-color: white;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  width: 1800px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: fixed;
+}
+
+.menu__right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.menu__list {
+  list-style-type: none;
+  padding: 0;
+  height: 100%;
+  margin: 0;
+  margin-right: 40px;
+}
+
+.menu__list-item {
+  display: inline-block;
+  height: 100%;
+  margin-right: 20px;
+}
+
+.menu__list-item:last-child {
+  margin-right: 0;
+}
+
+.menu__link {
+  color: #000;
+  display: inline-block;
+  height: 100%;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+  cursor: pointer;
+}
+
+.menu__link:hover {
+  color: #7aeac2;
+}
+
+.menu__link:active {
+  color: #7aeac2;
+  border-top: 4px solid #7aeac2;
+  font-weight: 500;
+}
+
+.menu__link--active {
+  color: #7aeac2;
+  border-top: 4px solid #7aeac2;
+  font-weight: 500;
+}
+.menu__link--active:active {
+  color: #7aeac2;
+  border-top: 4px solid #7aeac2;
+  font-weight: 300;
+}
+
+.menu__logo {
+  text-indent: -9999999px;
+  display: inline-block;
+  height: 100%;
+  width: 150px;
+  background-size: cover 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0;
+  margin-left: -50px;
+}
+
+.centerNav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.centerNavMenu{
+  list-style-type: none;
+  padding: 0;
+  height: 100%;
+  margin: 0;
+  margin-right: 40px;
+}
+
+.menuItem{
+  display: inline-block;
+  height: 100%;
+  margin-right: 40px;
+}
+
+.itemLink{
+  color: #000;
+  display: inline-block;
+  height: 100%;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-top: 4px solid #fff;
+}
+
+.itemLink:hover {
+  color: #7aeac2;
+}
+
+.itemLink:active{
+  color: #7aeac2;
+  border-top: 4px solid #7aeac2;
+  font-weight: 500;
+}
+
+
+/**************-LogIn and SignUp*************/
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  background: #ededed;
+}
+input, button {
+  border: none;
+  outline: none;
+  background: none;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+.tip {
+  font-size: 20px;
+  margin: 40px auto 50px;
+  text-align: center;
+}
+.cont {
+  overflow: hidden;
+  position: relative;
+  width: 900px;
+  height: 750px;
+  margin: 0 auto 100px;
+  background: #fff;
+}
+.form {
+  position: relative;
+  width: 640px;
+  height: 100%;
+  transition: transform 1.2s ease-in-out;
+  padding: 50px 30px 0;
+}
+.sub-cont {
+  overflow: hidden;
+  position: absolute;
+  left: 640px;
+  top: 0;
+  width: 900px;
+  height: 100%;
+  padding-left: 260px;
+  background: #fff;
+  transition: transform 1.2s ease-in-out;
+}
+.cont.s--signup .sub-cont {
+  transform: translate3d(-640px, 0, 0);
+}
+button {
+  display: block;
+  margin: 0 auto;
+  width: 260px;
+  height: 36px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+.img {
+  overflow: hidden;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 260px;
+  height: 100%;
+  padding-top: 360px;
+}
+.img:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 900px;
+  height: 100%;
+  background-image: url('https://images.pexels.com/photos/122477/pexels-photo-122477.jpeg?cs=srgb&dl=adult-bicycle-bike-122477.jpg&fm=jpg');
+  background-size: cover;
+  transition: transform 1.2s ease-in-out;
+}
+.img:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.img {
+  overflow: hidden;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 260px;
+  height: 100%;
+  padding-top: 360px;
+}
+.img:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 900px;
+  height: 100%;
+  background-image: url('https://images.pexels.com/photos/122477/pexels-photo-122477.jpeg?cs=srgb&dl=adult-bicycle-bike-122477.jpg&fm=jpg');
+  background-size: cover;
+  transition: transform 1.2s ease-in-out;
+}
+.img:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.img1 {
+  overflow: hidden;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 260px;
+  height: 100%;
+  padding-top: 360px;
+}
+.img1:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 900px;
+  height: 100%;
+  background-image: url('https://images.pexels.com/photos/541518/pexels-photo-541518.jpeg?cs=srgb&dl=adventure-casual-cheerful-541518.jpg&fm=jpg');
+  background-size: cover;
+  transition: transform 1.2s ease-in-out;
+}
+.img1:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.cont.s--signup .img1:before {
+  transform: translate3d(640px, 0, 0);
+}
+.cont.s--signup .img:before {
+  transform: translate3d(640px, 0, 0);
+}
+.img__text {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 50px;
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
+  color: #fff;
+  transition: transform 1.2s ease-in-out;
+}
+.img__text h2 {
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+.img__text p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.cont.s--signup .img__text.m--up {
+  transform: translateX(520px);
+}
+.img__text.m--in {
+  transform: translateX(-520px);
+}
+.cont.s--signup .img__text.m--in {
+  transform: translateX(0);
+}
+.img__btn {
+  overflow: hidden;
+  z-index: 2;
+  position: relative;
+  width: 100px;
+  height: 36px;
+  margin: 0 auto;
+  background: transparent;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 15px;
+  cursor: pointer;
+}
+.img__btn:after {
+  content: '';
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #fff;
+  border-radius: 30px;
+}
+.img__btn span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 1.2s;
+}
+.img__btn span.m--in {
+  transform: translateY(-72px);
+}
+.cont.s--signup .img__btn span.m--in {
+  transform: translateY(0);
+}
+.cont.s--signup .img__btn span.m--up {
+  transform: translateY(72px);
+}
+h2 {
+  width: 100%;
+  font-size: 26px;
+  text-align: center;
+}
+label {
+  display: block;
+  width: 260px;
+  margin: 25px auto 0;
+  text-align: center;
+}
+label span {
+  font-size: 12px;
+  color: #cfcfcf;
+  text-transform: uppercase;
+}
+input {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+.forgot-pass {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: #cfcfcf;
+}
+.submit {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  background: #aa1256;
+  text-transform: uppercase;
+}
+.fb-btn {
+  border: 2px solid #d3dae9;
+  color: #8fa1c7;
+}
+.fb-btn span {
+  font-weight: bold;
+  color: #455a81;
+}
+.sign-in {
+  transition-timing-function: ease-out;
+}
+.cont.s--signup .sign-in {
+  transition-timing-function: ease-in-out;
+  transition-duration: 1.2s;
+  transform: translate3d(640px, 0, 0);
+}
+.sign-up {
+  transform: translate3d(-900px, 0, 0);
+}
+.cont.s--signup .sign-up {
+  transform: translate3d(0, 0, 0);
+}
+.icon-link {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  width: 32px;
+}
+.icon-link img {
+  width: 100%;
+  vertical-align: top;
+}
+.icon-link--twitter {
+  left: auto;
+  right: 5px;
+}
+
+
+.backdrop1 {
+  position:fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.3);
+  padding: 50px;
+}
+
+/**/
+.Login {
+  max-width: 1000px;
+  min-height: 500px;
+  margin-top: 100px;
+  margin: 50px auto;
+  padding: 30;
+  animation:unfoldIn 1s cubic-bezier(0.065, 0.840, 0.440, 1.000);
+}
+
+@keyframes unfoldIn {
+  0% {
+    transform:scaleY(.005) scaleX(0);
+  }
+  50% {
+    transform:scaleY(.005) scaleX(1);
+  }
+  100% {
+    transform:scaleY(1) scaleX(1);
+  }
+}
+
+/**/
+#btn1{
+  padding: 5px 10px;
+  background-color: #D7263D;
+  color: white;
+  margin: 945px; 
+  cursor: pointer;
+}
+
+
+.forLogin {
+  text-align: center;
+  margin-left: 50px;
+
