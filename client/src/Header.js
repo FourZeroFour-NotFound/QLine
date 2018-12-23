@@ -4,6 +4,18 @@ import { Grid } from '@material-ui/core';
 
 
 class Header extends Component {
+    constructor ( props ) {
+        super( props );
+		
+		this.state = {
+			isChecked: null
+		}
+    }
+	
+	componentWillMount () {
+		this.setState( { isChecked: this.props.isChecked } );
+	}
+
     render() {
         
         return (
@@ -11,6 +23,16 @@ class Header extends Component {
                 <h1 style={{
                 backgroundImage: 'url(' + this.props.logo + ')'
                 }} className="menu__logo">QLine</h1>
+                <Grid>
+                <Grid className="switch-container">
+                    <label>
+                        <input ref="switch" checked={ this.state.isChecked } onChange={ this._handleChange } className="switch" type="checkbox"/>
+                            <Grid>
+                                <Grid></Grid>
+                            </Grid>
+                    </label>
+                </Grid>
+                </Grid>
                 <Grid className="centerNav">
                     <ul className="centerNavMenu">
                     <li className="menuItem"><a className="itemLink">Home</a></li>
