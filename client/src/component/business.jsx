@@ -24,8 +24,15 @@ const styles = {
   },
   uper: {
     backgroundColor: "#7aeac2",
-  }
+  },
+
 };
+const style = theme => ({
+  margin: {
+    margin: theme.spacing.unit,
+    backgroundColor: "#7aeac2",
+  },
+});
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -46,7 +53,7 @@ export default class Header extends React.Component {
           <Toolbar>
             <Typography variant="h6" color="inherit" style={styles.grow}>
             </Typography>
-            <Button color="inherit">Sign Out</Button>
+            <Button color="black">Sign Out</Button>
           </Toolbar>
         </AppBar>
         <FormGroup>
@@ -54,11 +61,13 @@ export default class Header extends React.Component {
             control={
               <Switch checked={auth} onChange={this.handleChange} aria-label="RoleSwitch" />
             }
-            label={auth ? 'Admin' : 'User'}
+            label={auth ? 'Business' : 'User'}
           />
+          <Button size="large" style={{backgroundColor:"#7aeac2", marginLeft:"1500px", font:"white"}} >
+          + Create New Queue
+          </Button>
         </FormGroup>
       </div>
-      
     );
   }
 }
