@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 
 
+import './style/App.css';
 import User from './Components/User'
-
 import Header from './Header';
 import logo from './style/qline1.jpg';
 import Login from './LogIn.jsx';
@@ -20,6 +20,8 @@ class App extends Component {
     };
   }
 
+
+    
   toggleSignup = () => {
     this.setState({
       isOpenSignUp: !this.state.isOpenSignUp,
@@ -27,16 +29,13 @@ class App extends Component {
     });
   }
 
-
   toggleLogin = () => {
     this.setState({
       isOpenSignIn: !this.state.isOpenSignIn,
       isOpenSignUp: false
     });
   }
-
   render() {
-    
     return (
       <Grid>
       <Grid className="container center">
