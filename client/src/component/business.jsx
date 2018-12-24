@@ -69,14 +69,23 @@ export default class Header extends React.Component {
     super(props);
     this.state = {
       auth: true,
+      anchorEl: null
     }
   }
   handleChange = event => {
     this.setState({ auth: event.target.checked });
   };
+  handleMenu = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
 
   render() {
-    const { auth } = this.state;
+    const { auth, anchorEl } = this.state;
+    const open = Boolean(anchorEl);
     return (
       <div style={styles.root}>
         <AppBar position="static" style={styles.uper}>
@@ -93,8 +102,14 @@ export default class Header extends React.Component {
             }
             label={auth ? 'Business' : 'User'}
           />
-          
-          <Button size="large" style={{ backgroundColor: "#7aeac2", marginLeft: "1500px", font: "white" }} >
+          {auth && (
+              <div>
+                <Button
+                  aria-owns={open ? 'menu-appbar' : undefined}
+                  aria-haspopup="true"
+                  onClick={this.handleMenu}
+                  color="inherit"
+                size="large" style={{ backgroundColor: "#7aeac2", marginLeft: "1500px", font: "white" }} >
             + Create New Queue
           </Button>
           <div style={style.roots}>
@@ -124,6 +139,9 @@ export default class Header extends React.Component {
               </div>
             </GridList>
           </div>
+         
+          </div>
+        )}
         </FormGroup>
       </div>
     );
