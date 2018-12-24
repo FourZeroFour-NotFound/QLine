@@ -21,11 +21,6 @@ class App extends Component {
   }
 
 
-    return (
-      <div className="container center">
-        <Header logo={logo} />
-        <User/>
-      </div>
   toggleSignup = () => {
     this.setState({
       isOpenSignUp: !this.state.isOpenSignUp,

@@ -6,8 +6,10 @@ import User from './Components/User';
 import * as serviceWorker from './serviceWorker';
 import Business from './component/business.jsx';
 import Profile from './Components/Profile';
+import BusinessQueue from './component/businessQueue.jsx';
+import BusinessGridList from './component/businessGridList.jsx';
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<Business/>, document.getElementById('root'));
 serviceWorker.unregister();
 
 
