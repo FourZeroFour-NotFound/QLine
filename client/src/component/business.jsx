@@ -55,12 +55,12 @@ const style = theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     padding: 20,
-    marginLeft : 20,
+    marginLeft: 20,
     marginRight: 20
   },
   gridList: {
-      width: '100%',
-      height: '100%',
+    width: '100%',
+    height: '100%',
   },
 });
 
@@ -79,7 +79,7 @@ export default class Header extends React.Component {
     const { auth } = this.state;
     return (
       <div style={styles.root}>
-        <AppBar  position="static" style={styles.uper}>
+        <AppBar position="static" style={styles.uper}>
           <Toolbar>
             <Typography variant="h6" color="inherit" style={styles.grow}>
             </Typography>
@@ -93,36 +93,37 @@ export default class Header extends React.Component {
             }
             label={auth ? 'Business' : 'User'}
           />
-          <Button size="large" style={{backgroundColor:"#7aeac2", marginLeft:"1500px", font:"white"}} >
-          + Create New Queue
+          
+          <Button size="large" style={{ backgroundColor: "#7aeac2", marginLeft: "1500px", font: "white" }} >
+            + Create New Queue
           </Button>
           <div style={style.roots}>
-      <GridList cols={3} style={style.gridList}>
-      <div>
-          <Card style={styles.card}>
-      <CardActionArea>
-        <CardMedia
-          style={styles.media}
-          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfwBsJDX4ZzzCUiKWSdUtGq5vKRaEfPLORqgepy1soHwcuXF6-5A"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Queue Name
+            <GridList cols={3} style={style.gridList}>
+              <div>
+                <Card style={styles.card}>
+                  <CardActionArea>
+                    <CardMedia
+                      style={styles.media}
+                      image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfwBsJDX4ZzzCUiKWSdUtGq5vKRaEfPLORqgepy1soHwcuXF6-5A"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        Queue Name
           </Typography>
-          <Typography component="p">
-            This is all the informations about this queue.
+                      <Typography component="p">
+                        This is all the informations about this queue.
           </Typography>
-          </CardContent>
-         </CardActionArea>
-         <CardActions>
-        <Button style={{backgroundColor:"#7aeac2", marginLeft:"250px", font:"white"}}>
-          Manage the Queue
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Button style={{ backgroundColor: "#7aeac2", marginLeft: "250px", font: "white" }}>
+                      Manage the Queue
         </Button>
-        </CardActions>
-         </Card>
-         </div>
-         </GridList>
-    </div>
+                  </CardActions>
+                </Card>
+              </div>
+            </GridList>
+          </div>
         </FormGroup>
       </div>
     );
