@@ -20,7 +20,6 @@ class App extends Component {
     };
   }
 
-
   toggleSignup = () => {
     this.setState({
       isOpenSignUp: !this.state.isOpenSignUp,
