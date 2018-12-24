@@ -35,9 +35,74 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// git function to bring all the queuefor one user using his id 
+//dose not take any thing just the user id from his req
+app.get('/all_queue',function(req,res){
+  db.getAllQueueForUser(req.user , function(err,result){
+    if (err){
+      console.log("server error giting data " , err)
+    }else{
+      res.send({
+        status: 200,
+        success: "data found sucssfuly",
+        data : result
+      });
+    }
+    
+  })
+})
 
 
 
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+//function to add queue to data base 
+// {
+//   "nameOfQueeu" :"zaid",
+//   "start_time":  "23:59:59" ,
+//   "end_time":  "23:59:59"  ,
+//   "date" : "1999-01-01",
+//   "timeforone": "10 m ",
+//   "windows" : "5",
+//   "imgUrl" : "html//:" ,
+//   "take_premum" : "0",
+//   "accept_join": "1",
+//   "requierment" :"fdfdfsdfsdfsd"
+ 
+// }
+app.post('/add-queue', function (req, res) {
+  console.log(req.user)
+  console.log(req.body)
+  var queue = {
+    nameOfQueeu: req.body.nameOfQueeu,
+    start_time: req.body.start_time,
+    end_time: req.body.end_time,
+    date: req.body.date,
+    timeforone: req.body.date,
+    windows: req.body.windows,
+    imgUrl: req.body.imgUrl,
+    take_premum: req.body.take_premum,
+    accept_join: req.body.accept_join,
+    requierment: req.body.requierment,
+    creator_id: req.user,
+  }
+
+  db.insertNewQueue(queue, function (err, result) {
+    if (err) {
+      console.log("server ", err)
+    } else {
+      console.log("server queue add ")
+      res.send({
+        success: "queue added sucssfuly"
+      })
+    }
+  })
+})
+ //////////////////////////////////////////////////////////////////////////////////////
 //post requst to add new user 
 //req.budy shoud look like this :
 //{
@@ -141,14 +206,14 @@ app.post('/sign-in', function (req, res) {
 
 })
 
- // log out function // will 
-app.get('/log-out', function (req,res){
-//console.log("zaiiiiid",req.user)
-//console.log(req.isAuthenticated());
-var x = req.user
+// log out function // will 
+app.get('/log-out', function (req, res) {
+  //console.log("zaiiiiid",req.user)
+  //console.log(req.isAuthenticated());
+  var x = req.user
   req.logOut()
   res.send({
-    success : `user ${x} is log out `
+    success: `user ${x} is log out `
   })
 })
 
