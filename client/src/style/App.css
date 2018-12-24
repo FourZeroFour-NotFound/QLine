@@ -294,10 +294,7 @@ input[type="checkbox"].switch:checked + div > div {
   border-radius: 50%;
   color:white;
   }
-  p{
+  /* p{
     padding-top: 30%;
     white-space: pre-line;
-  }
-input .bottom{
- color:#a077a7;
-}
+  } */
