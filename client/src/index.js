@@ -12,4 +12,5 @@ import BusinessGridList from './component/businessGridList.jsx';
 ReactDOM.render(<Business/>, document.getElementById('root'));
 serviceWorker.unregister();
 
+ReactDOM.render(<App/>, document.getElementById('root'));
 
