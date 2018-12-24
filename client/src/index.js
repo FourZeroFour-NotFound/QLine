@@ -10,4 +10,5 @@ import Profile from './Components/Profile';
 ReactDOM.render(<App/>, document.getElementById('root'));
 serviceWorker.unregister();
 
+ReactDOM.render(<App/>, document.getElementById('root'));
 
