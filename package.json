@@ -8,7 +8,6 @@
     "server": "nodemon server",
     "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
     "test": "mocha"
-    
   },
   "author": "",
   "license": "ISC",

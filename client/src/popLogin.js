@@ -73,10 +73,6 @@ class PopLogIn extends React.Component {
               <input type="password" />
             </label>
             <label>
-              <span>Confirm Password</span>
-              <input type="password" />
-            </label>
-            <label>
               <span>Organization Name</span>
               <input type="text" />
             </label>
