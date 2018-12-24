@@ -19,7 +19,6 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import BusinessGridList from './businessGridList.jsx';
 
 const styles = {
   root: {
@@ -36,14 +35,14 @@ const styles = {
     backgroundColor: "#7aeac2",
   },
   card: {
-    width: "500px",
-    height: "250px",
+    width: "600px",
+    height: "350px",
     margin: 7,
 
   },
   media: {
-    height: 50,
-    maxWidth: 50,
+    height: 100,
+    maxWidth: 100,
   },
 };
 const style = theme => ({
@@ -66,61 +65,46 @@ const style = theme => ({
   },
 });
 
-export default class Header extends React.Component {
+export default class BusinessQueue extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       auth: true,
-      anchorEl: null,
-      queues:[]
+      anchorEl: null
     }
   }
-  handleChange = event => {
-    this.setState({ auth: event.target.checked });
-  };
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-
   render() {
-    const { auth, anchorEl } = this.state;
-    const open = Boolean(anchorEl);
     return (
-      <div style={styles.root}>
-        <AppBar position="static" style={styles.uper}>
-          <Toolbar>
-            <Typography variant="h6" color="inherit" style={styles.grow}>
-            </Typography>
-            <Button color="black">Sign Out</Button>
-          </Toolbar>
-        </AppBar>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch checked={auth} onChange={this.handleChange} aria-label="RoleSwitch" />
-            }
-            label={auth ? 'Business' : 'User'}
-          />
-          {auth && (
-            <div>
-            <Button
-            aria-owns={open ? 'menu-appbar' : undefined}
-            aria-haspopup="true"
-            onClick={this.handleMenu}
-            color="inherit"
-            size="large" style={{ backgroundColor: "#7aeac2", marginLeft: "1500px", font: "white" }} >
-            + Create New Queue
-            </Button>
-              <BusinessGridList/>
-              </div>
-        )}
-        </FormGroup>
+      <div>
+        <Card style={styles.card}>
+          <CardActionArea>
+          <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
+                {this.props.queue.nameOfQueeu}
+              </Typography>
+            <CardContent>
+            <CardMedia
+              style={styles.media}
+              image={this.props.queue.imgUrl}
+            />
+              <Typography component="p">
+                {"Start Time:" + this.props.queue.start_time}<br />
+                {"End Time:" + this.props.queue.end_time}<br />
+                {"Date:" + this.props.queue.date}<br />
+                {"The time for each customer:" + this.props.queue.timeforone}<br />
+                {"Number of windows:" + this.props.queue.windows}<br />
+                {"Premium permission:" + this.props.queue.take_premum}<br />
+                {"Accept customers:" + this.props.queue.accept_join}<br />
+                {"The requirements for attending this queue:" + this.props.queue.requierment}<br />
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button style={{ backgroundColor: "#7aeac2", marginTop: "90px", marginLeft: "200px", font: "white" }}>
+              Manage the Queue
+        </Button>
+          </CardActions>
+        </Card>
       </div>
     );
   }
 }
-
