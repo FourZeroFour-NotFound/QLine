@@ -9,6 +9,6 @@ import * as serviceWorker from './serviceWorker';
 import Profile from './Components/Profile';
 
 
-ReactDOM.render(<Profile/>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
 
  

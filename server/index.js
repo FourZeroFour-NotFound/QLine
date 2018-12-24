@@ -141,14 +141,14 @@ app.post('/sign-in', function (req, res) {
 
 })
 
-
+ // log out function // will 
 app.get('/log-out', function (req,res){
 //console.log("zaiiiiid",req.user)
 //console.log(req.isAuthenticated());
 var x = req.user
   req.logOut()
   res.send({
-    success : `user ${ x} is log out `
+    success : `user ${x} is log out `
   })
 })
 
