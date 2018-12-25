@@ -9,7 +9,8 @@ import Profile from './Components/Profile';
 import { Router, Route, browserHistory } from 'react-router';
 import Login from './popLogin.js';
 import SignUp from './popSignUp.js';
-
+import BusinessQueue from './component/businessQueue.jsx';
+import BusinessGridList from './component/businessGridList.jsx';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -32,5 +33,6 @@ class HomePage extends React.Component {
 
 ReactDOM.render(<HomePage/>, document.getElementById('root'));
 serviceWorker.unregister();
+
 
 
