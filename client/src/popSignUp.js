@@ -1,8 +1,8 @@
 import React from 'react';
 import './style/App.css';
 import {browserHistory} from 'react-router';
-import $ from 'jquery';
-
+import $ from "jquery";
+import {Typography} from '@material-ui/core';
 
 
 class PopSignUp extends React.Component {
@@ -16,10 +16,10 @@ class PopSignUp extends React.Component {
       password: "",
       organizationName: "",
       errorPhone: "",
-      errorEmail: "",
       errorPassword: "",
       validation: false,
-      isSignUp:false
+      toggleButton: false,
+      toggleButtonSpin: false,
     };
   }
 
@@ -53,14 +53,22 @@ class PopSignUp extends React.Component {
         validation: true
       });
     }
-    if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+  }
+
+  handleChange1(e) {
+    const email = this.state.email;
+    let target = e.target;
+    this.setState({ [target.name]: target.value });
+
+    // validation to  password
+    if (this.state.password.length < 8) {
       this.setState({
-        errorEmail: "Invalid email",
+        errorPassword: "The password should be more than 8 character!",
         validation: false
       });
     } else {
       this.setState({
-        errorEmail: "",
+        errorPassword: "",
         validation: true
       });
     }
@@ -68,9 +76,9 @@ class PopSignUp extends React.Component {
 
   handleOnClick(e) {
     e.preventDefault();
+    this.toggleButtonNow();
+    this.toggleButtonSpinNow();
     this.reset();
-    console.log(this.state);
-    // if the validation true  send data
     if (this.state.validation) {
       $.ajax({
         url: '/sign-up',
@@ -80,13 +88,16 @@ class PopSignUp extends React.Component {
           firstName: this.state.firstName,
           lastName: this.state.lastName,
           email: this.state.email,
-          phoneNumber: this.state.phoneNumber,
           password: this.state.password,
-          gender: this.state.organizationName,
-          id_roles: 1
+          organizationName: this.state.organizationName,
+          phoneNumber: this.state.phoneNumber
         }),
         success: (res) => {
           console.log('Thank you for being with us')
+          browserHistory.push({
+            pathname: "/business",
+            state: { user: res.data }
+          });
         },
         error: (err) => {
           console.log('err', err);
@@ -95,6 +106,36 @@ class PopSignUp extends React.Component {
     }
   }
 
+  handleOnClick1() {
+    // if the validation true  send data
+    this.toggleButtonNow();
+    this.toggleButtonSpinNow();
+    this.reset()
+    if (this.state.validation) {
+    $.ajax({
+      url: '/sign-in',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        email: this.state.email,
+        password : this.state.password
+      }),
+      success: (res) => {
+        console.log("Welcome, Nice to see you again!")
+          // redirect to main page
+          setTimeout ( () => {
+            browserHistory.push({
+              pathname: "/business",
+              state: { user: res.data }
+            });
+          }, 2000)
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
+   }
+  }
 
   componentDidMount () {
       let imgBtn = document.querySelector('.img__btn');
@@ -105,6 +146,24 @@ class PopSignUp extends React.Component {
        });
       } 
    }
+
+  toggleButtonNow () {
+      setTimeout( () => {
+      this.setState({
+          toggleButton: !this.state.toggleButton,
+          toggleButtonSpin: !this.state.toggleButtonSpin
+      })
+      }, 5000)
+      clearTimeout(this.toggleButtonNow)
+      }
+
+  toggleButtonSpinNow () {
+      this.setState({
+          toggleButtonSpin: !this.state.toggleButtonSpin,
+          toggleButton: false
+        })
+    }
+
 
    reset () {
     this.setState({
@@ -119,8 +178,8 @@ class PopSignUp extends React.Component {
 
   render () {
     return (
-      <div class="cont">
-        <div class="form sign-in">
+      <div className="cont">
+        <div className="form sign-in">
         <h2>Time to feel like home,</h2>
         <label>
               <span>First Name</span>
@@ -137,16 +196,18 @@ class PopSignUp extends React.Component {
             <label>
               <span>Phone Number</span>
               <input type="number" name="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange.bind(this)} required/>
+              <Typography variant="caption" style={{ color: "red" }} gutterBottom align="center">{this.state.errorPhone}</Typography>
             </label>
             <label>
               <span>Password</span>
               <input type="password" name="password" value={this.state.password} onChange={this.handleChange.bind(this)} required/>
+              <Typography variant="caption" style={{ color: "red" }} gutterBottom align="center">{this.state.errorPassword}</Typography>
             </label>
             <label>
               <span>Organization Name</span>
               <input type="text" name="organizationName" value={this.state.organizationName} onChange={this.handleChange.bind(this)}/>
             </label>
-            <button type="button" className="submit" onClick={this.handleOnClick.bind(this)}>Sign Up</button>
+            <button type="button" className="submit" onClick={this.handleOnClick.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}Sign Up</button>
             <button type="button" className="fb-btn">Join with <span>facebook</span></button>
         </div>
         <div className="sub-cont">
@@ -168,14 +229,15 @@ class PopSignUp extends React.Component {
             <h2>Welcome back,</h2>
           <label>
             <span>Email</span>
-            <input type="email" />
+            <input type="email" name="email" value={this.state.email} onChange={this.handleChange1.bind(this)}/>
           </label>
           <label>
             <span>Password</span>
-            <input type="password" />
+            <input type="password" name="password" value={this.state.password} onChange={this.handleChange1.bind(this)}/>
+            <Typography variant="caption" style={{ color: "red" }} gutterBottom align="center">{this.state.errorPassword}</Typography>
           </label>
           <p className="forgot-pass">Forgot password?</p>
-          <button type="button" className="submit">Sign In</button>
+          <button type="button" className="submit" onClick={this.handleOnClick1.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}Sign In</button>
           <button type="button" className="fb-btn">Connect with <span>facebook</span></button>
            
           </div>
