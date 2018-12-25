@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './style/App.css';
 import { Grid } from '@material-ui/core';
-
+import {Link} from 'react-router';
 
 class Header extends Component {
     constructor ( props ) {
@@ -41,8 +41,8 @@ class Header extends Component {
                 </Grid>
                 <Grid className="menu__right">
                     <ul className="menu__list">
-                    <li class="menu__list-item"><a class="menu__link" onClick={this.props.toggleLogin}>LogIn</a></li>
-                    <li class="menu__list-item"><a class="menu__link menu__link--active" onClick={this.props.toggleSignup}>Sign Up</a></li>
+                    <li class="menu__list-item"><Link to ="/sign-in" class="menu__link" onClick={this.props.toggleLogin}>LogIn</Link></li>
+                    <li class="menu__list-item"><Link to ="/sign-up" class="menu__link menu__link--active" onClick={this.props.toggleSignup}>Sign Up</Link></li>
                     </ul>
                 </Grid>
             </nav>

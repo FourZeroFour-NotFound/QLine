@@ -21,14 +21,14 @@ app.use(bodyParser.urlencoded({
 var sessionStore = new MySQLStore({
   host: "localhost",
   user: "root",
-  password: "password",
+  password: "12345678",
   database: "qline"
 })
 
 
 
 app.use(session({
-  secret: 'zaiiiiidiiidiii',
+  secret: 'secret!',
   store: sessionStore,
   resave: false,
   saveUninitialized: false
@@ -55,25 +55,6 @@ app.get('/all_queue',function(req,res){
 })
 
 
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////
-//function to add queue to data base 
-// {
-//   "nameOfQueeu" :"zaid",
-//   "start_time":  "23:59:59" ,
-//   "end_time":  "23:59:59"  ,
-//   "date" : "1999-01-01",
-//   "timeforone": "10 m ",
-//   "windows" : "5",
-//   "imgUrl" : "html//:" ,
-//   "take_premum" : "0",
-//   "accept_join": "1",
-//   "requierment" :"fdfdfsdfsdfsd"
- 
-// }
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
   console.log(req.body)
@@ -102,33 +83,22 @@ app.post('/add-queue', function (req, res) {
     }
   })
 })
- //////////////////////////////////////////////////////////////////////////////////////
-//post requst to add new user 
-//req.budy shoud look like this :
-//{
-//   firstName :"zaid",
-//   lastName:"raddad",
-//   email: "zaid@gmail.com",
-//   password:"zaid",
-//   organization:"zaiiis",
-//   phoneNumber:"0799795083",
-//   primum:0
-// }
+
 app.post('/sign-up', function (req, res) {
+  console.log(req.body)
   // orderthe data in the same way it sabous to be 
   var user = {
     "firstName": req.body.firstName,
     "lastName": req.body.lastName,
     "email": req.body.email,
     "password": req.body.password,
-    "organization": req.body.organization,
+    "organization": req.body.organizationName,
     "phoneNumber": req.body.phoneNumber,
-    "primum": req.body.primum
   }
-  //chick if the acout is already exist befor add him if its exist alredy redirict him to sign in page 
+  //check if the account is already exist befor add him if its exist alredy redirict him to sign in page 
   db.isacountExest(req.body.email, function (err, result) {
     if (err) {
-      console.log("server ", err)
+      console.log("server", err)
     } else {
       if (result.length !== 0) {
         res.send({
@@ -136,7 +106,8 @@ app.post('/sign-up', function (req, res) {
           success: "userExist",
         });
 
-      } else { //if its new user add him to the user table 
+      } else { 
+        //if its new user add him to the user table 
         db.insertNewUser(user, function (err, result) {
           if (err) {
             console.log(err)
@@ -161,17 +132,13 @@ app.post('/sign-up', function (req, res) {
 })
 
 ////////////////////////////////////////////////////////////////
-//post function to sign in 
 
-//req.body = {
-//   email:"zaid@gmail.com",
-//   password : "zaid"
-// }
+//post function to sign in 
 app.post('/sign-in', function (req, res) {
   console.log(req.body)
   db.isacountExest(req.body.email, function (err, result) {
     if (err) {
-      console.log("server ", err)
+      console.log("server", err)
     } else {
       if (result.length == 0) {
         res.send({
@@ -183,11 +150,9 @@ app.post('/sign-in', function (req, res) {
           //if the password corect creat session 
           req.login(result[0].user_id, function (err) {
             console.log("server user data after creat and log in ", result[0])
-
-
             res.send({
               status: 200,
-              success: "Successed !",
+              success: "Successed!",
               data: result[0]
             });
           });
@@ -241,9 +206,6 @@ function authenticationMiddleware() {
     });
   }
 }
-
-
-
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;

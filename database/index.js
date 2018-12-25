@@ -5,7 +5,7 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "password",
+  password: "12345678",
   database: "qline"
 });
 
@@ -49,8 +49,7 @@ const selectAll = function (tableName, callback) {
 //   primum:0
 // }
 const insertNewUser = function (user, callback) {
-  var sqlquery = `insert into user (firstName,lastName,email,password,organization,phoneNumber,primum) 
-  values("${user.firstName}","${user.lastName}","${user.email}","${user.password}","${user.organization}","${user.phoneNumber}","0")`
+  var sqlquery = `insert into user (firstName,lastName,email,password,organization,phoneNumber,primum) values("${user.firstName}","${user.lastName}","${user.email}","${user.password}","${user.organization}","${user.phoneNumber}","0")`
   connection.query(sqlquery, function (err, result) {
     if (err) {
       console.log("db error inserting in user table", err)
@@ -61,6 +60,7 @@ const insertNewUser = function (user, callback) {
     }
   })
 }
+
 
 ///////////////////////////////////////////////////
 

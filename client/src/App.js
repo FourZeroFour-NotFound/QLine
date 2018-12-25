@@ -1,7 +1,5 @@
 
 import React, { Component } from 'react';
-
-
 import './style/App.css';
 import User from './Components/User'
 import Header from './Header';
@@ -39,6 +37,7 @@ class App extends Component {
       <Grid className="container center">
         <Header logo={logo} toggleSignup={this.toggleSignup} toggleLogin={this.toggleLogin} />
       </Grid>
+      {/* <img className="init" src ='https://images.pexels.com/photos/34166/pexels-photo.jpg?cs=srgb&dl=architecture-cityscape-cityview-34166.jpg&fm=jpg'/>  */}
       <Login show={this.state.isOpenSignIn} onClose={this.toggleLogin}></Login>
       <SignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></SignUp>
       </Grid>
