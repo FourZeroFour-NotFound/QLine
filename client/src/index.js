@@ -12,6 +12,7 @@ import SignUp from './popSignUp.js';
 import BusinessQueue from './component/businessQueue.jsx';
 import BusinessGridList from './component/businessGridList.jsx';
 import Loading from './Loading.js';
+import CreatQueue from './component/creatQueue.jsx';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -32,14 +33,14 @@ class HomePage extends React.Component {
     }
   }
 
-ReactDOM.render(<Loading/>, document.getElementById('root'));
-setTimeout(()=>{
-ReactDOM.render(<HomePage/>, document.getElementById('root1'));
-},5000);
-setTimeout(()=>{
-  window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
-}, 6500)
-serviceWorker.unregister();
+ReactDOM.render(<CreatQueue/>, document.getElementById('root'));
+// setTimeout(()=>{
+// ReactDOM.render(<HomePage/>, document.getElementById('root1'));
+// },5000);
+// setTimeout(()=>{
+//   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
+// }, 6500)
+// serviceWorker.unregister();
 
 
 

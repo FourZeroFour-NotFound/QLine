@@ -10,19 +10,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
-import Card from '@material-ui/core/Card';
 import {Grid} from '@material-ui/core';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import BusinessGridList from './businessGridList.jsx';
 import logo from '../style/qline.png';
 import {Link} from 'react-router';
+import $ from 'jquery';
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -94,7 +88,6 @@ export default class Header extends React.Component {
       contentType: 'application/json',
       success: (data) => {
         console.log(data);
-        browserHistory.push('/')
       },
       error: (err) => {
         console.log(err);
