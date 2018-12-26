@@ -13,6 +13,7 @@ import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import '../style/App.css';
 import logo from '../style/qline1.jpg';
+
 const styles = () => ({
 
   root: {
@@ -98,9 +99,10 @@ class User extends Component {
           </Toolbar>
         </AppBar>
         <FormGroup>
+       
           <FormControlLabel
             control={
-              <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
+              <Switch    checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
             }
             label={auth ? 'Users' : 'Business'}
           />

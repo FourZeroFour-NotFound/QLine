@@ -14,12 +14,12 @@ DROP TABLE IF EXISTS `user`;
 		
 CREATE TABLE `user` (
   `user_id` INTEGER NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(25) NOT NULL,
-  `lastName` VARCHAR(25) NOT NULL,
-  `email` VARCHAR(25) NULL DEFAULT NULL,
-  `password` VARCHAR(25) NOT NULL,
-  `organization` VARCHAR(25) NOT NULL,
-  `phoneNumber` INTEGER(25) NOT NULL,
+  `firstName` VARCHAR(250) NOT NULL,
+  `lastName` VARCHAR(250) NOT NULL,
+  `email` VARCHAR(250) NULL DEFAULT NULL,
+  `password` VARCHAR(250) NOT NULL,
+  `organization` VARCHAR(250) NOT NULL,
+  `phoneNumber` VARCHAR(250) NOT NULL,
   `primum` INTEGER(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`user_id`)
 );
