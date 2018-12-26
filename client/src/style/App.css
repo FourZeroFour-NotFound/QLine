@@ -11,12 +11,39 @@ html, body {
 }
 
 .init {
-    background-size: cover;
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    margin-top: -300px;
+
+   width: 100%;
+   height: 100%;
+   margin-top: -250px;
+}
+
+.content {
+    font-size: 70px; 
+    top: -700px;
+    text-align: left;
+    
+  }
+
+.titleDesc {
+    width: 600px;
+    height: 1000px;
+    margin-left: 1350px;
+    margin-top: -850px;
+    padding: 20px;
+    color: #fff;
+}
+/******************* introPage *******************/
+.imp {
+  color: #7aeac2;
+  border-bottom: 4px solid white;
+}
+
+
+.qlinedesc {
+  margin-top: 20px;
+  width: 400px;
+  margin-left: 0px;
+  font-size: 20px;
 }
 
 /*******************- Loading -*******************/

@@ -111,7 +111,7 @@ export default class Header extends React.Component {
                 </Grid>
                 <Grid className="menu__right">
                     <ul className="menu__list">
-                    <li class="menu__list-item"><Link to ="/logout" class="menu__link">Logout</Link></li>
+                    <li class="menu__list-item"><a to ="/logout" class="menu__link" href="/">Logout</a></li>
                     </ul>
                 </Grid>
             </nav>
