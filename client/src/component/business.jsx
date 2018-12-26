@@ -84,6 +84,21 @@ export default class Header extends React.Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
+  signOut() {
+
+    $.ajax({
+      url: '/log-out',
+      type: 'GET',
+      contentType: 'application/json',
+      success: (data) => {
+        console.log(data);
+        browserHistory.push('/')
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
 
 
   render() {
