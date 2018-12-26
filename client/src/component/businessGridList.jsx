@@ -50,7 +50,7 @@ export default class BusinessGridList extends React.Component {
     }
   }
   getAllQueues() {
-    $.ajax({url: '/business',
+    $.ajax({url: '/all_queue',
     type: 'GET',
     data : JSON.stringify({user_id: this.props.location.state.user.user_id }),
     contentType: 'application/json',
