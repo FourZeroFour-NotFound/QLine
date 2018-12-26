@@ -120,7 +120,7 @@ app.post('/sign-up', function (req, res) {
               user.id = result.insertId // add the id to the object user and send it to the front end //this way is esyer to know the user id 
               res.send({
                 status: 200,
-                success: "Successed !",
+                success: "Successed!",
                 data: user
               });
             });
