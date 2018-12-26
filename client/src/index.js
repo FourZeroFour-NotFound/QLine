@@ -31,7 +31,7 @@ class HomePage extends React.Component {
     }
   }
 
-ReactDOM.render(<HomePage/>, document.getElementById('root'));
+ReactDOM.render(<User/>, document.getElementById('root'));
 serviceWorker.unregister();
 
 

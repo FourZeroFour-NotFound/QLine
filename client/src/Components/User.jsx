@@ -13,6 +13,7 @@ import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import '../style/App.css';
 import logo from '../style/qline1.jpg';
+import SearchIcon from '@material-ui/icons/Search';
 
 const styles = () => ({
 
@@ -22,13 +23,15 @@ const styles = () => ({
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
+ 
   color: {
     backgroundColor: '#aa1256',
   },
+  icon: {
+    marginLeft:1000,
+    // marginRight:500,
+   
+  }
 });
 
 
@@ -60,14 +63,14 @@ class User extends Component {
 
         <AppBar position="static" className={classes.color}>
           <Toolbar>
-            <div position="static" className={classes.grow}>
+            {/* <div position="static" className={classes.grow}>
               <h1 style={{
                 backgroundImage: 'url(' + this.props.logo + ')'
               }} className="menu__logo">QLine</h1>
-            </div>
+            </div> */}
             {auth && (
               <div>
-                <IconButton
+                <IconButton className={classes.icon}
                   aria-owns={open ? 'menu-appbar' : undefined}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
@@ -75,6 +78,7 @@ class User extends Component {
                 >
                   <AccountCircle />
                 </IconButton>
+                
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
@@ -94,26 +98,25 @@ class User extends Component {
                 </Menu>
               </div>
             )}
-
             <Button color="inherit">Log Out</Button>
           </Toolbar>
         </AppBar>
+
+
         <FormGroup>
-       
           <FormControlLabel
             control={
               <Switch    checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
             }
             label={auth ? 'Users' : 'Business'}
           />
-             <div className="container h-100">
-        <div className="d-flex justify-content-center h-100">
-          <div className="searchbar">
-            <input className="search_input" type="text" name placeholder="Search..." />
-            <a href="#" className="search_icon"><i className="fas fa-search" /></a>
-          </div>
-        </div>
-      </div>
+          {auth && (
+ <div className="searchbar">
+ <input className="search_input" type="text" name placeholder="Search..." />
+ <a className="search_icon">
+ <SearchIcon/></a>
+</div>
+          )}
          
         </FormGroup>
       </div>
