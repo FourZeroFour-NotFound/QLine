@@ -94,10 +94,15 @@ class PopSignUp extends React.Component {
         }),
         success: (res) => {
           console.log('Thank you for being with us')
-          browserHistory.push({
-            pathname: "/business",
-            state: { user: res.data }
-          });
+          if(res.success !== 'userExist') {
+            browserHistory.push({
+
+              pathname: "/business",
+              state: { user: res.data }
+            });
+          } else {
+            alert("This user is exist");
+          }
         },
         error: (err) => {
           console.log('err', err);
@@ -128,7 +133,7 @@ class PopSignUp extends React.Component {
               pathname: "/business",
               state: { user: res.data }
             });
-          }, 2000)
+          }, 4000)
       },
       error: (err) => {
         console.log('err', err);

@@ -4,6 +4,8 @@ import $ from 'jquery';
 import {Typography} from '@material-ui/core';
 import {browserHistory} from 'react-router';
 
+
+
 class PopLogIn extends React.Component {
   constructor(props) {
        super(props)
@@ -62,7 +64,11 @@ class PopLogIn extends React.Component {
 
 
   handleOnClick() {
-    // if the validation true  send data
+    this.toggleButtonNow();
+    this.toggleButtonSpinNow();
+    setTimeout ( () => {
+    window.responsiveVoice.speak("Thank you for being with us again, Enjoy our Features, i'm always here to serve you")
+    }, 4000)
     this.reset()
 
     if (this.state.validation) {
@@ -82,7 +88,7 @@ class PopLogIn extends React.Component {
               pathname: "/business",
               state: { user: res.data }
             });
-          }, 2000)
+          }, 4000)
       },
       error: (err) => {
         console.log('err', err);
@@ -93,6 +99,11 @@ class PopLogIn extends React.Component {
 
   handleOnClick1(e) {
     e.preventDefault();
+    this.toggleButtonNow();
+    this.toggleButtonSpinNow();
+    setTimeout ( () => {
+      window.responsiveVoice.speak("Warm Welcome Again, it was nice having you to be part of our community, let me guide you")
+      }, 3000)
     this.reset();
     if (this.state.validation) {
       $.ajax({
@@ -109,10 +120,15 @@ class PopLogIn extends React.Component {
         }),
         success: (res) => {
           console.log('Thank you for being with us')
-          browserHistory.push({
-            pathname: "/business",
-            state: { user: res.data }
-          });
+          if(res.success !== 'userExist') {
+            browserHistory.push({
+
+              pathname: "/business",
+              state: { user: res.data }
+            });
+          } else {
+            alert("This user is exist");
+          }
         },
         error: (err) => {
           console.log('err', err);
@@ -130,6 +146,24 @@ class PopLogIn extends React.Component {
        });
       } 
    }
+
+  toggleButtonNow () {
+    setTimeout( () => {
+    this.setState({
+        toggleButton: !this.state.toggleButton,
+        toggleButtonSpin: !this.state.toggleButtonSpin
+    })
+    }, 5000)
+    clearTimeout(this.toggleButtonNow)
+    }
+
+  toggleButtonSpinNow () {
+      this.setState({
+          toggleButtonSpin: !this.state.toggleButtonSpin,
+          toggleButton: false
+        })
+    }
+
 
     reset () {
       this.setState({
@@ -158,7 +192,7 @@ class PopLogIn extends React.Component {
             <Typography variant="caption" style={{ color: "red" }} gutterBottom align="center">{this.state.errorPassword}</Typography>
           </label>
           <p className="forgot-pass">Forgot password?</p>
-          <button type="button" className="submit" onClick={this.handleOnClick.bind(this)}>Sign In</button>
+          <button type="button" className="submit" onClick={this.handleOnClick.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}Sign In</button>
           <button type="button" className="fb-btn">Connect with <span>facebook</span></button>
         </div>
         <div className="sub-cont">
@@ -204,7 +238,7 @@ class PopLogIn extends React.Component {
               <span>Organization Name</span>
               <input type="text" name="organizationName" value={this.state.organizationName} onChange={this.handleChange1.bind(this)}/>
             </label>
-            <button type="button" className="submit" onClick={this.handleOnClick1.bind(this)}>Sign Up</button>
+            <button type="button" className="submit" onClick={this.handleOnClick1.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}Sign Up</button>
             <button type="button" className="fb-btn">Join with <span>facebook</span></button>
           </div>
         </div>
