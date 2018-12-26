@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './style/App.css';
 import { Grid } from '@material-ui/core';
 import {Link} from 'react-router';
+import logo from './style/qline.png';
 
 class Header extends Component {
     constructor ( props ) {
@@ -20,16 +21,8 @@ class Header extends Component {
         
         return (
             <nav className="menu">
-                <h1 style={{
-                backgroundImage: 'url(' + this.props.logo + ')'
-                }} className="menu__logo">QLine</h1>
+                <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
                 <Grid>
-                <Grid class="can-toggle demo-rebrand-1">
-                <input id="d" type="checkbox"/>
-                    <label for="d">
-                        <Grid class="can-toggle__switch" data-checked="USER" data-unchecked="Business"></Grid>
-                    </label>
-                </Grid>
                 </Grid>
                 <Grid className="centerNav">
                     <ul className="centerNavMenu">
