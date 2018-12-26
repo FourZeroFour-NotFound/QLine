@@ -12,7 +12,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import '../style/App.css';
+<<<<<<< HEAD
 // import logo from '../style/qline1.jpg';
+=======
+import logo from '../style/qline.png';
+import SearchIcon from '@material-ui/icons/Search';
+import { Redirect } from 'react-router-dom';
+import { browserHistory } from 'react-router';
+import { Router,Link } from 'react-router-dom';
+>>>>>>> 9ecd7dbbdf0287c17572e485c780fc22d37657b5
 
 const styles = () => ({
 
@@ -22,10 +30,7 @@ const styles = () => ({
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
+
   color: {
     backgroundColor: '#aa1256',
   },
@@ -36,7 +41,27 @@ class User extends Component {
   state = {
     auth: true,
     anchorEl: null,
+    redirect: false,
   };
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/profile' />
+    }
+  }
+  // NavBarItemActive = (value) => {
+  //   return 'nav-item ' + ((value === this.state.selected) ? 'active' : '');
+  // }
+  // handleNavBarActive = (value) => {
+  //   this.setState({ selected: value });
+  // }
+
+
   handleChange = event => {
     this.setState({ auth: event.target.checked });
   };
@@ -48,6 +73,14 @@ class User extends Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
+  routeChange = (props) => {
+    console.log("hiiii", this.props);
+    let path = 'profile';
+    console.log("helllllo", browserHistory);
+    browserHistory.push(path);
+
+  };
+
 
   render() {
 
@@ -59,15 +92,12 @@ class User extends Component {
       <div className={classes.root}>
 
         <AppBar position="static" className={classes.color}>
-          <Toolbar>
-            <div position="static" className={classes.grow}>
-              <h1 style={{
-                backgroundImage: 'url(' + this.props.logo + ')'
-              }} className="menu__logo">QLine</h1>
-            </div>
+          <Toolbar  >
+            <img src={logo} width="122px" height="62px" style={{ backgroundColor: "#aa1256", marginTop: "10px", marginLeft: "-20px" }} />
+
             {auth && (
               <div>
-                <IconButton
+                <IconButton style={{ marginLeft: "1400px" }}
                   aria-owns={open ? 'menu-appbar' : undefined}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
@@ -75,6 +105,7 @@ class User extends Component {
                 >
                   <AccountCircle />
                 </IconButton>
+
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
@@ -89,32 +120,35 @@ class User extends Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <div>
+                    {/* <Link to={{ pathname: "/profile" }}> */}
+                    
+                    <MenuItem onClick={this.routeChange}>Profile</MenuItem>
+                    {/* </Link> */}
+                  </div>
                 </Menu>
               </div>
             )}
-
-            <Button color="inherit">Log Out</Button>
+            <Button color="inherit" href="/">Log Out</Button>
           </Toolbar>
         </AppBar>
+
+
         <FormGroup>
-       
           <FormControlLabel
             control={
-              <Switch    checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
+              <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
             }
             label={auth ? 'Users' : 'Business'}
           />
-             <div className="container h-100">
-        <div className="d-flex justify-content-center h-100">
-          <div className="searchbar">
-            <input className="search_input" type="text" name placeholder="Search..." />
-            <a href="#" className="search_icon"><i className="fas fa-search" /></a>
-          </div>
-        </div>
-      </div>
-         
+          {auth && (
+            <div className="searchbar">
+              <input className="search_input" type="text" name placeholder="Search..." />
+              <a className="search_icon">
+                <SearchIcon /></a>
+            </div>
+          )}
+
         </FormGroup>
       </div>
     );
@@ -127,7 +161,7 @@ User.propTypes = {
 
 
 
-export default withStyles(styles)(User);
+export default withStyles(styles)(User) ;
 
 
 
