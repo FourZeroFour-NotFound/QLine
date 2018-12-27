@@ -3,11 +3,11 @@ var mysql = require('mysql');
 
 
 var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "12345678",
-  database: "qline"
-});
+  host: "db4free.net",
+  user: "qlinedbdb",
+  password: "qlinedbdb",
+  database: "qlinedbdb"
+ });
 
 
 

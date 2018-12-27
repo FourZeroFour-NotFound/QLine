@@ -64,7 +64,7 @@ const style = theme => ({
   },
 });
 
-export default class Header extends React.Component {
+export default class business extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

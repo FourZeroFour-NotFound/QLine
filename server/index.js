@@ -19,11 +19,11 @@ app.use(bodyParser.urlencoded({
 
 //creat table sessions in data bsee 
 var sessionStore = new MySQLStore({
-  host: "localhost",
-  user: "root",
-  password: "12345678",
-  database: "qline"
-})
+  host: "db4free.net",
+  user: "qlinedbdb",
+  password: "qlinedbdb",
+  database: "qlinedbdb"
+ })
 
 
 
