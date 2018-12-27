@@ -109,8 +109,8 @@ class Profile extends Component {
     }
 
     $.ajax({
-      url: "/info",
-      type: "POST",
+      url: "/profile/:id",
+      type: "Put",
       data: JSON.stringify(InfObj),
       contentType: "application/json",
       success: function (data) {
@@ -132,10 +132,9 @@ class Profile extends Component {
   };
   /*when edit full name call the function */
   handleChange = (e) => {
-    // this.props.changeText(e.target.value)
-    // this.setState({
-    //   First_name: e.target.value,
-    // });
+    this.setState({
+      First_name: e.target.value,
+    });
   };
   handleChangeLast = (e) => {
     this.setState({
@@ -166,6 +165,22 @@ class Profile extends Component {
   handleClose = value => {
     this.setState({ value, open: false });
   };
+
+  componentDidMount = () =>{
+   var that = this
+    $.ajax({
+      url: "/profile",
+      type: "Get",
+      success: function (data) {
+        console.log("kkkkk", data.success[0])
+        that.setState({First_name: data.success[0].firstName,
+        Last_name: data.success[0].lastName,
+        Email: data.success[0].email,
+        PhoneNum: data.success[0].phoneNumber,
+        })
+      }
+    });
+  }
 
   render() {
     const { classes } = this.props;
@@ -198,22 +213,14 @@ class Profile extends Component {
 
           />
           <CardContent>
-            <ul>
-              <li>First Name : Redwan</li>
+            <ul className="order">
+              <li>First Name : {this.state.First_name}</li>
+              <li>Last Name : {this.state.Last_name}</li>
+              <li>Email : {this.state. Email}</li>
+              <li>Phone Num : {this.state.PhoneNum}</li>
             </ul>
-            {/* <Typography component="p">
-              First Name: Redwan
-          </Typography>
-            <Typography component="p">
-              Last Name: Abdo
-          </Typography>
-            <Typography component="p">
-              Email:  R@R.com
-          </Typography>
-            <Typography component="p">
-              Phone Num:  0786541239
-          </Typography> */}
           </CardContent>
+
           <CardActions className={classes.actions} disableActionSpacing>
             <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
               Edit
@@ -233,7 +240,7 @@ class Profile extends Component {
                   id="filled-name"
                   label=" First_Name"
                   className={classes.textField}
-                  value="Redwan"
+                  value={this.state.First_name}
                   onChange={this.handleChange}
                   margin="normal"
                   variant="filled"
@@ -279,7 +286,7 @@ class Profile extends Component {
                 <Button onClick={this.handleClose} color="primary">
                   Cancel
             </Button>
-                <Button onClick={this.handleClose} color="primary">
+                <Button onClick={this.EditInfo} color="primary">
                   Save
             </Button>
               </DialogActions>

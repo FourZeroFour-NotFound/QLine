@@ -38,17 +38,10 @@ class User extends Component {
   
   };
 
- 
- 
-
-
   handleChange = event => {
     this.setState({ auth: event.target.checked });
   };
 
-  // handleMenu = event => {
-  //   this.setState({ anchorEl: event.currentTarget });
-  // };
 
   handleClose = () => {
     this.setState({ anchorEl: null });
@@ -60,7 +53,7 @@ class User extends Component {
 
     const { classes } = this.props;
     const { auth, anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+  
 
     return (
       <div className={classes.root}>

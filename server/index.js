@@ -53,7 +53,36 @@ app.get('/all_queue',function(req,res){
     
   })
 })
+// this function used to get data for user using id
+app.get('/profile', function(req,res){
+  console.log(" lllllllll",req.user)
+  db.getUserData(req.user,function(err,result){
+    if(err){
+      console.log("server error", err)
+    }else{
+      res.send({
+        status:200,
+        success:result
 
+      })
+    }
+  })
+})
+// this function is used to update data for user using id
+app.put('/profile/:id', function(req,res){
+  console.log(" ddddddd",req.user)
+  db.UPDATE(req.user, function(err, result){
+    if(err){
+      console.log("server error", err)
+    }else{
+      res.send({
+        status:200,
+        success:"data is updated"
+      
+      })
+    }
+  })
+})
 
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
