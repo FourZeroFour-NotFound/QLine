@@ -32,6 +32,52 @@ html, body {
     padding: 20px;
     color: #fff;
 }
+/*********************Search Page User************/
+
+.search {
+  width: 500px;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #aa1256;
+  padding: 15px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #aa1256;
+}
+
+.searchButton {
+  position: absolute;  
+  margin-left: 460px;
+  margin-top: 5px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid #aa1256;
+  background: #aa1256;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  margin-top: -105px;
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 /******************* introPage *******************/
 .imp {
   color: #7aeac2;

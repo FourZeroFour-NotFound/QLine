@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import './style/App.css';
-import User from './Components/User'
 import Header from './Header';
 import logo from './style/qline1.jpg';
 import Login from './LogIn.jsx';
@@ -9,7 +8,13 @@ import SignUp from './SignUp.jsx';
 import { Grid } from '@material-ui/core';
 import bk from './style/bk.jpg';
 import IntroPage from './IntroPage.js';
+import User from './Components/Profile.jsx'
 
+
+
+// Main Render of the components that displays all the component used in our project
+// we use stateless functions also for toggling signIn and signUp pages for better UI experience
+// Basic event handling has been Introduced as well 
 class App extends Component {
   constructor(props) {
     super(props);
