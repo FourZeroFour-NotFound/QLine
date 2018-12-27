@@ -37,25 +37,20 @@ class User extends Component {
   state = {
     auth: true,
     anchorEl: null,
-    redirect: false,
+ 
   };
 
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    })
-  }
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/profile' />
-    }
-  }
-  // NavBarItemActive = (value) => {
-  //   return 'nav-item ' + ((value === this.state.selected) ? 'active' : '');
+  // setRedirect = () => {
+  //   this.setState({
+  //     redirect: true
+  //   })
   // }
-  // handleNavBarActive = (value) => {
-  //   this.setState({ selected: value });
+  // renderRedirect = () => {
+  //   if (this.state.redirect) {
+  //     return <Redirect to='/profile' />
+  //   }
   // }
+ 
 
 
   handleChange = event => {
@@ -69,13 +64,13 @@ class User extends Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-  routeChange = (props) => {
-    console.log("hiiii", this.props);
-    let path = 'profile';
-    console.log("helllllo", browserHistory);
-    browserHistory.push(path);
+  // routeChange = (props) => {
+  //   console.log("hiiii", this.props);
+  //   let path = 'profile';
+  //   console.log("helllllo", browserHistory);
+  //   browserHistory.push(path);
 
-  };
+  // };
 
 
   render() {
@@ -94,15 +89,12 @@ class User extends Component {
             {auth && (
               <div>
                 <IconButton style={{ marginLeft: "1400px" }}
-                  aria-owns={open ? 'menu-appbar' : undefined}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit"
+                 href="/profile"
                 >
                   <AccountCircle />
                 </IconButton>
 
-                <Menu
+                {/* <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
                   anchorOrigin={{
@@ -115,14 +107,14 @@ class User extends Component {
                   }}
                   open={open}
                   onClose={this.handleClose}
-                >
-                  <div>
-                    {/* <Link to={{ pathname: "/profile" }}> */}
+                > */}
+                  {/* <div>
+                    <Link to={{ pathname: "/profile" }}>
                     
-                    <MenuItem onClick={this.routeChange}>Profile</MenuItem>
-                    {/* </Link> */}
-                  </div>
-                </Menu>
+                    <button href="/profile" >Profile</button>
+                    </Link>
+                  </div> */}
+                {/* </Menu> */}
               </div>
             )}
             <Button color="inherit" href="/">Log Out</Button>

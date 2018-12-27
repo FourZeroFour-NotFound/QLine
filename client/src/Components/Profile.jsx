@@ -24,7 +24,7 @@ import Grid from '@material-ui/core/Grid';
 
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 import classnames from 'classnames';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -132,9 +132,10 @@ class Profile extends Component {
   };
   /*when edit full name call the function */
   handleChange = (e) => {
-    this.setState({
-      First_name: e.target.value,
-    });
+    // this.props.changeText(e.target.value)
+    // this.setState({
+    //   First_name: e.target.value,
+    // });
   };
   handleChangeLast = (e) => {
     this.setState({
@@ -197,7 +198,10 @@ class Profile extends Component {
 
           />
           <CardContent>
-            <Typography component="p">
+            <ul>
+              <li>First Name : Redwan</li>
+            </ul>
+            {/* <Typography component="p">
               First Name: Redwan
           </Typography>
             <Typography component="p">
@@ -208,7 +212,7 @@ class Profile extends Component {
           </Typography>
             <Typography component="p">
               Phone Num:  0786541239
-          </Typography>
+          </Typography> */}
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
             <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
@@ -229,7 +233,7 @@ class Profile extends Component {
                   id="filled-name"
                   label=" First_Name"
                   className={classes.textField}
-                  value={this.state.First_name}
+                  value="Redwan"
                   onChange={this.handleChange}
                   margin="normal"
                   variant="filled"
@@ -308,14 +312,14 @@ class Profile extends Component {
                   <ListItemText primary="Arabic Bank" />
                 </ListItem>
 
-                <Confirmation
+                {/* <Confirmation
                   classes={{
                     paper: classes.paper,
                   }}
                   open={this.state.open}
                   onClose={this.handleClose}
 
-                />
+                /> */}
               </List>
             </CardContent>
           </Collapse>
@@ -335,59 +339,59 @@ Profile.propTypes = {
 
 
 
-class Confirmation extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      value: props.value,
-    };
-  }
+// class Confirmation extends Component {
+//   constructor(props) {
+//     super();
+//     this.state = {
+//       value: props.value,
+//     };
+//   }
 
 
-  handleCancel = () => {
-    this.props.onClose(this.props.value);
-  };
+//   handleCancel = () => {
+//     this.props.onClose(this.props.value);
+//   };
 
-  handleOk = () => {
-    this.props.onClose(this.state.value);
-  };
+//   handleOk = () => {
+//     this.props.onClose(this.state.value);
+//   };
 
-  render() {
-    const { value, ...other } = this.props;
-    const { classes } = this.props;
+//   render() {
+//     const { value, ...other } = this.props;
+//     const { classes } = this.props;
 
-    return (
-      <Dialog
-        maxWidth="xs"
-        {...other}
-      >
-        <DialogTitle id="confirmation-dialog-title">Arabic Bank</DialogTitle>
-        <DialogContent>
-          <Grid container justify="center" alignItems="center">
-            <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#CE93D8' }}>H105</Avatar>
-          </Grid>
-          <span style={{ marginTop: '50px' }}>Estimated time: 1 hour</span>
-        </DialogContent>
+//     return (
+//       <Dialog
+//         maxWidth="xs"
+//         {...other}
+//       >
+//         <DialogTitle id="confirmation-dialog-title">Arabic Bank</DialogTitle>
+//         <DialogContent>
+//           <Grid container justify="center" alignItems="center">
+//             <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#CE93D8' }}>H105</Avatar>
+//           </Grid>
+//           <span style={{ marginTop: '50px' }}>Estimated time: 1 hour</span>
+//         </DialogContent>
 
-        <DialogActions>
-          <Button onClick={this.handleCancel} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={this.handleOk} color="primary">
-            Ok
-          </Button>
-          <Button onClick={this.handleOk} color="primary">
-            Delay
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
-}
+//         <DialogActions>
+//           <Button onClick={this.handleCancel} color="primary">
+//             Cancel
+//           </Button>
+//           <Button onClick={this.handleOk} color="primary">
+//             Ok
+//           </Button>
+//           <Button onClick={this.handleOk} color="primary">
+//             Delay
+//           </Button>
+//         </DialogActions>
+//       </Dialog>
+//     );
+//   }
+// }
 
-Confirmation.propTypes = {
-  onClose: PropTypes.func,
-  value: PropTypes.string,
-};
+// Confirmation.propTypes = {
+//   onClose: PropTypes.func,
+//   value: PropTypes.string,
+// };
 
 export default withStyles(styles)(Profile);
