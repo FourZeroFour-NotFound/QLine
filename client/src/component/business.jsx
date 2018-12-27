@@ -10,22 +10,16 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
-import Card from '@material-ui/core/Card';
 import {Grid} from '@material-ui/core';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import BusinessGridList from './businessGridList.jsx';
 import logo from '../style/qline.png';
+
 import {Link} from 'react-router';
 import { browserHistory } from 'react-router';
 
 import $ from "jquery";
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -97,7 +91,6 @@ export default class Header extends React.Component {
       contentType: 'application/json',
       success: (data) => {
         console.log(data);
-        browserHistory.push('/')
       },
       error: (err) => {
         console.log(err);
@@ -111,11 +104,11 @@ export default class Header extends React.Component {
     const open = Boolean(anchorEl);
     return (
       <div>
-         <nav className="menu"  style={{backgroundColor: "#aa1256",marginTop: "10px", marginLeft: "50px"}}>
+         <nav className="menu"  style={{backgroundColor: "#7aeac2",marginTop: "10px", marginLeft: "50px"}}>
                 <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
                 <FormControlLabel style={{marginTop: "-5px" , marginLeft: "-70px"}}
             control={
-              <Switch  checked={auth} onChange={this.handleChange} aria-label="RoleSwitch" />
+              <Switch  href="/user" checked={auth} onChange={this.handleChange} aria-label="RoleSwitch" />
             }
             label={auth ? 'Business' : 'User'}
           />
@@ -129,7 +122,7 @@ export default class Header extends React.Component {
                 </Grid>
                 <Grid className="menu__right">
                     <ul className="menu__list">
-                    <li class="menu__list-item"><Link to ="/logout" class="menu__link">Logout</Link></li>
+                    <li class="menu__list-item"><a  class="menu__link" href="/">Logout</a></li>
                     </ul>
                 </Grid>
             </nav>

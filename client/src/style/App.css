@@ -11,12 +11,85 @@ html, body {
 }
 
 .init {
-    background-size: cover;
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    margin-top: -300px;
+
+   width: 100%;
+   height: 100%;
+   margin-top: -250px;
+}
+
+.content {
+    font-size: 70px; 
+    top: -700px;
+    text-align: left;
+    
+  }
+
+.titleDesc {
+    width: 600px;
+    height: 1000px;
+    margin-left: 1350px;
+    margin-top: -850px;
+    padding: 20px;
+    color: #fff;
+}
+/*********************Search Page User************/
+
+.search {
+  width: 500px;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #aa1256;
+  padding: 15px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #aa1256;
+}
+
+.searchButton {
+  position: absolute;  
+  margin-left: 460px;
+  margin-top: 5px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid #aa1256;
+  background: #aa1256;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  margin-top: -105px;
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/******************* introPage *******************/
+.imp {
+  color: #7aeac2;
+  border-bottom: 4px solid white;
+}
+
+
+.qlinedesc {
+  margin-top: 20px;
+  width: 400px;
+  margin-left: 0px;
+  font-size: 20px;
 }
 
 /*******************- Loading -*******************/
@@ -2038,3 +2111,4 @@ input {
   border-radius: 50%;
   color:white;
   }
+  
