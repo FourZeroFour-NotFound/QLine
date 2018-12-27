@@ -16,7 +16,11 @@ import {Link} from 'react-router';
 import logo from '../style/qline.png';
 import {Grid} from '@material-ui/core';
 import flat from '../style/flat.png';
-
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import sampleProductList from '../sampleProductList';
+import {GridListTileBar, Typography, CardContent } from "@material-ui/core";
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 
 
@@ -78,7 +82,7 @@ class User extends Component {
                         <Grid>
                         <FormControlLabel
                           control={
-                            <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
+                            <Button href="/business" style={{backgroundColor: "#7aeac2"}} checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" >Business</Button>
                           }
                           label={auth ? 'Users' : 'Business'}
                         />
@@ -127,6 +131,8 @@ class User extends Component {
                             <i class="fa fa-search"></i>
                         </button>
                       </div>
+                      </div>
+                      <div className="root">
                     </div>
               </div>
       
