@@ -33,7 +33,15 @@ const selectAll = function (tableName, callback) {
   });
 };
 
-
+const selectAll1 = function (org, callback) {
+  connection.query(`SELECT * FROM queue where creater_id = ( select user_id where organization = ${org}) `, function (err, results) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
 
 ///////////////////////////////////////////////////
 
