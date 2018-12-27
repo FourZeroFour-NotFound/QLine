@@ -22,7 +22,11 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import BusinessGridList from './businessGridList.jsx';
 import logo from '../style/qline.png';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
+import $ from 'jquery';
+
+
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -86,6 +90,21 @@ export default class Header extends React.Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
+  signOut() {
+
+    $.ajax({
+      url: '/log-out',
+      type: 'GET',
+      contentType: 'application/json',
+      success: (data) => {
+        console.log(data);
+        browserHistory.push('/')
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
 
 
   render() {

@@ -19,6 +19,7 @@ import flat from '../style/flat.png';
 import axios from 'axios'
 
 
+
 //User Profille Component that interact once the User is sign in normally and wants normal service such as search for queues
 // here we want to implement using API in order for user to have option for using our services
 // API search is used in the search bar passed and save with server interaction and database.
@@ -30,10 +31,7 @@ const styles = () => ({
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
+
   color: {
     backgroundColor: '#aa1256',
   },
@@ -41,6 +39,7 @@ const styles = () => ({
 
 
 class User extends Component {
+
   constructor(props) {
     super(props);
       this.state = {
@@ -50,6 +49,7 @@ class User extends Component {
   }
 
 
+
   handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -57,6 +57,7 @@ class User extends Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
+
 
   handleChange = address => {
     this.setState({ address });
@@ -71,64 +72,63 @@ class User extends Component {
     const open = Boolean(anchorEl);
 
     return (
-<div>
-      <nav className="menu" style={{backgroundColor: "#aa1256", marginTop: "10px", marginLeft: "50px"}}>
-                <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
-                <Grid>
-                <FormControlLabel
-                  control={
-                    <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
-                  }
-                  label={auth ? 'Users' : 'Business'}
-                />
-                </Grid>
-                <Grid className="centerNav">
-                    <ul className="centerNavMenu">
-                    <li className="menuItem"><a className="itemLink">Home</a></li>
-                    <li className="menuItem"><a className="itemLink">Features</a></li>
-                    <li className="menuItem"><a className="itemLink">Contact Us</a></li>
-                    </ul>
+            <div>
+              <nav className="menu" style={{backgroundColor: "#aa1256", marginTop: "10px", marginLeft: "50px"}}>
+                        <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
+                        <Grid>
+                        <FormControlLabel
+                          control={
+                            <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
+                          }
+                          label={auth ? 'Users' : 'Business'}
+                        />
+                        </Grid>
+                        <Grid className="centerNav">
+                            <ul className="centerNavMenu">
+                            <li className="menuItem"><a className="itemLink">Home</a></li>
+                            <li className="menuItem"><a className="itemLink">Features</a></li>
+                            <li className="menuItem"><a className="itemLink">Contact Us</a></li>
+                            </ul>
 
-                    {auth && (
-              <div>
-                
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                >
-                </Menu>
+                            {auth && (
+                      <div>
+                        <Menu
+                          id="menu-appbar"
+                          anchorEl={anchorEl}
+                          anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                          }}
+                          transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                          }}
+                          open={open}
+                          onClose={this.handleClose}
+                        >
+                        </Menu>
+                      </div>
+                    )}
+                        </Grid>
+                        <Grid className="menu__right">
+                            <ul className="menu__list">
+                            <Button href="/profile" color="inherit" style={{width: "70px", marginRight: "10px"}}>
+                            <AccountCircle /><a href="/profile">Profile</a>
+                            </Button>
+                            <li class="menu__list-item"><Link to ="/" class="menu__link">Logout</Link></li>
+                            </ul>
+                        </Grid>
+                    </nav>
+                    <img src={flat} style={{ width: "100%", height: "100%"}}/>
+                    <div class="wrap">
+                      <div class="search">
+                          <input type="text" class="searchTerm"  placeholder="Search..."/>
+                          <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                      </div>
+                    </div>
               </div>
-            )}
-                </Grid>
-                <Grid className="menu__right">
-                    <ul className="menu__list">
-                    <Button href="/profile" color="inherit" style={{width: "70px", marginRight: "10px"}}>
-                    <AccountCircle /><a href="/profile">Profile</a>
-                    </Button>
-                    <li class="menu__list-item"><Link to ="/" class="menu__link">Logout</Link></li>
-                    </ul>
-                </Grid>
-            </nav>
-            <img src={flat} style={{ width: "100%", height: "100%"}}/>
-            <div class="wrap">
-              <div class="search">
-                  <input type="text" class="searchTerm"  placeholder="Search..."/>
-                  <button type="submit" class="searchButton">
-                    <i class="fa fa-search"></i>
-                </button>
-              </div>
-            </div>
-      </div>
       
     );
   }
@@ -141,7 +141,7 @@ User.propTypes = {
 
 
 
-export default withStyles(styles)(User);
+export default withStyles(styles)(User) ;
 
 
 

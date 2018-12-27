@@ -32,7 +32,7 @@ class HomePage extends React.Component {
       );
     }
   }
-//Loading page rendering for better UI experience followed by Home Page with rerouting options
+
 ReactDOM.render(<Loading/>, document.getElementById('root'));
 setTimeout(()=>{
 ReactDOM.render(<HomePage/>, document.getElementById('root1'));
@@ -40,6 +40,7 @@ ReactDOM.render(<HomePage/>, document.getElementById('root1'));
 setTimeout(()=>{
   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
 }, 5000)
+
 serviceWorker.unregister();
 
 

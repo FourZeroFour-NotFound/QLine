@@ -32,6 +32,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import logo from '../style/qline.png';
 
 
 
@@ -159,7 +160,7 @@ class Profile extends Component {
         this.setState(state => ({ expanded: !state.expanded }));
       };
 /*  these functions for ticket list elements*/
-     ClickListItem = () => {
+     handleClickListItem = () => {
         this.setState({ open1: !this.state.open1 });
       };
     
@@ -175,12 +176,10 @@ class Profile extends Component {
                 <AppBar position="static" className={classes.color}>
                     <Toolbar>
                         <div position="static" className={classes.grow}>
-                            <h1 style={{
-                                backgroundImage: 'url(' + this.props.logo + ')'
-                            }} className="menu__logo">QLine</h1>
+                        <img src={logo} width="122px" height="62px" style={{  marginTop: "10px", marginLeft: "-20px" }} />
                         </div>
 
-                        <Button color="inherit">Log Out</Button>
+                        <Button color="inherit" href="/">Log Out</Button>
                     </Toolbar>
                 </AppBar>
 
@@ -191,11 +190,7 @@ class Profile extends Component {
               R
             </Avatar>
           }
-          action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
+        
           title="Welcome"
        
         />
@@ -311,7 +306,7 @@ class Profile extends Component {
             aria-haspopup="true"
             aria-controls="ringtone-menu"
             aria-label="Phone ringtone"
-            onClick={this.ClickListItem}
+            onClick={this. handleClickListItem}
           >
             <ListItemText primary="Arabic Bank" />
           </ListItem>
@@ -327,13 +322,9 @@ class Profile extends Component {
         </List>
           </CardContent>
         </Collapse>
-      </Card>
-             
-                
+      </Card>    
             </div>
         );
-    
-
     }
 }
 
