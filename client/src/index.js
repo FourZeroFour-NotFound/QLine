@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style/App.css';
 import App from './App';
-import User from './Components/User.jsx';
 import * as serviceWorker from './serviceWorker';
 import Business from './component/business.jsx';
+import User from './Components/User.jsx';
 import Profile from './Components/Profile.jsx';
 import { Router, Route, browserHistory } from 'react-router';
 import Login from './popLogin.js';
@@ -24,10 +24,10 @@ class HomePage extends React.Component {
             <Route path="/" component={App} >
               <Route path="/sign-in" exact component={Login} />
               <Route path="/sign-up" exact component={SignUp} />
-              <Route path="/profile" exact component={Profile} />
-              <Route path="/user" exact component={User} />
-              <Route path="/business" exact component={Business} />
-            </Route>
+              </Route>
+              <Route path="/user"  component={User}/>
+              <Route path="/profile" exact component={Profile}/>
+              <Route path="/business" exact component={Business}/>
         </Router>
       );
     }

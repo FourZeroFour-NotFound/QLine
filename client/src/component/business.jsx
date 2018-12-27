@@ -112,11 +112,11 @@ export default class Header extends React.Component {
     const open = Boolean(anchorEl);
     return (
       <div>
-         <nav className="menu"  style={{backgroundColor: "#aa1256",marginTop: "10px", marginLeft: "50px"}}>
+         <nav className="menu"  style={{backgroundColor: "#7aeac2",marginTop: "10px", marginLeft: "50px"}}>
                 <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
                 <FormControlLabel style={{marginTop: "-5px" , marginLeft: "-70px"}}
             control={
-              <Switch  checked={auth} onChange={this.handleChange} aria-label="RoleSwitch" />
+              <Switch  href="/user" checked={auth} onChange={this.handleChange} aria-label="RoleSwitch" />
             }
             label={auth ? 'Business' : 'User'}
           />
@@ -130,7 +130,7 @@ export default class Header extends React.Component {
                 </Grid>
                 <Grid className="menu__right">
                     <ul className="menu__list">
-                    <li class="menu__list-item"><a to ="/logout" class="menu__link" href="/">Logout</a></li>
+                    <li class="menu__list-item"><a  class="menu__link" href="/">Logout</a></li>
                     </ul>
                 </Grid>
             </nav>
