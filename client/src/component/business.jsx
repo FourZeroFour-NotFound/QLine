@@ -22,7 +22,11 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import BusinessGridList from './businessGridList.jsx';
 import logo from '../style/qline.png';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
+import $ from 'jquery';
+
+
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -126,7 +130,7 @@ export default class Header extends React.Component {
                 </Grid>
                 <Grid className="menu__right">
                     <ul className="menu__list">
-                    <li class="menu__list-item"><Link to ="/logout" class="menu__link">Logout</Link></li>
+                    <li class="menu__list-item"><a to ="/logout" class="menu__link" href="/">Logout</a></li>
                     </ul>
                 </Grid>
             </nav>
