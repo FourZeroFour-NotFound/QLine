@@ -8,15 +8,13 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import '../style/App.css';
 import logo from '../style/qline.png';
 import SearchIcon from '@material-ui/icons/Search';
-import { Redirect } from 'react-router-dom';
-import { browserHistory } from 'react-router';
-import { Router,Link } from 'react-router-dom';
+
+
+
 
 const styles = () => ({
 
@@ -37,19 +35,10 @@ class User extends Component {
   state = {
     auth: true,
     anchorEl: null,
-    redirect: false,
+  
   };
 
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    })
-  }
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/profile' />
-    }
-  }
+ 
  
 
 
@@ -57,20 +46,14 @@ class User extends Component {
     this.setState({ auth: event.target.checked });
   };
 
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
+  // handleMenu = event => {
+  //   this.setState({ anchorEl: event.currentTarget });
+  // };
 
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-  routeChange = (props) => {
-    console.log("hiiii", this.props);
-    let path = 'profile';
-    console.log("helllllo", browserHistory);
-    browserHistory.push(path);
 
-  };
 
 
   render() {
@@ -89,19 +72,12 @@ class User extends Component {
             {auth && (
               <div>
                 <IconButton style={{ marginLeft: "1400px" }}
-                  aria-owns={open ? 'menu-appbar' : undefined}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
                   color="inherit"
                   href="/profile"
                 >
                   <AccountCircle />
                 </IconButton>
 
-               
-                 
-               
-           
               </div>
             )}
             <Button color="inherit" href="/">Log Out</Button>
