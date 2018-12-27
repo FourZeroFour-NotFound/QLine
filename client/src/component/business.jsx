@@ -23,6 +23,9 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import BusinessGridList from './businessGridList.jsx';
 import logo from '../style/qline.png';
 import {Link} from 'react-router';
+import { browserHistory } from 'react-router';
+
+import $ from "jquery";
 const styles = {
   root: {
     flexGrow: 1,

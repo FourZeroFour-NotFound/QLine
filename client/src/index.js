@@ -28,6 +28,7 @@ class HomePage extends React.Component {
             </Route>
             <Route path="/profile" exact component={Profile} />
             <Route path="/business" exact component={Business} />
+            <Route path="/user" exact component={User} />
         </Router>
       );
     }
@@ -38,7 +39,7 @@ class HomePage extends React.Component {
 
 ReactDOM.render(<Loading/>, document.getElementById('root'));
 setTimeout(()=>{
-ReactDOM.render(<Profile/>, document.getElementById('root1'));
+ReactDOM.render(<User/>, document.getElementById('root1'));
 },5000);
 setTimeout(()=>{
   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
