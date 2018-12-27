@@ -112,8 +112,8 @@ class User extends Component {
                         </Grid>
                         <Grid className="menu__right">
                             <ul className="menu__list">
-                            <Button href="/profile" color="inherit" style={{width: "70px", marginRight: "10px"}}>
-                            <AccountCircle /><a href="/profile">Profile</a>
+                           <Button href="/profile" color="inherit" style={{width: "70px", marginRight: "10px"}}>
+                            <AccountCircle /><p>Profile</p>
                             </Button>
                             <li class="menu__list-item"><Link to ="/" class="menu__link">Logout</Link></li>
                             </ul>
