@@ -12,15 +12,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import '../style/App.css';
-<<<<<<< HEAD
-// import logo from '../style/qline1.jpg';
-=======
 import logo from '../style/qline.png';
 import SearchIcon from '@material-ui/icons/Search';
 import { Redirect } from 'react-router-dom';
 import { browserHistory } from 'react-router';
 import { Router,Link } from 'react-router-dom';
->>>>>>> 9ecd7dbbdf0287c17572e485c780fc22d37657b5
 
 const styles = () => ({
 

@@ -5,6 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
+import green from '@material-ui/core/colors/green';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import $ from 'jquery';
 import logo from '../style/qline.png';
 
@@ -35,18 +38,24 @@ export default class CreatQueue extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      checkedA: true,
+      checkedB: true,
+      auth1: true,
+      auth2: true,
     }
   }
-  handleChange = name => event => {
-    this.setState({
-      value: event.target.value,
-    });
+  handleChange1 = event => {
+    this.setState({ auth1: event.target.checked });
+  };
+  handleChange2 = event => {
+    this.setState({ auth2: event.target.checked });
   };
   handleDateChange = date => {
     this.setState({ selectedDate: date });
   };
 
   render() {
+    const { auth1, auth2 } = this.state;
     return (
       <div>
       <nav className="menu"  style={{backgroundColor: "#aa1256",marginTop: "10px", marginLeft: "50px"}}>
@@ -96,7 +105,7 @@ export default class CreatQueue extends React.Component {
           shrink: true,
         }}
       />
-        <p> Time for each customer: </p>
+        <p> Time for each customer per minutes: </p>
       <TextField
           style={styles.textField}
           type="input"
@@ -118,12 +127,27 @@ export default class CreatQueue extends React.Component {
           margin="normal"
         />
         <p> Accept premium: </p>
-      <TextField
-          style={styles.textField}
-          type="input"
-          name="Queue Name"
-          margin="normal"
+        <FormControlLabel
+            control={
+        <Switch
+          checked={auth1} 
+          onChange={this.handleChange1}
+          color="primary"
         />
+      }
+      label={auth1 ? 'Yes' : 'No'}
+    />
+        <p> Accept customer: </p>
+        <FormControlLabel
+            control={
+        <Switch
+          checked={auth2} 
+          onChange={this.handleChange2}
+          color="primary"
+        />
+      }
+      label={auth2 ? 'Yes' : 'No'}
+    />
         <p> Requirements: </p>
       <TextField
           style={styles.textField}

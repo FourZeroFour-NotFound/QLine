@@ -34,29 +34,18 @@ class HomePage extends React.Component {
     }
   }
 
-<<<<<<< HEAD
+
+
+
 ReactDOM.render(<CreatQueue/>, document.getElementById('root'));
 // setTimeout(()=>{
-// ReactDOM.render(<HomePage/>, document.getElementById('root1'));
+// ReactDOM.render(<Profile/>, document.getElementById('root1'));
 // },5000);
 // setTimeout(()=>{
 //   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
 // }, 6500)
+
 // serviceWorker.unregister();
-=======
-
-
-
-ReactDOM.render(<Loading/>, document.getElementById('root'));
-setTimeout(()=>{
-ReactDOM.render(<Profile/>, document.getElementById('root1'));
-},5000);
-setTimeout(()=>{
-  window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
-}, 6500)
-
-serviceWorker.unregister();
->>>>>>> 9ecd7dbbdf0287c17572e485c780fc22d37657b5
 
 
 
