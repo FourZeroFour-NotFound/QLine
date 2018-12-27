@@ -12,6 +12,7 @@ import SignUp from './popSignUp.js';
 import BusinessQueue from './component/businessQueue.jsx';
 import BusinessGridList from './component/businessGridList.jsx';
 import Loading from './Loading.js';
+import CreatQueue from './component/creatQueue.jsx';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ setTimeout(()=>{
   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
 }, 5000)
 
-serviceWorker.unregister();
+// serviceWorker.unregister();
 
 
 

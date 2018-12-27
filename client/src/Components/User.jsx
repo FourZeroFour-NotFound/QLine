@@ -16,7 +16,7 @@ import {Link} from 'react-router';
 import logo from '../style/qline.png';
 import {Grid} from '@material-ui/core';
 import flat from '../style/flat.png';
-import axios from 'axios'
+
 
 
 
