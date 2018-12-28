@@ -11,12 +11,10 @@ import FormGroup from '@material-ui/core/FormGroup';
 import Button from '@material-ui/core/Button';
 import '../style/App.css';
 import logo from '../style/qline.png';
-
-import SearchIcon from '@material-ui/icons/Search';
-
-
+import SearchIcon from '@material-ui/icons/Search'
 import {Grid} from '@material-ui/core';
 import flat from '../style/flat.png';
+import {Link} from 'react-router';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import sampleProductList from '../sampleProductList';
@@ -66,23 +64,6 @@ class User extends Component {
   
 
     return (
-
-      <div className={classes.root}>
-
-<!--         <AppBar position="static" className={classes.color}>
-          <Toolbar  >
-            <img src={logo} width="122px" height="62px" style={{ backgroundColor: "#aa1256", marginTop: "10px", marginLeft: "-20px" }} />
-
-<!--             {auth && (
-              <div>
-                <IconButton style={{ marginLeft: "1400px" }}
-                  color="inherit"
-                  href="/profile"
-                >
-                  <AccountCircle />
-                </IconButton> --> 
-
-
             <div>
               <nav className="menu" style={{backgroundColor: "#aa1256", marginTop: "10px", marginLeft: "50px"}}>
                         <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
@@ -100,71 +81,42 @@ class User extends Component {
                             <li className="menuItem"><a className="itemLink">Features</a></li>
                             <li className="menuItem"><a className="itemLink">Contact Us</a></li>
                             </ul>
-
-                            {auth && (
-                      <div>
-                        <Menu
-                          id="menu-appbar"
-                          anchorEl={anchorEl}
-                          anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                          }}
-                          transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                          }}
-                          open={open}
-                          onClose={this.handleClose}
-                        >
-                        </Menu>
-                      </div>
-                    )}
-                        </Grid>
-                        <Grid className="menu__right">
-                            <ul className="menu__list">
-                           <Button href="/profile" color="inherit" style={{width: "70px", marginRight: "10px"}}>
-                            <AccountCircle /><p>Profile</p>
-                            </Button>
-                            <li class="menu__list-item"><Link to ="/" class="menu__link">Logout</Link></li>
-                            </ul>
-                        </Grid>
-                    </nav>
-                    <img src={flat} style={{ width: "100%", height: "100%"}}/>
-                    <div class="wrap">
-                      <div class="search">
-                          <input type="text" class="searchTerm"  placeholder="Search..."/>
-                          <button type="submit" class="searchButton">
-                            <i class="fa fa-search"></i>
-                        </button>
-                      </div>
-                      </div>
-                      <div className="root">
-
-              </div>
-            )}
-            <Button color="inherit" href="/">Log Out</Button>
-          </Toolbar>
-        </AppBar>
-
-
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
-            }
-            label={auth ? 'Users' : 'Business'}
-          />
-          {auth && (
-            <div className="searchbar">
-              <input className="search_input" type="text" name placeholder="Search..." />
-              <a className="search_icon">
-                <SearchIcon /></a>
-            </div>
-          )}
-
-        </FormGroup>
-      </div>
+                            </Grid>
+                            <Grid className="menu__right">
+                                <ul className="menu__list">
+                              <Button href="/profile" color="inherit" style={{width: "70px", marginRight: "10px"}}>
+                                <AccountCircle /><p>Profile</p>
+                                </Button>
+                                <li class="menu__list-item"><Link to ="/" class="menu__link">Logout</Link></li>
+                                </ul>
+                            </Grid>
+                        </nav>
+                        <img src={flat} style={{ width: "100%", height: "100%"}}/>
+                        <div class="wrap">
+                          <div class="search">
+                              <input type="text" class="searchTerm"  placeholder="Search..."/>
+                              <button type="submit" class="searchButton">
+                                <i class="fa fa-search"></i>
+                            </button>
+                          </div>
+                          </div>
+                        <Button color="inherit" href="/">Log Out</Button>
+                      <FormGroup>
+                        <FormControlLabel
+                          control={
+                            <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
+                          }
+                          label={auth ? 'Users' : 'Business'}
+                        />
+                        {auth && (
+                          <div className="searchbar">
+                            <input className="search_input" type="text" name placeholder="Search..." />
+                            <a className="search_icon">
+                              <SearchIcon /></a>
+                          </div>
+                        )}
+                      </FormGroup>
+             </div>
     );
   }
 }

@@ -9,7 +9,7 @@ import { Grid } from '@material-ui/core';
 import bk from './style/bk.jpg';
 import IntroPage from './IntroPage.js';
 import User from './Components/Profile.jsx'
-
+import FlipInfo from './flipInfo.jsx';
 
 
 // Main Render of the components that displays all the component used in our project
@@ -39,14 +39,17 @@ class App extends Component {
   }
   render() {
     return (
-
+      <Grid>
       <Grid className="container center">
         <Header logo={logo} toggleSignup={this.toggleSignup} toggleLogin={this.toggleLogin} />
+      </Grid>
+      <Grid>
         <IntroPage/>
+        <FlipInfo/>
+      </Grid>
       <Login show={this.state.isOpenSignIn} onClose={this.toggleLogin}></Login>
       <SignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></SignUp>
       </Grid>
-
     );
   }
 }
