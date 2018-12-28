@@ -27,23 +27,46 @@ class HomePage extends React.Component {
             <Route path="/" component={App} >
               <Route path="/sign-in" exact component={Login} />
               <Route path="/sign-up" exact component={SignUp} />
-              <Route path="/profile" exact component={Profile} />
+
+
+            </Route>
+            <Route path="/profile" exact component={Profile} />
+            <Route path="/business" exact component={Business} />
+            <Route path="/user" exact component={User} />
+
+         
+         
+
+
+           
               <Route path="/user" exact component={User} />
-              <Route path="/business" exact component={Business} />
+         
               <Route path="/CreatQueue" exact component={CreatQueue} />
             </Route>
+
         </Router>
       );
     }
   }
 
-ReactDOM.render(< BusinessDashBord/>, document.getElementById('root'));
+ReactDOM.render(<Loading/>, document.getElementById('root'));
+setTimeout(()=>{
+
+ReactDOM.render(<HomePage/>, document.getElementById('root1'));
+
+},5000);
+setTimeout(()=>{
+  window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
+}, 5000)
+
+
 // setTimeout(()=>{
 // ReactDOM.render(<HomePage/>, document.getElementById('root1'));
 // },5000);
 // setTimeout(()=>{
 //   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
 // }, 5000)
+
 
 // serviceWorker.unregister();
 

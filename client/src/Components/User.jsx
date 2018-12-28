@@ -8,12 +8,13 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import '../style/App.css';
-import {Link} from 'react-router';
 import logo from '../style/qline.png';
+
+import SearchIcon from '@material-ui/icons/Search';
+
+
 import {Grid} from '@material-ui/core';
 import flat from '../style/flat.png';
 import GridList from '@material-ui/core/GridList';
@@ -24,9 +25,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 
 
-//User Profille Component that interact once the User is sign in normally and wants normal service such as search for queues
-// here we want to implement using API in order for user to have option for using our services
-// API search is used in the search bar passed and save with server interaction and database.
+
 const styles = () => ({
 
   root: {
@@ -43,39 +42,47 @@ const styles = () => ({
 
 
 class User extends Component {
-
-  constructor(props) {
-    super(props);
-      this.state = {
-        auth: true,
-        anchorEl: null,       
-      };
-  }
-
-
-
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
+  state = {
+    auth: true,
+    anchorEl: null,
+  
   };
+
+  handleChange = event => {
+    this.setState({ auth: event.target.checked });
+  };
+
 
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
 
 
-  handleChange = address => {
-    this.setState({ address });
-  };
- 
-
 
   render() {
 
     const { classes } = this.props;
     const { auth, anchorEl } = this.state;
-    const open = Boolean(anchorEl);
+  
 
     return (
+
+      <div className={classes.root}>
+
+<!--         <AppBar position="static" className={classes.color}>
+          <Toolbar  >
+            <img src={logo} width="122px" height="62px" style={{ backgroundColor: "#aa1256", marginTop: "10px", marginLeft: "-20px" }} />
+
+<!--             {auth && (
+              <div>
+                <IconButton style={{ marginLeft: "1400px" }}
+                  color="inherit"
+                  href="/profile"
+                >
+                  <AccountCircle />
+                </IconButton> --> 
+
+
             <div>
               <nav className="menu" style={{backgroundColor: "#aa1256", marginTop: "10px", marginLeft: "50px"}}>
                         <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
@@ -133,13 +140,34 @@ class User extends Component {
                       </div>
                       </div>
                       <div className="root">
-                    </div>
+
               </div>
-      
+            )}
+            <Button color="inherit" href="/">Log Out</Button>
+          </Toolbar>
+        </AppBar>
+
+
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Switch checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" />
+            }
+            label={auth ? 'Users' : 'Business'}
+          />
+          {auth && (
+            <div className="searchbar">
+              <input className="search_input" type="text" name placeholder="Search..." />
+              <a className="search_icon">
+                <SearchIcon /></a>
+            </div>
+          )}
+
+        </FormGroup>
+      </div>
     );
   }
 }
-
 User.propTypes = {
   classes: PropTypes.object.isRequired,
 };

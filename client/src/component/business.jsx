@@ -14,10 +14,11 @@ import {Grid} from '@material-ui/core';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import BusinessGridList from './businessGridList.jsx';
 import logo from '../style/qline.png';
-import {Link, browserHistory} from 'react-router';
-import $ from 'jquery';
 
+import {Link} from 'react-router';
+import { browserHistory } from 'react-router';
 
+import $ from "jquery";
 
 const styles = {
   root: {

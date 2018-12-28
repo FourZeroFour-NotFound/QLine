@@ -130,8 +130,35 @@ const isacountExest = function (email, callback) {
   })
 }
 
+// this function used to get data for user using id
+const getUserData = function (id, callback) {
+  var sqlquery = `select * from user where user_id  = '${id}'`
 
+  connection.query(sqlquery, function (err, result) {
+    if (err) {
+      console.log("db error to get data ", err)
+      callback(err, null)
+    } else {
+      console.log("db i found it (user exist )", id)
+      callback(null, result)
+    }
+  })
+}
 
+// this function is used to update data for user using id
+
+const UPDATE = function (id, callback){
+  var sqlquery = `set firstName='${user.firstName}',lastName='${user.lastName}',email='${user.email}',phoneNumber='${user.phoneNumber}' from user where id ='${id}'`
+  connection.query(sqlquery, function(err, result){
+    if(err){
+      console.log('db error', err)
+      callback(err,null)
+    }else{
+      console.log("db update",id)
+      callback(null,result)
+    }
+  })
+}
 
 
 
@@ -143,3 +170,5 @@ module.exports.isacountExest = isacountExest;
 module.exports.insertNewUser = insertNewUser;
 module.exports.insertNewQueue = insertNewQueue;
 module.exports.getAllQueueForUser = getAllQueueForUser;
+module.exports.getUserData = getUserData;
+module.exports.UPDATE = UPDATE;
