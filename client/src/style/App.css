@@ -293,19 +293,24 @@ html, body {
   -o-transform: scale(1.2) !important;
 }
 
-#menu3 {
-  position: fixed;
+/* #menu3 {
+  position: absolute;
   z-index: 1;
   top: 0;
-  bottom: -700px;
+  bottom: 0;
   left: 0;
   margin: auto;
-  height: 280px;
+  height: 580px;
   width: 93%;
   padding: 0;
   text-align: center;
- }
-
+ } */
+#menu3 {
+  margin-left: 850px;
+  z-index: 1;
+  position: absolute;
+  margin-top: 800px;
+}
 #menu3 .icon1 {
   margin: 30px 0;
   transition: all .5s ease-out !important;
