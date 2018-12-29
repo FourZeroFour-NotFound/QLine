@@ -9,7 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-
+import {Link} from 'react-router-dom';
 
 const styles = {
   root: {
@@ -90,8 +90,11 @@ export default class BusinessQueue extends React.Component {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <Button style={{ backgroundColor: "#7aeac2", marginTop: "90px", marginLeft: "200px", font: "white" }}>
+
+            <Button href = {`/BusinessDashBord/${this.props.queue.queue_id}`}
+            style={{ backgroundColor: "#7aeac2", marginTop: "90px", marginLeft: "200px", font: "white" }}>
               Manage the Queue
+             
         </Button>
           </CardActions>
         </Card>
