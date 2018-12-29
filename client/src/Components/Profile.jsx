@@ -20,6 +20,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+import '../style/App.css';
 
 
 
@@ -91,10 +92,10 @@ const styles = theme => ({
 
 class Profile extends Component {
   state = {
-    First_name: '',
-    Last_name: '',
-    Email: '',
-    PhoneNum: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
     expanded: false,
     open: false,
     open1: false
@@ -102,14 +103,14 @@ class Profile extends Component {
   /* send data after edit the information*/
   EditInfo = () => {
     const InfObj = {
-      First_name: this.state.First_name,
-      Last_name: this.state.Last_name,
-      Email: this.state.Email,
-      PhoneNum: this.state.PhoneNum
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      phoneNumber: this.state.phoneNumber
     }
 
     $.ajax({
-      url: "/profile/:id",
+      url: "/profile",
       type: "Put",
       data: JSON.stringify(InfObj),
       contentType: "application/json",
@@ -121,6 +122,26 @@ class Profile extends Component {
         console.error("dont send", error);
       }
     });
+    this.setState({ open: false });
+  };
+
+   /*when edit full name call the function */
+   handleChange = (e) => {
+    this.setState({
+      firstName: e.target.value,
+    });
+  };
+  handleChangeLast = (e) => {
+    this.setState({
+      lastName: e.target.value,
+    });
+  };
+ 
+  /* when edit phone number call this function*/
+  handleChangeNum = (e) => {
+    this.setState({
+      phoneNumber: e.target.value,
+    });
   };
 
   handleClickOpen = () => {
@@ -129,29 +150,6 @@ class Profile extends Component {
 
   handleClose = () => {
     this.setState({ open: false });
-  };
-  /*when edit full name call the function */
-  handleChange = (e) => {
-    this.setState({
-      First_name: e.target.value,
-    });
-  };
-  handleChangeLast = (e) => {
-    this.setState({
-      Last_name: e.target.value,
-    });
-  };
-  /* when edit email call this function*/
-  handleChangeEmail = (e) => {
-    this.setState({
-      Email: e.target.value,
-    });
-  };
-  /* when edit phone number call this function*/
-  handleChangeNum = (e) => {
-    this.setState({
-      PhoneNum: e.target.value,
-    });
   };
 
   handleExpandClick = () => {
@@ -167,16 +165,16 @@ class Profile extends Component {
   };
 
   componentDidMount = () =>{
-   var that = this
+    var that = this
     $.ajax({
       url: "/profile",
       type: "Get",
       success: function (data) {
         console.log("kkkkk", data.success[0])
-        that.setState({First_name: data.success[0].firstName,
-        Last_name: data.success[0].lastName,
-        Email: data.success[0].email,
-        PhoneNum: data.success[0].phoneNumber,
+        that.setState({firstName: data.success[0].firstName,
+        lastName: data.success[0].lastName,
+        email: data.success[0].email,
+        phoneNumber: data.success[0].phoneNumber,
         })
       }
     });
@@ -214,10 +212,10 @@ class Profile extends Component {
           />
           <CardContent>
             <ul className="order">
-              <li>First Name : {this.state.First_name}</li>
-              <li>Last Name : {this.state.Last_name}</li>
-              <li>Email : {this.state. Email}</li>
-              <li>Phone Num : {this.state.PhoneNum}</li>
+            <li>First Name : {this.state.firstName}</li>
+              <li>Last Name : {this.state.lastName}</li>
+              <li>Email : {this.state. email}</li>
+              <li>Phone Num : {this.state.phoneNumber}</li>
             </ul>
           </CardContent>
 
@@ -240,7 +238,7 @@ class Profile extends Component {
                   id="filled-name"
                   label=" First_Name"
                   className={classes.textField}
-                  value={this.state.First_name}
+                  value={this.state.firstName}
                   onChange={this.handleChange}
                   margin="normal"
                   variant="filled"
@@ -250,24 +248,13 @@ class Profile extends Component {
                   id="filled-name"
                   label=" Last_Name"
                   className={classes.textField}
-                  value={this.state.Last_name}
+                  value={this.state.lastName}
                   onChange={this.handleChangeLast}
                   margin="normal"
                   variant="filled"
                   fullWidth
                 />
-                <TextField
-
-                  margin="normal"
-                  id="name"
-                  label="Email Address"
-                  type="email"
-                  className={classes.textField}
-                  value={this.state.Email}
-                  onChange={this.handleChangeEmail}
-                  variant="filled"
-                  fullWidth
-                />
+               
                 <TextField
 
                   margin="normal"
@@ -275,7 +262,7 @@ class Profile extends Component {
                   label="Phone Num"
                   type="text"
                   className={classes.textField}
-                  value={this.state.PhoneNum}
+                  value={this.state.phoneNumber}
                   onChange={this.handleChangeNum}
                   variant="filled"
                   fullWidth
