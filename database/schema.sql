@@ -40,8 +40,8 @@ CREATE TABLE `queue` (
   `timeforone` VARCHAR(25) NOT NULL,
   `windows` VARCHAR(25) NOT NULL,
   `imgUrl` VARCHAR(200) NOT NULL,
-  `take_premum` INTEGER(1) NOT NULL DEFAULT 0,
-  `accept_join` INTEGER(1) NOT NULL DEFAULT 0,
+  `take_premum` BOOLEAN NOT NULL DEFAULT true,
+  `accept_join` BOOLEAN NOT NULL DEFAULT false,
   `requierment` VARCHAR(80) NOT NULL,
   `creator_id` INTEGER NOT NULL,
   PRIMARY KEY (`queue_id`)

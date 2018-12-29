@@ -131,6 +131,7 @@ export default class business extends React.Component {
           {auth && (
             <div style={{marginLeft: "40px"}}>
             <Button
+            href="/CreatQueue"
             aria-owns={open ? 'menu-appbar' : undefined}
             aria-haspopup="true"
             onClick={this.handleMenu}

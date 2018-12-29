@@ -10,6 +10,8 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import $ from 'jquery';
 import logo from '../style/qline.png';
+import { BottomNavigation } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   container: {
@@ -20,6 +22,7 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
+    padding: 20,
   },
   Time: {
     marginLeft: theme.spacing.unit,
@@ -42,20 +45,69 @@ export default class CreatQueue extends React.Component {
       checkedB: true,
       auth1: true,
       auth2: true,
+      nameOfQueeu: "",
+      start_time :"07:30",
+      end_time :"08:00",
+      date :"",
+      timeforone: "",
+      windows :"",
+      imgUrl: "",
+      take_premum:0,
+      accept_join :true,
+      requierment :false,
+      creator_id :"",
+
+
+
+
+
     }
   }
   handleChange1 = event => {
-    this.setState({ auth1: event.target.checked });
+    console.log(event.target.checked)
+
+  this.setState({ take_premum: event.target.checked });
+  console.log(this.state)
+  
   };
   handleChange2 = event => {
-    this.setState({ auth2: event.target.checked });
+    this.setState({ accept_join: event.target.checked });
   };
   handleDateChange = date => {
     this.setState({ selectedDate: date });
   };
+  submet = ()=>{
+    console.log(this.state)
+    $.ajax({
+      url: '/add-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        nameOfQueeu: this.state.nameOfQueeu,
+        start_time: this.state.start_time,
+        end_time: this.state.end_time,
+        date: this.state.date,
+        timeforone: this.state.timeforone,
+        windows: this.state.windows,
+        imgUrl: this.state.imgUrl,
+        take_premum: this.state.take_premum,
+        accept_join: this.state.accept_join,
+        requierment: this.state.requierment,
+        
+      }),
+      success: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+
+
+  }
 
   render() {
-    const { auth1, auth2 } = this.state;
+    const { take_premum, accept_join } = this.state;
     return (
       <div>
       <nav className="menu"  style={{backgroundColor: "#aa1256",marginTop: "10px", marginLeft: "50px"}}>
@@ -69,12 +121,25 @@ export default class CreatQueue extends React.Component {
           type="input"
           name="Queue Name"
           margin="normal"
+          onChange={(e)=>{
+           
+            this.setState({
+              nameOfQueeu : e.target.value
+            })
+
+          }}
         />
         <p> Start Time: </p>
         <TextField
+        onChange={(e)=>{
+           
+          this.setState({
+            start_time : e.target.value 
+          })
+        }}
         id="time"
         type="time"
-        defaultValue="07:30"
+        defaultValue= {this.state.end_time}
         style={styles.textField}
         InputLabelProps={{
           shrink: true,
@@ -85,9 +150,15 @@ export default class CreatQueue extends React.Component {
       />
         <p> End Time: </p>
         <TextField
+         onChange={(e)=>{
+           
+          this.setState({
+            end_time : e.target.value
+          })
+        }}
         id="time"
         type="time"
-        defaultValue="07:30"
+        defaultValue= {this.state.end_time}
         style={styles.textField}
         InputLabelProps={{
           shrink: true,
@@ -98,6 +169,12 @@ export default class CreatQueue extends React.Component {
       />
         <p> Date: </p>
         <TextField
+        onChange={(e)=>{
+           
+          this.setState({
+            date : e.target.value
+          })
+        }}
         id="date"
         type="date"
         style={styles.textField}
@@ -107,6 +184,12 @@ export default class CreatQueue extends React.Component {
       />
         <p> Time for each customer per minutes: </p>
       <TextField
+      onChange={(e)=>{
+           
+        this.setState({
+          timeforone : e.target.value
+        })
+      }}
           style={styles.textField}
           type="input"
           name="Queue Name"
@@ -114,6 +197,12 @@ export default class CreatQueue extends React.Component {
         />
         <p> Number of windows: </p>
       <TextField
+       onChange={(e)=>{
+           
+        this.setState({
+          windows : e.target.value
+        })
+      }}
           style={styles.textField}
           type="input"
           name="Queue Name"
@@ -121,6 +210,13 @@ export default class CreatQueue extends React.Component {
         />
         <p> Photo for this queue: </p>
       <TextField
+      onChange={(e)=>{
+           
+        this.setState({
+          imgUrl : e.target.value
+        })
+      }}
+      
           style={styles.textField}
           type="input"
           name="Queue Name"
@@ -130,32 +226,43 @@ export default class CreatQueue extends React.Component {
         <FormControlLabel
             control={
         <Switch
-          checked={auth1} 
+          checked={take_premum} 
           onChange={this.handleChange1}
           color="primary"
         />
       }
-      label={auth1 ? 'Yes' : 'No'}
+      label={take_premum ? 'Yes' : 'No'}
     />
         <p> Accept customer: </p>
         <FormControlLabel
             control={
         <Switch
-          checked={auth2} 
+          checked={accept_join} 
           onChange={this.handleChange2}
           color="primary"
         />
       }
-      label={auth2 ? 'Yes' : 'No'}
+      label={accept_join ? 'Yes' : 'No'}
     />
         <p> Requirements: </p>
       <TextField
+      onChange={(e)=>{
+           
+        this.setState({
+          requierment : e.target.value
+        })
+      }}
           style={styles.textField}
           type="input"
           name="Queue Name"
           margin="normal"
         />
+       
       </form>
+      <Button
+         style={{ backgroundColor: "#7aeac2",marginLeft : "100px" , font: "white", marginTop:"50px" }}
+         onClick={this.submet}
+         >create</Button>
       </FormGroup>
       </div>
       

@@ -72,7 +72,12 @@ export default class BusinessDashBord extends React.Component {
       value: 0,
     };
   }
+componentDidMount(match){
+  console.log('sdsdsd', this.props.params.queue_id)
 
+
+  
+}
   handleChange = (event, value) => {
     this.setState({ value });
   };

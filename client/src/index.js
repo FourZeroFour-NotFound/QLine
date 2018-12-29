@@ -33,6 +33,8 @@ class HomePage extends React.Component {
               <Route path="/business" exact component={Business} />
               <Route path="/user" exact component={User} />
               <Route path="/CreatQueue" exact component={CreatQueue} />
+              <Route path="/BusinessDashBord/:queue_id" exact component={BusinessDashBord} />
+           
         </Router>
       );
     }
