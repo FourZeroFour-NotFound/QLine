@@ -147,14 +147,14 @@ const getUserData = function (id, callback) {
 
 // this function is used to update data for user using id
 
-const UPDATE = function (id, callback){
-  var sqlquery = `set firstName='${user.firstName}',lastName='${user.lastName}',email='${user.email}',phoneNumber='${user.phoneNumber}' from user where id ='${id}'`
+const UPDATE = function (user,id, callback){
+  var sqlquery = ` UPDATE  user  SET firstName='${user.firstName}',lastName='${user.lastName}',email='${user.email}',phoneNumber='${user.phoneNumber}'  where user_id ='${id}'`
   connection.query(sqlquery, function(err, result){
     if(err){
       console.log('db error', err)
       callback(err,null)
     }else{
-      console.log("db update",id)
+      console.log( result.affectedRows ,"db update")
       callback(null,result)
     }
   })
