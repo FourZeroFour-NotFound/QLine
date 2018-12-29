@@ -6,8 +6,10 @@
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: #eaeaea;
 }
 
 .init {
@@ -126,6 +128,7 @@ html, body {
   margin-left: 0px;
   font-size: 20px;
 }
+
 /*******************- FlipInfo Page -*******************/
 .allflip{
   width: 100%;
@@ -171,6 +174,36 @@ html, body {
 .card__face--back {
   transform: rotateY(180deg);
 }
+
+/*******************-About Q Line-****************/
+
+.mainDp {
+  width: 100%;
+  height: 1300px;
+  
+}
+
+.videoComp {
+  margin: 150px;
+  width: 50%;
+  float: left;
+  height: 260px;
+  margin: 40px 0;
+  perspective: 600px;
+}
+
+.about {
+  font-size: 20px;
+  width: 500px;
+}
+
+.title {
+  margin-bottom: 30px;
+  border-bottom: 4px solid #aa1256;
+  padding: 50px 0;
+}
+/*******************-How It Works Page-****************/
+
 /*******************-Scroll-**********************/
 section {
   height: 100vh;
@@ -178,8 +211,6 @@ section {
   display: table;
   
 }
-
-
 .scroll-down {
   opacity: 1;
   -webkit-transition: all .5s ease-in 3s;
@@ -1047,8 +1078,6 @@ section {
   }
 }
 .container22 {
-  position: fixed;
-  overflow: hidden;
   height:100%;
   width: 100%;
 }
@@ -1543,15 +1572,8 @@ section {
     background: #ccc;
   }
 }
-body {
-  background: #eaeaea;
-}
 
-body:not(.loaded) *:not(.spinner, .spinner > .path) {
-  -moz-animation: none !important;
-  -webkit-animation: none !important;
-  animation: none !important;
-}
+
 
 .ARS {
   display: inline-block;

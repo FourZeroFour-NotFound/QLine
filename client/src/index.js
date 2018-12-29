@@ -15,6 +15,7 @@ import BusinessGridList from './component/businessGridList.jsx';
 import Loading from './Loading.js';
 import CreatQueue from './component/creatQueue.jsx';
 import BusinessDashBord from './component/businessDashBord.jsx';
+import HowItWorks from './HowItWorks.jsx';
 
 class HomePage extends React.Component {
     constructor(props) {

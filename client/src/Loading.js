@@ -39,7 +39,7 @@ class Loading extends Component {
 
     render() {
         return (
-            <div class="container22">
+            <div>
                 <svg class="loader" viewBox="0 0 100 100" overflow="visible">
                     <g class="core">
                     <circle class="path" cx="50" cy="50" r="1" fill="none" />
