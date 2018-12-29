@@ -35,10 +35,10 @@ export default class BusinessGridList extends React.Component {
       queues:[]
     }
   }
-  getAllQueues() {
+  componentDidMount() {
     $.ajax({url: '/all_queue',
     type: 'GET',
-    data : JSON.stringify({user_id: this.props.location.state.user.user_id }),
+    
     contentType: 'application/json',
     success: (res) => {
       this.setState({ queues: res.data })
