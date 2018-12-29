@@ -60,3 +60,25 @@ describe('GET LogOut', () => {
     });
   });
 });
+ // test used to get data for user using id
+describe('GET Profile', () => {
+  it('it should Get information for user', (done) => {
+    chai.request(server)
+    .get('/profile')
+    .end((err,res) => {
+  res.body.should.be.a('object');
+  done();
+    });
+  });
+});
+//this test used to update data for user using id
+describe('PUT Profile', () => {
+  it('it should Update information for the user', (done) => {
+    chai.request(server)
+    .put('/profile')
+    .end((err,res) => {
+      res.body.should.be.a('object')
+      done();
+    });
+  });
+});

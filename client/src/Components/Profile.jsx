@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+import Confirmation from './Confirmation.jsx';
 
 import $ from "jquery";
 import Card from '@material-ui/core/Card';
@@ -14,12 +15,12 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+
 import red from '@material-ui/core/colors/red';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
+
 import '../style/App.css';
 
 
@@ -32,7 +33,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+
 import logo from '../style/qline.png';
 
 
@@ -148,23 +149,26 @@ class Profile extends Component {
     this.setState({ open: !this.state.open });
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+  // handleClose = () => {
+  //   this.setState({ open: false });
+  // };
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
   /*  these functions for ticket list elements*/
   handleClickListItem = () => {
+    console.log("jjjjjj")
     this.setState({ open1: !this.state.open1 });
   };
 
   handleClose = value => {
+    console.log('value', value)
     this.setState({ value, open: false });
   };
-
+// this function used to get data for user using id
   componentDidMount = () =>{
+
     var that = this
     $.ajax({
       url: "/profile",
@@ -225,8 +229,6 @@ class Profile extends Component {
         </Button>
             <Dialog
               open={this.state.open}
-              onClose={this.handleClose}
-              aria-labelledby="form-dialog-title"
             >
 
               <DialogContent>
@@ -256,7 +258,6 @@ class Profile extends Component {
                 />
                
                 <TextField
-
                   margin="normal"
                   id="name"
                   label="Phone Num"
@@ -284,7 +285,6 @@ class Profile extends Component {
                 [classes.expandOpen]: this.state.expanded,
               })}
               onClick={this.handleExpandClick}
-              aria-expanded={this.state.expanded}
               aria-label="Show more"
             >
               <ExpandMoreIcon />
@@ -299,21 +299,20 @@ class Profile extends Component {
                   button
                   divider
                   aria-haspopup="true"
-                  aria-controls="ringtone-menu"
-                  aria-label="Phone ringtone"
+                  aria-label="Arabic Bank"
                   onClick={this.handleClickListItem}
                 >
                   <ListItemText primary="Arabic Bank" />
                 </ListItem>
 
-                {/* <Confirmation
+                <Confirmation
                   classes={{
                     paper: classes.paper,
                   }}
-                  open={this.state.open}
+                  open={this.state.open1}
                   onClose={this.handleClose}
-
-                /> */}
+                  cancel={this.handleClickListItem.bind(this)}
+                />
               </List>
             </CardContent>
           </Collapse>
