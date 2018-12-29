@@ -203,6 +203,24 @@ html, body {
   padding: 50px 0;
 }
 /*******************-How It Works Page-****************/
+
+.How {
+  font-size: 58px;
+  text-align: left;
+  color: #000;
+}
+
+.steps {
+  margin-top: 40px;
+  text-align: left;
+  color: #000;
+}
+
+.step{
+  text-align: left;
+  color: #000;
+}
+
 .page1 {
   width: 100%;
   height: 100%;
@@ -232,11 +250,11 @@ html, body {
   left: 200%;
 }
 
-#p1 { background: darkslateblue; }
-#p2 { background: tomato; }
-#p3 { background: gold; }
-#p4 { background: deeppink; }
-#p5 { background: rebeccapurple; }
+#p1 { background: #eaeaea; }
+#p2 { background: #eaeaea; }
+#p3 { background: #eaeaea; }
+#p4 { background: #eaeaea; }
+#p5 { background: #eaeaea; }
 
 #t2:target #p2,
 #t3:target #p3,
@@ -253,7 +271,7 @@ html, body {
 #t3:target #p1,
 #t4:target #p1,
 #t5:target #p1{
-  background: black;
+  background: #eaeaea;
 }
 
 
