@@ -6,8 +6,10 @@
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: #eaeaea;
 }
 
 .init {
@@ -19,9 +21,7 @@ html, body {
 
 .content {
     font-size: 70px; 
-    top: -700px;
     text-align: left;
-    
   }
 
 .titleDesc {
@@ -129,6 +129,147 @@ html, body {
   font-size: 20px;
 }
 
+/*******************- FlipInfo Page -*******************/
+.allflip{
+  width: 100%;
+  margin-top: -207px;
+}
+.scene {
+  width: 25%;
+  float: left;
+  height: 260px;
+  margin: 40px 0;
+  perspective: 600px;
+  background: #aa1256;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+ 
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.card__face {
+  margin-top: 80px;
+  margin-left: 50px;
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  backface-visibility: hidden;
+}
+
+
+.card__face--back {
+  transform: rotateY(180deg);
+}
+
+/*******************-About Q Line-****************/
+
+.mainDp {
+  width: 100%;
+  height: 1300px;
+  
+}
+
+.videoComp {
+  margin: 150px;
+  width: 50%;
+  float: left;
+  height: 260px;
+  margin: 40px 0;
+  perspective: 600px;
+}
+
+.about {
+  font-size: 20px;
+  width: 500px;
+}
+
+.title {
+  margin-bottom: 30px;
+  border-bottom: 4px solid #aa1256;
+  padding: 50px 0;
+}
+/*******************-How It Works Page-****************/
+
+/*******************-Scroll-**********************/
+section {
+  height: 100vh;
+  width: 100%;
+  display: table;
+  
+}
+.scroll-down {
+  opacity: 1;
+  -webkit-transition: all .5s ease-in 3s;
+  transition: all .5s ease-in 3s;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -16px;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #FFF;
+  background-size: 14px auto;
+  border-radius: 50%;
+  z-index: 2;
+  -webkit-animation: bounce 2s infinite 2s;
+  animation: bounce 2s infinite 2s;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+  transform: scale(1)
+}
+
+.scroll-down:before {
+    position: absolute;
+    top: calc(50% - 8px);
+    left: calc(50% - 6px);
+    transform: rotate(-45deg);
+    display: block;
+    width: 12px;
+    height: 12px;
+    content: "";
+    border: 2px solid white;
+    border-width: 0px 0 2px 2px;
+}
+
+@keyframes bounce {
+  0%,
+  100%,
+  20%,
+  50%,
+  80% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+  60% {
+    -webkit-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
 /*******************- Loading -*******************/
 
 .layer-1 > .path {
@@ -937,8 +1078,6 @@ html, body {
   }
 }
 .container22 {
-  position: fixed;
-  overflow: hidden;
   height:100%;
   width: 100%;
 }
@@ -1433,15 +1572,8 @@ html, body {
     background: #ccc;
   }
 }
-body {
-  background: #eaeaea;
-}
 
-body:not(.loaded) *:not(.spinner, .spinner > .path) {
-  -moz-animation: none !important;
-  -webkit-animation: none !important;
-  animation: none !important;
-}
+
 
 .ARS {
   display: inline-block;
@@ -1648,12 +1780,12 @@ body:not(.loaded) *:not(.spinner, .spinner > .path) {
   background-color: white;
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  width: 1800px;
+  width: 90%;
   height: 80px;
   display: flex;
   justify-content: space-between;
   padding: 0 40px;
-  position: fixed;
+  position: absolute;
   animation: unfoldIn 1s cubic-bezier(0.065, 0.840, 0.440, 1.000);
 }
 
