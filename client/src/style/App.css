@@ -476,6 +476,18 @@ section {
     transform: translateY(-5px);
   }
 }
+/*******************- keyFeatures -*******************/
+
+.key{
+  margin-top: 1000px;
+}
+
+.feature{
+  float: left;
+  margin-left: 250px;
+  text-align: center;
+}
+
 /*******************- Loading -*******************/
 
 .layer-1 > .path {

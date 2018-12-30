@@ -12,6 +12,7 @@ import User from './Components/Profile.jsx'
 import FlipInfo from './flipInfo.jsx';
 import AboutQLine from './AboutQLine.jsx';
 import HowItWorks from './HowItWorks.jsx';
+import KeyFeatures from './KeyFeatures.jsx';
 
 // Main Render of the components that displays all the component used in our project
 // we use stateless functions also for toggling signIn and signUp pages for better UI experience
@@ -49,6 +50,7 @@ class App extends Component {
         <FlipInfo/>
         <AboutQLine/>
         <HowItWorks/>
+        <KeyFeatures/>
       </Grid>
       <Login show={this.state.isOpenSignIn} onClose={this.toggleLogin}></Login>
       <SignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></SignUp>
