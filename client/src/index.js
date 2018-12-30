@@ -37,6 +37,7 @@ class HomePage extends React.Component {
               <Route path="/CreatQueue" exact component={CreatQueue} />
               <Route path="/BusinessDashBord/:queue_id" exact component={BusinessDashBord} />
               <Route path="/ContactUs" exact component={ContactUs} />
+              <Route path="/admin" exact component={AdminDash} />
         </Router>
       );
     }
@@ -45,7 +46,7 @@ class HomePage extends React.Component {
 ReactDOM.render(<Loading/>, document.getElementById('root'));
 setTimeout(()=>{
 
-ReactDOM.render(<AdminDash/>, document.getElementById('root1'));
+ReactDOM.render(<HomePage/>, document.getElementById('root1'));
 
 },5000);
 setTimeout(()=>{

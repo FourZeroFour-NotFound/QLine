@@ -18,6 +18,7 @@ import ContactUs from './ContactUs.jsx';
 import Footer from './Footer.jsx';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
+import $ from 'jquery';
 
 // Main Render of the components that displays all the component used in our project
 // we use stateless functions also for toggling signIn and signUp pages for better UI experience
@@ -34,11 +35,26 @@ class App extends Component {
   handleNewUserMessage = (newMessage) => {
     console.log(`New message incoming! ${newMessage}`);
     // Now send the message throught the backend API
+    $.ajax({
+      url: '/customer-message',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        message: `${newMessage}`
+      }),
+      success: (res) => {
+      console.log("Thank you, we will be in touch")
+      },
+      error: (err) => {
+        console.log('err', err);
+      }
+    });
   }
 
   componentDidMount() {
     addResponseMessage("Welcome to QLine chat!");
   }
+  
   
   toggleSignup = () => {
     this.setState({

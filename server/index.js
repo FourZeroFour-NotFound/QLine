@@ -279,7 +279,25 @@ app.get('/customer-services', function(req, res){
   })
 })
 
+app.post('/customer-message', function (req, res) {
+  console.log("admin", req.body.message);
+ 
+  db.saveMessageChat(req.body, function(error, result) {
+    if (error) {console.log("error", error)
+  } else {
+    console.log("Success!", result)
+  }
+  });
+})
 
+app.get('/customer-message', function(req, res){
+  db.getAllMessageChat(function(err, result){
+    if(result) {
+      console.log("message",result);
+      res.send(result)
+    } 
+  })
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;
