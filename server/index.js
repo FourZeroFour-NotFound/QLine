@@ -211,6 +211,22 @@ app.get('/log-out', function (req, res) {
   })
 })
 
+app.post('/search',function(req,res){
+  console.log('nnnnn',req.body)
+  db.search(req.body.org , function(err,result){
+    if (err){
+      console.log("server error giting data " , err)
+    }else{
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+
 
 
 

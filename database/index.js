@@ -33,16 +33,19 @@ const selectAll = function (tableName, callback) {
   });
 };
 
-const selectAll1 = function (org, callback) {
-  connection.query(`SELECT * FROM queue where creater_id = ( select user_id where organization = ${org}) `, function (err, results) {
-    if (err) {
-      callback(err, null);
-    } else {
-      callback(null, results);
-    }
-  });
-};
-
+// const search = function (org, callback) {
+//  // connection.query(`SELECT * FROM queue where creator_id = ( select * from user where organization = ${org})`, function (err, results) {
+//    connection.query(`select * from user where organization = ${org}`, function (err, results) {
+//       // connection.query(`SELECT * FROM queue inner join user where creator_id = user_id  and organization = ${org}`, function (err, results) {
+//     if (err) {
+//       callback(err, null);
+//     } else {
+//       callback(null, results);
+//       console.log('jjjjjg',results)
+//     }
+//   });
+// };
+// search('zaid', (y,z)=>{console.log(y)})
 ///////////////////////////////////////////////////
 
 // function to add new user to the user table
@@ -159,7 +162,20 @@ const UPDATE = function (user,id, callback){
     }
   })
 }
+// this function return all the queues for the given organization
+// const search = function (id, callback) {
+//   var sqlquery = `select * from queue where creator_id = '${}'`
 
+//   connection.query(sqlquery, function (err, result) {
+//     if (err) {
+//       console.log("db error to get data ", err)
+//       callback(err, null)
+//     } else {
+//       console.log("db i found it (user exist )", id)
+//       callback(null, result)
+//     }
+//   })
+// }
 
 
 
@@ -172,3 +188,4 @@ module.exports.insertNewQueue = insertNewQueue;
 module.exports.getAllQueueForUser = getAllQueueForUser;
 module.exports.getUserData = getUserData;
 module.exports.UPDATE = UPDATE;
+// module.exports.search = search;
