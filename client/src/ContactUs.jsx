@@ -2,6 +2,7 @@ import React from 'react';
 import "./style/App.css";
 import {FormGroup, Grid, Button} from '@material-ui/core';
 import $ from "jquery";
+import Customer from './style/customer.png';
 
 // Customer Service Render Part, Organize the front-end version with styling from App css file
 // Adding some image for marketing appearance of website as well as form in order for the user to use if they need assistance in there booking
@@ -27,6 +28,7 @@ export default class CustomerService extends React.Component {
         e.preventDefault();
         let target = e.target;
         this.setState({ [target.name]: target.value });
+        console.log('am I working?')
         // checking for phone number validation where the condition is if the number inputed is less that required validation will be false and provide error
         if (this.state.phoneNumber.length < 9) {
           this.setState({
@@ -46,6 +48,7 @@ export default class CustomerService extends React.Component {
             this.toggleButtonNow();
             this.toggleButtonSpinNow();
             this.reset();
+            console.log('where?')
             // if the validation true  send data
             if (this.state.validation) {
               $.ajax({
@@ -97,7 +100,10 @@ export default class CustomerService extends React.Component {
     return (
 
       <div className="customerService">
-          <div className="customer">
+         <div id="advertisement">
+            <img src={Customer} width="500px" height="500px" style={{marginLeft: "300px", marginTop: "150px"}}/>
+          </div>
+          <div className="customer" style={{marginTop: "-600px"}}>
                 <form>    
                     <FormGroup>
                         
@@ -105,12 +111,12 @@ export default class CustomerService extends React.Component {
                                 <h1>Find out more today</h1>
                                     <p>
                                         Fill out the form below for more information about how we can work with 
-                                        you to drive higher revenues and improve customer experience at your queue management system.</p>
+                                        you and your queue management system.</p>
                                         <p>Need help with your queue? <span id="contact" link="">Contact customer support here.</span>
                                     </p>
                             </Grid>
                             <Grid>
-                                <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="text" name="name" id="exampleName" value={this.state.name} onChange={this.handleChange.bind(this)}  placeholder="Name" required={true}/>
+                                <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="text" name="name"  value={this.state.name} onChange={this.handleChange.bind(this)}  placeholder="Name" required={true}/>
                             </Grid>
                     
                         <Grid>
@@ -127,7 +133,7 @@ export default class CustomerService extends React.Component {
                     </FormGroup>
                     <FormGroup  handleOnClick={this.handleOnClick} >
                             <Button type = "submit" id="submit" onClick={this.handleOnClick.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}SEND</Button>
-                                {this.state.toggleButton && <p align="center" style={{marginLeft: "-100px"}}  className="label"><i class="fa fa-check icon"></i><b>Thanks, we'll be in touch as soon as possible.</b></p>}
+                                {this.state.toggleButton && <p align="center" style={{marginLeft: "200px"}}  className="label"><i class="fa fa-check icon"></i><b>Thanks, we'll be in touch as soon as possible.</b></p>}
                     </FormGroup>
                 </form>
            </div>
