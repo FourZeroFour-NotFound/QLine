@@ -36,25 +36,7 @@ const styles = {
     maxWidth: 100,
   },
 };
-const style = theme => ({
-  margin: {
-    margin: theme.spacing.unit,
-    backgroundColor: "#7aeac2",
-  },
-  roots: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    padding: 20,
-    marginLeft: 20,
-    marginRight: 20
-  },
-  gridList: {
-    width: '100%',
-    height: '100%',
-  },
-});
+
 
 export default class BusinessQueue extends React.Component {
   constructor(props) {

@@ -33,8 +33,9 @@ const selectAll = function (tableName, callback) {
   });
 };
 
-const selectAll1 = function (org, callback) {
-  connection.query(`SELECT * FROM queue where creater_id = ( select user_id where organization = ${org}) `, function (err, results) {
+const search = function (org, callback) {
+   const sql = `select queue.*, user.organization from user inner join queue on user.user_id = queue.creator_id and user.organization = "${org}"`
+   connection.query(sql, function (err, results) {
     if (err) {
       callback(err, null);
     } else {
@@ -159,7 +160,20 @@ const UPDATE = function (user,id, callback){
     }
   })
 }
+// this function return all the queues for the given organization
+// const search = function (id, callback) {
+//   var sqlquery = `select * from queue where creator_id = '${}'`
 
+//   connection.query(sqlquery, function (err, result) {
+//     if (err) {
+//       console.log("db error to get data ", err)
+//       callback(err, null)
+//     } else {
+//       console.log("db i found it (user exist )", id)
+//       callback(null, result)
+//     }
+//   })
+// }
 
 
 
@@ -172,3 +186,4 @@ module.exports.insertNewQueue = insertNewQueue;
 module.exports.getAllQueueForUser = getAllQueueForUser;
 module.exports.getUserData = getUserData;
 module.exports.UPDATE = UPDATE;
+module.exports.search = search;
