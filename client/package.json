@@ -9,6 +9,7 @@
     "material-ui-search-bar-enhanced": "^0.5.1",
     "mdbreact": "^4.8.6",
     "react": "^16.6.3",
+    "react-chat-widget": "^2.1.4-1",
     "react-dom": "^16.6.3",
     "react-download": "0.0.1",
     "react-fontawesome": "^1.6.1",

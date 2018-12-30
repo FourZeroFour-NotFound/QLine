@@ -29,7 +29,7 @@ class IntroPage extends Component {
        <p href="#" class="scroll-down" address="true"></p>
         <Grid className="titleDesc">Queue Management System <span className="imp">Implemented</span>
         <p className="qlinedesc">QLine is the world's most effecient queue management system and it's completely FREE. See how it can help your life today.</p>
-        <Button id="btn22" style={{backgroundColor: "#7aeac2", width: "100px"}} href="/"> Start Now</Button>
+        <Button id="btn22" style={{backgroundColor: "#7aeac2", width: "100px"}} href="#"> Start Now</Button>
         </Grid>
         </Grid>
       </Grid>

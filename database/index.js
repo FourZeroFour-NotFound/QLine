@@ -162,9 +162,30 @@ const UPDATE = function (user,id, callback){
 
 
 
+const saveMessageCustomer = (customer, callback) => {
+  
+  let message = `insert into customer (name,email,phoneNumber,comments) values("${customer.name}","${customer.email}","${customer.phoneNumber}","${customer.comments}")`
 
+  connection.query(message, function (err, result) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, result)
+    }
+  })
+}
 
+const getAllMessage = (callback) => {
+  let all = `SELECT customer.name, customer.email, customer.phoneNumber, customer.comments from customer`
 
+  connection.query(all, function(err, result){
+    if (err) throw err;
+     callback(null, result)
+  });
+}
+
+module.exports.getAllMessage = getAllMessage;
+module.exports.saveMessageCustomer = saveMessageCustomer;
 module.exports.connection = connection;
 module.exports.isacountExest = isacountExest;
 module.exports.insertNewUser = insertNewUser;

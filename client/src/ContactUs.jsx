@@ -48,7 +48,6 @@ export default class CustomerService extends React.Component {
             this.toggleButtonNow();
             this.toggleButtonSpinNow();
             this.reset();
-            console.log('where?')
             // if the validation true  send data
             if (this.state.validation) {
               $.ajax({
@@ -99,7 +98,7 @@ export default class CustomerService extends React.Component {
   render() {
     return (
 
-      <div className="customerService">
+      <div className="customerService" id="serv">
          <div id="advertisement">
             <img src={Customer} width="500px" height="500px" style={{marginLeft: "300px", marginTop: "150px"}}/>
           </div>
@@ -133,7 +132,7 @@ export default class CustomerService extends React.Component {
                     </FormGroup>
                     <FormGroup  handleOnClick={this.handleOnClick} >
                             <Button type = "submit" id="submit" onClick={this.handleOnClick.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}SEND</Button>
-                                {this.state.toggleButton && <p align="center" style={{marginLeft: "200px"}}  className="label"><i class="fa fa-check icon"></i><b>Thanks, we'll be in touch as soon as possible.</b></p>}
+                                {this.state.toggleButton && <p align="center" style={{marginLeft: "800px"}}  className="label"><i class="fa fa-check icon"></i><b>Thanks, we'll be in touch as soon as possible.</b></p>}
                     </FormGroup>
                 </form>
            </div>

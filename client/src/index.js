@@ -16,6 +16,8 @@ import Loading from './Loading.js';
 import CreatQueue from './component/creatQueue.jsx';
 import BusinessDashBord from './component/businessDashBord.jsx';
 import HowItWorks from './HowItWorks.jsx';
+import ContactUs from "./ContactUs.jsx";
+import AdminDash from './AdminDashboard.jsx'
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -34,7 +36,7 @@ class HomePage extends React.Component {
               <Route path="/user" exact component={User} />
               <Route path="/CreatQueue" exact component={CreatQueue} />
               <Route path="/BusinessDashBord/:queue_id" exact component={BusinessDashBord} />
-           
+              <Route path="/ContactUs" exact component={ContactUs} />
         </Router>
       );
     }
@@ -43,7 +45,7 @@ class HomePage extends React.Component {
 ReactDOM.render(<Loading/>, document.getElementById('root'));
 setTimeout(()=>{
 
-ReactDOM.render(<HomePage/>, document.getElementById('root1'));
+ReactDOM.render(<AdminDash/>, document.getElementById('root1'));
 
 },5000);
 setTimeout(()=>{

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './style/App.css';
 import Header from './Header';
 import logo from './style/qline1.jpg';
+import logo1 from './style/logo1.png';
 import Login from './LogIn.jsx';
 import SignUp from './SignUp.jsx';
 import { Grid } from '@material-ui/core';
@@ -15,6 +16,8 @@ import HowItWorks from './HowItWorks.jsx';
 import KeyFeatures from './KeyFeatures.jsx';
 import ContactUs from './ContactUs.jsx';
 import Footer from './Footer.jsx';
+import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
+import 'react-chat-widget/lib/styles.css';
 
 // Main Render of the components that displays all the component used in our project
 // we use stateless functions also for toggling signIn and signUp pages for better UI experience
@@ -28,6 +31,15 @@ class App extends Component {
     };
   }
 
+  handleNewUserMessage = (newMessage) => {
+    console.log(`New message incoming! ${newMessage}`);
+    // Now send the message throught the backend API
+  }
+
+  componentDidMount() {
+    addResponseMessage("Welcome to QLine chat!");
+  }
+  
   toggleSignup = () => {
     this.setState({
       isOpenSignUp: !this.state.isOpenSignUp,
@@ -55,6 +67,10 @@ class App extends Component {
         <KeyFeatures/>
       </Grid>
       <ContactUs/>
+      <Widget handleNewUserMessage={this.handleNewUserMessage} profileAvatar={logo1}
+          color={"#aa1256"}
+          title="QLine Queue Management System"
+          subtitle="Your Queue Our Service"/>
       <Footer/>
       <Login show={this.state.isOpenSignIn} onClose={this.toggleLogin}></Login>
       <SignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></SignUp>
