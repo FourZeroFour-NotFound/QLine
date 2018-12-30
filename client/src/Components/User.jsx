@@ -13,6 +13,7 @@ import {Grid} from '@material-ui/core';
 import flat from '../style/flat.png';
 import {Link} from 'react-router';
 import $ from "jquery";
+import SearchResult from './SearchResult.jsx';
 
 
 
@@ -38,7 +39,7 @@ class User extends Component {
     auth: true,
     anchorEl: null,
     value:"",
-  
+  searchResult:[],
   };
 
   handleChange = event => {
@@ -51,15 +52,16 @@ class User extends Component {
   };
 
   handleSearch = () => {
+     var that= this;
     $.ajax({
       url: "/search",
       type: "Post",
       data: {org:this.state.value} ,
       success: function (data) {
-        console.log("kkkk", data)
-       
-       
-      
+        that.setState({
+          searchResult:data.success
+        })
+        console.log("kkkk",  that.state.searchResult)
       }
     });
   }
@@ -101,8 +103,9 @@ class User extends Component {
                                 </ul>
                             </Grid>
                         </nav>
-                        <img src={flat} style={{ width: "100%", height: "100%"}}/>
+                        {/* <img src={flat} style={{ width: "100%", height: "100%"}}/> */}
                         <div class="wrap">
+                      
                           <div class="search">
 
 
@@ -111,15 +114,14 @@ class User extends Component {
 
                               <input onChange={e => {this.setState({value:e.target.value})}} type="text" class="searchTerm"  placeholder="Search..."/>
                               <button  onClick={this.handleSearch}type="submit" class="searchButton">
-
-
-
-
                                 <i class="fa fa-search"></i>
                             </button>
                           </div>
+                          <SearchResult  style={{paddingTop:'100px'}} queues = {this.state.searchResult}/>
                           </div>
-                        
+                     
+                     
+                       
              </div>
     );
   }
