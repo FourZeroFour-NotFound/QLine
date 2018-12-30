@@ -2499,3 +2499,7 @@ input {
   color:white;
   }
   
+
+  .order {
+    list-style-type: none;
+  }

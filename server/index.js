@@ -69,15 +69,15 @@ app.get('/profile', function(req,res){
   })
 })
 // this function is used to update data for user using id
-app.put('/profile/:id', function(req,res){
+app.put('/profile', function(req,res){
   console.log(" ddddddd",req.user)
-  db.UPDATE(req.user, function(err, result){
+  db.UPDATE(req.body,req.user, function(err, result){
     if(err){
       console.log("server error", err)
     }else{
       res.send({
         status:200,
-        success:"data is updated"
+        success:result
       
       })
     }
@@ -87,20 +87,22 @@ app.put('/profile/:id', function(req,res){
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
   console.log(req.body)
+  var x = ()=> {if(req.body.take_premum) {return 1}else{return 0}}
+  var y = ()=> {if(req.body.accept_join) {return 1}else{return 0}}
   var queue = {
     nameOfQueeu: req.body.nameOfQueeu,
     start_time: req.body.start_time,
     end_time: req.body.end_time,
     date: req.body.date,
-    timeforone: req.body.date,
+    timeforone: req.body.timeforone,
     windows: req.body.windows,
     imgUrl: req.body.imgUrl,
-    take_premum: req.body.take_premum,
-    accept_join: req.body.accept_join,
+    take_premum: x() ,
+    accept_join:y() ,
     requierment: req.body.requierment,
     creator_id: req.user,
   }
-
+console.log("queue",queue)
   db.insertNewQueue(queue, function (err, result) {
     if (err) {
       console.log("server ", err)

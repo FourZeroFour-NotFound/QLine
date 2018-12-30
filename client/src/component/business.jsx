@@ -129,13 +129,14 @@ export default class business extends React.Component {
             <div style={styles.root}>
         <FormGroup>
           {auth && (
-            <div>
+            <div style={{marginLeft: "40px"}}>
             <Button
+            href="/CreatQueue"
             aria-owns={open ? 'menu-appbar' : undefined}
             aria-haspopup="true"
             onClick={this.handleMenu}
             color="inherit"
-            size="large" style={{ backgroundColor: "#7aeac2", marginLeft: "1500px", font: "white", marginTop: "200px"}} >
+            size="large" style={{ backgroundColor: "#7aeac2", marginLeft: "1500px", font: "white", marginTop: "150px", marginBottom: "50px"}} >
             + Create New Queue
             </Button>
               <BusinessGridList/>
