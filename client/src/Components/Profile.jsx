@@ -20,6 +20,7 @@ import red from '@material-ui/core/colors/red';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Grid from '@material-ui/core/Grid';
 
 import '../style/App.css';
 
@@ -149,9 +150,11 @@ class Profile extends Component {
     this.setState({ open: !this.state.open });
   };
 
-  // handleClose = () => {
-  //   this.setState({ open: false });
-  // };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
@@ -168,7 +171,6 @@ class Profile extends Component {
   };
 // this function used to get data for user using id
   componentDidMount = () =>{
-
     var that = this
     $.ajax({
       url: "/profile",
