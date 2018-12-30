@@ -20,6 +20,7 @@ import red from '@material-ui/core/colors/red';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Grid from '@material-ui/core/Grid';
 
 import '../style/App.css';
 
@@ -149,9 +150,11 @@ class Profile extends Component {
     this.setState({ open: !this.state.open });
   };
 
-  // handleClose = () => {
-  //   this.setState({ open: false });
-  // };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
@@ -168,7 +171,6 @@ class Profile extends Component {
   };
 // this function used to get data for user using id
   componentDidMount = () =>{
-
     var that = this
     $.ajax({
       url: "/profile",
@@ -328,63 +330,5 @@ Profile.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-
-
-
-
-// class Confirmation extends Component {
-//   constructor(props) {
-//     super();
-//     this.state = {
-//       value: props.value,
-//     };
-//   }
-
-
-//   handleCancel = () => {
-//     this.props.onClose(this.props.value);
-//   };
-
-//   handleOk = () => {
-//     this.props.onClose(this.state.value);
-//   };
-
-//   render() {
-//     const { value, ...other } = this.props;
-//     const { classes } = this.props;
-
-//     return (
-//       <Dialog
-//         maxWidth="xs"
-//         {...other}
-//       >
-//         <DialogTitle id="confirmation-dialog-title">Arabic Bank</DialogTitle>
-//         <DialogContent>
-//           <Grid container justify="center" alignItems="center">
-//             <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#CE93D8' }}>H105</Avatar>
-//           </Grid>
-//           <span style={{ marginTop: '50px' }}>Estimated time: 1 hour</span>
-//         </DialogContent>
-
-//         <DialogActions>
-//           <Button onClick={this.handleCancel} color="primary">
-//             Cancel
-//           </Button>
-//           <Button onClick={this.handleOk} color="primary">
-//             Ok
-//           </Button>
-//           <Button onClick={this.handleOk} color="primary">
-//             Delay
-//           </Button>
-//         </DialogActions>
-//       </Dialog>
-//     );
-//   }
-// }
-
-// Confirmation.propTypes = {
-//   onClose: PropTypes.func,
-//   value: PropTypes.string,
-// };
 
 export default withStyles(styles)(Profile);
