@@ -1,6 +1,6 @@
 import React from 'react';
 import "./style/App.css";
-import {FormGroup, Grid, Input, Button} from '@material-ui/core';
+import {FormGroup, Grid, Button} from '@material-ui/core';
 import $ from "jquery";
 
 // Customer Service Render Part, Organize the front-end version with styling from App css file
@@ -25,7 +25,6 @@ export default class CustomerService extends React.Component {
 
       handleChange(e) {
         e.preventDefault();
-        let email = this.state.email;
         let target = e.target;
         this.setState({ [target.name]: target.value });
         // checking for phone number validation where the condition is if the number inputed is less that required validation will be false and provide error
@@ -40,19 +39,6 @@ export default class CustomerService extends React.Component {
             validation: true
           });
         }
-
-          // for email
-          if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-            this.setState({
-              errorEmail: "Invalid email",
-              validation: false
-            });
-          } else {
-            this.setState({
-              errorEmail: "",
-              validation: true
-            });
-          }
         }
 
         handleOnClick(e) {
@@ -108,12 +94,6 @@ export default class CustomerService extends React.Component {
         }
 
   render() {
-    const { email, name, phoneNumber, comments } = this.state;
-    const enabled =
-          name.length == 0 &&
-          email.length == 0 &&
-          phoneNumber.length == 0 && 
-          comments.length == 0;
     return (
 
       <div className="customerService">
@@ -130,23 +110,23 @@ export default class CustomerService extends React.Component {
                                     </p>
                             </Grid>
                             <Grid>
-                                <Input style={{width: "650px"}} type="text" name="name" id="exampleName" value={this.state.name} onChange={this.handleChange.bind(this)}  placeholder="Name" required={true}/>
+                                <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="text" name="name" id="exampleName" value={this.state.name} onChange={this.handleChange.bind(this)}  placeholder="Name" required={true}/>
                             </Grid>
                     
                         <Grid>
-                                <Input style={{width: "650px"}} type="email" name="email" id="exampleEmail" value={this.state.email} onChange={this.handleChange.bind(this)} placeholder="Email" required={true}/>
+                                <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="email" name="email" id="exampleEmail" value={this.state.email} onChange={this.handleChange.bind(this)} placeholder="Email" required={true}/>
                         </Grid>
                     
                         <Grid>
-                                <Input style={{width: "650px"}} type="number" name="phoneNumber" id="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange.bind(this)} placeholder="Phone Number" required={true}/>
+                                <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="number" name="phoneNumber" id="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange.bind(this)} placeholder="Phone Number" required={true}/>
                         </Grid>
                     
                         <Grid>
-                                <Input style={{width: "650px"}} type="textarea" name="comments" id="exampleText" value={this.state.comments} onChange={this.handleChange.bind(this)}  placeholder="Comments" required={true}/>
+                                <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px", marginTop: "-100px"}} type="textarea" name="comments" id="exampleText" value={this.state.comments} onChange={this.handleChange.bind(this)}  placeholder="Comments" required={true}/>
                         </Grid>
                     </FormGroup>
                     <FormGroup  handleOnClick={this.handleOnClick} >
-                            <Button type = "submit" id="submit" disabled={enabled} onClick={this.handleOnClick.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}SEND</Button>
+                            <Button type = "submit" id="submit" onClick={this.handleOnClick.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}SEND</Button>
                                 {this.state.toggleButton && <p align="center" style={{marginLeft: "-100px"}}  className="label"><i class="fa fa-check icon"></i><b>Thanks, we'll be in touch as soon as possible.</b></p>}
                     </FormGroup>
                 </form>
