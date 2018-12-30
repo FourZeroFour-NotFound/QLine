@@ -95,6 +95,17 @@ CREATE TABLE `history` (
   PRIMARY KEY (`id`)
 );
 
+DROP TABLE IF EXISTS `customer`;
+		
+CREATE TABLE `customer` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(250) NOT NULL,
+  `email` VARCHAR(250) NOT NULL,
+  `phoneNumber` VARCHAR(250) NOT NULL,
+  `comments` VARCHAR(250) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
 -- ---
 -- Foreign Keys 
 -- ---

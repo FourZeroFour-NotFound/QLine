@@ -28,7 +28,7 @@ class Header extends Component {
                     <ul className="centerNavMenu">
                     <li className="menuItem"><a className="itemLink">Home</a></li>
                     <li className="menuItem"><a className="itemLink">Features</a></li>
-                    <li className="menuItem"><a className="itemLink">Contact Us</a></li>
+                    <li className="menuItem"><a className="itemLink" href="#serv">Contact Us</a></li>
                     
                     </ul>
                 </Grid>

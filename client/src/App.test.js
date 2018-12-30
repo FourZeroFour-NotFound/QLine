@@ -8,6 +8,7 @@ import App from './App';
 import { expect } from 'chai';
 import Header from './Header.js';
 import renderer from 'react-test-renderer';
+import User from './Components/User';
 
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -37,3 +38,17 @@ describe('<App />', () => {
     expect(wrapper.find('.foo').hostNodes()).to.have.lengthOf(1);
   })
 });
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<User />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
+
+
+
+
+
+
+

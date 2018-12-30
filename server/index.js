@@ -213,6 +213,22 @@ app.get('/log-out', function (req, res) {
   })
 })
 
+app.post('/search',function(req,res){
+  console.log('nnnnn',req.body)
+  db.search(req.body.org , function(err,result){
+    if (err){
+      console.log("server error giting data " , err)
+    }else{
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+
 
 
 
@@ -237,6 +253,33 @@ function authenticationMiddleware() {
     });
   }
 }
+
+app.post('/customer-services', function (req, res) {
+  console.log("admin", req.body);
+  var user = {
+    "name": req.body.name,
+    "email": req.body.email,
+    "phoneNumber": req.body.phoneNumber,
+    "comments": req.body.comments
+  }
+  db.saveMessageCustomer(req.body, function(error, result) {
+    if (error) {console.log("error", error)
+  } else {
+    console.log("Success!", result)
+  }
+  });
+})
+
+app.get('/customer-services', function(req, res){
+  db.getAllMessage(function(err, result){
+    if(result) {
+      console.log("this",result);
+      res.send(result)
+    } 
+  })
+})
+
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;
