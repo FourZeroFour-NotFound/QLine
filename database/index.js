@@ -33,19 +33,17 @@ const selectAll = function (tableName, callback) {
   });
 };
 
-// const search = function (org, callback) {
-//  // connection.query(`SELECT * FROM queue where creator_id = ( select * from user where organization = ${org})`, function (err, results) {
-//    connection.query(`select * from user where organization = ${org}`, function (err, results) {
-//       // connection.query(`SELECT * FROM queue inner join user where creator_id = user_id  and organization = ${org}`, function (err, results) {
-//     if (err) {
-//       callback(err, null);
-//     } else {
-//       callback(null, results);
-//       console.log('jjjjjg',results)
-//     }
-//   });
-// };
-// search('zaid', (y,z)=>{console.log(y)})
+const search = function (org, callback) {
+   const sql = `select queue.*, user.organization from user inner join queue on user.user_id = queue.creator_id and user.organization = "${org}"`
+   connection.query(sql, function (err, results) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
 ///////////////////////////////////////////////////
 
 // function to add new user to the user table
@@ -188,4 +186,4 @@ module.exports.insertNewQueue = insertNewQueue;
 module.exports.getAllQueueForUser = getAllQueueForUser;
 module.exports.getUserData = getUserData;
 module.exports.UPDATE = UPDATE;
-// module.exports.search = search;
+module.exports.search = search;
