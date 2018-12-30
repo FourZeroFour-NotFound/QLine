@@ -66,9 +66,9 @@ class PopLogIn extends React.Component {
   handleOnClick() {
     this.toggleButtonNow();
     this.toggleButtonSpinNow();
-    setTimeout ( () => {
-    window.responsiveVoice.speak("Thank you for being with us again, Enjoy our Features, i'm always here to serve you")
-    }, 4000)
+    // setTimeout ( () => {
+    // window.responsiveVoice.speak("Thank you for being with us again, Enjoy our Features, i'm always here to serve you")
+    // }, 4000)
     this.reset()
 
     if (this.state.validation) {
@@ -101,9 +101,9 @@ class PopLogIn extends React.Component {
     e.preventDefault();
     this.toggleButtonNow();
     this.toggleButtonSpinNow();
-    setTimeout ( () => {
-      window.responsiveVoice.speak("Warm Welcome Again, it was nice having you to be part of our community, let me guide you")
-      }, 3000)
+    // setTimeout ( () => {
+    //   window.responsiveVoice.speak("Warm Welcome Again, it was nice having you to be part of our community, let me guide you")
+    //   }, 3000)
     this.reset();
     if (this.state.validation) {
       $.ajax({
