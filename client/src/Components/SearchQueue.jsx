@@ -106,7 +106,6 @@ if (this.state.allqueue.accept_join){
       console.log(data);
       alert("u joined the waiting lest sucssfuly")
     }
-    
   });
 
 

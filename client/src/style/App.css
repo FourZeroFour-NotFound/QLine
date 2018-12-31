@@ -479,6 +479,79 @@ section {
 /*******************- HowQline -*******************/
 .gridHow {
   background-color: #e2e1e2;
+  margin-top: 1700px;
+  height: 1200px ;
+}
+
+.howt {
+    text-align: center;
+    margin-left: 700px;
+    padding: 50px;
+    border-bottom: 4px solid #e22a2e;
+    width: 500px;
+}
+.button {
+  background-color: #e33a2e;
+  margin-left: 500px;
+  margin-top: 300px;
+  margin-bottom: 50px;
+  -webkit-border-radius: 999px;
+  border-radius: 999px;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 20px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}
+@-webkit-keyframes glowing {
+  0% { background-color: #e33a2e; -webkit-box-shadow: 0 0 3px #e33a2e; }
+  50% { background-color: #e33a2e; -webkit-box-shadow: 0 0 40px #e33a2e; }
+  100% { background-color: #e33a2e; -webkit-box-shadow: 0 0 3px #e33a2e; }
+}
+
+@-moz-keyframes aa1256 {
+  0% { background-color: #e33a2e; -moz-box-shadow: 0 0 3px #e33a2e; }
+  50% { background-color: #e33a2e; -moz-box-shadow: 0 0 40px #e33a2e; }
+  100% { background-color: #e33a2e; -moz-box-shadow: 0 0 3px #e33a2e; }
+}
+
+@-o-keyframes glowing {
+  0% { background-color: #e33a2e; box-shadow: 0 0 3px #e33a2e; }
+  50% { background-color: #e33a2e; box-shadow: 0 0 40px #e33a2e; }
+  100% { background-color: #e33a2e; box-shadow: 0 0 3px #e33a2e; }
+}
+
+@keyframes glowing {
+  0% { background-color: #e33a2e; box-shadow: 0 0 3px #e33a2e; }
+  50% { background-color: #e33a2e; box-shadow: 0 0 40px #e33a2e; }
+  100% { background-color: #e33a2e; box-shadow: 0 0 3px #e33a2e; }
+}
+
+.button .tooltiptext {
+  visibility: hidden;
+  width: 320px;
+  background-color: white;
+  color: #000;
+  text-align: left;
+  padding: 15px;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.button:hover .tooltiptext {
+  visibility: visible;
 }
 /*******************- keyFeatures -*******************/
 
