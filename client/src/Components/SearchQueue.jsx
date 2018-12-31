@@ -67,7 +67,7 @@ export default class SearchQueue extends React.Component {
 
   //this function to handel conferm button it will add user to queue
   addUser= ()=>{
-    console.log(this.state.allqueue.queue_id)
+    console.log(this.state.allqueue.accept_join)
 //this will chick if the queue have wating list to be conferm from the manger of queue or add him directly to the queue
 if (this.state.allqueue.accept_join){
   console.log(true)
@@ -143,7 +143,9 @@ this.setState({
     });
   };
   render() {
-   
+   var start = this.props.queue.start_time.split(":00.")
+   var end = this.props.queue.end_time.split(":00.")
+   var date = this.props.queue.date.split("T")
     const { classes } = this.props;
     return (
       <div>
@@ -158,9 +160,9 @@ this.setState({
               image={this.props.queue.imgUrl}
             />
               <Typography component="p">
-                {"Start Time:" + this.props.queue.start_time}<br />
-                {"End Time:" + this.props.queue.end_time}<br />
-                {"Date:" + this.props.queue.date}<br />
+                {"Start Time: " + start[0]}<br />
+                {"End Time: " + end[0]}<br />
+                {"Date: " + date[0]}<br />
               </Typography>
             </CardContent>
           </CardActionArea>
@@ -179,10 +181,10 @@ this.setState({
                 <DialogContentText>
                   <h2>    {this.state.allqueue.nameOfQueeu}</h2>
                 </DialogContentText>
-               {"Start Time:" + this.state.allqueue.start_time}<br />
-                {"End Time:" + this.state.allqueue.end_time}<br />
-                {"Date:" + this.state.allqueue.date}<br />
-                {"The time for each customer:" + this.state.allqueue.timeforone}<br /> 
+               {"Start Time: " + start[0]}<br />
+                {"End Time: " + end[0]}<br />
+                {"Date :" + date[0]}<br />
+                {"The time for each customer: " + this.state.allqueue.timeforone + " m"}  <br /> 
                 {"Number of windows:" + this.state.allqueue.windows}<br />
               </DialogContent>
               <DialogActions>
