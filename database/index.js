@@ -33,6 +33,7 @@ const selectAll = function (tableName, callback) {
   });
 };
 
+// function for serch u give it the name of org and it returns all the queue for the user how owne the org
 const search = function (org, callback) {
    const sql = `select queue.*, user.organization from user inner join queue on user.user_id = queue.creator_id and user.organization = "${org}"`
    connection.query(sql, function (err, results) {
@@ -59,6 +60,21 @@ const search = function (org, callback) {
 // }
 const insertNewUser = function (user, callback) {
   var sqlquery = `insert into user (firstName,lastName,email,password,organization,phoneNumber,primum) values("${user.firstName}","${user.lastName}","${user.email}","${user.password}","${user.organization}","${user.phoneNumber}","0")`
+  connection.query(sqlquery, function (err, result) {
+    if (err) {
+      console.log("db error inserting in user table", err)
+      callback(err, null)
+    } else {
+      console.log("db user added successfuly" , result ) 
+      callback(null,result)
+    }
+  })
+}
+/////////////////////////////////////////////////////
+
+//this function to insert in queue user table (add user to queue)
+const insertinUserQueue = function (userid,queueid,notes, callback) {
+  var sqlquery = `insert into user_queue (user_id,queue_id,onwindow,Notes) values("${userid}","${queueid}","0","${notes}")`
   connection.query(sqlquery, function (err, result) {
     if (err) {
       console.log("db error inserting in user table", err)
@@ -208,3 +224,4 @@ module.exports.getAllQueueForUser = getAllQueueForUser;
 module.exports.getUserData = getUserData;
 module.exports.UPDATE = UPDATE;
 module.exports.search = search;
+module.exports.insertinUserQueue = insertinUserQueue;
