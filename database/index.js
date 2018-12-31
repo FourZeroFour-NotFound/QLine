@@ -105,7 +105,7 @@ const insertinWaitinglist = function (userid,queueid,notes, callback) {
 
 
 ///////////////////////////////////////////////////
-
+//this for test
 var queue = {
    nameOfQueeu :"zaid",
    start_time:  '23:59:59' ,
@@ -119,6 +119,8 @@ var queue = {
    requierment :"fdfdfsdfsdfsd",
    creator_id : 1,
 }
+////////////////////////
+//this function to insert new queue
 const insertNewQueue = function (queue, callback) {
   var sqlquery = `insert into queue (nameOfQueeu,start_time,end_time,date,timeforone,windows,imgUrl,take_premum,accept_join,requierment ,creator_id)
   values("${queue.nameOfQueeu}","${queue.start_time}","${queue.end_time}","${queue.date}","${queue.timeforone}","${queue.windows}",
@@ -143,6 +145,22 @@ const getAllQueueForUser = function (user_id , callback){
       callback(err,null)
     }else{
       console.log(`db git all the queue for this user sucssfuly user_id=${user_id}` , result)
+      callback(null,result)
+    }
+  })
+}
+
+/////////////////////////////////////////////////
+//this function to get all users in one queue
+const getUsersInQueue = function (queue_id , callback){
+ 
+  var sqlquery = `select * from user_queue where queue_id = "${queue_id}"`
+  connection.query(sqlquery, function(err,result){
+    if (err){
+      console.log(`db error geting the queue form db queue id  =${queue_id}` , err)
+      callback(err,null)
+    }else{
+      console.log(`db git all the users for this queue sucssfuly queue id=${queue_id}` , result)
       callback(null,result)
     }
   })
@@ -243,3 +261,4 @@ module.exports.UPDATE = UPDATE;
 module.exports.search = search;
 module.exports.insertinUserQueue = insertinUserQueue;
 module.exports.insertinWaitinglist = insertinWaitinglist;
+module.exports.getUsersInQueue = getUsersInQueue;
