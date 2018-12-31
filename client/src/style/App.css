@@ -476,6 +476,10 @@ section {
     transform: translateY(-5px);
   }
 }
+/*******************- HowQline -*******************/
+.gridHow {
+  background-color: #e2e1e2;
+}
 /*******************- keyFeatures -*******************/
 
 .key{
@@ -492,7 +496,6 @@ section {
 
 .customerService{
   background: white;
-  margin-top: 1600px;
 	height: 800px;;
   width: 100%;
 }
@@ -502,7 +505,7 @@ section {
   text-align: center;
   margin-top: 100px;
   margin-bottom: 20px;
-  margin-left: 1125px;
+  margin-left: 1120px;
 }
 
 
@@ -517,8 +520,7 @@ section {
 
 #submit {
 	background: #aa1256;
-  width: 640px;
-  margin-top: 50px;
+	width: 640px;
   margin-left: 1010px;
   margin-bottom: 20px;
 }

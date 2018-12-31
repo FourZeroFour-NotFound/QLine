@@ -16,9 +16,12 @@ import HowItWorks from './HowItWorks.jsx';
 import KeyFeatures from './KeyFeatures.jsx';
 import ContactUs from './ContactUs.jsx';
 import Footer from './Footer.jsx';
+import bank from './style/bank.png';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 import $ from 'jquery';
+import HowQLine from './HowQLine.jsx';
+
 
 // Main Render of the components that displays all the component used in our project
 // we use stateless functions also for toggling signIn and signUp pages for better UI experience
@@ -82,11 +85,12 @@ class App extends Component {
         <HowItWorks/>
         <KeyFeatures/>
       </Grid>
-      <ContactUs/>
       <Widget handleNewUserMessage={this.handleNewUserMessage} profileAvatar={logo1}
           color={"#aa1256"}
           title="QLine Queue Management System"
           subtitle="Your Queue Our Service"/>
+        <HowQLine/>
+        <ContactUs/>
       <Footer/>
       <Login show={this.state.isOpenSignIn} onClose={this.toggleLogin}></Login>
       <SignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></SignUp>
