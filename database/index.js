@@ -77,10 +77,27 @@ const insertinUserQueue = function (userid,queueid,notes, callback) {
   var sqlquery = `insert into user_queue (user_id,queue_id,onwindow,Notes) values("${userid}","${queueid}","0","${notes}")`
   connection.query(sqlquery, function (err, result) {
     if (err) {
-      console.log("db error inserting in user table", err)
+      console.log("db error inserting in user_queue table", err)
       callback(err, null)
     } else {
-      console.log("db user added successfuly" , result ) 
+      console.log("db user_queue added successfuly" , result ) 
+      callback(null,result)
+    }
+  })
+}
+
+
+/////////////////////////////////////////////////////
+
+//this function to insert in queue user table (add user to queue)
+const insertinWaitinglist = function (userid,queueid,notes, callback) {
+  var sqlquery = `insert into waitingList (user_id,queue_id,onwindow,Notes) values("${userid}","${queueid}","0","${notes}")`
+  connection.query(sqlquery, function (err, result) {
+    if (err) {
+      console.log("db error inserting in waitingList table", err)
+      callback(err, null)
+    } else {
+      console.log("db waitingList added successfuly" , result ) 
       callback(null,result)
     }
   })
@@ -225,3 +242,4 @@ module.exports.getUserData = getUserData;
 module.exports.UPDATE = UPDATE;
 module.exports.search = search;
 module.exports.insertinUserQueue = insertinUserQueue;
+module.exports.insertinWaitinglist = insertinWaitinglist;
