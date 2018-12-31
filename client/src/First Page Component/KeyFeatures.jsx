@@ -1,9 +1,9 @@
 import React from 'react';
-import "./style/App.css";
+import "../style/App.css";
 import {Grid} from '@material-ui/core';
-import question from "./style/question.png";
-import set from "./style/set.png";
-import kiosk from "./style/kiosk.png";
+import question from "../style/question.png";
+import set from "../style/set.png";
+import kiosk from "../style/kiosk.png";
 
 
 export default class KeyFeatures extends React.Component {

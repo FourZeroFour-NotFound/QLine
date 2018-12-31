@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './style/App.css';
+import '../style/App.css';
 import {Grid, Button} from '@material-ui/core';
-import pinfo from './style/phoneinfo.png';
-import tab from './style/tab.png';
-import laptop from './style/laptop.png';
-import tv from './style/tv.png';
-import laptop2 from './style/laptop2.png';
+import pinfo from '../style/phoneinfo.png';
+import tab from '../style/tab.png';
+import laptop from '../style/laptop.png';
+import tv from '../style/tv.png';
+import laptop2 from '../style/laptop2.png';
 
 class HowItWorks extends Component {
   constructor(props) {

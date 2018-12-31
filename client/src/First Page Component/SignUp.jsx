@@ -1,12 +1,12 @@
 import React from 'react';
-import './style/App.css';
+import '../style/App.css';
 import PropTypes from 'prop-types';
-import PopLogIn from './popLogin.js';
+import PopSignUp from './popSignUp.js';
 
 // Pop up Login component that will help the user to use our features
 // we use modal react js method to enhance great eceperience for the user
 // modal supported my prop types in order for the component to use functionality when you mount
-class LogIn extends React.Component {
+class SignUp extends React.Component {
    constructor(props) {
        super(props)
    }
@@ -24,7 +24,7 @@ class LogIn extends React.Component {
             <a id="btn1" onClick={this.props.onClose}>X
             </a>
             <div className="forLogin">
-             <PopLogIn/>
+             <PopSignUp/>
           </div>
           </div>
         </div>
@@ -33,10 +33,10 @@ class LogIn extends React.Component {
   }
 }
 
-LogIn.propTypes = {
+SignUp.propTypes = {
   onClose: PropTypes.func.isRequired,
   show: PropTypes.bool,
   children: PropTypes.node
 };
 
-export default LogIn;
+export default SignUp;

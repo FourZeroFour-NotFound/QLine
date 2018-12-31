@@ -1,22 +1,19 @@
 
 import React, { Component } from 'react';
-import './style/App.css';
+import '../style/App.css';
 import Header from './Header';
-import logo from './style/qline1.jpg';
-import logo1 from './style/logo1.png';
+import logo from '../style/qline1.jpg';
+import logo1 from '../style/logo1.png';
 import Login from './LogIn.jsx';
 import SignUp from './SignUp.jsx';
 import { Grid } from '@material-ui/core';
-import bk from './style/bk.jpg';
 import IntroPage from './IntroPage.js';
-import User from './Components/Profile.jsx'
 import FlipInfo from './flipInfo.jsx';
 import AboutQLine from './AboutQLine.jsx';
 import HowItWorks from './HowItWorks.jsx';
 import KeyFeatures from './KeyFeatures.jsx';
 import ContactUs from './ContactUs.jsx';
 import Footer from './Footer.jsx';
-import bank from './style/bank.png';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
 import $ from 'jquery';
