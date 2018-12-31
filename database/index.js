@@ -231,6 +231,30 @@ const getAllMessage = (callback) => {
   });
 }
 
+const saveMessageChat = (customerchat, callback) => {
+  
+  let message = `insert into customerchat (message) values("${customerchat.message}")`
+
+  connection.query(message, function (err, result) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, result)
+    }
+  })
+}
+
+const getAllMessageChat = (callback) => {
+  let all = `SELECT customerchat.message from customerchat`
+
+  connection.query(all, function(err, result){
+    if (err) throw err;
+     callback(null, result)
+  });
+}
+
+module.exports.getAllMessageChat = getAllMessageChat;
+module.exports.saveMessageChat = saveMessageChat;
 module.exports.getAllMessage = getAllMessage;
 module.exports.saveMessageCustomer = saveMessageCustomer;
 module.exports.connection = connection;
