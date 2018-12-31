@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './style/App.css';
+import '../style/App.css';
 import {Grid} from '@material-ui/core';
-import phone from './style/phone.png';
-import building from './style/building.png';
-import msg from './style/msg.png';
-import bar from './style/bar.png';
+import phone from '../style/phone.png';
+import building from '../style/building.png';
+import msg from '../style/msg.png';
+import bar from '../style/bar.png';
 
 class FlipInfo extends Component {
   constructor(props) {

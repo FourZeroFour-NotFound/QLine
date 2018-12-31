@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './style/App.css';
+import '../style/App.css';
 import { Grid } from '@material-ui/core';
 import {Link} from 'react-router';
-import logo from './style/qline.png';
+import logo from '../style/qline.png';
 
 class Header extends Component {
     constructor ( props ) {

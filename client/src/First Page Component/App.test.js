@@ -6,9 +6,9 @@ import Adapter from 'enzyme-adapter-react-16';
 import { shallow, mount } from 'enzyme';
 import App from './App';
 import { expect } from 'chai';
-import Header from './Header.js';
+import Header from './First Page Component/Header.js';
 import renderer from 'react-test-renderer';
-import User from './Components/User';
+import User from './User Component/User';
 
 
 Enzyme.configure({ adapter: new Adapter() });

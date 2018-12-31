@@ -1,8 +1,8 @@
 import React from 'react';
-import "./style/App.css";
+import "../style/App.css";
 import {FormGroup, Grid, Button} from '@material-ui/core';
 import $ from "jquery";
-import Customer from './style/customer.png';
+import Customer from '../style/customer.png';
 
 // Customer Service Render Part, Organize the front-end version with styling from App css file
 // Adding some image for marketing appearance of website as well as form in order for the user to use if they need assistance in there booking

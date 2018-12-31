@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
-import './style/App.css';
+import '../style/App.css';
 import { Grid } from '@material-ui/core';
-import bk from './style/bk.jpg';
+import bk from '../style/bk.jpg';
 import {Button} from '@material-ui/core';
 import {Link} from 'react-router';
 import $ from 'jquery';

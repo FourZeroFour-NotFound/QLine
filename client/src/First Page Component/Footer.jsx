@@ -1,8 +1,8 @@
 import React from 'react';
-import './style/App.css';
+import '../style/App.css';
 import { Grid, GridList } from '@material-ui/core';
 import CardMedia from '@material-ui/core/CardMedia';
-import logo from './style/logo1.png';
+import logo from '../style/logo1.png';
 
 
 class Footer extends React.Component {
