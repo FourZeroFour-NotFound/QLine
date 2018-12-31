@@ -131,7 +131,7 @@ app.post('/sign-up', function (req, res) {
     if (err) {
       console.log("server", err)
     } else {
-      if (result.length !== 0) {
+      if (!(result.length == 0)) {
         res.send({
           status: 404,
           success: "userExist",

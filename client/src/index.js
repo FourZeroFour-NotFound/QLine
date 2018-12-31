@@ -45,7 +45,7 @@ class HomePage extends React.Component {
 ReactDOM.render(<Loading/>, document.getElementById('root'));
 setTimeout(()=>{
 
-ReactDOM.render(<AdminDash/>, document.getElementById('root1'));
+ReactDOM.render(<HomePage/>, document.getElementById('root1'));
 
 },5000);
 // setTimeout(()=>{
