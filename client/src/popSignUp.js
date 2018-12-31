@@ -106,6 +106,7 @@ class PopSignUp extends React.Component {
         },
         error: (err) => {
           console.log('err', err);
+          alert("sign up err")
         }
       }); 
     }

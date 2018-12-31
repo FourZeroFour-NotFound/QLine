@@ -13,15 +13,15 @@
 DROP TABLE IF EXISTS `user`;
 		
 CREATE TABLE `user` (
-  `user_id` INTEGER NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(250) NOT NULL,
-  `lastName` VARCHAR(250) NOT NULL,
-  `email` VARCHAR(250) NULL DEFAULT NULL,
-  `password` VARCHAR(250) NOT NULL,
-  `organization` VARCHAR(250) NOT NULL,
-  `phoneNumber` VARCHAR(250) NOT NULL,
+  `user_id` INTEGER(20) NOT NULL AUTO_INCREMENT,
+  `firstName` VARCHAR(25) NOT NULL,
+  `lastName` VARCHAR(25) NOT NULL,
+  `email` VARCHAR(25) NOT NULL,
+  `password` VARCHAR(25) NOT NULL,
+  `organization` VARCHAR(25) NOT NULL,
+  `phoneNumber` INTEGER(25) NOT NULL,
   `primum` INTEGER(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`user_id`, `organization`, `email`)
 );
 
 -- ---
@@ -40,10 +40,10 @@ CREATE TABLE `queue` (
   `timeforone` VARCHAR(25) NOT NULL,
   `windows` VARCHAR(25) NOT NULL,
   `imgUrl` VARCHAR(200) NOT NULL,
-  `take_premum` BOOLEAN NOT NULL DEFAULT true,
-  `accept_join` BOOLEAN NOT NULL DEFAULT false,
+  `take_premum` INTEGER(1) NOT NULL DEFAULT 0,
+  `accept_join` INTEGER(1) NOT NULL DEFAULT 0,
   `requierment` VARCHAR(80) NOT NULL,
-  `creator_id` INTEGER NOT NULL,
+  `creator_id` INTEGER(20) NOT NULL,
   PRIMARY KEY (`queue_id`)
 );
 
@@ -56,8 +56,10 @@ DROP TABLE IF EXISTS `user_queue`;
 		
 CREATE TABLE `user_queue` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `user_id` INTEGER NOT NULL,
+  `user_id` INTEGER(20) NOT NULL,
   `queue_id` INTEGER NOT NULL,
+  `onwindow` SMALLINT(25) NOT NULL DEFAULT 0,
+  `Notes` VARCHAR(200) NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -70,9 +72,10 @@ DROP TABLE IF EXISTS `waitingList`;
 		
 CREATE TABLE `waitingList` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `user_id` INTEGER NOT NULL,
+  `user_id` INTEGER(20) NOT NULL,
   `queue_id` INTEGER NOT NULL,
-  `notes_order` VARCHAR(500) NOT NULL,
+  `onwindow` SMALLINT(25) NOT NULL DEFAULT 0,
+  `notes` VARCHAR(200) NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -89,21 +92,37 @@ CREATE TABLE `history` (
   `organization` VARCHAR(25) NOT NULL,
   `date` DATE NOT NULL,
   `numOfTicket` INTEGER NOT NULL,
-  `creator_id` INTEGER NOT NULL,
+  `creator_id` INTEGER(20) NOT NULL,
   `start_time` TIME NOT NULL,
   `end_time` TIME NOT NULL,
   PRIMARY KEY (`id`)
 );
 
+-- ---
+-- Table 'customer'
+-- 
+-- ---
+
 DROP TABLE IF EXISTS `customer`;
 		
 CREATE TABLE `customer` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `id` INTEGER(20) NOT NULL,
   `name` VARCHAR(250) NOT NULL,
   `email` VARCHAR(250) NOT NULL,
-  `phoneNumber` VARCHAR(250) NOT NULL,
-  `comments` VARCHAR(250) NOT NULL,
-  PRIMARY KEY (`id`)
+  `phoneNumber` VARCHAR(20) NOT NULL,
+  `comments` VARCHAR(250) NULL DEFAULT NULL
+);
+
+-- ---
+-- Table 'customerchat'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `customerchat`;
+		
+CREATE TABLE `customerchat` (
+  `id` INTEGER(20) NOT NULL,
+  `message` VARCHAR(200) NOT NULL
 );
 
 DROP TABLE IF EXISTS `customerchat`;
@@ -125,6 +144,8 @@ ALTER TABLE `user_queue` ADD FOREIGN KEY (queue_id) REFERENCES `queue` (`queue_i
 ALTER TABLE `waitingList` ADD FOREIGN KEY (user_id) REFERENCES `user` (`user_id`);
 ALTER TABLE `waitingList` ADD FOREIGN KEY (queue_id) REFERENCES `queue` (`queue_id`);
 ALTER TABLE `history` ADD FOREIGN KEY (creator_id) REFERENCES `user` (`user_id`);
+ALTER TABLE `customer` ADD FOREIGN KEY (id) REFERENCES `user` (`user_id`);
+ALTER TABLE `customerchat` ADD FOREIGN KEY (id) REFERENCES `user` (`user_id`);
 
 -- ---
 -- Table Properties
@@ -135,6 +156,8 @@ ALTER TABLE `history` ADD FOREIGN KEY (creator_id) REFERENCES `user` (`user_id`)
 -- ALTER TABLE `user_queue` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `waitingList` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `history` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `customer` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `customerchat` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ---
 -- Test Data
@@ -144,9 +167,13 @@ ALTER TABLE `history` ADD FOREIGN KEY (creator_id) REFERENCES `user` (`user_id`)
 -- ('','','','','','','','');
 -- INSERT INTO `queue` (`queue_id`,`nameOfQueeu`,`start_time`,`end_time`,`date`,`timeforone`,`windows`,`imgUrl`,`take_premum`,`accept_join`,`requierment`,`creator_id`) VALUES
 -- ('','','','','','','','','','','','');
--- INSERT INTO `user_queue` (`id`,`user_id`,`queue_id`) VALUES
--- ('','','');
--- INSERT INTO `waitingList` (`id`,`user_id`,`queue_id`,`notes_order`) VALUES
--- ('','','','');
+-- INSERT INTO `user_queue` (`id`,`user_id`,`queue_id`,`onwindow`,`Notes`) VALUES
+-- ('','','','','');
+-- INSERT INTO `waitingList` (`id`,`user_id`,`queue_id`,`onwindow`,`notes`) VALUES
+-- ('','','','','');
 -- INSERT INTO `history` (`id`,`queu_name`,`organization`,`date`,`numOfTicket`,`creator_id`,`start_time`,`end_time`) VALUES
 -- ('','','','','','','','');
+-- INSERT INTO `customer` (`id`,`name`,`email`,`phoneNumber`,`comments`) VALUES
+-- ('','','','','');
+-- INSERT INTO `customerchat` (`id`,`message`) VALUES
+-- ('','');

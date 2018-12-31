@@ -97,6 +97,7 @@ export default class CreatQueue extends React.Component {
       }),
       success: (data) => {
         console.log(data);
+        alert("queue added sucssefuly")
       },
       error: (err) => {
         console.log(err);

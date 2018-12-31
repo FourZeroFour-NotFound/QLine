@@ -49,7 +49,7 @@ setTimeout(()=>{
 ReactDOM.render(<HomePage/>, document.getElementById('root1'));
 
 },5000);
-setTimeout(()=>{
-  window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
-}, 5000)
+// setTimeout(()=>{
+//   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
+// }, 5000)
 

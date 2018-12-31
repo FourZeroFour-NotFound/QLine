@@ -131,7 +131,7 @@ app.post('/sign-up', function (req, res) {
     if (err) {
       console.log("server", err)
     } else {
-      if (result.length !== 0) {
+      if (!(result.length == 0)) {
         res.send({
           status: 404,
           success: "userExist",
@@ -212,7 +212,7 @@ app.get('/log-out', function (req, res) {
     success: `user ${x} is log out `
   })
 })
-
+// function for serch give it name of org and it return all queue for this org 
 app.post('/search',function(req,res){
   console.log('nnnnn',req.body)
   db.search(req.body.org , function(err,result){
@@ -228,6 +228,72 @@ app.post('/search',function(req,res){
     
   })
 })
+///////////////////////////////////////////////////////////
+//function to insert user in serten queue
+//give it the queue id and notes
+//{
+// "queueid":"1",
+// "notes":"1"
+// }
+
+app.post('/add-userto-queue',function(req,res){
+  db.insertinUserQueue(req.user,req.body.queueid,req.body.notes, function(err,result){
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+
+
+///////////////////////////////////////////////////////////
+//function to insert user in the waitng lst for queue
+//give it the queue id and notes
+//{
+// "queueid":"1",
+// "notes":"1"
+// }
+
+app.post('/add-waitingList',function(req,res){
+ 
+  db.insertinWaitinglist(req.user,req.body.queueid,req.body.Notes, function(err,result){
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+
+
+
+
+
 
 
 

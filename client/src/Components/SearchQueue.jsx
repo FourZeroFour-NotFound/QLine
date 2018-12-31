@@ -16,7 +16,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import TextField from '@material-ui/core/TextField';
 import classNames from 'classnames';
-
+import $ from 'jquery';
 
 
 const styles = theme => ({
@@ -62,6 +62,60 @@ export default class SearchQueue extends React.Component {
       allqueue :{},
       notes:'',
     }
+  }
+
+
+  //this function to handel conferm button it will add user to queue
+  addUser= ()=>{
+    console.log(this.state.allqueue.queue_id)
+//this will chick if the queue have wating list to be conferm from the manger of queue or add him directly to the queue
+if (this.state.allqueue.accept_join){
+  console.log(true)
+
+  $.ajax({//add to the queue dirictly
+    url: '/add-userto-queue',
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      
+      queueid:this.state.allqueue.queue_id,
+      notes:this.state.notes
+        
+    }),
+    success: (data) => {
+      console.log(data);
+      alert("u joind the queue sucssfuly ")
+    }
+   
+  });
+
+
+
+}else{//add to waiting list
+  console.log(false)
+
+  $.ajax({
+    url: '/add-waitingList',
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      queueid:this.state.allqueue.queue_id,
+      Notes:this.state.notes
+    }),
+    success: (data) => {
+      console.log(data);
+      alert("u joined the waiting lest sucssfuly")
+    }
+    
+  });
+
+
+
+}
+   
+    this.setState({ open1: !this.state.open1 });
+    this.setState({ open: !this.state.open });
+
   }
 
   componentDidMount = () => {
@@ -168,7 +222,7 @@ this.setState({
                 <Button onClick={this.handleClose} color="primary">
                   Cancel
             </Button>
-                <Button onClick={this.handleClickOpen} color="primary">
+                <Button onClick={this.addUser} color="primary">
                 Confirm
             </Button>
               </DialogActions>
