@@ -16,7 +16,7 @@ class HowItWorks extends Component {
  
   render() {
     return (
-        <div class="ct" id="t1">
+        <div class="ct" id="t1"  style={{overflowX: "hidden"}} >
             <div class="ct" id="t2">
                 <div class="ct" id="t3">
                 <div class="ct" id="t4">

@@ -125,10 +125,19 @@ CREATE TABLE `customerchat` (
   `message` VARCHAR(200) NOT NULL
 );
 
+DROP TABLE IF EXISTS `customerchat`;
+		
+CREATE TABLE `customerchat` (
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
+  `message` VARCHAR(250) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 -- ---
 -- Foreign Keys 
 -- ---
 
+ALTER TABLE `user` ADD FOREIGN KEY (user_id) REFERENCES `customer` (`id`);
+ALTER TABLE `user` ADD FOREIGN KEY (user_id) REFERENCES `customerchat` (`id`);
 ALTER TABLE `queue` ADD FOREIGN KEY (creator_id) REFERENCES `user` (`user_id`);
 ALTER TABLE `user_queue` ADD FOREIGN KEY (user_id) REFERENCES `user` (`user_id`);
 ALTER TABLE `user_queue` ADD FOREIGN KEY (queue_id) REFERENCES `queue` (`queue_id`);
