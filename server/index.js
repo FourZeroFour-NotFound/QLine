@@ -258,6 +258,31 @@ app.post('/add-userto-queue',function(req,res){
   })
 })
 
+////////////////////////////////////////////////////////////
+//function to get all users in serten queue
+app.post('/get-users-in-queue',function(req,res){
+  console.log("ddfdsfdsf",req.body)
+  db.getUsersInQueue(req.body.queueid, function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
 
 ///////////////////////////////////////////////////////////
 //function to insert user in the waitng lst for queue
