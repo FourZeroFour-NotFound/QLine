@@ -137,12 +137,28 @@ export default class SearchQueue extends React.Component {
  
 
   handleClickOpen = () => {
-    this.setState({ open: !this.state.open });
+
+    
+  this.setState({ open: !this.state.open });
+
+
+  
   };
 
   handleClick = () => {
-    console.log('gggggg', this.state.open1)
+    var start = this.props.queue.start_time.split(":00.")
+  
+    var end = this.props.queue.end_time.split(":00.")
+    var date = this.props.queue.date.split("T")
+    var numberofmintinallday=( Number(end[0].split(":")[0])*60  + Number(end[0].split(":")[1]))  -( Number(start[0].split(":")[0])*60 + Number(start[0].split(":")[1]))
+   var remaningTicits =(((numberofmintinallday/this.state.allqueue.timeforone)*this.state.allqueue.windows) - this.state.allusers.length)
+     
+ 
+ if (remaningTicits>0){
     this.setState({ open1: !this.state.open1 });
+  }else{
+    alert("this queue is full try leater")
+  }
   };
 
   handleClose = () => {
@@ -160,7 +176,7 @@ export default class SearchQueue extends React.Component {
    var end = this.props.queue.end_time.split(":00.")
    var date = this.props.queue.date.split("T")
    var numberofmintinallday=( Number(end[0].split(":")[0])*60  + Number(end[0].split(":")[1]))  -( Number(start[0].split(":")[0])*60 + Number(start[0].split(":")[1]))
-  
+  var remaningTicits =(((numberofmintinallday/this.state.allqueue.timeforone)*this.state.allqueue.windows) - this.state.allusers.length)
     const { classes } = this.props;
     return (
       <div>
@@ -203,7 +219,7 @@ export default class SearchQueue extends React.Component {
                 {"Number of windows:" + this.state.allqueue.windows}<br />
                 {"Number of peaple in line now:" + this.state.allusers.length}<br />
                 {"the estmated time untel they finsh:   " + Math.floor((( (this.state.allusers.length * this.state.allqueue.timeforone)/this.state.allqueue.windows)/60))+ " hours & " + ((this.state.allusers.length * this.state.allqueue.timeforone)/this.state.allqueue.windows)%60 +" minutes" }<br />
-                {"Remaining tickets :" + (numberofmintinallday/this.state.allqueue.timeforone)*this.state.allqueue.windows }<br />
+                {"Remaining tickets :" + Math.floor(remaningTicits) }<br />
               </DialogContent>
               <DialogActions>
                 <Button onClick={this.handleClose} color="primary">
