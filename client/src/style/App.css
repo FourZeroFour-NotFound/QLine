@@ -517,7 +517,7 @@ section {
   100% { background-color: #e33a2e; -webkit-box-shadow: 0 0 3px #e33a2e; }
 }
 
-@-moz-keyframes aa1256 {
+@-moz-keyframes glowing {
   0% { background-color: #e33a2e; -moz-box-shadow: 0 0 3px #e33a2e; }
   50% { background-color: #e33a2e; -moz-box-shadow: 0 0 40px #e33a2e; }
   100% { background-color: #e33a2e; -moz-box-shadow: 0 0 3px #e33a2e; }

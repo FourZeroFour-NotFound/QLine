@@ -4,10 +4,10 @@ import AdminMsg from './adminMsg.jsx';
 import AdminMsgChat from './adminMsgChat.jsx';
 import {Card, Grid, Button} from "@material-ui/core";
 import {Link} from 'react-router';
-import logo from './style/qline.png';
+import logo from '../style/qline.png';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
-import logo1 from './style/logo1.png';
+import logo1 from '../style/logo1.png';
 
 
 export default class AdminDash extends React.Component {

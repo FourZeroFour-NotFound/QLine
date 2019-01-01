@@ -1,7 +1,7 @@
 import React from 'react';
-import "./style/App.css";
+import "../style/App.css";
 import {FormGroup, Grid, Button} from '@material-ui/core';
-import bank from './style/bank.png';
+import bank from '../style/bank.png';
 
 
 export default class HowQLine extends React.Component {
