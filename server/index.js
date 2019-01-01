@@ -304,12 +304,9 @@ app.post('/add-userto-queue1',function(req,res){
   })
 })
 //////////////////////////////////////////////////////////
-//function to insert user in serten queue
-//give it the queue id and notes
-//{
-// "queueid":"1",
-// "notes":"1"
-// }
+//function to delet from waiting lest 
+
+
 
 app.post('/deleteWaiting',function(req,res){
   db.deletefromWaiting(req.body.id,function(err,result){
@@ -333,7 +330,88 @@ app.post('/deleteWaiting',function(req,res){
     
   })
 })
+//////////////////////////////////////////////////////////
+//function to delet from waiting lest 
 
+
+
+app.post('/deletequeue',function(req,res){
+  db.deletefromqueue(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+/////////////////////////////////////////////////////////
+//function to delet from waiting lest 
+
+
+
+app.post('/deletequeueA',function(req,res){
+  db.deletefromqueueA(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+
+/////////////////////////////////////////////////////////
+//function to delet from waiting lest 
+
+
+
+app.post('/deletequeueB',function(req,res){
+  db.deletefromqueueB(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
 ////////////////////////////////////////////////////////////
 //function to get all users in serten queue
 app.post('/get-users-in-queue',function(req,res){

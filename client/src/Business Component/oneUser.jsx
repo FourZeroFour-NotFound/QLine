@@ -76,7 +76,7 @@ add = ()=> {
         })
         ,
         success:  (data) =>{
-          alert("added sucssfuly")
+        
          
           
         }

@@ -10,7 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
-
+import $ from "jquery";
 const styles = {
   root: {
     flexGrow: 1,
@@ -32,8 +32,9 @@ const styles = {
 
   },
   media: {
-    height: 100,
-    maxWidth: 100,
+    height: 120,
+    maxWidth: 120,
+    marginLeft : 415,
   },
 };
 
@@ -43,10 +44,84 @@ export default class BusinessQueue extends React.Component {
     super(props);
     this.state = {
       auth: true,
-      anchorEl: null
+      anchorEl: null,
+      allusers:[]
     }
   }
+
+
+
+  componentDidMount(match){
+    
+  
+    $.ajax({
+      url: '/get-users-in-waitingList',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.queue.queue_id,
+      }),
+      success: (data) => {
+    this.setState({
+      allusers: data.data
+    })
+   
+      }
+    });
+  
+    
+
+    }
+
+
+
+    delete = ()=>{
+
+      $.ajax({
+        url: '/deletequeueA',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          id: this.props.queue.queue_id,
+        }),
+        success: (data) => {
+      alert("deleted")
+     
+        }
+      });
+
+      $.ajax({
+        url: '/deletequeueB',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          id: this.props.queue.queue_id,
+        }),
+        success: (data) => {
+      alert("deleted")
+     
+        }
+      });
+      $.ajax({
+        url: '/deletequeue',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          id: this.props.queue.queue_id,
+        }),
+        success: (data) => {
+      alert("deleted")
+     
+        }
+      });
+
+  }
+
+
+
   render() {
+  
+    var acept = (x)=>{if (x==0){return "yes"+ " / "+ this.state.allusers.length + " customer in waiting list"}else{return "no"}}
     return (
       <div>
         <Card style={styles.card}>
@@ -59,23 +134,30 @@ export default class BusinessQueue extends React.Component {
               style={styles.media}
               image={this.props.queue.imgUrl}
             />
-              <Typography component="p">
-                {"Start Time:" + this.props.queue.start_time}<br />
-                {"End Time:" + this.props.queue.end_time}<br />
-                {"Date:" + this.props.queue.date}<br />
-                {"The time for each customer:" + this.props.queue.timeforone}<br />
-                {"Number of windows:" + this.props.queue.windows}<br />
-                {"Premium permission:" + this.props.queue.take_premum}<br />
-                {"Accept customers:" + this.props.queue.accept_join}<br />
-                {"The requirements for attending this queue:" + this.props.queue.requierment}<br />
+              <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
+                {"Start Time :  " + this.props.queue.start_time.split(":00.")[0]}<br />
+                {"End Time :  " + this.props.queue.end_time.split(":00.")[0]}<br />
+                {"Date :  " + this.props.queue.date.split("T")[0]}<br />
+                {"The time for each customer :  " + this.props.queue.timeforone}<br />
+                {"Number of windows :  " + this.props.queue.windows}<br />
+                {/* {"Premium permission :  " + acept(this.props.queue.take_premum)}<br /> */}
+                {"Accept customers :  " + acept(this.props.queue.accept_join) }<br />
+                {"The requirements for attending this queue :  " + this.props.queue.requierment}<br />
               </Typography>
             </CardContent>
           </CardActionArea>
           <CardActions>
 
             <Button href = {`/BusinessDashBord/${this.props.queue.queue_id}`}
-            style={{ backgroundColor: "#7aeac2", marginTop: "90px", marginLeft: "200px", font: "white" }}>
-              Manage the Queue
+            style={{ backgroundColor: "#7aeac2", marginTop: "180px", marginLeft: "400px", font: "white" }}>
+              Manage
+             
+        </Button> 
+        <Button 
+            onClick={this.delete}
+          
+            style={{ backgroundColor: "#7aeac2", marginTop: "180px", marginLeft: "20px", font: "white" }}>
+              delete
              
         </Button>
           </CardActions>

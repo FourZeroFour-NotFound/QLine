@@ -86,9 +86,49 @@ const insertinUserQueue = function (userid,queueid,notes, callback) {
   })
 }
 
-//this function to insert in queue user table (add user to queue)
+//this function to delet from waiting list
 const deletefromWaiting = function (id, callback) {
   var sqlquery =` DELETE FROM waitingList WHERE id = ${id};`
+  connection.query(sqlquery, function (err, result) {
+    if (err) {
+      console.log("db error inserting in user_queue table", err)
+      callback(err, null)
+    } else {
+      console.log("db user_queue added successfuly" , result ) 
+      callback(null,result)
+    }
+  })
+}
+const deletefromqueueA = function (id, callback) {
+ var a =` DELETE FROM user_queue WHERE queue_id = ${id};`
+  connection.query(a , function (err, result) {
+    if (err) {
+      console.log("db error inserting in user_queue table", err)
+      callback(err, null)
+    } else {
+      console.log("db user_queue added successfuly" , result ) 
+      callback(null,result)
+    }
+  })
+}
+const deletefromqueueB = function (id, callback) {
+ var b = ` DELETE FROM waitingList WHERE queue_id = ${id};`
+   connection.query(b , function (err, result) {
+     if (err) {
+       console.log("db error inserting in user_queue table", err)
+       callback(err, null)
+     } else {
+       console.log("db user_queue added successfuly" , result ) 
+       callback(null,result)
+     }
+   })
+ }
+ 
+
+//this function to delet from queue
+const deletefromqueue = function (id, callback) {
+  var sqlquery =` DELETE FROM queue WHERE queue_id = ${id};`
+
   connection.query(sqlquery, function (err, result) {
     if (err) {
       console.log("db error inserting in user_queue table", err)
@@ -316,4 +356,7 @@ module.exports.insertinUserQueue = insertinUserQueue;
 module.exports.insertinWaitinglist = insertinWaitinglist;
 module.exports.getUsersInQueue = getUsersInQueue;
 module.exports.getUsersInWaiting = getUsersInWaiting;
-module.exports.deletefromWaiting = deletefromWaiting;
+module.exports.deletefromWaiting = deletefromWaiting;deletefromqueue
+module.exports.deletefromqueue = deletefromqueue;deletefromqueueB
+module.exports.deletefromqueueA = deletefromqueueA;
+module.exports.deletefromqueueB = deletefromqueueB;
