@@ -110,8 +110,8 @@ export default class SearchQueue extends React.Component {
     this.setState({ open: !this.state.open });
   }
 
-  componentDidMount = () => {
-
+  componentWillMount = () => {
+    setInterval(()=>{
     this.setState({
       allqueue: this.props.queue
     })
@@ -130,8 +130,9 @@ export default class SearchQueue extends React.Component {
     console.log("ccccccccccccccc",this.state.allusers)
       }
     });
-
-
+  }
+,
+5000)
 
   }
  
@@ -152,8 +153,7 @@ export default class SearchQueue extends React.Component {
     var date = this.props.queue.date.split("T")
     var numberofmintinallday=( Number(end[0].split(":")[0])*60  + Number(end[0].split(":")[1]))  -( Number(start[0].split(":")[0])*60 + Number(start[0].split(":")[1]))
    var remaningTicits =(((numberofmintinallday/this.state.allqueue.timeforone)*this.state.allqueue.windows) - this.state.allusers.length)
-     
- 
+   
  if (remaningTicits>0){
     this.setState({ open1: !this.state.open1 });
   }else{
@@ -177,6 +177,13 @@ export default class SearchQueue extends React.Component {
    var date = this.props.queue.date.split("T")
    var numberofmintinallday=( Number(end[0].split(":")[0])*60  + Number(end[0].split(":")[1]))  -( Number(start[0].split(":")[0])*60 + Number(start[0].split(":")[1]))
   var remaningTicits =(((numberofmintinallday/this.state.allqueue.timeforone)*this.state.allqueue.windows) - this.state.allusers.length)
+    
+ var theestmatedtimeH = Math.floor((( (this.state.allusers.length/this.state.allqueue.windows) * this.state.allqueue.timeforone)/60))
+ var theestmatedtimeM =  ((this.state.allusers.length/this.state.allqueue.windows )* this.state.allqueue.timeforone)%60
+if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *this.state.allqueue.windows)){
+  theestmatedtimeH=0
+  theestmatedtimeM=0
+}
     const { classes } = this.props;
     return (
       <div>
@@ -218,7 +225,7 @@ export default class SearchQueue extends React.Component {
                 {/* {"The time for each customer: " + this.state.allqueue.timeforone + " m"}  <br />  */}
                 {"Number of windows:" + this.state.allqueue.windows}<br />
                 {"Number of peaple in line now:" + this.state.allusers.length}<br />
-                {"the estmated time untel they finsh:   " + Math.floor((( (this.state.allusers.length * this.state.allqueue.timeforone)/this.state.allqueue.windows)/60))+ " hours & " + ((this.state.allusers.length * this.state.allqueue.timeforone)/this.state.allqueue.windows)%60 +" minutes" }<br />
+                {"the estmated time untel they finsh:   " + theestmatedtimeH + " hours & "   + theestmatedtimeM  +" minutes" }<br />
                 {"Remaining tickets :" + Math.floor(remaningTicits) }<br />
               </DialogContent>
               <DialogActions>
