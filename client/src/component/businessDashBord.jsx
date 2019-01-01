@@ -18,6 +18,8 @@ import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete';
 import $ from 'jquery';
 import logo from '../style/qline.png';
+import UsersInQueue from './usersInQueue.jsx';
+
 const style = theme => ({
   root: {
     width: '100%',
@@ -70,14 +72,30 @@ export default class BusinessDashBord extends React.Component {
     super(props);
     this.state = {
       value: 0,
+      allusers:[],
     };
   }
 componentDidMount(match){
   console.log('sdsdsd', this.props.params.queue_id)
 
+  $.ajax({
+    url: '/get-users-in-waitingList',
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      queueid: this.props.params.queue_id,
+    }),
+    success: (data) => {
+  this.setState({
+    allusers: data.data
+  })
+  console.log("ccccccccccccccc",this.state.allusers)
+    }
+  });
 
   
 }
+
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -120,7 +138,7 @@ componentDidMount(match){
           <Tab label="TV" />
           <Tab label="Kiosk" />
           <Tab label="Manage" />
-          <Tab label="Statistics" />
+          <Tab label="Accept customer join" />
           
         </Tabs>
       </Paper>
@@ -154,8 +172,13 @@ componentDidMount(match){
         </Fab> 
         <p>Add me to the Queue</p></div></TabContainer>}
       {value === 2 && <TabContainer>Item Three</TabContainer>}
-      {value === 3 && <TabContainer>Item Four</TabContainer>}
+      {value === 3 && <TabContainer>
+        <h1 style={{margin : "20px"}}> clent in waiting list: { this.state.allusers.length }</h1>
+        <UsersInQueue  users = { this.state.allusers}/>
+        
+      </TabContainer>}
       {value === 4 && <TabContainer>Item Five</TabContainer>}
+    
       </div>
     );
   }

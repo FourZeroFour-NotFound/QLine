@@ -68,6 +68,21 @@ app.get('/profile', function(req,res){
     }
   })
 })
+
+// this function used to get data for user using id
+app.post('/profile1', function(req,res){
+  db.getUserData(req.body.id,function(err,result){
+    if(err){
+      console.log("server error", err)
+    }else{
+      res.send({
+        status:200,
+        success:result
+
+      })
+    }
+  })
+})
 // this function is used to update data for user using id
 app.put('/profile', function(req,res){
   console.log(" ddddddd",req.user)
@@ -258,6 +273,67 @@ app.post('/add-userto-queue',function(req,res){
   })
 })
 
+//////////////////////////////////////////////////////////
+//function to insert user in serten queue
+//give it the queue id and notes
+//{
+// "queueid":"1",
+// "notes":"1"
+// }
+
+app.post('/add-userto-queue1',function(req,res){
+  db.insertinUserQueue(req.body.user_id,req.body.queue_id,req.body.notes, function(err,result){
+    console.log("zzzzzzzzzzzzzzzzzz" , req.body.user_id,req.body.queue_id,req.body.notes)
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+//////////////////////////////////////////////////////////
+//function to insert user in serten queue
+//give it the queue id and notes
+//{
+// "queueid":"1",
+// "notes":"1"
+// }
+
+app.post('/deleteWaiting',function(req,res){
+  db.deletefromWaiting(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+
 ////////////////////////////////////////////////////////////
 //function to get all users in serten queue
 app.post('/get-users-in-queue',function(req,res){
@@ -284,6 +360,31 @@ app.post('/get-users-in-queue',function(req,res){
   })
 })
 
+////////////////////////////////////////////////////////////
+//function to get all users in serten queue from the wating lest
+app.post('/get-users-in-waitingList',function(req,res){
+  console.log("ddfdsfdsf",req.body)
+  db.getUsersInWaiting(req.body.queueid, function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
 ///////////////////////////////////////////////////////////
 //function to insert user in the waitng lst for queue
 //give it the queue id and notes

@@ -86,6 +86,19 @@ const insertinUserQueue = function (userid,queueid,notes, callback) {
   })
 }
 
+//this function to insert in queue user table (add user to queue)
+const deletefromWaiting = function (id, callback) {
+  var sqlquery =` DELETE FROM waitingList WHERE id = ${id};`
+  connection.query(sqlquery, function (err, result) {
+    if (err) {
+      console.log("db error inserting in user_queue table", err)
+      callback(err, null)
+    } else {
+      console.log("db user_queue added successfuly" , result ) 
+      callback(null,result)
+    }
+  })
+}
 
 /////////////////////////////////////////////////////
 
@@ -155,6 +168,22 @@ const getAllQueueForUser = function (user_id , callback){
 const getUsersInQueue = function (queue_id , callback){
  
   var sqlquery = `select * from user_queue where queue_id = "${queue_id}"`
+  connection.query(sqlquery, function(err,result){
+    if (err){
+      console.log(`db error geting the queue form db queue id  =${queue_id}` , err)
+      callback(err,null)
+    }else{
+      console.log(`db git all the users for this queue sucssfuly queue id=${queue_id}` , result)
+      callback(null,result)
+    }
+  })
+}
+
+/////////////////////////////////////////////////
+//this function to get all users in one queue from waiting lest
+const getUsersInWaiting = function (queue_id , callback){
+ 
+  var sqlquery = `select * from waitingList where queue_id = "${queue_id}"`
   connection.query(sqlquery, function(err,result){
     if (err){
       console.log(`db error geting the queue form db queue id  =${queue_id}` , err)
@@ -286,3 +315,5 @@ module.exports.search = search;
 module.exports.insertinUserQueue = insertinUserQueue;
 module.exports.insertinWaitinglist = insertinWaitinglist;
 module.exports.getUsersInQueue = getUsersInQueue;
+module.exports.getUsersInWaiting = getUsersInWaiting;
+module.exports.deletefromWaiting = deletefromWaiting;
