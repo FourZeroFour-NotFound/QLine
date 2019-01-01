@@ -156,7 +156,7 @@ export default class BusinessQueue extends React.Component {
         <Button 
             onClick={this.delete}
           
-            style={{ backgroundColor: "#7aeac2", marginTop: "180px", marginLeft: "20px", font: "white" }}>
+            style={{ backgroundColor: "#aa1256", marginTop: "180px", marginLeft: "20px", font: "white" }}>
               delete
              
         </Button>

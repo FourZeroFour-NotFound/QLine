@@ -40,8 +40,8 @@ const styles = theme => ({
 
   },
   media: {
-    height: 100,
-    maxWidth: 100,
+    height: 20,
+    maxWidth: 20,
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -61,7 +61,7 @@ export default class SearchQueue extends React.Component {
       open1: false,
       allqueue: {},
       notes: '',
-      allusers:[],
+      allusers: [],
     }
   }
 
@@ -111,7 +111,7 @@ export default class SearchQueue extends React.Component {
   }
 
   componentWillMount = () => {
-    setInterval(()=>{
+
     this.setState({
       allqueue: this.props.queue
     })
@@ -124,41 +124,64 @@ export default class SearchQueue extends React.Component {
         queueid: this.props.queue.queue_id,
       }),
       success: (data) => {
-    this.setState({
-      allusers: data.data
-    })
-    console.log("ccccccccccccccc",this.state.allusers)
+        this.setState({
+          allusers: data.data
+        })
+
       }
     });
   }
-,
-5000)
 
-  }
- 
+
+
+
 
   handleClickOpen = () => {
 
-    
-  this.setState({ open: !this.state.open });
+
+    this.setState({ open: !this.state.open });
 
 
-  
+
   };
 
   handleClick = () => {
+
+
+
+    this.setState({
+      allqueue: this.props.queue
+    })
+
+    $.ajax({
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.queue.queue_id,
+      }),
+      success: (data) => {
+        this.setState({
+          allusers: data.data
+        })
+
+      }
+    });
+
+
+
     var start = this.props.queue.start_time.split(":00.")
-  
+
     var end = this.props.queue.end_time.split(":00.")
     var date = this.props.queue.date.split("T")
-    var numberofmintinallday=( Number(end[0].split(":")[0])*60  + Number(end[0].split(":")[1]))  -( Number(start[0].split(":")[0])*60 + Number(start[0].split(":")[1]))
-   var remaningTicits =(((numberofmintinallday/this.state.allqueue.timeforone)*this.state.allqueue.windows) - this.state.allusers.length)
-   
- if (remaningTicits>0){
-    this.setState({ open1: !this.state.open1 });
-  }else{
-    alert("this queue is full try leater")
-  }
+    var numberofmintinallday = (Number(end[0].split(":")[0]) * 60 + Number(end[0].split(":")[1])) - (Number(start[0].split(":")[0]) * 60 + Number(start[0].split(":")[1]))
+    var remaningTicits = (((numberofmintinallday / this.state.allqueue.timeforone) * this.state.allqueue.windows) - this.state.allusers.length)
+
+    if (remaningTicits > 0) {
+      this.setState({ open1: !this.state.open1 });
+    } else {
+      alert("this queue is full try leater")
+    }
   };
 
   handleClose = () => {
@@ -208,7 +231,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
 
             <Button onClick={this.handleClickOpen}
             style={{ backgroundColor: "#7aeac2", marginTop: "90px", marginLeft: "200px", font: "white" }}>
-             Join
+             Join / More Details
              
         </Button>
         <Dialog

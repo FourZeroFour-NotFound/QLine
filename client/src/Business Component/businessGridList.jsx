@@ -36,16 +36,17 @@ export default class BusinessGridList extends React.Component {
     }
   }
   componentDidMount() {
+    setInterval(()=>{
     $.ajax({url: '/all_queue',
     type: 'GET',
     
     contentType: 'application/json',
     success: (res) => {
+  
       this.setState({ queues: res.data })
-    },
-    error: (err) => {
-      console.log(err);
     }})
+  
+  },1000)
   }
   render() {
     return (
