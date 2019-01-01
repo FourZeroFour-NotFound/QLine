@@ -77,7 +77,7 @@ export default class BusinessDashBord extends React.Component {
   }
 componentDidMount(match){
   console.log('sdsdsd', this.props.params.queue_id)
-
+  setInterval(()=>{
   $.ajax({
     url: '/get-users-in-waitingList',
     type: 'POST',
@@ -89,9 +89,9 @@ componentDidMount(match){
   this.setState({
     allusers: data.data
   })
-  console.log("ccccccccccccccc",this.state.allusers)
+ 
     }
-  });
+  })  },1000);
 
   
 }

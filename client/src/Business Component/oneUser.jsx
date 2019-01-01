@@ -76,7 +76,7 @@ add = ()=> {
         })
         ,
         success:  (data) =>{
-          alert("added sucssfuly")
+        
          
           
         }
@@ -156,7 +156,7 @@ delete = ()=> {
        
         <Button 
         onClick={this.delete}
-        style={{ backgroundColor: "#7aeac2", marginTop: "250px", marginLeft: "30px", font: "white" }}>
+        style={{ backgroundColor: "#aa1256", marginTop: "250px", marginLeft: "30px", font: "white" }}>
               reject
              
         </Button>
