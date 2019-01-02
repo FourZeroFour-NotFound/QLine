@@ -267,7 +267,7 @@ const getUserData = function (id, callback) {
 }
 // this function used to get all tickets for user using id
 const getUserTickets = function (id, callback) {
-  var sqlquery = `select * from user_queue where user_id  = '${id}'`
+  var sqlquery =`select queue.*, user_queue.queue_id from user_queue inner join queue on user_queue.queue_id = queue.queue_id `
 
   connection.query(sqlquery, function (err, result) {
     if (err) {
