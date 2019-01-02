@@ -23,6 +23,12 @@ import Barcode from 'react-barcode';
 import TextField from '@material-ui/core/TextField';
 
 
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 const style = theme => ({
   root: {
     width: '100%',
@@ -251,23 +257,55 @@ $.ajax({
         
       </TabContainer>}
       {value === 1 && <TabContainer>
-        <h1>custmers in queue now : {this.state.allusersinqueue.length}</h1>
-          <h1>inter queue id in your mobile app :{  this.props.params.queue_id}<br />  or scan the barcode :</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Custmers in queue now : {this.state.allusersinqueue.length}</h1>
+        <h2 style={ {lineHeight: 1.5,}} >Choose what suits u :</h2>
+        <div >
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography><h3> you use Qline and u have ur phone ? </h3> </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+          <h2 style={ {lineHeight: 1.5,}}>inter queue id in your mobile app : { this.props.params.queue_id}<br /> or scan the barcode :</h2>
           <Barcode  value ={this.props.params.queue_id} />
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography > <h3>you use Qline but u dont have ur phone ? </h3></Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+          <h3 style={ {lineHeight: 1.5,}}> input ur email :</h3>
+          <input style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({email:e.target.value})}} type="text"   placeholder="input ur email ..."/>
+                              <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addme} type="submit">
+                                add me !!
+                            </Button>
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography><h3> you never heard of Qline and u need tickit ?</h3></Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+          
+          
+          <h3> inter ur name :</h3>
+          <input  style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({newsername:e.target.value})}} type="text"   placeholder="input ur name . . ."/>
+          <h3>and ur email:</h3>
+          <input  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , width : 500,}} onChange={e => {this.setState({emailnew:e.target.value})}} type="text"   placeholder="input ur email . . ."/>
+                              <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addnewuser} type="submit">
+                                give me tickit !!
+                            </Button>
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      
+    </div>
         
-          <h1>if u have are user in put ur email :</h1>
-          <input  onChange={e => {this.setState({email:e.target.value})}} type="text"   placeholder="input ur email ..."/>
-                              <Button variant="contained" color="primary" onClick={this.addme} type="submit">
-                                add me !!
-                            </Button>
-
-                            <h1>if u ar not user in qline inter ur name to get ticket:</h1>
-          <input  onChange={e => {this.setState({newsername:e.target.value})}} type="text"   placeholder="input ur name . . ."/>
-          <h1>and ur email:</h1>
-          <input  onChange={e => {this.setState({emailnew:e.target.value})}} type="text"   placeholder="input ur email . . ."/>
-                              <Button variant="contained" color="primary" onClick={this.addnewuser} type="submit">
-                                add me !!
-                            </Button>
        </TabContainer>}
       {value === 2 && <TabContainer>Item Three</TabContainer>}
       {value === 3 && <TabContainer>

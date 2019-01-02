@@ -265,6 +265,21 @@ const getUserData = function (id, callback) {
     }
   })
 }
+// this function used to get all tickets for user using id
+const getUserTickets = function (id, callback) {
+  var sqlquery =`select queue.*, user_queue.queue_id from user_queue inner join queue on user_queue.queue_id = queue.queue_id `
+
+  connection.query(sqlquery, function (err, result) {
+    if (err) {
+      console.log("db error to get data ", err)
+      callback(err, null)
+    } else {
+      console.log("db i found it (user exist )", id)
+      callback(null, result)
+    }
+  })
+}
+
 
 
 
@@ -378,3 +393,4 @@ module.exports.deletefromqueue = deletefromqueue;deletefromqueueB
 module.exports.deletefromqueueA = deletefromqueueA;
 module.exports.deletefromqueueB = deletefromqueueB;
 module.exports.getUserDataEmail = getUserDataEmail;
+module.exports.getUserTickets = getUserTickets;

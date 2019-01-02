@@ -32,6 +32,7 @@ import logo from '../style/qline.png';
 
 
 
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -46,6 +47,7 @@ const styles = theme => ({
     maxWidth: 800,
     marginLeft: 400,
     marginTop: 100,
+    paddingLeft: 0,
 
   },
   media: {
@@ -90,6 +92,7 @@ class Profile extends Component {
     lastName: '',
     email: '',
     phoneNumber: '',
+    TicketList:[],
     expanded: false,
     open: false,
     open1: false
@@ -147,7 +150,7 @@ class Profile extends Component {
     this.setState({ open: false });
   };
 
-
+// this function to open the  ticketList arrow  
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
@@ -176,27 +179,42 @@ class Profile extends Component {
         })
       }
     });
+    // this request used to get all tickets for user using id  
+    $.ajax({
+      url: "/ticket",
+      type: "Get",
+      success: function (data) {
+        console.log("tttttt", data.success)
+      that.setState({
+        TicketList:data.success
+      })
+        
+      }
+    });
+
+
   }
 
   render() {
     const { classes } = this.props;
     return (
       // navbar place
+     
       <div className={classes.root}>
-        <AppBar position="static" className={classes.color}>
+        {/* <AppBar position="static" className={classes.color}>
           <Toolbar>
             <div position="static" className={classes.grow}>
               <img src={logo} width="122px" height="62px" style={{ marginTop: "10px", marginLeft: "-20px" }} />
             </div>
             <Button color="inherit" href="/">Log Out</Button>
           </Toolbar>
-        </AppBar>
+        </AppBar> */}
 
         <Card className={classes.card}>
           <CardHeader
             avatar={
               <Avatar aria-label="Recipe" className={classes.avatar}>
-                R
+               QLine
             </Avatar>
             }
 
@@ -204,8 +222,8 @@ class Profile extends Component {
 
           />
           <CardMedia
-            className={classes.media}
-            image="http://lorempixel.com/200/200/people/9/"
+            // className={classes.media}
+            // image="http://lorempixel.com/200/200/people/9/"
 
           />
           <CardContent>
@@ -273,14 +291,14 @@ class Profile extends Component {
             </Button>
               </DialogActions>
             </Dialog>
-
+           
             <IconButton
               className={classnames(classes.expand, {
-                [classes.expandOpen]: this.state.expanded,
+                // [classes.expandOpen]: this.state.expanded,
               })}
               onClick={this.handleExpandClick}
               aria-label="Show more"
-            >
+            > your tickets 
               <ExpandMoreIcon />
             </IconButton>
           </CardActions>
@@ -289,15 +307,17 @@ class Profile extends Component {
               <h2>Ticket List:</h2>
               <List>
 
-                <ListItem
+       {this.state.TicketList.map((ticket) => (
+             <ListItem key = {ticket.nameOfQueeu} ticket = {ticket.nameOfQueeu}
                   button
                   divider
                   aria-haspopup="true"
-                  aria-label="Arabic Bank"
+                  aria-label={ticket}
                   onClick={this.handleClickListItem}
                 >
-                  <ListItemText primary="Arabic Bank" />
-                </ListItem>
+          
+                  < ListItemText primary={ticket.nameOfQueeu} /> 
+                </ListItem>))}
 
                 <Confirmation
                   classes={{
@@ -312,6 +332,7 @@ class Profile extends Component {
           </Collapse>
         </Card>
       </div>
+    
     );
   }
 }
