@@ -76,10 +76,15 @@ export default class BusinessDashBord extends React.Component {
     this.state = {
       value: 0,
       allusers:[],
-      email: ""
+      allusersinqueue :[],
+      email: "",
+      newsername: "",
+      emailnew:""
     };
   }
 componentDidMount(match){
+
+  
   console.log('sdsdsd', this.props.params.queue_id)
   setInterval(()=>{
   $.ajax({
@@ -90,13 +95,31 @@ componentDidMount(match){
       queueid: this.props.params.queue_id,
     }),
     success: (data) => {
+      console.log(data)
   this.setState({
     allusers: data.data
   })
  
     }
-  })  },1000);
+  })  },5000);
 
+
+  setInterval(()=>{
+    $.ajax({
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.params.queue_id,
+      }),
+      success: (data) => {
+        console.log(data)
+    this.setState({
+      allusersinqueue: data.success
+    })
+    console.log(this.state.allusersinqueue)
+      }
+    })  },5000);
   
 }
 addme=() => {
@@ -132,6 +155,48 @@ addme=() => {
 }
 }
 });
+}
+
+addnewuser = ()=>{
+console.log(this.state.newsername)
+if (this.state.newsername == "" || this.state.emailnew == ""  ){
+  alert("email or name cant be empty .. try agean " )
+  
+}else{
+
+$.ajax({
+  url: '/sign-up',
+  type: 'POST',
+  contentType: 'application/json',
+  data: JSON.stringify({
+    firstName:this.state.newsername,
+    lastName: this.state.newsername,
+    email: this.state.emailnew,
+    password: "123456789",
+    organizationName: "added from kiosk",
+    phoneNumber: "0799795083"
+  }),
+  success: (res) => {
+    console.log( "dfsfsdfsfsdfsdfdsfsdfsdf",res.data.id)
+    $.ajax({//add to the queue dirictly
+      url: '/add-userto-queue1',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        user_id: res.data.id,
+        queue_id: this.props.params.queue_id,
+       
+
+      }),
+      success: (data) => {
+        console.log(data);
+        alert("u joind the queue sucssfuly  take ur ticket ")
+      }
+    });
+  },
+ 
+}); 
+}
 }
   handleChange = (event, value) => {
     this.setState({ value });
@@ -186,12 +251,23 @@ addme=() => {
         
       </TabContainer>}
       {value === 1 && <TabContainer>
+        <h1>custmers in queue now : {this.state.allusersinqueue.length}</h1>
           <h1>inter queue id in your mobile app :{  this.props.params.queue_id}<br />  or scan the barcode :</h1>
           <Barcode  value ={this.props.params.queue_id} />
+        
+          <h1>if u have are user in put ur email :</h1>
           <input  onChange={e => {this.setState({email:e.target.value})}} type="text"   placeholder="input ur email ..."/>
-                              <button  onClick={this.addme}type="submit">
+                              <Button variant="contained" color="primary" onClick={this.addme} type="submit">
                                 add me !!
-                            </button>
+                            </Button>
+
+                            <h1>if u ar not user in qline inter ur name to get ticket:</h1>
+          <input  onChange={e => {this.setState({newsername:e.target.value})}} type="text"   placeholder="input ur name . . ."/>
+          <h1>and ur email:</h1>
+          <input  onChange={e => {this.setState({emailnew:e.target.value})}} type="text"   placeholder="input ur email . . ."/>
+                              <Button variant="contained" color="primary" onClick={this.addnewuser} type="submit">
+                                add me !!
+                            </Button>
        </TabContainer>}
       {value === 2 && <TabContainer>Item Three</TabContainer>}
       {value === 3 && <TabContainer>

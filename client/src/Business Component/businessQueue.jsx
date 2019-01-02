@@ -85,7 +85,7 @@ export default class BusinessQueue extends React.Component {
           id: this.props.queue.queue_id,
         }),
         success: (data) => {
-      alert("deleted")
+     
      
         }
       });
@@ -98,7 +98,7 @@ export default class BusinessQueue extends React.Component {
           id: this.props.queue.queue_id,
         }),
         success: (data) => {
-      alert("deleted")
+     
      
         }
       });

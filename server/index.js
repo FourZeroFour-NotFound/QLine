@@ -84,6 +84,17 @@ app.post('/profile1', function(req,res){
   })
 })
 
+// this function used to get data for user email
+app.post('/profile2', function(req,res){
+  db.getUserDataEmail(req.body.email,function(err,result){
+    if(err){
+      console.log("server error", err)
+      res.send({
+        status:404,
+        success:err
+      })
+
+
 // this function used to get all the tickects for user using id
 app.get('/ticket', function(req,res){
   db.getUserTickets(req.user,function(err,result){
@@ -94,6 +105,7 @@ app.get('/ticket', function(req,res){
 
       })
       console.log("server error", err)
+
     }else{
       res.send({
         status:200,
@@ -103,6 +115,7 @@ app.get('/ticket', function(req,res){
     }
   })
 })
+
 // this function is used to update data for user using id
 app.put('/profile', function(req,res){
   console.log(" ddddddd",req.user)
@@ -293,6 +306,31 @@ app.post('/add-userto-queue',function(req,res){
   })
 })
 
+//////////////////////////////////////////////////////////
+//function to insert user in serten queue useng the kiosk machen
+
+
+app.post('/add-userto-queue1',function(req,res){
+  db.insertinUserQueue(req.body.user_id,req.body.queue_id,"i joind from kiosk", function(err,result){
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
 //////////////////////////////////////////////////////////
 //function to insert user in serten queue
 //give it the queue id and notes
