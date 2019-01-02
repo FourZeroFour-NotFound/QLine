@@ -91,6 +91,7 @@ class Profile extends Component {
     lastName: '',
     email: '',
     phoneNumber: '',
+    TicketList:[],
     expanded: false,
     open: false,
     open1: false
@@ -177,6 +178,21 @@ class Profile extends Component {
         })
       }
     });
+    $.ajax({
+      url: "/ticket",
+      type: "Get",
+      success: function (data) {
+        console.log("tttttt", data)
+      
+        // that.setState({firstName: data.success[0].firstName,
+        // lastName: data.success[0].lastName,
+        // email: data.success[0].email,
+        // phoneNumber: data.success[0].phoneNumber,
+        // })
+      }
+    });
+
+
   }
 
   render() {
@@ -197,7 +213,7 @@ class Profile extends Component {
           <CardHeader
             avatar={
               <Avatar aria-label="Recipe" className={classes.avatar}>
-                R
+               QLine
             </Avatar>
             }
 
@@ -205,8 +221,8 @@ class Profile extends Component {
 
           />
           <CardMedia
-            className={classes.media}
-            image="http://lorempixel.com/200/200/people/9/"
+            // className={classes.media}
+            // image="http://lorempixel.com/200/200/people/9/"
 
           />
           <CardContent>
@@ -274,14 +290,14 @@ class Profile extends Component {
             </Button>
               </DialogActions>
             </Dialog>
-
+           
             <IconButton
               className={classnames(classes.expand, {
-                [classes.expandOpen]: this.state.expanded,
+                // [classes.expandOpen]: this.state.expanded,
               })}
               onClick={this.handleExpandClick}
               aria-label="Show more"
-            >
+            > your tickets 
               <ExpandMoreIcon />
             </IconButton>
           </CardActions>
@@ -294,10 +310,10 @@ class Profile extends Component {
                   button
                   divider
                   aria-haspopup="true"
-                  aria-label="Arabic Bank"
+                  aria-label=""
                   onClick={this.handleClickListItem}
                 >
-                  <ListItemText primary="Arabic Bank" />
+                  <ListItemText primary="" />
                 </ListItem>
 
                 <Confirmation

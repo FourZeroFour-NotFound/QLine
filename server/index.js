@@ -83,6 +83,26 @@ app.post('/profile1', function(req,res){
     }
   })
 })
+
+// this function used to get all the tickects for user using id
+app.get('/ticket', function(req,res){
+  db.getUserTickets(req.user,function(err,result){
+    if(err){
+      res.send({
+        status:404,
+        success:error 
+
+      })
+      console.log("server error", err)
+    }else{
+      res.send({
+        status:200,
+        success:result
+
+      })
+    }
+  })
+})
 // this function is used to update data for user using id
 app.put('/profile', function(req,res){
   console.log(" ddddddd",req.user)

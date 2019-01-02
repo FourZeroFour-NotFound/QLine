@@ -120,8 +120,9 @@ class User extends Component {
                                 <i class="fa fa-search"></i>
                             </button>
                           </div>
-                          <SearchResult  style={{paddingTop:'100px',marginTop:'800px'}} queues = {this.state.searchResult}/>
-
+                          <div  style={{paddingTop:'100px',marginTop:'100px'}}>
+                          <SearchResult  queues = {this.state.searchResult}/>
+                          </div>
                           </div>
                         
                         
