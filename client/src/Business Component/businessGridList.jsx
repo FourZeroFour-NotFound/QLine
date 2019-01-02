@@ -36,6 +36,18 @@ export default class BusinessGridList extends React.Component {
     }
   }
   componentDidMount() {
+
+
+
+    $.ajax({url: '/all_queue',
+    type: 'GET',
+    
+    contentType: 'application/json',
+    success: (res) => {
+  
+      this.setState({ queues: res.data })
+    }})
+    
     setInterval(()=>{
     $.ajax({url: '/all_queue',
     type: 'GET',
@@ -46,7 +58,7 @@ export default class BusinessGridList extends React.Component {
       this.setState({ queues: res.data })
     }})
   
-  },1000)
+  },5000)
   }
   render() {
     return (

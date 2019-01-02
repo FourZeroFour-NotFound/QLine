@@ -53,7 +53,7 @@ export default class CreatQueue extends React.Component {
       windows :"",
       imgUrl: "",
       take_premum:0,
-      accept_join :true,
+      accept_join :false,
       requierment :false,
       creator_id :"",
 
