@@ -16,9 +16,10 @@ import ContactUs from './ContactUs.jsx';
 import Footer from './Footer.jsx';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
+import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import HowQLine from './HowQLine.jsx';
-
+import Loading from './Loading.js';
 
 // Main Render of the components that displays all the component used in our project
 // we use stateless functions also for toggling signIn and signUp pages for better UI experience

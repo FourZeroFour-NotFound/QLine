@@ -104,14 +104,14 @@ export default class business extends React.Component {
     const open = Boolean(anchorEl);
     return (
       <div>
-         <nav className="menu"  style={{backgroundColor: "#7aeac2",marginTop: "10px", marginLeft: "50px"}}>
+         <nav className="menu"  style={{backgroundColor: "white", border: "7px solid #7aeac2",marginTop: "10px", marginLeft: "50px"}}>
                 <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
-                <FormControlLabel  style={{marginTop: "-5px" , marginLeft: "-70px"}}
-            control={
-              <Button style={{backgroundColor: "#aa1256"}} href="/user" checked={auth} onChange={this.handleChange} aria-label="RoleSwitch">USER</Button>
-            }
-            label={auth ? 'Business' : 'User'}
-          />
+                <Grid class="can-toggle demo-rebrand-1" style={{marginTop: "-5px", marginLeft: "50px"}}>
+                            <input id="d" type="checkbox"/>
+                                <label for="d">
+                                    <Grid class="can-toggle__switch" data-checked="USER" data-unchecked="Business"></Grid>
+                                </label>
+                          </Grid>
                 <Grid className="centerNav">
                     <ul className="centerNavMenu">
                     <li className="menuItem"><a className="itemLink">Home</a></li>

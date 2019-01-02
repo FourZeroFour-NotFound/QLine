@@ -80,12 +80,12 @@ class User extends Component {
               <nav className="menu" style={{backgroundColor: "#aa1256", marginTop: "10px", marginLeft: "50px"}}>
                         <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
                         <Grid>
-                        <FormControlLabel
-                          control={
-                            <Button href="/business" style={{backgroundColor: "#7aeac2"}} checked={auth} onChange={this.handleChange} aria-label="LoginSwitch" >Business</Button>
-                          }
-                          label={auth ? 'Users' : 'Business'}
-                        />
+                          <Grid class="can-toggle demo-rebrand-1">
+                            <input id="d" type="checkbox"/>
+                                <label for="d">
+                                    <Grid class="can-toggle__switch" data-checked="USER" data-unchecked="Business"></Grid>
+                                </label>
+                          </Grid>
                         </Grid>
                         <Grid className="centerNav">
                             <ul className="centerNavMenu">
