@@ -82,3 +82,16 @@ describe('PUT Profile', () => {
     });
   });
 });
+
+
+ // test used to get all tickets  for user using id
+ describe('GET ticket', () => {
+  it('it should Get all tickets for user', (done) => {
+    chai.request(server)
+    .get('/ticket')
+    .end((err,res) => {
+  res.body.should.be.a('object');
+  done();
+    });
+  });
+});

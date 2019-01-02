@@ -83,6 +83,7 @@ app.post('/profile1', function(req,res){
     }
   })
 })
+
 // this function used to get data for user email
 app.post('/profile2', function(req,res){
   db.getUserDataEmail(req.body.email,function(err,result){
@@ -92,6 +93,19 @@ app.post('/profile2', function(req,res){
         status:404,
         success:err
       })
+
+
+// this function used to get all the tickects for user using id
+app.get('/ticket', function(req,res){
+  db.getUserTickets(req.user,function(err,result){
+    if(err){
+      res.send({
+        status:404,
+        success:error 
+
+      })
+      console.log("server error", err)
+
     }else{
       res.send({
         status:200,
@@ -246,7 +260,7 @@ app.get('/log-out', function (req, res) {
     success: `user ${x} is log out `
   })
 })
-// function for serch give it name of org and it return all queue for this org 
+// function for search give it name of org and it return all queue for this org 
 app.post('/search',function(req,res){
   console.log('nnnnn',req.body)
   db.search(req.body.org , function(err,result){
