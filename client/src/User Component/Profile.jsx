@@ -46,6 +46,7 @@ const styles = theme => ({
     maxWidth: 800,
     marginLeft: 400,
     marginTop: 100,
+    paddingLeft: 0,
 
   },
   media: {
@@ -183,14 +184,14 @@ class Profile extends Component {
     return (
       // navbar place
       <div className={classes.root}>
-        <AppBar position="static" className={classes.color}>
+        {/* <AppBar position="static" className={classes.color}>
           <Toolbar>
             <div position="static" className={classes.grow}>
               <img src={logo} width="122px" height="62px" style={{ marginTop: "10px", marginLeft: "-20px" }} />
             </div>
             <Button color="inherit" href="/">Log Out</Button>
           </Toolbar>
-        </AppBar>
+        </AppBar> */}
 
         <Card className={classes.card}>
           <CardHeader

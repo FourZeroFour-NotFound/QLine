@@ -227,7 +227,7 @@ app.get('/log-out', function (req, res) {
     success: `user ${x} is log out `
   })
 })
-// function for serch give it name of org and it return all queue for this org 
+// function for search give it name of org and it return all queue for this org 
 app.post('/search',function(req,res){
   console.log('nnnnn',req.body)
   db.search(req.body.org , function(err,result){
