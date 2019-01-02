@@ -16,7 +16,7 @@ class FlipInfo extends Component {
   render() {
     return (
     
-    <Grid className="allflip">
+    <Grid className="allflip" id="flip">
         <Grid className="scene">
             <div className="card">
                 <Grid className="card__face card__face--front"><img src={phone} width="200px" height="200px" style={{marginLeft: "-50px", marginTop: "-50px"}}/></Grid>
