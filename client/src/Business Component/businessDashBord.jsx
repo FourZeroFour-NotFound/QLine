@@ -171,7 +171,7 @@ if (this.state.newsername == "" || this.state.emailnew == ""  ){
 }else{
 
 $.ajax({
-  url: '/sign-up',
+  url: '/sign-up-fake',
   type: 'POST',
   contentType: 'application/json',
   data: JSON.stringify({
