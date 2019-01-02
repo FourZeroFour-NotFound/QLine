@@ -25,7 +25,7 @@ class IntroPage extends Component {
     return (
       <Grid className="anyCont" >
        <Grid  className="content">
-       <video width="100%" height="100%" style={{marginTop: "-100px"}} loop autoPlay>
+       <video width="100%" height="100%" loop autoPlay>
        <source src={intro} type="video/mp4"/></video>
        <p href="#" className="scroll-down" address="true"></p>
         <Grid className="titleDesc">Queue Management System <span className="imp">Implemented</span>
