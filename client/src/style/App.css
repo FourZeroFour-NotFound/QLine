@@ -39,7 +39,9 @@ html, body {
 
 .search {
   width: 500px;
-  position: relative
+  position: relative;
+  margin-top: 50px;
+  margin-left: 400px
 }
 
 .searchTerm {

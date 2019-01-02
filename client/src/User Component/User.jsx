@@ -14,6 +14,7 @@ import flat from '../style/flat.png';
 import {Link} from 'react-router';
 import $ from "jquery";
 import SearchResult from './SearchResult.jsx';
+import Profile from './Profile.jsx'
 
 
 
@@ -77,6 +78,7 @@ class User extends Component {
 
     return (
             <div>
+            
               <nav className="menu" style={{backgroundColor: "#aa1256", marginTop: "10px", marginLeft: "50px"}}>
                         <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
                         <Grid>
@@ -105,6 +107,7 @@ class User extends Component {
                         </nav>
                         {/* <img src={flat} style={{ width: "100%", height: "100%"}}/> */}
                         <div class="wrap">
+                        < Profile />
                       
                           <div class="search">
 
@@ -117,8 +120,15 @@ class User extends Component {
                                 <i class="fa fa-search"></i>
                             </button>
                           </div>
-                          <SearchResult  style={{paddingTop:'100px'}} queues = {this.state.searchResult}/>
+                          <div  style={{paddingTop:'100px',marginTop:'100px'}}>
+                          <SearchResult  queues = {this.state.searchResult}/>
                           </div>
+                          </div>
+                        
+                        
+                        
+                        
+
                      
                      
                        
