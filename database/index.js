@@ -394,3 +394,4 @@ module.exports.deletefromqueueA = deletefromqueueA;
 module.exports.deletefromqueueB = deletefromqueueB;
 module.exports.getUserDataEmail = getUserDataEmail;
 module.exports.getUserTickets = getUserTickets;
+
