@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './style/App.css';
+import '../style/App.css';
 import {Grid, Button} from '@material-ui/core';
-import show from './style/show.png';
+import show from '../style/show.png';
 
 class AboutQLine extends Component {
   constructor(props) {

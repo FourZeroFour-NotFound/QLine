@@ -250,7 +250,7 @@ export default class CreatQueue extends React.Component {
       onChange={(e)=>{
            
         this.setState({
-          requierment : e.target.value
+          requierment : !e.target.value
         })
       }}
           style={styles.textField}

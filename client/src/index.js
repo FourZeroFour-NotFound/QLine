@@ -1,23 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style/App.css';
-import App from './App';
-import User from './Components/User.jsx';
-import * as serviceWorker from './serviceWorker';
-import Business from './component/business.jsx';
-import creatQueue from './component/creatQueue.jsx';
-import Profile from './Components/Profile.jsx';
+import App from './First Page Component/App';
+import User from './User Component/User.jsx';
+import Business from './Business Component/business.jsx';
+import Profile from './User Component/Profile.jsx';
 import { Router, Route, browserHistory } from 'react-router';
-import Login from './popLogin.js';
-import SignUp from './popSignUp.js';
-import BusinessQueue from './component/businessQueue.jsx';
-import BusinessGridList from './component/businessGridList.jsx';
-import Loading from './Loading.js';
-import CreatQueue from './component/creatQueue.jsx';
-import BusinessDashBord from './component/businessDashBord.jsx';
-import HowItWorks from './HowItWorks.jsx';
-import ContactUs from "./ContactUs.jsx";
-import AdminDash from './AdminDashboard.jsx'
+import Login from './First Page Component/popLogin.js';
+import SignUp from './First Page Component/popSignUp.js';
+import Loading from './First Page Component/Loading.js';
+import BusinessDashBord from './Business Component/businessDashBord.jsx';
+import ContactUs from "./First Page Component/ContactUs.jsx";
+import AdminDash from './First Page Component/AdminDashboard.jsx'
+import CreatQueue from './Business Component/creatQueue.jsx';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -37,6 +32,7 @@ class HomePage extends React.Component {
               <Route path="/CreatQueue" exact component={CreatQueue} />
               <Route path="/BusinessDashBord/:queue_id" exact component={BusinessDashBord} />
               <Route path="/ContactUs" exact component={ContactUs} />
+              <Route path="/admin" exact component={AdminDash} />
         </Router>
       );
     }
@@ -48,7 +44,7 @@ setTimeout(()=>{
 ReactDOM.render(<HomePage/>, document.getElementById('root1'));
 
 },5000);
-// setTimeout(()=>{
-//   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
-// }, 5000)
+setTimeout(()=>{
+  window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
+}, 5000)
 

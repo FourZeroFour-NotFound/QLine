@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './style/App.css';
+import '../style/App.css';
 import {Grid, Button} from '@material-ui/core';
-import pinfo from './style/phoneinfo.png';
-import tab from './style/tab.png';
-import laptop from './style/laptop.png';
-import tv from './style/tv.png';
-import laptop2 from './style/laptop2.png';
+import pinfo from '../style/phoneinfo.png';
+import tab from '../style/tab.png';
+import laptop from '../style/laptop.png';
+import tv from '../style/tv.png';
+import laptop2 from '../style/laptop2.png';
 
 class HowItWorks extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class HowItWorks extends Component {
  
   render() {
     return (
-        <div class="ct" id="t1">
+        <div class="ct" id="t1"  style={{overflowX: "hidden"}} >
             <div class="ct" id="t2">
                 <div class="ct" id="t3">
                 <div class="ct" id="t4">

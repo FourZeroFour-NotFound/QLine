@@ -1,5 +1,5 @@
 import React from 'react';
-import './style/App.css';
+import '../style/App.css';
 import {browserHistory} from 'react-router';
 import $ from "jquery";
 import {Typography} from '@material-ui/core';

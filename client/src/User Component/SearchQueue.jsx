@@ -9,7 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -40,13 +40,13 @@ const styles = theme => ({
 
   },
   media: {
-    height: 100,
-    maxWidth: 100,
+    height: 20,
+    maxWidth: 20,
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    fontSize:'20px'
+    fontSize: '20px'
   }
 });
 
@@ -59,93 +59,154 @@ export default class SearchQueue extends React.Component {
       anchorEl: null,
       open: false,
       open1: false,
-      allqueue :{},
-      notes:'',
+      allqueue: {},
+      notes: '',
+      allusers: [],
     }
   }
 
 
   //this function to handel conferm button it will add user to queue
-  addUser= ()=>{
+  addUser = () => {
     console.log(this.state.allqueue.accept_join)
-//this will chick if the queue have wating list to be conferm from the manger of queue or add him directly to the queue
-if (this.state.allqueue.accept_join){
-  console.log(true)
+    //this will chick if the queue have wating list to be conferm from the manger of queue or add him directly to the queue
+    if (this.state.allqueue.accept_join) {
+      console.log(true)
 
-  $.ajax({//add to the queue dirictly
-    url: '/add-userto-queue',
-    type: 'POST',
-    contentType: 'application/json',
-    data: JSON.stringify({
-      
-      queueid:this.state.allqueue.queue_id,
-      notes:this.state.notes
-        
-    }),
-    success: (data) => {
-      console.log(data);
-      alert("u joind the queue sucssfuly ")
+      $.ajax({//add to the queue dirictly
+        url: '/add-userto-queue',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+
+          queueid: this.state.allqueue.queue_id,
+          notes: this.state.notes
+
+        }),
+        success: (data) => {
+          console.log(data);
+          alert("u joind the queue sucssfuly ")
+        }
+      });
+
+    } else {//add to waiting list
+      console.log(false)
+
+      $.ajax({
+        url: '/add-waitingList',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          queueid: this.state.allqueue.queue_id,
+          Notes: this.state.notes
+        }),
+        success: (data) => {
+          console.log(data);
+          alert("u joined the waiting lest sucssfuly")
+        }
+      });
     }
-   
-  });
-
-
-
-}else{//add to waiting list
-  console.log(false)
-
-  $.ajax({
-    url: '/add-waitingList',
-    type: 'POST',
-    contentType: 'application/json',
-    data: JSON.stringify({
-      queueid:this.state.allqueue.queue_id,
-      Notes:this.state.notes
-    }),
-    success: (data) => {
-      console.log(data);
-      alert("u joined the waiting lest sucssfuly")
-    }
-    
-  });
-
-
-
-}
-   
     this.setState({ open1: !this.state.open1 });
     this.setState({ open: !this.state.open });
-
   }
 
-  componentDidMount = () => {
-this.setState({
-    allqueue:this.props.queue
-})
+  componentWillMount = () => {
+
+    this.setState({
+      allqueue: this.props.queue
+    })
+
+    $.ajax({
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.queue.queue_id,
+      }),
+      success: (data) => {
+        this.setState({
+          allusers: data.data
+        })
+
+      }
+    });
   }
+
+
+
+
 
   handleClickOpen = () => {
+
+
     this.setState({ open: !this.state.open });
+
+
+
   };
 
   handleClick = () => {
-      console.log('gggggg', this.state.open1)
-    this.setState({ open1: !this.state.open1 });
+
+
+
+    this.setState({
+      allqueue: this.props.queue
+    })
+
+    $.ajax({
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.queue.queue_id,
+      }),
+      success: (data) => {
+        this.setState({
+          allusers: data.data
+        })
+
+      }
+    });
+
+
+
+    var start = this.props.queue.start_time.split(":00.")
+
+    var end = this.props.queue.end_time.split(":00.")
+    var date = this.props.queue.date.split("T")
+    var numberofmintinallday = (Number(end[0].split(":")[0]) * 60 + Number(end[0].split(":")[1])) - (Number(start[0].split(":")[0]) * 60 + Number(start[0].split(":")[1]))
+    var remaningTicits = (((numberofmintinallday / this.state.allqueue.timeforone) * this.state.allqueue.windows) - this.state.allusers.length)
+
+    if (remaningTicits > 0) {
+      this.setState({ open1: !this.state.open1 });
+    } else {
+      alert("this queue is full try leater")
+    }
   };
 
   handleClose = () => {
     this.setState({ open: false });
   };
 
-  handleChange =  event => {
+  handleChange = event => {
     this.setState({
-     notes: event.target.value,
+      notes: event.target.value,
     });
   };
   render() {
    var start = this.props.queue.start_time.split(":00.")
+  
    var end = this.props.queue.end_time.split(":00.")
    var date = this.props.queue.date.split("T")
+   var numberofmintinallday=( Number(end[0].split(":")[0])*60  + Number(end[0].split(":")[1]))  -( Number(start[0].split(":")[0])*60 + Number(start[0].split(":")[1]))
+  var remaningTicits =(((numberofmintinallday/this.state.allqueue.timeforone)*this.state.allqueue.windows) - this.state.allusers.length)
+    
+ var theestmatedtimeH = Math.floor((( (this.state.allusers.length/this.state.allqueue.windows) * this.state.allqueue.timeforone)/60))
+ var theestmatedtimeM =  ((this.state.allusers.length/this.state.allqueue.windows )* this.state.allqueue.timeforone)%60
+if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *this.state.allqueue.windows)){
+  theestmatedtimeH=0
+  theestmatedtimeM=0
+}
     const { classes } = this.props;
     return (
       <div>
@@ -170,7 +231,7 @@ this.setState({
 
             <Button onClick={this.handleClickOpen}
             style={{ backgroundColor: "#7aeac2", marginTop: "90px", marginLeft: "200px", font: "white" }}>
-             Join
+             Join / More Details
              
         </Button>
         <Dialog
@@ -184,8 +245,11 @@ this.setState({
                {"Start Time: " + start[0]}<br />
                 {"End Time: " + end[0]}<br />
                 {"Date :" + date[0]}<br />
-                {"The time for each customer: " + this.state.allqueue.timeforone + " m"}  <br /> 
+                {/* {"The time for each customer: " + this.state.allqueue.timeforone + " m"}  <br />  */}
                 {"Number of windows:" + this.state.allqueue.windows}<br />
+                {"Number of peaple in line now:" + this.state.allusers.length}<br />
+                {"the estmated time untel they finsh:   " + theestmatedtimeH + " hours & "   + theestmatedtimeM  +" minutes" }<br />
+                {"Remaining tickets :" + Math.floor(remaningTicits) }<br />
               </DialogContent>
               <DialogActions>
                 <Button onClick={this.handleClose} color="primary">

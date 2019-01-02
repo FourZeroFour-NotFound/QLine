@@ -1,8 +1,8 @@
 import React from 'react';
-import "./style/App.css";
+import "../style/App.css";
 import {FormGroup, Grid, Button} from '@material-ui/core';
 import $ from "jquery";
-import Customer from './style/customer.png';
+import Customer from '../style/customer.png';
 
 // Customer Service Render Part, Organize the front-end version with styling from App css file
 // Adding some image for marketing appearance of website as well as form in order for the user to use if they need assistance in there booking
@@ -100,7 +100,7 @@ export default class CustomerService extends React.Component {
 
       <div className="customerService" id="serv">
          <div id="advertisement">
-            <img src={Customer} width="500px" height="500px" style={{marginLeft: "300px", marginTop: "150px"}}/>
+            <img src={Customer} width="450px" height="500px" style={{marginLeft: "300px", marginTop: "150px"}}/>
           </div>
           <div className="customer" style={{marginTop: "-600px"}}>
                 <form>    
