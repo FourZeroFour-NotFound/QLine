@@ -195,7 +195,35 @@ app.post('/sign-up', function (req, res) {
     }
   })
 })
+// add fake user 
+app.post('/sign-up-fake', function (req, res) {
+  console.log(req.body)
+  // orderthe data in the same way it sabous to be 
+  var user = {
+    "firstName": req.body.firstName,
+    "lastName": req.body.lastName,
+    "email": req.body.email,
+    "password": req.body.password,
+    "organization": req.body.organizationName,
+    "phoneNumber": req.body.phoneNumber,
+  }
 
+
+  db.insertNewUser(user, function (err, result) {
+    if (err) {
+      console.log(err)
+    } else {
+    
+        user.id = result.insertId // add the id to the object user and send it to the front end //this way is esyer to know the user id 
+        res.send({
+          status: 200,
+          success: "Successed!",
+          data: user
+        });
+     
+    }
+  })
+})
 ////////////////////////////////////////////////////////////////
 
 //post function to sign in 
