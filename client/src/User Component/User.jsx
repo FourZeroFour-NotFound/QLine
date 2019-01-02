@@ -112,7 +112,7 @@ class User extends Component {
 
 
 
-                              <input onChange={e => {this.setState({value:e.target.value})}} type="text" class="searchTerm"  placeholder="Search..."/>
+                              <input  onChange={e => {this.setState({value:e.target.value})}} type="text" class="searchTerm"  placeholder="Search..."/>
                               <button  onClick={this.handleSearch}type="submit" class="searchButton">
                                 <i class="fa fa-search"></i>
                             </button>

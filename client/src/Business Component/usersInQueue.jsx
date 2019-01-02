@@ -5,7 +5,8 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import BusinessQueue from './businessQueue.jsx';
+import OneUser from './oneUser.jsx';
+
 import $ from 'jquery';
 
 const style = theme => ({
@@ -25,35 +26,24 @@ const style = theme => ({
   gridList: {
     width: '100%',
     height: '100%',
+  
   },
 });
 
-export default class BusinessGridList extends React.Component {
+export default class usersInQueue extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      queues:[]
+      users:[]
     }
   }
-  componentDidMount() {
-    setInterval(()=>{
-    $.ajax({url: '/all_queue',
-    type: 'GET',
-    
-    contentType: 'application/json',
-    success: (res) => {
-  
-      this.setState({ queues: res.data })
-    }})
-  
-  },1000)
-  }
+ 
   render() {
     return (
         <div style={style.roots}>
           <GridList cols={3} style={style.gridList}>
-          {this.state.queues.map((queue) => (
-            <BusinessQueue key = {queue} queue = {queue}/>
+          {this.props.users.map((user) => (
+            <OneUser  user = {user} />
           ))}
           </GridList>
         </div>

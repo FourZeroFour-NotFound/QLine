@@ -40,8 +40,8 @@ const styles = theme => ({
 
   },
   media: {
-    height: 100,
-    maxWidth: 100,
+    height: 20,
+    maxWidth: 20,
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -61,7 +61,7 @@ export default class SearchQueue extends React.Component {
       open1: false,
       allqueue: {},
       notes: '',
-      allusers:[],
+      allusers: [],
     }
   }
 
@@ -110,7 +110,7 @@ export default class SearchQueue extends React.Component {
     this.setState({ open: !this.state.open });
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
 
     this.setState({
       allqueue: this.props.queue
@@ -124,41 +124,64 @@ export default class SearchQueue extends React.Component {
         queueid: this.props.queue.queue_id,
       }),
       success: (data) => {
+        this.setState({
+          allusers: data.data
+        })
+
+      }
+    });
+  }
+
+
+
+
+
+  handleClickOpen = () => {
+
+
+    this.setState({ open: !this.state.open });
+
+
+
+  };
+
+  handleClick = () => {
+
+
+
     this.setState({
-      allusers: data.data
+      allqueue: this.props.queue
     })
-    console.log("ccccccccccccccc",this.state.allusers)
+
+    $.ajax({
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.queue.queue_id,
+      }),
+      success: (data) => {
+        this.setState({
+          allusers: data.data
+        })
+
       }
     });
 
 
 
-  }
- 
-
-  handleClickOpen = () => {
-
-    
-  this.setState({ open: !this.state.open });
-
-
-  
-  };
-
-  handleClick = () => {
     var start = this.props.queue.start_time.split(":00.")
-  
+
     var end = this.props.queue.end_time.split(":00.")
     var date = this.props.queue.date.split("T")
-    var numberofmintinallday=( Number(end[0].split(":")[0])*60  + Number(end[0].split(":")[1]))  -( Number(start[0].split(":")[0])*60 + Number(start[0].split(":")[1]))
-   var remaningTicits =(((numberofmintinallday/this.state.allqueue.timeforone)*this.state.allqueue.windows) - this.state.allusers.length)
-     
- 
- if (remaningTicits>0){
-    this.setState({ open1: !this.state.open1 });
-  }else{
-    alert("this queue is full try leater")
-  }
+    var numberofmintinallday = (Number(end[0].split(":")[0]) * 60 + Number(end[0].split(":")[1])) - (Number(start[0].split(":")[0]) * 60 + Number(start[0].split(":")[1]))
+    var remaningTicits = (((numberofmintinallday / this.state.allqueue.timeforone) * this.state.allqueue.windows) - this.state.allusers.length)
+
+    if (remaningTicits > 0) {
+      this.setState({ open1: !this.state.open1 });
+    } else {
+      alert("this queue is full try leater")
+    }
   };
 
   handleClose = () => {
@@ -177,6 +200,13 @@ export default class SearchQueue extends React.Component {
    var date = this.props.queue.date.split("T")
    var numberofmintinallday=( Number(end[0].split(":")[0])*60  + Number(end[0].split(":")[1]))  -( Number(start[0].split(":")[0])*60 + Number(start[0].split(":")[1]))
   var remaningTicits =(((numberofmintinallday/this.state.allqueue.timeforone)*this.state.allqueue.windows) - this.state.allusers.length)
+    
+ var theestmatedtimeH = Math.floor((( (this.state.allusers.length/this.state.allqueue.windows) * this.state.allqueue.timeforone)/60))
+ var theestmatedtimeM =  ((this.state.allusers.length/this.state.allqueue.windows )* this.state.allqueue.timeforone)%60
+if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *this.state.allqueue.windows)){
+  theestmatedtimeH=0
+  theestmatedtimeM=0
+}
     const { classes } = this.props;
     return (
       <div>
@@ -201,7 +231,7 @@ export default class SearchQueue extends React.Component {
 
             <Button onClick={this.handleClickOpen}
             style={{ backgroundColor: "#7aeac2", marginTop: "90px", marginLeft: "200px", font: "white" }}>
-             Join
+             Join / More Details
              
         </Button>
         <Dialog
@@ -218,7 +248,7 @@ export default class SearchQueue extends React.Component {
                 {/* {"The time for each customer: " + this.state.allqueue.timeforone + " m"}  <br />  */}
                 {"Number of windows:" + this.state.allqueue.windows}<br />
                 {"Number of peaple in line now:" + this.state.allusers.length}<br />
-                {"the estmated time untel they finsh:   " + Math.floor((( (this.state.allusers.length * this.state.allqueue.timeforone)/this.state.allqueue.windows)/60))+ " hours & " + ((this.state.allusers.length * this.state.allqueue.timeforone)/this.state.allqueue.windows)%60 +" minutes" }<br />
+                {"the estmated time untel they finsh:   " + theestmatedtimeH + " hours & "   + theestmatedtimeM  +" minutes" }<br />
                 {"Remaining tickets :" + Math.floor(remaningTicits) }<br />
               </DialogContent>
               <DialogActions>
