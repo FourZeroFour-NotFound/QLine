@@ -20,15 +20,17 @@ html, body {
 }
 
 .content {
-    font-size: 70px; 
+    font-size: 55px; 
     text-align: left;
   }
 
 .titleDesc {
+    background: rgba(0,0,0,0.5);
+    position: relative;
     width: 600px;
-    height: 1000px;
-    margin-left: 1350px;
-    margin-top: -850px;
+    height: 500px;
+    margin-left: 150px;
+    margin-top: -400px;
     padding: 20px;
     color: #fff;
 }
