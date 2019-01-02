@@ -32,6 +32,7 @@ import logo from '../style/qline.png';
 
 
 
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -149,7 +150,7 @@ class Profile extends Component {
     this.setState({ open: false });
   };
 
-
+// this function to open the  ticketList arrow  
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
@@ -178,17 +179,16 @@ class Profile extends Component {
         })
       }
     });
+    // this request used to get all tickets for user using id  
     $.ajax({
       url: "/ticket",
       type: "Get",
       success: function (data) {
-        console.log("tttttt", data)
-      
-        // that.setState({firstName: data.success[0].firstName,
-        // lastName: data.success[0].lastName,
-        // email: data.success[0].email,
-        // phoneNumber: data.success[0].phoneNumber,
-        // })
+        console.log("tttttt", data.success)
+      that.setState({
+        TicketList:data.success
+      })
+        
       }
     });
 
@@ -199,6 +199,7 @@ class Profile extends Component {
     const { classes } = this.props;
     return (
       // navbar place
+     
       <div className={classes.root}>
         {/* <AppBar position="static" className={classes.color}>
           <Toolbar>
@@ -306,15 +307,17 @@ class Profile extends Component {
               <h2>Ticket List:</h2>
               <List>
 
-                <ListItem
+       {this.state.TicketList.map((ticket) => (
+             <ListItem key = {ticket.nameOfQueeu} ticket = {ticket.nameOfQueeu}
                   button
                   divider
                   aria-haspopup="true"
-                  aria-label=""
+                  aria-label={ticket}
                   onClick={this.handleClickListItem}
                 >
-                  <ListItemText primary="" />
-                </ListItem>
+          
+                  < ListItemText primary={ticket.nameOfQueeu} /> 
+                </ListItem>))}
 
                 <Confirmation
                   classes={{
@@ -329,6 +332,7 @@ class Profile extends Component {
           </Collapse>
         </Card>
       </div>
+    
     );
   }
 }
