@@ -18,7 +18,7 @@ import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'reac
 import 'react-chat-widget/lib/styles.css';
 import $ from 'jquery';
 import HowQLine from './HowQLine.jsx';
-
+import Loading from './Loading.js';
 
 // Main Render of the components that displays all the component used in our project
 // we use stateless functions also for toggling signIn and signUp pages for better UI experience

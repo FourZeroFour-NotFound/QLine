@@ -85,7 +85,7 @@ class PopLogIn extends React.Component {
           // redirect to main page
           setTimeout ( () => {
             browserHistory.push({
-              pathname: "/business",
+              pathname: "/user",
               state: { user: res.data }
             });
           }, 4000)
@@ -123,7 +123,7 @@ class PopLogIn extends React.Component {
           if(res.success !== 'userExist') {
             browserHistory.push({
 
-              pathname: "/business",
+              pathname: "/user",
               state: { user: res.data }
             });
           } else {
