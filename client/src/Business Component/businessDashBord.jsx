@@ -23,6 +23,12 @@ import Barcode from 'react-barcode';
 import TextField from '@material-ui/core/TextField';
 
 
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 const style = theme => ({
   root: {
     width: '100%',
@@ -76,10 +82,15 @@ export default class BusinessDashBord extends React.Component {
     this.state = {
       value: 0,
       allusers:[],
-      email: ""
+      allusersinqueue :[],
+      email: "",
+      newsername: "",
+      emailnew:""
     };
   }
 componentDidMount(match){
+
+  
   console.log('sdsdsd', this.props.params.queue_id)
   setInterval(()=>{
   $.ajax({
@@ -90,13 +101,31 @@ componentDidMount(match){
       queueid: this.props.params.queue_id,
     }),
     success: (data) => {
+      console.log(data)
   this.setState({
     allusers: data.data
   })
  
     }
-  })  },1000);
+  })  },5000);
 
+
+  setInterval(()=>{
+    $.ajax({
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.params.queue_id,
+      }),
+      success: (data) => {
+        console.log(data)
+    this.setState({
+      allusersinqueue: data.success
+    })
+    console.log(this.state.allusersinqueue)
+      }
+    })  },5000);
   
 }
 addme=() => {
@@ -132,6 +161,48 @@ addme=() => {
 }
 }
 });
+}
+
+addnewuser = ()=>{
+console.log(this.state.newsername)
+if (this.state.newsername == "" || this.state.emailnew == ""  ){
+  alert("email or name cant be empty .. try agean " )
+  
+}else{
+
+$.ajax({
+  url: '/sign-up',
+  type: 'POST',
+  contentType: 'application/json',
+  data: JSON.stringify({
+    firstName:this.state.newsername,
+    lastName: this.state.newsername,
+    email: this.state.emailnew,
+    password: "123456789",
+    organizationName: "added from kiosk",
+    phoneNumber: "0799795083"
+  }),
+  success: (res) => {
+    console.log( "dfsfsdfsfsdfsdfdsfsdfsdf",res.data.id)
+    $.ajax({//add to the queue dirictly
+      url: '/add-userto-queue1',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        user_id: res.data.id,
+        queue_id: this.props.params.queue_id,
+       
+
+      }),
+      success: (data) => {
+        console.log(data);
+        alert("u joind the queue sucssfuly  take ur ticket ")
+      }
+    });
+  },
+ 
+}); 
+}
 }
   handleChange = (event, value) => {
     this.setState({ value });
@@ -186,12 +257,55 @@ addme=() => {
         
       </TabContainer>}
       {value === 1 && <TabContainer>
-          <h1>inter queue id in your mobile app :{  this.props.params.queue_id}<br />  or scan the barcode :</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Custmers in queue now : {this.state.allusersinqueue.length}</h1>
+        <h2 style={ {lineHeight: 1.5,}} >Choose what suits u :</h2>
+        <div >
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography><h3> you use Qline and u have ur phone ? </h3> </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+          <h2 style={ {lineHeight: 1.5,}}>inter queue id in your mobile app : { this.props.params.queue_id}<br /> or scan the barcode :</h2>
           <Barcode  value ={this.props.params.queue_id} />
-          <input  onChange={e => {this.setState({email:e.target.value})}} type="text"   placeholder="input ur email ..."/>
-                              <button  onClick={this.addme}type="submit">
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography > <h3>you use Qline but u dont have ur phone ? </h3></Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+          <h3 style={ {lineHeight: 1.5,}}> input ur email :</h3>
+          <input style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({email:e.target.value})}} type="text"   placeholder="input ur email ..."/>
+                              <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addme} type="submit">
                                 add me !!
-                            </button>
+                            </Button>
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography><h3> you never heard of Qline and u need tickit ?</h3></Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+          
+          
+          <h3> inter ur name :</h3>
+          <input  style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({newsername:e.target.value})}} type="text"   placeholder="input ur name . . ."/>
+          <h3>and ur email:</h3>
+          <input  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , width : 500,}} onChange={e => {this.setState({emailnew:e.target.value})}} type="text"   placeholder="input ur email . . ."/>
+                              <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addnewuser} type="submit">
+                                give me tickit !!
+                            </Button>
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      
+    </div>
+        
        </TabContainer>}
       {value === 2 && <TabContainer>Item Three</TabContainer>}
       {value === 3 && <TabContainer>
