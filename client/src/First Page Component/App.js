@@ -16,7 +16,6 @@ import ContactUs from './ContactUs.jsx';
 import Footer from './Footer.jsx';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 import 'react-chat-widget/lib/styles.css';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import HowQLine from './HowQLine.jsx';
 import Loading from './Loading.js';

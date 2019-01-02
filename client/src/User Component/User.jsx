@@ -67,7 +67,15 @@ class User extends Component {
     });
   }
 
+  componentDidMount () {
+    let imgBtn = document.querySelector('#d');
 
+      if (imgBtn) {
+       imgBtn.addEventListener('change', function() {
+        setTimeout(() => {window.location.href="/business"}, 1000)
+       });
+      } 
+  }
 
 
   render() {
@@ -79,13 +87,13 @@ class User extends Component {
     return (
             <div>
             
-              <nav className="menu" style={{backgroundColor: "#aa1256", marginTop: "10px", marginLeft: "50px"}}>
-                        <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
+              <nav className="menu" style={{backgroundColor: "#white", border: "7px solid #aa1256", marginTop: "10px", marginLeft: "50px"}}>
+                        <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
                         <Grid>
-                          <Grid class="can-toggle demo-rebrand-1">
+                          <Grid class="can-toggle1 demo-rebrand-2" style={{marginTop: "-5px", marginLeft: "50px"}}>
                             <input id="d" type="checkbox"/>
-                                <label for="d">
-                                    <Grid class="can-toggle__switch" data-checked="USER" data-unchecked="Business"></Grid>
+                                <label for="d" id="y">
+                                    <Grid class="can-toggle1__switch1" data-checked="USER" data-unchecked="Business"></Grid>
                                 </label>
                           </Grid>
                         </Grid>

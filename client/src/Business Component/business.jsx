@@ -14,7 +14,7 @@ import {Grid} from '@material-ui/core';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import BusinessGridList from './businessGridList.jsx';
 import logo from '../style/qline.png';
-
+import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 import {Link} from 'react-router';
 import { browserHistory } from 'react-router';
 
@@ -98,6 +98,15 @@ export default class business extends React.Component {
     });
   }
 
+  componentDidMount () {
+    let imgBtn = document.querySelector('#d');
+
+      if (imgBtn) {
+       imgBtn.addEventListener('change', function() {
+        setTimeout(() => {window.location.href="/user"}, 1000)
+       });
+      } 
+  }
 
   render() {
     const { auth, anchorEl } = this.state;
@@ -105,8 +114,8 @@ export default class business extends React.Component {
     return (
       <div>
          <nav className="menu"  style={{backgroundColor: "white", border: "7px solid #7aeac2",marginTop: "10px", marginLeft: "50px"}}>
-                <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
-                <Grid class="can-toggle demo-rebrand-1" style={{marginTop: "-5px", marginLeft: "50px"}}>
+                <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
+                <Grid class="can-toggle demo-rebrand-1" style={{marginTop: "-8px", marginLeft: "50px"}}>
                             <input id="d" type="checkbox"/>
                                 <label for="d">
                                     <Grid class="can-toggle__switch" data-checked="USER" data-unchecked="Business"></Grid>
@@ -140,6 +149,7 @@ export default class business extends React.Component {
             + Create New Queue
             </Button>
               <BusinessGridList/>
+              <Widget/>
               </div>
         )}
         </FormGroup>
