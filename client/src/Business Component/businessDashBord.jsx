@@ -19,6 +19,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import $ from 'jquery';
 import logo from '../style/qline.png';
 import UsersInQueue from './usersInQueue.jsx';
+import Barcode from 'react-barcode';
+import TextField from '@material-ui/core/TextField';
+
 
 const style = theme => ({
   root: {
@@ -73,6 +76,7 @@ export default class BusinessDashBord extends React.Component {
     this.state = {
       value: 0,
       allusers:[],
+      email: ""
     };
   }
 componentDidMount(match){
@@ -95,7 +99,40 @@ componentDidMount(match){
 
   
 }
+addme=() => {
+  console.log(this.state.email)
 
+  $.ajax({
+    url: "/profile2",
+    type: "POST",
+    data:  {email :this.state.email},
+    success:  (data) =>{
+     
+       if( !(data.success.length == 0)){
+    
+     $.ajax({//add to the queue dirictly
+      url: '/add-userto-queue1',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        user_id: data.success[0].user_id,
+        queue_id: this.props.params.queue_id,
+       
+
+      }),
+      success: (data) => {
+        console.log(data);
+        alert("u joind the queue sucssfuly ")
+      }
+    });
+    
+  
+        }else{
+  alert("email not exest")
+}
+}
+});
+}
   handleChange = (event, value) => {
     this.setState({ value });
   };
@@ -142,35 +179,20 @@ componentDidMount(match){
           
         </Tabs>
       </Paper>
-      {value === 0 && <TabContainer><Paper style={style.root}>
-      <Table style={style.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Ticket's Number</TableCell>
-            <TableCell>Window's Number</TableCell>
-            <TableCell >Queue's name</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => {
-            return (
-              <TableRow key={row.id}>
-                <TableCell >
-                  {row.TiccketNumber}
-                </TableCell>
-                <TableCell >{row.WindowNumber}</TableCell>
-                <TableCell >{row.QueueName}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </Paper></TabContainer>}
-      {value === 1 && <TabContainer><div align="center">
-        <Fab size="large" color="primary" aria-label="Add" style={style.margin}>
-          <AddIcon/>
-        </Fab> 
-        <p>Add me to the Queue</p></div></TabContainer>}
+      {value === 0 && <TabContainer>
+
+
+
+        
+      </TabContainer>}
+      {value === 1 && <TabContainer>
+          <h1>inter queue id in your mobile app :{  this.props.params.queue_id}<br />  or scan the barcode :</h1>
+          <Barcode  value ={this.props.params.queue_id} />
+          <input  onChange={e => {this.setState({email:e.target.value})}} type="text"   placeholder="input ur email ..."/>
+                              <button  onClick={this.addme}type="submit">
+                                add me !!
+                            </button>
+       </TabContainer>}
       {value === 2 && <TabContainer>Item Three</TabContainer>}
       {value === 3 && <TabContainer>
         <h1 style={{margin : "20px"}}> clent in waiting list: { this.state.allusers.length }</h1>
