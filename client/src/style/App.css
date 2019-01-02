@@ -22,6 +22,7 @@ html, body {
 .content {
     font-size: 55px; 
     text-align: left;
+    margin-top: -30px;
   }
 
 .titleDesc {

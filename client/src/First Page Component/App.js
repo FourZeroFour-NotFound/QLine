@@ -73,10 +73,10 @@ class App extends Component {
     return (
       <Grid>
       <Grid className="container center">
+      <IntroPage/>
         <Header logo={logo} toggleSignup={this.toggleSignup} toggleLogin={this.toggleLogin} />
       </Grid>
       <Grid>
-        <IntroPage/>
         <FlipInfo/>
         <AboutQLine/>
         <HowItWorks/>
