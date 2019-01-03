@@ -478,7 +478,62 @@ app.post('/deletequeueA',function(req,res){
     
   })
 })
+/////////////////////////////////////////////////////////
+//function to delet from waiting lest 
 
+
+
+app.post('/UPDATEtickt',function(req,res){
+  db.UPDATEtickt(req.body.id,req.body.counter ,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+
+
+/////////////////////////////////////////////////////////
+//function to delet from waiting lest 
+
+
+
+app.post('/deleteTickt',function(req,res){
+  db.deleteTickt(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
 /////////////////////////////////////////////////////////
 //function to delet from waiting lest 
 

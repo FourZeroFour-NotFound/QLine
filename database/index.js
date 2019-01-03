@@ -123,8 +123,19 @@ const deletefromqueueB = function (id, callback) {
      }
    })
  }
- 
-
+ //delet from user_queue using id
+ const deleteFromuser_queue = function (id, callback) {
+  var b = ` DELETE FROM user_queue WHERE id = ${id};`
+    connection.query(b , function (err, result) {
+      if (err) {
+        console.log("db error inserting in user_queue table", err)
+        callback(err, null)
+      } else {
+        console.log("db user_queue added successfuly" , result ) 
+        callback(null,result)
+      }
+    })
+  }
 //this function to delet from queue
 const deletefromqueue = function (id, callback) {
   var sqlquery =` DELETE FROM queue WHERE queue_id = ${id};`
@@ -326,6 +337,38 @@ const UPDATE = function (user,id, callback){
     }
   })
 }
+
+// this function is used to update user ticket
+
+const UPDATEtickt = function (id,counter, callback){
+  var sqlquery = ` UPDATE  user_queue  SET onwindow='${counter}' where id ='${id}' `
+  connection.query(sqlquery, function(err, result){
+    if(err){
+      console.log('db error', err)
+      callback(err,null)
+    }else{
+      console.log( result.affectedRows ,"db update")
+      callback(null,result)
+    }
+  })
+}
+// this function is used to update user ticket
+
+const deleteTickt = function (id, callback){
+  var sqlquery = `DELETE FROM user_queue WHERE user_queue.id = ${id};  `
+  connection.query(sqlquery, function(err, result){
+    if(err){
+      console.log('db error', err)
+      callback(err,null)
+    }else{
+      console.log( result.affectedRows ,"db update")
+      callback(null,result)
+    }
+  })
+}
+
+
+
 // this function return all the queues for the given organization
 // const search = function (id, callback) {
 //   var sqlquery = `select * from queue where creator_id = '${}'`
@@ -409,4 +452,6 @@ module.exports.deletefromqueueB = deletefromqueueB;
 module.exports.getUserDataEmail = getUserDataEmail;
 module.exports.getUserTickets = getUserTickets;
 module.exports.grtQueueUsingId = grtQueueUsingId;
-
+module.exports.deleteFromuser_queue = deleteFromuser_queue;
+module.exports.UPDATEtickt = UPDATEtickt;
+module.exports.deleteTickt = deleteTickt;

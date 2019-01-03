@@ -91,35 +91,83 @@ export default class BusinessDashBord extends React.Component {
       newsername: "",
       emailnew:"",
       queueDetalse:{},
-      arr: [ ],
+      arr: [{},{},{},{},{},{},{}],
     };
   }
 componentDidMount(match){
- 
 
-  $.ajax({
-    url: '/queue-data',
-    type: 'POST',
-    contentType: 'application/json',
-    data: JSON.stringify({
-      queue_id: this.props.params.queue_id,
-    }),
-    success: (data) => {
-      console.log(data)
-  this.setState({
-    queueDetalse: data.success[0]
-  })
-  console.log( "detalse",this.state.queueDetalse)
-  var arrr= []
-  for(var i = 0 ; i < Number(this.state.queueDetalse.windows) ; i++){
-    arrr.push(i)
-    this.setState({arr:arrr})
-  }
-  console.log("arrrrrrrrrrrrrr"  ,this.state.arr)
-    }
-  })
+  setInterval(() => {
+    $.ajax({
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.params.queue_id,
+      }),
+      success: (data) => {
+
+        this.setState({
+          allusersinqueue: data.success
+        })
+
+      }
+    })
+  }, 5000);
+
+
+  setInterval(() => {
+    $.ajax({
+      url: '/queue-data',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queue_id: this.props.params.queue_id,
+      }),
+      success: (data) => {
+
+        this.setState({
+          queueDetalse: data.success[0]
+        })
+       
+        var arrr = []
+        for (var i = 0; i < this.state.allusersinqueue.length; i++) {
+          arrr[this.state.allusersinqueue[i].onwindow] = this.state.allusersinqueue[i]
+        }
+
+        arrr.splice(0, 1)
+     
+        if (arrr.length == 0 ){
+          
+          for (var i = 0 ; i<this.state.queueDetalse.windows  ; i++){
+            $.ajax({
+              url: '/UPDATEtickt',
+              type: 'POST',
+              contentType: 'application/json',
+              data: JSON.stringify({
+                id: this.state.allusersinqueue[i].id,
+                counter: i+1
+              }),
+              success: (data) => {
+               
+
+              }
+            })
+            
+          }
+        }
+
+        if (arrr.length == 0 ){
+          arrr= [{id:"no users in this queue"}]
+          
+        }
+        this.setState({ arr: arrr })
+
+
+      }
+    })
+
+  }, 5000);
  
-  console.log('sdsdsd', this.props.params.queue_id)
   setInterval(()=>{
   $.ajax({
     url: '/get-users-in-waitingList',
@@ -129,7 +177,7 @@ componentDidMount(match){
       queueid: this.props.params.queue_id,
     }),
     success: (data) => {
-      console.log(data)
+     
   this.setState({
     allusers: data.data
   })
@@ -138,22 +186,6 @@ componentDidMount(match){
   })  },5000);
 
 
-  setInterval(()=>{
-    $.ajax({
-      url: '/get-users-in-queue',
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify({
-        queueid: this.props.params.queue_id,
-      }),
-      success: (data) => {
-        console.log(data)
-    this.setState({
-      allusersinqueue: data.success
-    })
-    console.log("allusers" , this.state.allusersinqueue)
-      }
-    })  },5000);
   
 }
 addme=() => {
@@ -252,6 +284,42 @@ $.ajax({
   }
 
   render() {
+   var next = (x ,y)=>{
+      console.log(x ,y)
+    //x is i 
+// y is the ticket i want to delete
+ // this.state.allusersinqueue[this.state.queueDetalse.windows]
+
+
+      $.ajax({
+        url: '/UPDATEtickt',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          id: this.state.allusersinqueue[this.state.queueDetalse.windows].id,
+          counter: x+1
+        }),
+        success: (data) => {
+
+          $.ajax({
+            url: '/deleteTickt',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+              id: y.id ,
+              
+            }),
+            success: (data) => {
+             
+    
+            }
+          })
+
+        }
+      })
+
+    }
+
     var estmatedTime = ()=>{ if ( Math.floor(this.state.allusersinqueue.length/this.state.queueDetalse.windows)* Number(this.state.queueDetalse.timeforone) < this.state.queueDetalse.timeforone){return 0}else{return Math.floor(this.state.allusersinqueue.length/this.state.queueDetalse.windows)* Number(this.state.queueDetalse.timeforone) }}
     const { value } = this.state;
     return (
@@ -280,8 +348,28 @@ $.ajax({
         </Tabs>
       </Paper>
       {value === 0 && <TabContainer>
-
-
+        <h1 style={ {lineHeight: 1.5,}} >Custmers in queue now : {this.state.allusersinqueue.length}</h1>
+        <GridList cols={4} style={style.gridList}>
+          {this.state.arr.map((queue ,i) => (
+           <Card style={{margin : 20 ,}} >
+           <CardActionArea>
+           <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
+               <h2>counter : {i +1} </h2>
+               </Typography>
+             <CardContent>
+             <CardMedia />
+               <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
+               <h2> user id  :{this.state.arr[i].id} </h2>
+               
+               
+               </Typography>
+             </CardContent>
+           </CardActionArea>
+           <CardActions>
+           </CardActions>
+         </Card>
+          ))}
+          </GridList>
 
         
       </TabContainer>}
@@ -339,7 +427,7 @@ $.ajax({
         
        </TabContainer>}
       {value === 2 && <TabContainer>
-
+        <h1 style={ {lineHeight: 1.5,}} >Custmers in queue now : {this.state.allusersinqueue.length}</h1>
         <GridList cols={1} style={style.gridList}>
           {this.state.arr.map((queue ,i) => (
            <Card style={{margin : 20 ,}} >
@@ -350,9 +438,9 @@ $.ajax({
              <CardContent>
              <CardMedia />
                <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
-               <h2> user id {this.state.allusersinqueue[queue].user_id}  </h2>
-               <h2> user id {this.state.allusersinqueue[queue].id}  </h2>
-               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" type="submit">
+               <h2> user id  :{this.state.arr[i].id} </h2>
+               
+               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" onClick={()=>{next(i,this.state.arr[i] )}}  color="primary" type="submit">
                               next custumer >>
                             </Button>
                </Typography>
