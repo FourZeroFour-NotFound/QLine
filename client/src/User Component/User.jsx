@@ -14,7 +14,6 @@ import flat from '../style/flat.png';
 import {Link} from 'react-router';
 import $ from "jquery";
 import SearchResult from './SearchResult.jsx';
-import Profile from './Profile.jsx'
 import uservideo from '../style/user.mp4';
 import Footer from '../First Page Component/Footer.jsx';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';

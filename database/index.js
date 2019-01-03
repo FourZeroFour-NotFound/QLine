@@ -312,6 +312,21 @@ const UPDATE = function (user,id, callback){
     }
   })
 }
+
+const Delete =function(id,callback){
+  var sqlquery = `Delete from user_queue where queue_id = '${id}' `
+  connection.query(sqlquery, function(err, result){
+    if(err){
+      console.log('db error', err)
+      callback(err,null)
+    }else{
+      console.log( result.affectedRows ,"db update")
+      callback(null,result)
+    }
+  })
+}
+
+
 // this function return all the queues for the given organization
 // const search = function (id, callback) {
 //   var sqlquery = `select * from queue where creator_id = '${}'`
@@ -392,6 +407,11 @@ module.exports.deletefromWaiting = deletefromWaiting;deletefromqueue
 module.exports.deletefromqueue = deletefromqueue;deletefromqueueB
 module.exports.deletefromqueueA = deletefromqueueA;
 module.exports.deletefromqueueB = deletefromqueueB;
+
+module.exports.getUserTickets = getUserTickets;
+module.exports.Delete = Delete;
+
 module.exports.getUserDataEmail = getUserDataEmail;
 module.exports.getUserTickets = getUserTickets;
+
 
