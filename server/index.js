@@ -53,6 +53,28 @@ app.get('/all_queue',function(req,res){
     
   })
 })
+
+// git function to bring all the queuefor one user using his id 
+//dose not take any thing just the user id from his req
+app.post('/queue-data',function(req,res){
+  db.grtQueueUsingId(req.body.queue_id , function(err,result){
+    if (err){
+      res.send({
+        status: 404,
+        success: result,
+       
+      });
+      console.log("server error giting data " , err)
+    }else{
+      res.send({
+        status: 200,
+        success: result,
+       
+      });
+    }
+    
+  })
+})
 // this function used to get data for user using id
 app.get('/profile', function(req,res){
   console.log(" lllllllll",req.user)

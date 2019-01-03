@@ -21,13 +21,17 @@ import logo from '../style/qline.png';
 import UsersInQueue from './usersInQueue.jsx';
 import Barcode from 'react-barcode';
 import TextField from '@material-ui/core/TextField';
-
-
+import GridList from '@material-ui/core/GridList';
+import BusinessQueue from './businessQueue.jsx';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const style = theme => ({
   root: {
@@ -82,15 +86,39 @@ export default class BusinessDashBord extends React.Component {
     this.state = {
       value: 0,
       allusers:[],
-      allusersinqueue :[],
+      allusersinqueue :[{},{},{},{},{},{},{}],
       email: "",
       newsername: "",
-      emailnew:""
+      emailnew:"",
+      queueDetalse:{},
+      arr: [ ],
     };
   }
 componentDidMount(match){
+ 
 
-  
+  $.ajax({
+    url: '/queue-data',
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      queue_id: this.props.params.queue_id,
+    }),
+    success: (data) => {
+      console.log(data)
+  this.setState({
+    queueDetalse: data.success[0]
+  })
+  console.log( "detalse",this.state.queueDetalse)
+  var arrr= []
+  for(var i = 0 ; i < Number(this.state.queueDetalse.windows) ; i++){
+    arrr.push(i)
+    this.setState({arr:arrr})
+  }
+  console.log("arrrrrrrrrrrrrr"  ,this.state.arr)
+    }
+  })
+ 
   console.log('sdsdsd', this.props.params.queue_id)
   setInterval(()=>{
   $.ajax({
@@ -123,7 +151,7 @@ componentDidMount(match){
     this.setState({
       allusersinqueue: data.success
     })
-    console.log(this.state.allusersinqueue)
+    console.log("allusers" , this.state.allusersinqueue)
       }
     })  },5000);
   
@@ -224,6 +252,7 @@ $.ajax({
   }
 
   render() {
+    var estmatedTime = ()=>{ if ( Math.floor(this.state.allusersinqueue.length/this.state.queueDetalse.windows)* Number(this.state.queueDetalse.timeforone) < this.state.queueDetalse.timeforone){return 0}else{return Math.floor(this.state.allusersinqueue.length/this.state.queueDetalse.windows)* Number(this.state.queueDetalse.timeforone) }}
     const { value } = this.state;
     return (
       <div>
@@ -258,6 +287,8 @@ $.ajax({
       </TabContainer>}
       {value === 1 && <TabContainer>
         <h1 style={ {lineHeight: 1.5,}} >Custmers in queue now : {this.state.allusersinqueue.length}</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Number of counters : {this.state.queueDetalse.windows}</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Estimated time until your turn  :  { estmatedTime() } m</h1>
         <h2 style={ {lineHeight: 1.5,}} >Choose what suits u :</h2>
         <div >
       <ExpansionPanel>
@@ -307,7 +338,33 @@ $.ajax({
     </div>
         
        </TabContainer>}
-      {value === 2 && <TabContainer>Item Three</TabContainer>}
+      {value === 2 && <TabContainer>
+
+        <GridList cols={1} style={style.gridList}>
+          {this.state.arr.map((queue ,i) => (
+           <Card style={{margin : 20 ,}} >
+           <CardActionArea>
+           <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
+               <h2>counter : {i +1} </h2>
+               </Typography>
+             <CardContent>
+             <CardMedia />
+               <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
+               <h2> user id {this.state.allusersinqueue[queue].user_id}  </h2>
+               <h2> user id {this.state.allusersinqueue[queue].id}  </h2>
+               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" type="submit">
+                              next custumer >>
+                            </Button>
+               </Typography>
+             </CardContent>
+           </CardActionArea>
+           <CardActions>
+           </CardActions>
+         </Card>
+          ))}
+          </GridList>
+
+      </TabContainer>}
       {value === 3 && <TabContainer>
         <h1 style={{margin : "20px"}}> clent in waiting list: { this.state.allusers.length }</h1>
         <UsersInQueue  users = { this.state.allusers}/>

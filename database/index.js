@@ -203,6 +203,20 @@ const getAllQueueForUser = function (user_id , callback){
   })
 }
 
+///////////////////////////////////////////////////
+//function to get   queue using queue id 
+const grtQueueUsingId = function (queue_id , callback){
+  var sqlquery = `select * from queue where queue_id = ${queue_id}`
+  connection.query(sqlquery, function(err,result){
+    if (err){
+      console.log(`db error geting the queue form db queue_id =${queue_id}` , err)
+      callback(err,null)
+    }else{
+      console.log(`db git all the queue for this user sucssfuly queue_id=${queue_id}` , result)
+      callback(null,result)
+    }
+  })
+}
 /////////////////////////////////////////////////
 //this function to get all users in one queue
 const getUsersInQueue = function (queue_id , callback){
@@ -394,4 +408,5 @@ module.exports.deletefromqueueA = deletefromqueueA;
 module.exports.deletefromqueueB = deletefromqueueB;
 module.exports.getUserDataEmail = getUserDataEmail;
 module.exports.getUserTickets = getUserTickets;
+module.exports.grtQueueUsingId = grtQueueUsingId;
 

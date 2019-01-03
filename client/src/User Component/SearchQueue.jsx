@@ -200,7 +200,8 @@ export default class SearchQueue extends React.Component {
    var date = this.props.queue.date.split("T")
    var numberofmintinallday=( Number(end[0].split(":")[0])*60  + Number(end[0].split(":")[1]))  -( Number(start[0].split(":")[0])*60 + Number(start[0].split(":")[1]))
   var remaningTicits =(((numberofmintinallday/this.state.allqueue.timeforone)*this.state.allqueue.windows) - this.state.allusers.length)
-    
+  var estmatedTime = ()=>{ if ( Math.floor(this.state.allusers.length/this.state.allqueue.windows)* Number(this.state.allqueue.timeforone) < this.state.allqueue.timeforone){return 0}else{return Math.floor(this.state.allusers.length/this.state.allqueue.windows)* Number(this.state.allqueue.timeforone) }}
+
  var theestmatedtimeH = Math.floor((( (this.state.allusers.length/this.state.allqueue.windows) * this.state.allqueue.timeforone)/60))
  var theestmatedtimeM =  ((this.state.allusers.length/this.state.allqueue.windows )* this.state.allqueue.timeforone)%60
 if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *this.state.allqueue.windows)){
@@ -248,7 +249,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
                 {/* {"The time for each customer: " + this.state.allqueue.timeforone + " m"}  <br />  */}
                 {"Number of windows:" + this.state.allqueue.windows}<br />
                 {"Number of peaple in line now:" + this.state.allusers.length}<br />
-                {"the estmated time untel they finsh:   " + theestmatedtimeH + " hours & "   + theestmatedtimeM  +" minutes" }<br />
+                {"the estmated time untel they finsh:   " + estmatedTime()  +" minutes" }<br />
                 {"Remaining tickets :" + Math.floor(remaningTicits) }<br />
               </DialogContent>
               <DialogActions>
