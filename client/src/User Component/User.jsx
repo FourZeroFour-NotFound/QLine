@@ -15,8 +15,8 @@ import {Link} from 'react-router';
 import $ from "jquery";
 import SearchResult from './SearchResult.jsx';
 import Profile from './Profile.jsx'
-
-
+import uservideo from '../style/user.mp4';
+import Footer from '../First Page Component/Footer.jsx';
 
 
 
@@ -40,7 +40,7 @@ class User extends Component {
     auth: true,
     anchorEl: null,
     value:"",
-  searchResult:[],
+    searchResult:[],
   };
 
   handleChange = event => {
@@ -86,9 +86,10 @@ class User extends Component {
 
     return (
             <div>
-            
-              <nav className="menu" style={{backgroundColor: "#white", border: "7px solid #aa1256", marginTop: "10px", marginLeft: "50px"}}>
-                        <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
+               <video width="100%"  style={{marginTop: "-50px"}}  autoPlay>
+                <source src={uservideo} type="video/mp4"/></video>
+              <nav className="menu5" style={{backgroundColor: "transparent",  marginTop: "-1000px", marginLeft: "50px"}}>
+                        <img src={logo} width="122px" height="62px" style={{marginTop: "15px", marginLeft: "-20px"}}/>
                         <Grid>
                           <Grid class="can-toggle1 demo-rebrand-2" style={{marginTop: "-5px", marginLeft: "50px"}}>
                             <input id="d" type="checkbox"/>
@@ -107,39 +108,26 @@ class User extends Component {
                             <Grid className="menu__right">
                                 <ul className="menu__list">
                               <Button href="/profile" color="inherit" style={{width: "70px", marginRight: "10px"}}>
-                                <AccountCircle /><p>Profile</p>
+                                <AccountCircle />
                                 </Button>
-                                <li class="menu__list-item"><Link to ="/" class="menu__link">Logout</Link></li>
+                                <li className="menu__list-item"><Link to ="/" class="menu__link">Logout</Link></li>
                                 </ul>
                             </Grid>
                         </nav>
-                        {/* <img src={flat} style={{ width: "100%", height: "100%"}}/> */}
                         <div class="wrap">
-                        < Profile />
+                        
                       
                           <div class="search">
-
-
-
-
-
                               <input  onChange={e => {this.setState({value:e.target.value})}} type="text" class="searchTerm"  placeholder="Search..."/>
                               <button  onClick={this.handleSearch}type="submit" class="searchButton">
                                 <i class="fa fa-search"></i>
                             </button>
                           </div>
-                          <div  style={{paddingTop:'100px',marginTop:'100px'}}>
-                          <SearchResult  queues = {this.state.searchResult}/>
-                          </div>
-                          </div>
-                        
-                        
-                        
-                        
-
-                     
-                     
-                       
+                        </div>
+                          <Grid style = {{height: "1000px"}}>
+                          <SearchResult  queues = {this.state.searchResult}/>   
+                          </Grid>
+                          <Footer/>
              </div>
     );
   }

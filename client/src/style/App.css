@@ -35,16 +35,47 @@ html, body {
     padding: 20px;
     color: #fff;
 }
+
+/*********************Profile User************/
+
+.prof {
+  margin-top: -200px;
+  position: absolute;
+  margin-left: 1100px;
+  width: 700px;
+  height: 700px;
+}
+
+.card {
+  height: 700px;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
+}
+
+.theSearch {
+  margin-left: 30px;
+  margin-top: 50px;
+  justify-content: space-around;
+}
+
+.card2 {
+  margin-left: 100px;
+  margin-bottom: 100px;
+  box-shadow: 0px 2px 24px 0px rgba(1, 1, 1, 1);
+}
+
 /*********************Search Page User************/
 
 .search {
   width: 500px;
-  position: relative;
-  margin-top: 50px;
-  margin-left: 400px
+  height: 35px;
+  position: fixed;
+  margin-top: 300px;
+  margin-left: -220px;
+  
 }
 
 .searchTerm {
+  background: white;
   float: left;
   width: 100%;
   border: 3px solid #aa1256;
@@ -2231,6 +2262,18 @@ section {
 
   background-color: white;
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  width: 90%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: absolute;
+  animation: unfoldIn 1s cubic-bezier(0.065, 0.840, 0.440, 1.000);
+}
+
+.menu5 {
+
   border-radius: 8px;
   width: 90%;
   height: 80px;
