@@ -83,17 +83,15 @@ app.post('/profile1', function(req,res){
     }
   })
 })
-
-// this function used to get all the tickects for user using id
-app.get('/ticket', function(req,res){
-  db.getUserTickets(req.user,function(err,result){
+// this function used to get data for user email
+app.post('/profile2', function(req,res){
+  db.getUserDataEmail(req.body.email,function(err,result){
     if(err){
+      console.log("server error", err)
       res.send({
         status:404,
-        success:error 
-
+        success:err
       })
-      console.log("server error", err)
     }else{
       res.send({
         status:200,
@@ -103,6 +101,7 @@ app.get('/ticket', function(req,res){
     }
   })
 })
+
 // this function is used to update data for user using id
 app.put('/profile', function(req,res){
   console.log(" ddddddd",req.user)
@@ -114,6 +113,22 @@ app.put('/profile', function(req,res){
         status:200,
         success:result
       
+      })
+    }
+  })
+})
+
+  // this request used to get all tickets for user using id 
+app.get('/ticket1', function(req,res){
+  console.log(" lllllllll",req.user)
+  db.getUserTickets(req.user,function(err,result){
+    if(err){
+      console.log("server error", err)
+    }else{
+      res.send({
+        status:200,
+        success:result
+
       })
     }
   })
@@ -211,7 +226,35 @@ app.post('/sign-up', function (req, res) {
     }
   })
 })
+// add fake user 
+app.post('/sign-up-fake', function (req, res) {
+  console.log(req.body)
+  // orderthe data in the same way it sabous to be 
+  var user = {
+    "firstName": req.body.firstName,
+    "lastName": req.body.lastName,
+    "email": req.body.email,
+    "password": req.body.password,
+    "organization": req.body.organizationName,
+    "phoneNumber": req.body.phoneNumber,
+  }
 
+
+  db.insertNewUser(user, function (err, result) {
+    if (err) {
+      console.log(err)
+    } else {
+    
+        user.id = result.insertId // add the id to the object user and send it to the front end //this way is esyer to know the user id 
+        res.send({
+          status: 200,
+          success: "Successed!",
+          data: user
+        });
+     
+    }
+  })
+})
 ////////////////////////////////////////////////////////////////
 
 //post function to sign in 
@@ -262,7 +305,7 @@ app.get('/log-out', function (req, res) {
     success: `user ${x} is log out `
   })
 })
-// function for search give it name of org and it return all queue for this org 
+// function for serch give it name of org and it return all queue for this org 
 app.post('/search',function(req,res){
   console.log('nnnnn',req.body)
   db.search(req.body.org , function(err,result){
@@ -308,6 +351,31 @@ app.post('/add-userto-queue',function(req,res){
   })
 })
 
+//////////////////////////////////////////////////////////
+//function to insert user in serten queue useng the kiosk machen
+
+
+app.post('/add-userto-queue1',function(req,res){
+  db.insertinUserQueue(req.body.user_id,req.body.queue_id,"i joind from kiosk", function(err,result){
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
 //////////////////////////////////////////////////////////
 //function to insert user in serten queue
 //give it the queue id and notes

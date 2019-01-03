@@ -281,6 +281,23 @@ const getUserTickets = function (id, callback) {
 }
 
 
+
+
+// this function used to get data for user using id
+const getUserDataEmail = function (email, callback) {
+  var sqlquery = `select * from user where email = '${email}'`
+
+  connection.query(sqlquery, function (err, result) {
+    if (err) {
+      console.log("db error to get data ", err)
+      callback(err, null)
+    } else {
+      console.log("db i found it (user exist )", email)
+      callback(null, result)
+    }
+  })
+}
+
 // this function is used to update data for user using id
 
 const UPDATE = function (user,id, callback){
@@ -390,5 +407,11 @@ module.exports.deletefromWaiting = deletefromWaiting;deletefromqueue
 module.exports.deletefromqueue = deletefromqueue;deletefromqueueB
 module.exports.deletefromqueueA = deletefromqueueA;
 module.exports.deletefromqueueB = deletefromqueueB;
+
 module.exports.getUserTickets = getUserTickets;
 module.exports.Delete = Delete;
+
+module.exports.getUserDataEmail = getUserDataEmail;
+module.exports.getUserTickets = getUserTickets;
+
+

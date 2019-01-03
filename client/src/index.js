@@ -39,12 +39,11 @@ class HomePage extends React.Component {
   }
 
 ReactDOM.render(<Loading/>, document.getElementById('root'));
-setTimeout(()=>{
-
+setTimeout (() => {
 ReactDOM.render(<HomePage/>, document.getElementById('root1'));
-
-},5000);
-setTimeout(()=>{
-  window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
 }, 5000)
+
+// setTimeout(()=>{
+//   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
+// }, 5000)
 
