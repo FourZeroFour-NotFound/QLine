@@ -36,7 +36,7 @@ const styles = theme => ({
   card: {
     width: "600px",
     height: "350px",
-    margin: 7,
+   
 
   },
   media: {
@@ -211,7 +211,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
     const { classes } = this.props;
     return (
       <div>
-        <Card style={styles.card}>
+        <Card className="card2">
           <CardActionArea>
           <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
                 {this.props.queue.nameOfQueeu}

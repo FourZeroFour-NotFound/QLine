@@ -35,16 +35,47 @@ html, body {
     padding: 20px;
     color: #fff;
 }
+
+/*********************Profile User************/
+
+.prof {
+  margin-top: -100px;
+  position: absolute;
+  margin-left: 1100px;
+  width: 700px;
+  height: 700px;
+}
+
+.card {
+  height: 700px;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
+}
+
+.theSearch {
+  margin-left: 30px;
+  margin-top: 100px;
+  justify-content: space-around;
+}
+
+.card2 {
+  margin-left: 100px;
+  margin-bottom: 100px;
+  box-shadow: 0px 2px 24px 0px rgba(1, 1, 1, 1);
+}
+
 /*********************Search Page User************/
 
 .search {
   width: 500px;
-  position: relative;
-  margin-top: 50px;
-  margin-left: 400px
+  height: 35px;
+  position: fixed;
+  margin-top: 350px;
+  margin-left: -220px;
+  
 }
 
 .searchTerm {
+  background: white;
   float: left;
   width: 100%;
   border: 3px solid #aa1256;
@@ -1983,6 +2014,8 @@ section {
 /*******************- HEADER -*******************/
 
 
+/***********business***************/
+
 
 .can-toggle *, .can-toggle *:before, .can-toggle *:after {
   box-sizing: border-box;
@@ -2097,6 +2130,124 @@ section {
   color: #7aeac2;
 }
 
+
+/******************user*********************/
+
+
+.can-toggle1 *, .can-toggle1 *:before, .can-toggle1 *:after {
+  box-sizing: border-box;
+}
+.can-toggle1 input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.can-toggle1{
+  margin-left: -350px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.can-toggle1 input[type="checkbox"][enabled] ~ label {
+  pointer-events: none;
+}
+.can-toggle1 input[type="checkbox"][enabled] ~ label .can-toggle1__switch1 {
+  opacity: 0.4;
+}
+.can-toggle1 input[type="checkbox"]:checked ~ label .can-toggle1__switch1:after {
+  content: attr(data-checked);
+  left: 0;
+}
+.can-toggle1 input[type="checkbox"]:checked ~ label .can-toggle1__switch1:before {
+  content: attr(data-unchecked);
+}
+.can-toggle1 label {
+  user-select: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+.can-toggle1 label .can-toggle1__switch1:after {
+  content: attr(data-unchecked);
+  position: absolute;
+  top: 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+.can-toggle1 label .can-toggle1__switch1:before {
+  content: attr(data-checked);
+  position: absolute;
+  z-index: 5;
+  text-transform: uppercase;
+  text-align: center;
+  background: #efa24a;
+  transform: translate3d(0, 0, 0);
+}
+
+.can-toggle1 input[type="checkbox"]:checked ~ label .can-toggle1__switch1:before {
+  transform: translate3d(80px, 0, 0);
+}
+
+/*adjusting width of button*/
+.can-toggle1 label .can-toggle1__switch1 {
+  height: 36px;
+  flex: 0 0 150px;
+  border-radius: 999px;
+}
+.can-toggle1 label .can-toggle1__switch1:after {
+  left: 67px;
+  font-size: 12px;
+  line-height: 36px;
+  width: 67px;
+  padding: 0 10px;
+}
+.can-toggle1 label .can-toggle1__switch1::before {
+  top: 2px;
+  left: 2px;
+  border-radius: 999px;
+  width: 65px;
+  line-height: 32px;
+  font-size: 12px;
+}
+
+.can-toggle1.demo-rebrand-2 input[type="checkbox"]:focus ~ label .can-toggle1__switch1, .can-toggle1.demo-rebrand-1 input[type="checkbox"]:hover ~ label .can-toggle__switch1 {
+  background-color: #aa1256;
+}
+
+.can-toggle1.demo-rebrand-2 input[type="checkbox"]:checked ~ label:hover {
+  color: #aa1256;
+}
+.can-toggle1.demo-rebrand-2 input[type="checkbox"]:checked ~ label .can-toggle1__switch1 {
+  background-color: #7aeac2;
+}
+.can-toggle1.demo-rebrand-2 input[type="checkbox"]:checked ~ label .can-toggle1__switch1:before {
+  color: #7aeac2;
+}
+.can-toggle1.demo-rebrand-2 input[type="checkbox"]:checked:focus ~ label .can-toggle1__switch1, .can-toggle1.demo-rebrand-2 input[type="checkbox"]:checked:hover ~ label .can-toggle1__switch1 {
+  background-color: #7aeac2;
+}
+.can-toggle1.demo-rebrand-2 input[type="checkbox"]:checked:focus ~ label .can-toggle1__switch1:before, .can-toggle1.demo-rebrand-2 input[type="checkbox"]:checked:hover ~ label .can-toggle1__switch1:before {
+  color: #7aeac2;
+}
+.can-toggle1.demo-rebrand-2 label .can-toggle1__label-text {
+  flex: 1;
+}
+.can-toggle1.demo-rebrand-2 label .can-toggle1__switch1 {
+  transition: background-color 0.3s ease-in-out;
+  background: #aa1256;
+}
+.can-toggle1.demo-rebrand-2 label .can-toggle1__switch1:after {
+  color: rgba(255, 255, 255, 0.6);
+}
+.can-toggle1.demo-rebrand-2 label .can-toggle1__switch1:before {
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  color: #aa1256;
+}
+
+
 .container {
     width: 100%;
     margin: 10px auto;
@@ -2111,6 +2262,30 @@ section {
 
   background-color: white;
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  width: 90%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: absolute;
+  animation: unfoldIn 1s cubic-bezier(0.065, 0.840, 0.440, 1.000);
+}
+
+.menu5 {
+
+  border-radius: 8px;
+  width: 90%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: absolute;
+  animation: unfoldIn 1s cubic-bezier(0.065, 0.840, 0.440, 1.000);
+}
+
+.menu6 {
+
   border-radius: 8px;
   width: 90%;
   height: 80px;

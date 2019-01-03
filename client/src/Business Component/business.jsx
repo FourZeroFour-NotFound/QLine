@@ -14,11 +14,12 @@ import {Grid} from '@material-ui/core';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import BusinessGridList from './businessGridList.jsx';
 import logo from '../style/qline.png';
-
+import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 import {Link} from 'react-router';
 import { browserHistory } from 'react-router';
-
+import businessvid from '../style/business.mp4';
 import $ from "jquery";
+import Footer from '../First Page Component/Footer.jsx';
 
 const styles = {
   root: {
@@ -98,20 +99,31 @@ export default class business extends React.Component {
     });
   }
 
+  componentDidMount () {
+    let imgBtn = document.querySelector('#d');
+
+      if (imgBtn) {
+       imgBtn.addEventListener('change', function() {
+        setTimeout(() => {window.location.href="/user"}, 1000)
+       });
+      } 
+  }
 
   render() {
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
     return (
       <div>
-         <nav className="menu"  style={{backgroundColor: "#7aeac2",marginTop: "10px", marginLeft: "50px"}}>
-                <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
-                <FormControlLabel  style={{marginTop: "-5px" , marginLeft: "-70px"}}
-            control={
-              <Button style={{backgroundColor: "#aa1256"}} href="/user" checked={auth} onChange={this.handleChange} aria-label="RoleSwitch">USER</Button>
-            }
-            label={auth ? 'Business' : 'User'}
-          />
+        <video width="100%"  style={{marginTop: "-50px"}}  autoPlay>
+                <source src={businessvid} type="video/mp4"/></video>
+         <nav className="menu6"  style={{backgroundColor: "transparent",  marginTop: "-1000px", marginLeft: "50px"}}>
+                <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
+                <Grid class="can-toggle demo-rebrand-1" style={{marginTop: "-8px", marginLeft: "50px"}}>
+                            <input id="d" type="checkbox"/>
+                                <label for="d">
+                                    <Grid class="can-toggle__switch" data-checked="USER" data-unchecked="Business"></Grid>
+                                </label>
+                          </Grid>
                 <Grid className="centerNav">
                     <ul className="centerNavMenu">
                     <li className="menuItem"><a className="itemLink">Home</a></li>
@@ -136,14 +148,16 @@ export default class business extends React.Component {
             aria-haspopup="true"
             onClick={this.handleMenu}
             color="inherit"
-            size="large" style={{ backgroundColor: "#7aeac2", marginLeft: "1500px", font: "white", marginTop: "150px", marginBottom: "50px"}} >
+            size="large" style={{ backgroundColor: "#7aeac2", marginLeft: "600px", font: "white", marginTop: "-500px", marginBottom: "50px"}} >
             + Create New Queue
             </Button>
               <BusinessGridList/>
+              <Widget/>
               </div>
         )}
         </FormGroup>
       </div>
+      <Footer/>
       </div>
     );
   }

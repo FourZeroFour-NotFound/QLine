@@ -14,13 +14,7 @@ const style = theme => ({
     backgroundColor: "#7aeac2",
   },
   roots: {
-    display: 'flex',
-    flexWrap: 'wrap',
     justifyContent: 'space-around',
-    overflow: 'hidden',
-    padding: 20,
-    marginLeft: 20,
-    marginRight: 20
   },
   gridList: {
     width: '100%',
@@ -38,7 +32,7 @@ export default class SearchResult extends React.Component {
  
   render() {
     return (
-        <div style={style.roots}>
+        <div className="theSearch">
           <GridList cols={3} style={style.gridList}>
           {this.props.queues.map((queue) => (
             <SearchQueue key = {queue} queue = {queue}/>
