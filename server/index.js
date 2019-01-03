@@ -119,6 +119,21 @@ app.put('/profile', function(req,res){
   })
 })
 
+ // this function is used to delete data from the user tickets 
+app.delete('/ticket', function(req,res){
+  console.log(" ddddddd",req.body.queue_id)
+  db.Dlete(req.body.queue.id, function(err, result){
+    if(err){
+      console.log("server error", err)
+    }else{
+      res.send({
+        status:200,
+        success:result
+      
+      })
+    }
+  })
+})
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
   console.log(req.body)
