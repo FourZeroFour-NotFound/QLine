@@ -43,13 +43,6 @@ const styles = theme => ({
   color: {
     background: '#a077a7'
   },
-  card: {
-    maxWidth: 800,
-    marginLeft: 400,
-    marginTop: 100,
-    paddingLeft: 0,
-
-  },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
@@ -200,7 +193,7 @@ class Profile extends Component {
     return (
       // navbar place
      
-      <div className={classes.root}>
+      <div className="prof">
         {/* <AppBar position="static" className={classes.color}>
           <Toolbar>
             <div position="static" className={classes.grow}>
@@ -210,7 +203,7 @@ class Profile extends Component {
           </Toolbar>
         </AppBar> */}
 
-        <Card className={classes.card}>
+        <Card className="card">
           <CardHeader
             avatar={
               <Avatar aria-label="Recipe" className={classes.avatar}>
