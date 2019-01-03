@@ -26,16 +26,16 @@ class Confirmation extends Component {
         TicketList:[],
      
       };
-      console.log("deleeeeet",this.state);
+      // console.log("deleeeeet",this.props);
     }
    
 
-    // onDelete =(queue_id) =>{
+    // onDelete =() =>{
     //   $.ajax({
     //           url: "/confirm",
     //           type : "DELETE",
     //           contentType : 'application/json',
-    //           data : JSON.stringify({'queue_id' : queue_id}),
+    //           data : JSON.stringify({'queue_id' : this.props.user_queue.queue_id}),
     //           success: function (data) {
     //             window.localStorage.setItem("DeleteInfo", data)
     //             console.log("delelte", data);
@@ -83,10 +83,10 @@ class Confirmation extends Component {
           </DialogContent>
   
           <DialogActions>
-            <Button onClick={this.onDelete} color="primary">
+            <Button onClick={this.props.onDelete} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleOk} color="primary">
+            <Button onClick={this.props.cancel} color="primary">
               Ok
             </Button>
             <Button onClick={this.handleOk} color="primary">

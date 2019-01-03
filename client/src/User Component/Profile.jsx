@@ -84,7 +84,8 @@ class Profile extends Component {
     lastName: '',
     email: '',
     phoneNumber: '',
-    TicketList:[],
+    
+      TicketList:[],
     expanded: false,
     open: false,
     open1: false
@@ -186,6 +187,31 @@ class Profile extends Component {
 
 
   }
+
+
+ 
+        onDelete =(queue_id) =>{
+          $.ajax({
+                  url: "/confirm",
+                  type : "DELETE",
+                  contentType : 'application/json',
+                  data : JSON.stringify({'queue_id' :this.state.TicketList.queue_id}),
+                  success: function (data) {
+                    window.localStorage.setItem("DeleteInfo", data)
+                    console.log("delelte", data);
+                  console.log("deleeeeet",this.props.ticket);
+    
+                  },
+                  error: function (error) {
+                    console.error("dont delete", error);
+                  }
+              });
+     console.log("deleeeeet",this.props);
+
+        }
+     
+        
+ 
 
   render() {
     const { classes } = this.props;
@@ -318,6 +344,7 @@ class Profile extends Component {
                   open={this.state.open1}
                   onClose={this.handleClose}
                   cancel={this.handleClickListItem.bind(this)}
+                  onDelete={this.onDelete.bind(this)}
                 />
               </List>
             </CardContent>
