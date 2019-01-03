@@ -17,7 +17,7 @@ import SearchResult from './SearchResult.jsx';
 import Profile from './Profile.jsx'
 import uservideo from '../style/user.mp4';
 import Footer from '../First Page Component/Footer.jsx';
-
+import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 
 
 const styles = () => ({
@@ -127,6 +127,7 @@ class User extends Component {
                           <Grid style = {{height: "1000px"}}>
                           <SearchResult  queues = {this.state.searchResult}/>   
                           </Grid>
+                          <Widget/>
                           <Footer/>
              </div>
     );
