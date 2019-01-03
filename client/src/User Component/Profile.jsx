@@ -203,7 +203,7 @@ class Profile extends Component {
           </Toolbar>
         </AppBar> */}
 
-        <Card className="card">
+        <Card className="card33">
           <CardHeader
             avatar={
               <Avatar aria-label="Recipe" className={classes.avatar}>

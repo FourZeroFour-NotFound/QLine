@@ -31,7 +31,7 @@ html, body {
     width: 600px;
     height: 500px;
     margin-left: 150px;
-    margin-top: -400px;
+    margin-top: -500px;
     padding: 20px;
     color: #fff;
 }
@@ -46,7 +46,7 @@ html, body {
   height: 700px;
 }
 
-.card {
+.card33 {
   height: 700px;
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
 }
