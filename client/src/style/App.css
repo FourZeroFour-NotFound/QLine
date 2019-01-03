@@ -39,7 +39,7 @@ html, body {
 /*********************Profile User************/
 
 .prof {
-  margin-top: -200px;
+  margin-top: -100px;
   position: absolute;
   margin-left: 1100px;
   width: 700px;
@@ -53,7 +53,7 @@ html, body {
 
 .theSearch {
   margin-left: 30px;
-  margin-top: 50px;
+  margin-top: 100px;
   justify-content: space-around;
 }
 
@@ -69,7 +69,7 @@ html, body {
   width: 500px;
   height: 35px;
   position: fixed;
-  margin-top: 300px;
+  margin-top: 350px;
   margin-left: -220px;
   
 }
@@ -2273,6 +2273,18 @@ section {
 }
 
 .menu5 {
+
+  border-radius: 8px;
+  width: 90%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: absolute;
+  animation: unfoldIn 1s cubic-bezier(0.065, 0.840, 0.440, 1.000);
+}
+
+.menu6 {
 
   border-radius: 8px;
   width: 90%;
