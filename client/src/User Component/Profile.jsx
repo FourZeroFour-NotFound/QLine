@@ -18,7 +18,6 @@ import red from '@material-ui/core/colors/red';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Grid from '@material-ui/core/Grid';
 import '../style/App.css';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import classnames from 'classnames';
@@ -174,7 +173,7 @@ class Profile extends Component {
     });
     // this request used to get all tickets for user using id  
     $.ajax({
-      url: "/ticket",
+      url: "/ticket1",
       type: "Get",
       success: function (data) {
         console.log("tttttt", data.success)
@@ -194,15 +193,14 @@ class Profile extends Component {
       // navbar place
      
       <div className="prof">
-        {/* <AppBar position="static" className={classes.color}>
+        <AppBar position="static" className={classes.color}>
           <Toolbar>
             <div position="static" className={classes.grow}>
               <img src={logo} width="122px" height="62px" style={{ marginTop: "10px", marginLeft: "-20px" }} />
             </div>
-            <Button color="inherit" href="/">Log Out</Button>
+            <Button color="inherit" href="/user">Log Out</Button>
           </Toolbar>
-        </AppBar> */}
-
+        </AppBar>
         <Card className="card33">
           <CardHeader
             avatar={
@@ -215,8 +213,8 @@ class Profile extends Component {
 
           />
           <CardMedia
-            // className={classes.media}
-            // image="http://lorempixel.com/200/200/people/9/"
+            className={classes.media}
+            image="http://lorempixel.com/200/200/people/9/"
 
           />
           <CardContent>
@@ -287,7 +285,7 @@ class Profile extends Component {
            
             <IconButton
               className={classnames(classes.expand, {
-                // [classes.expandOpen]: this.state.expanded,
+                //  [classes.expandOpen]: this.state.expanded,
               })}
               onClick={this.handleExpandClick}
               aria-label="Show more"
