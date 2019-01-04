@@ -451,7 +451,7 @@ module.exports.deletefromqueueA = deletefromqueueA;
 module.exports.deletefromqueueB = deletefromqueueB;
 
 module.exports.getUserTickets = getUserTickets;
-module.exports.Delete = Delete;
+
 
 module.exports.getUserDataEmail = getUserDataEmail;
 module.exports.getUserTickets = getUserTickets;
