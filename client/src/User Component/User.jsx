@@ -51,7 +51,7 @@ class User extends Component {
     this.setState({ anchorEl: null });
   };
 
-  handleSearch = () => {
+  handleSearch = () => { 
      var that= this;
     $.ajax({
       url: "/search",
@@ -61,7 +61,7 @@ class User extends Component {
         that.setState({
           searchResult:data.success
         })
-        console.log("kkkk",  that.state.searchResult)
+        console.log("searchresult",  that.state.searchResult)
       }
     });
   }
@@ -76,6 +76,14 @@ class User extends Component {
       } 
   }
 
+  componentWillMount () {
+    $(function() {
+      $('.searchQueue').click (function() {
+        $('html, body').animate({scrollTop: $('.search').offset().top }, 'slow');
+        return false;
+      });
+    });
+  }
 
   render() {
 
@@ -85,46 +93,41 @@ class User extends Component {
 
     return (
             <div>
-               <video width="100%"  style={{marginTop: "-50px"}}  autoPlay>
-                <source src={uservideo} type="video/mp4"/></video>
-              <nav className="menu5" style={{backgroundColor: "transparent",  marginTop: "-1000px", marginLeft: "50px"}}>
-                        <img src={logo} width="122px" height="62px" style={{marginTop: "15px", marginLeft: "-20px"}}/>
-                        <Grid>
-                          <Grid class="can-toggle1 demo-rebrand-2" style={{marginTop: "-5px", marginLeft: "50px"}}>
-                            <input id="d" type="checkbox"/>
-                                <label for="d" id="y">
-                                    <Grid class="can-toggle1__switch1" data-checked="USER" data-unchecked="Business"></Grid>
-                                </label>
-                          </Grid>
-                        </Grid>
-                        <Grid className="centerNav">
-                            <ul className="centerNavMenu">
-                            <li className="menuItem"><a className="itemLink">Home</a></li>
-                            <li className="menuItem"><a className="itemLink">Features</a></li>
-                            <li className="menuItem"><a className="itemLink">Contact Us</a></li>
-                            </ul>
+                  <video width="100%"  style={{marginTop: "-60px"}}  autoPlay>
+                  <source src={uservideo} type="video/mp4"/></video>
+                       <nav className="menu5"  style={{backgroundColor: "transparent",  marginTop: "-1000px", marginLeft: "50px"}}>
+                            <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
+                            <Grid class="can-toggle1 demo-rebrand-2" style={{marginTop: "-8px", marginLeft: "50px"}}>
+                                        <input id="d" type="checkbox"/>
+                                            <label for="d">
+                                                <Grid class="can-toggle1__switch1" data-checked="USER" data-unchecked="Business"></Grid>
+                                            </label>
+                                      </Grid>
+                            <Grid className="centerNav">
+                                <ul className="centerNavMenu">
+                                <li className="menuItem"><a className="itemLink">Home</a></li>
+                                <li className="menuItem"><a className="itemLink">Features</a></li>
+                                <li className="menuItem"><a className="itemLink">Contact Us</a></li>
+                                
+                                </ul>
                             </Grid>
                             <Grid className="menu__right">
                                 <ul className="menu__list">
-                              <Button href="/profile" color="inherit" style={{width: "70px", marginRight: "10px"}}>
-                                <AccountCircle />
-                                </Button>
-                                <li className="menu__list-item"><Link to ="/" class="menu__link">Logout</Link></li>
+                                <li class="menu__list-item"><a  class="menu__link" href="/">Logout</a></li>
                                 </ul>
                             </Grid>
                         </nav>
                         <div class="wrap">
-                        
-                      
+                        <Button className="searchQueue" style={{backgroundColor: "#aa1256", marginLeft:"-450px", marginTop:"650px"}}>SEARCH QUEUE</Button>
                           <div class="search">
                               <input  onChange={e => {this.setState({value:e.target.value})}} type="text" class="searchTerm"  placeholder="Search..."/>
-                              <button  onClick={this.handleSearch}type="submit" class="searchButton">
+                              <button  onClick={this.handleSearch} type="submit" className="searchButton">
                                 <i class="fa fa-search"></i>
                             </button>
                           </div>
                         </div>
-                          <Grid style = {{height: "1000px"}}>
-                          <SearchResult  queues = {this.state.searchResult}/>   
+                          <Grid className="searchdesign" style = {{height: "1000px"}}>
+                          <SearchResult queues = {this.state.searchResult}/>   
                           </Grid>
                           <Widget/>
                           <Footer/>
@@ -132,6 +135,8 @@ class User extends Component {
     );
   }
 }
+
+
 User.propTypes = {
   classes: PropTypes.object.isRequired,
 };

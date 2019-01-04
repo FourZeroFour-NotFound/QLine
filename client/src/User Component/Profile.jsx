@@ -324,7 +324,7 @@ class Profile extends Component {
               <h2>Ticket List:</h2>
               <List>
 
-       {this.state.TicketList.map((ticket) => (
+              {this.state.TicketList.map((ticket) => (
              <ListItem key = {ticket.nameOfQueeu} ticket = {ticket.nameOfQueeu}
                   button
                   divider

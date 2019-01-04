@@ -53,7 +53,7 @@ html, body {
 
 .theSearch {
   margin-left: 30px;
-  margin-top: 100px;
+  margin-top: 300px;
   justify-content: space-around;
 }
 
@@ -63,14 +63,19 @@ html, body {
   box-shadow: 0px 2px 24px 0px rgba(1, 1, 1, 1);
 }
 
+.searchdesign {
+  background-image: url(../style/flat.png)
+}
+
+
 /*********************Search Page User************/
 
 .search {
   width: 500px;
   height: 35px;
   position: fixed;
-  margin-top: 350px;
-  margin-left: -220px;
+  margin-top: 1150px;
+  margin-left: 20px;
   
 }
 
@@ -168,7 +173,7 @@ html, body {
 /*******************- FlipInfo Page -*******************/
 .allflip{
   width: 100%;
-  margin-top: -207px;
+  margin-top: -150px;
 }
 .scene {
   width: 25%;
