@@ -21,13 +21,17 @@ import logo from '../style/qline.png';
 import UsersInQueue from './usersInQueue.jsx';
 import Barcode from 'react-barcode';
 import TextField from '@material-ui/core/TextField';
-
-
+import GridList from '@material-ui/core/GridList';
+import BusinessQueue from './businessQueue.jsx';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const style = theme => ({
   root: {
@@ -82,16 +86,35 @@ export default class BusinessDashBord extends React.Component {
     this.state = {
       value: 0,
       allusers:[],
-      allusersinqueue :[],
+      allusersinqueue :[{},{},{},{},{},{},{}],
       email: "",
       newsername: "",
-      emailnew:""
+      emailnew:"",
+      queueDetalse:{},
+      arr: [{id:"louding..."},{id:"louding..."},{id:"louding..."},{id:"louding..."},{id:"louding..."},{id:"louding..."},{}],
     };
   }
 componentDidMount(match){
 
-  
-  console.log('sdsdsd', this.props.params.queue_id)
+  setInterval(() => {
+    $.ajax({
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.params.queue_id,
+      }),
+      success: (data) => {
+
+        this.setState({
+          allusersinqueue: data.success
+        })
+
+      }
+    })
+  }, 3000);
+
+ 
   setInterval(()=>{
   $.ajax({
     url: '/get-users-in-waitingList',
@@ -101,31 +124,15 @@ componentDidMount(match){
       queueid: this.props.params.queue_id,
     }),
     success: (data) => {
-      console.log(data)
+     
   this.setState({
     allusers: data.data
   })
  
     }
-  })  },5000);
+  })  },3000);
 
 
-  setInterval(()=>{
-    $.ajax({
-      url: '/get-users-in-queue',
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify({
-        queueid: this.props.params.queue_id,
-      }),
-      success: (data) => {
-        console.log(data)
-    this.setState({
-      allusersinqueue: data.success
-    })
-    console.log(this.state.allusersinqueue)
-      }
-    })  },5000);
   
 }
 addme=() => {
@@ -162,7 +169,62 @@ addme=() => {
 }
 });
 }
+start = ()=>{
+  setInterval(() => {
+    $.ajax({
+      url: '/queue-data',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queue_id: this.props.params.queue_id,
+      }),
+      success: (data) => {
 
+        this.setState({
+          queueDetalse: data.success[0]
+        })
+       
+        var arrr = []
+        for (var i = 0; i < this.state.allusersinqueue.length; i++) {
+          arrr[this.state.allusersinqueue[i].onwindow] = this.state.allusersinqueue[i]
+        }
+
+        arrr.splice(0, 1)
+     
+        if (arrr.length == 0 ){
+          if ( this.state.allusersinqueue.length == 0 ){
+            alert("no one in the queue")
+          }else{
+          for (var i = 0 ; i<this.state.queueDetalse.windows  ; i++){
+            $.ajax({
+              url: '/UPDATEtickt',
+              type: 'POST',
+              contentType: 'application/json',
+              data: JSON.stringify({
+                id: this.state.allusersinqueue[i].id,
+                counter: i+1
+              }),
+              success: (data) => {
+               
+
+              }
+            })
+            
+          }}
+        }
+
+        if (arrr.length == 0 ){
+          arrr= [{id:"no users in this queue"}]
+          
+        }
+        this.setState({ arr: arrr })
+
+
+      }
+    })
+
+  }, 3000);
+}
 addnewuser = ()=>{
 console.log(this.state.newsername)
 if (this.state.newsername == "" || this.state.emailnew == ""  ){
@@ -224,6 +286,46 @@ $.ajax({
   }
 
   render() {
+   var next = (x ,y)=>{
+      console.log(x ,y)
+    //x is i 
+// y is the ticket i want to delete
+ // this.state.allusersinqueue[this.state.queueDetalse.windows]
+if (this.state.allusersinqueue[this.state.queueDetalse.windows] == undefined){
+  alert("no more customer in the Queue")
+}else{
+      $.ajax({
+        url: '/UPDATEtickt',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          id: this.state.allusersinqueue[this.state.queueDetalse.windows].id,
+          counter: x+1
+        }),
+        success: (data) => {
+
+      
+
+        }
+      }).then(  
+          $.ajax({
+        url: '/deleteTickt',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          id: y.id ,
+          
+        }),
+        success: (data) => {
+         
+
+        }
+      }))
+    }
+    }
+var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] ){return this.state.allusersinqueue[this.state.arr.length ].id } else{return "no more"}}
+ 
+    var estmatedTime = ()=>{ if ( Math.floor(this.state.allusersinqueue.length/this.state.queueDetalse.windows)* Number(this.state.queueDetalse.timeforone) < this.state.queueDetalse.timeforone){return 0}else{return Math.floor(this.state.allusersinqueue.length/this.state.queueDetalse.windows)* Number(this.state.queueDetalse.timeforone) }}
     const { value } = this.state;
     return (
       <div>
@@ -251,13 +353,36 @@ $.ajax({
         </Tabs>
       </Paper>
       {value === 0 && <TabContainer>
-
-
+        <h1 style={ {lineHeight: 1.5,}} >Customers in waiting : {this.state.allusersinqueue.length - this.state.queueDetalse.windows }</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Upcoming ticket  : { nextTickit ()}</h1>
+        <GridList cols={1} style={style.gridList}>
+          {this.state.arr.map((queue ,i) => (
+           <Card style={{margin : 5 ,}} >
+           <CardActionArea>
+           <Typography gutterBottom variant="h5" component="h2" style={{color:"black", backgroundColor:"#e54d27"}}>
+               <h2>counter : {i +1} </h2>
+               </Typography>
+             <CardContent>
+             <CardMedia />
+               <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
+               <h2> tickit number :{this.state.arr[i].id} </h2>
+               
+               
+               </Typography>
+             </CardContent>
+           </CardActionArea>
+           <CardActions>
+           </CardActions>
+         </Card>
+          ))}
+          </GridList>
 
         
       </TabContainer>}
       {value === 1 && <TabContainer>
-        <h1 style={ {lineHeight: 1.5,}} >Custmers in queue now : {this.state.allusersinqueue.length}</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Custmers in queue now : {this.state.allusersinqueue.length  - this.state.queueDetalse.windows}</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Custmers on counter : {this.state.queueDetalse.windows}</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Estimated time until your turn  :  { estmatedTime() } m</h1>
         <h2 style={ {lineHeight: 1.5,}} >Choose what suits u :</h2>
         <div >
       <ExpansionPanel>
@@ -307,9 +432,38 @@ $.ajax({
     </div>
         
        </TabContainer>}
-      {value === 2 && <TabContainer>Item Three</TabContainer>}
+      {value === 2 && <TabContainer>
+        <h1 style={ {lineHeight: 1.5,}} >unserved customers : {this.state.allusersinqueue.length - this.state.queueDetalse.windows}</h1>
+        <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" onClick={this.start}  color="primary" type="submit">
+                            start 
+                            </Button>
+        <GridList cols={1} style={style.gridList}>
+          {this.state.arr.map((queue ,i) => (
+           <Card style={{margin : 20 ,}} >
+           <CardActionArea>
+           <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
+               <h2>counter : {i +1} </h2>
+               </Typography>
+             <CardContent>
+             <CardMedia />
+               <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
+               <h2> tickit number   :{this.state.arr[i].id} </h2>
+               <h2> user notes  : {this.state.arr[i].Notes} </h2>
+               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" onClick={()=>{next(i,this.state.arr[i] )}}  color="primary" type="submit">
+                              next custumer >>
+                            </Button>
+               </Typography>
+             </CardContent>
+           </CardActionArea>
+           <CardActions>
+           </CardActions>
+         </Card>
+          ))}
+          </GridList>
+
+      </TabContainer>}
       {value === 3 && <TabContainer>
-        <h1 style={{margin : "20px"}}> clent in waiting list: { this.state.allusers.length }</h1>
+        <h1 style={{margin : "20px"}}> client in waiting list: { this.state.allusers.length }</h1>
         <UsersInQueue  users = { this.state.allusers}/>
         
       </TabContainer>}
