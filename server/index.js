@@ -157,15 +157,16 @@ app.get('/ticket1', function(req,res){
 })
 
  // this function is used to delete data from the user tickets 
-app.delete('/ticket', function(req,res){
-  console.log(" ddddddd",req.body.queue_id)
-  db.Dlete(req.body.queue.id, function(err, result){
+app.delete( '/confirm/:queue_id', function(req,res){
+  console.log(" ddddddd",req.params.queue_id)
+  db.DeleteTicket(req.params.queue_id, function(err, result){
     if(err){
       console.log("server error", err)
     }else{
       res.send({
         status:200,
         success:result
+        // type:"Delete"
       
       })
     }

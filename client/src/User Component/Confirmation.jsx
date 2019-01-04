@@ -23,7 +23,7 @@ class Confirmation extends Component {
       super();
       this.state = {
         value: props.value,
-        TicketList:[],
+      
      
       };
       // console.log("deleeeeet",this.props);
@@ -83,7 +83,7 @@ class Confirmation extends Component {
           </DialogContent>
   
           <DialogActions>
-            <Button onClick={this.props.onDelete} color="primary">
+            <Button onClick={(x)=> this.props.onDelete(x)} color="primary">
               Cancel
             </Button>
             <Button onClick={this.props.cancel} color="primary">
