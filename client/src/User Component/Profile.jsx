@@ -188,7 +188,7 @@ class Profile extends Component {
 
   }
 
-
+// this function used to delete items from ticket list in profile by using queue_id 
  
         onDelete =(queue_id) =>{
           console.log("deleeeeet",queue_id);
@@ -201,7 +201,6 @@ class Profile extends Component {
                   success: function (data) {
                     window.localStorage.setItem("DeleteInfo", data)
                     console.log("delelte", data);
-                  // console.log("deleeeeet",this.props.ticket);
     
                   },
                   error: function (error) {
@@ -242,7 +241,8 @@ class Profile extends Component {
           />
           <CardMedia
             className={classes.media}
-            image="http://lorempixel.com/200/200/people/9/"
+            //image="https://previews.123rf.com/images/epic22/epic221603/epic22160300029/55638804-abstract-vector-logo-design-template-creative-3d-concept-icon-letter-q-stylization.jpg"
+         image="https://i.pinimg.com/originals/5c/e9/11/5ce9118d3ba22ad7b39b602d48296973.jpg"
 
           />
           <CardContent>
