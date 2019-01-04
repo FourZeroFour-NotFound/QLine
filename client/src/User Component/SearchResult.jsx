@@ -33,7 +33,7 @@ export default class SearchResult extends React.Component {
   render() {
     return (
         <div className="theSearch">
-          <GridList cols={3} style={style.gridList}>
+          <GridList cols={2} style={style.gridList}>
           {this.props.queues.map((queue) => (
             <SearchQueue key = {queue} queue = {queue}/>
           ))}

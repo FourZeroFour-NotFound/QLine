@@ -58,12 +58,9 @@ class App extends Component {
       this.setState({
         loading: !this.state.loading
       })
-    }, 5000)
+    }, 3000)
   }
 
-
-  
-  
   toggleSignup = () => {
     this.setState({
       isOpenSignUp: !this.state.isOpenSignUp,

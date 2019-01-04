@@ -23,7 +23,6 @@ class PopLogIn extends React.Component {
   }
 
   handleChange(e) {
-    const email = this.state.email;
     let target = e.target;
     this.setState({ [target.name]: target.value });
 
@@ -81,7 +80,7 @@ class PopLogIn extends React.Component {
         password : this.state.password
       }),
       success: (res) => {
-        console.log("Welcome, Nice to see you again!")
+        console.log("Welcome, Nice to see you again!", res)
           // redirect to main page
           setTimeout ( () => {
             browserHistory.push({

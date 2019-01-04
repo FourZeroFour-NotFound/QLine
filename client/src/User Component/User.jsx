@@ -17,7 +17,7 @@ import SearchResult from './SearchResult.jsx';
 import uservideo from '../style/user.mp4';
 import Footer from '../First Page Component/Footer.jsx';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
-
+import CardFloat from './cardFloat.jsx';
 
 const styles = () => ({
 
@@ -40,6 +40,9 @@ class User extends Component {
     anchorEl: null,
     value:"",
     searchResult:[],
+    firstName: "",
+    lastName: "",
+    email: ""
   };
 
   handleChange = event => {
@@ -68,29 +71,39 @@ class User extends Component {
 
   componentDidMount () {
     let imgBtn = document.querySelector('#d');
-
+    let that = this;
       if (imgBtn) {
        imgBtn.addEventListener('change', function() {
         setTimeout(() => {window.location.href="/business"}, 1000)
        });
       } 
+      $.ajax({
+        url: "/profile",
+        type: "Get",
+        success: function (data) {
+          console.log(data)
+          that.setState({
+            firstName: data.success[0].firstName,
+            lastName: data.success[0].lastName,
+            email: data.success[0].email,
+          })
+        }
+      });
   }
 
   componentWillMount () {
     $(function() {
       $('.searchQueue').click (function() {
-        $('html, body').animate({scrollTop: $('.search').offset().top }, 'slow');
+        $('html, body').animate({scrollTop: $('.cool').offset().top }, 'slow');
         return false;
       });
     });
   }
 
+
+
   render() {
-
-
     const { auth } = this.state;
-  
-
     return (
             <div>
                   <video width="100%"  style={{marginTop: "-60px"}}  autoPlay>
@@ -117,20 +130,33 @@ class User extends Component {
                                 </ul>
                             </Grid>
                         </nav>
-                        <div class="wrap">
-                        <Button className="searchQueue" style={{backgroundColor: "#aa1256", marginLeft:"-450px", marginTop:"650px"}}>SEARCH QUEUE</Button>
-                          <div class="search">
-                              <input  onChange={e => {this.setState({value:e.target.value})}} type="text" class="searchTerm"  placeholder="Search..."/>
-                              <button  onClick={this.handleSearch} type="submit" className="searchButton">
-                                <i class="fa fa-search"></i>
-                            </button>
+                        <div className="cool">
+                            <Button className="searchQueue" style={{backgroundColor: "#aa1256", marginTop: "-600px", marginLeft: "600px"}}>SEARCH QUEUE</Button>
+                                <div  style={{background: "#aa1256", marginTop: "-15px", height: "300px"}}>
+                                
+                                  <div class="search">
+                                      <input  onChange={e => {this.setState({value:e.target.value})}} type="text" class="searchTerm"  placeholder="Search..."/>
+                                      <button  onClick={this.handleSearch} type="submit" className="searchButton">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                    <a href="#" style={{color: "black"}} hover={{color: "#7aeac2"}}><i  style={{ marginTop: "40px", marginLeft: "1500px"}} class="fa fa-facebook"></i></a>
+                                    <a href="#" style={{color: "black"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}} class="fa fa-twitter"></i></a>
+                                    <a href="#" style={{color: "black"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}} class="fa fa-linkedin"></i></a>
+                                    <a href="/profile" style={{color: "black"}}><AccountCircle  style={{marginLeft: "60px", marginBottom: "-5px"}}/></a>
+                                
+                                <CardFloat/>
+                                
+                              </div>
+                              <h1 className="displayName">{this.state.firstName}</h1>
+                              <h1 className="displaylastName">{this.state.lastName}</h1>
+                              <h3 className="displaylastName">{this.state.email}</h3>
+                              <Grid className="searchdesign" style = {{height: "800px",marginTop:"-150px", marginLeft: "500px"}}>
+                              <SearchResult queues = {this.state.searchResult}/>   
+                              </Grid>
+                              <Widget/>
                           </div>
-                        </div>
-                          <Grid className="searchdesign" style = {{height: "1000px"}}>
-                          <SearchResult queues = {this.state.searchResult}/>   
-                          </Grid>
-                          <Widget/>
-                          <Footer/>
+                      <Footer/>
              </div>
     );
   }
