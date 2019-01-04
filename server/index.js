@@ -53,6 +53,28 @@ app.get('/all_queue',function(req,res){
     
   })
 })
+
+// git function to bring all the queuefor one user using his id 
+//dose not take any thing just the user id from his req
+app.post('/queue-data',function(req,res){
+  db.grtQueueUsingId(req.body.queue_id , function(err,result){
+    if (err){
+      res.send({
+        status: 404,
+        success: result,
+       
+      });
+      console.log("server error giting data " , err)
+    }else{
+      res.send({
+        status: 200,
+        success: result,
+       
+      });
+    }
+    
+  })
+})
 // this function used to get data for user using id
 app.get('/profile', function(req,res){
   console.log(" lllllllll",req.user)
@@ -135,15 +157,16 @@ app.get('/ticket1', function(req,res){
 })
 
  // this function is used to delete data from the user tickets 
-app.delete('/ticket', function(req,res){
-  console.log(" ddddddd",req.body.queue_id)
-  db.Dlete(req.body.queue.id, function(err, result){
+app.delete( '/confirm/:queue_id', function(req,res){
+  console.log(" ddddddd",req.params.queue_id)
+  db.DeleteTicket(req.params.queue_id, function(err, result){
     if(err){
       console.log("server error", err)
     }else{
       res.send({
         status:200,
         success:result
+        // type:"Delete"
       
       })
     }
@@ -487,7 +510,62 @@ app.post('/deletequeueA',function(req,res){
     
   })
 })
+/////////////////////////////////////////////////////////
+//function to delet from waiting lest 
 
+
+
+app.post('/UPDATEtickt',function(req,res){
+  db.UPDATEtickt(req.body.id,req.body.counter ,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+
+
+/////////////////////////////////////////////////////////
+//function to delet from waiting lest 
+
+
+
+app.post('/deleteTickt',function(req,res){
+  db.deleteTickt(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
 /////////////////////////////////////////////////////////
 //function to delet from waiting lest 
 

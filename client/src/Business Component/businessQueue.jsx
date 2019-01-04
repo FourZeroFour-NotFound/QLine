@@ -45,7 +45,8 @@ export default class BusinessQueue extends React.Component {
     this.state = {
       auth: true,
       anchorEl: null,
-      allusers:[]
+      allusers:[],
+      allusersinqueue :[]
     }
   }
 
@@ -70,6 +71,22 @@ export default class BusinessQueue extends React.Component {
     });
   
     
+
+    $.ajax({
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.queue.queue_id,
+      }),
+      success: (data) => {
+
+        this.setState({
+          allusersinqueue: data.success
+        })
+
+      }
+    })
 
     }
 
@@ -135,11 +152,13 @@ export default class BusinessQueue extends React.Component {
               image={this.props.queue.imgUrl}
             />
               <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
+              {"custumers in queue now  :  " + this.state.allusersinqueue.length}<br />
                 {"Start Time :  " + this.props.queue.start_time.split(":00.")[0]}<br />
                 {"End Time :  " + this.props.queue.end_time.split(":00.")[0]}<br />
                 {"Date :  " + this.props.queue.date.split("T")[0]}<br />
                 {"The time for each customer :  " + this.props.queue.timeforone}<br />
                 {"Number of windows :  " + this.props.queue.windows}<br />
+                
                 {/* {"Premium permission :  " + acept(this.props.queue.take_premum)}<br /> */}
                 {"Accept customers :  " + acept(this.props.queue.accept_join) }<br />
                 {"The requirements for attending this queue :  " + this.props.queue.requierment}<br />
