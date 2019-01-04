@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+@import url('https://fonts.googleasearchom/css?family=Roboto:300,400,700');
 
 * {
     box-sizing: border-box;
@@ -31,7 +31,7 @@ html, body {
     width: 600px;
     height: 500px;
     margin-left: 150px;
-    margin-top: -400px;
+    margin-top: -500px;
     padding: 20px;
     color: #fff;
 }
@@ -46,31 +46,82 @@ html, body {
   height: 700px;
 }
 
-.card {
+.card33 {
   height: 700px;
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
 }
 
 .theSearch {
   margin-left: 30px;
-  margin-top: 100px;
+  margin-top: 300px;
   justify-content: space-around;
 }
+
 
 .card2 {
   margin-left: 100px;
   margin-bottom: 100px;
   box-shadow: 0px 2px 24px 0px rgba(1, 1, 1, 1);
+  animation: bounceIn1 1s;
+  transform: rotate(0deg) scale(1) translateZ(0);
+  transition: all 0.4s cubic-bezier(.8,1.8,.75,.75);
 }
 
-/*********************Search Page User************/
+@keyframes bounceIn1 {
+  0% {
+    opacity: 1;
+    transform: scale(.3);
+  } 
 
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  } 
+
+  70% {
+    opacity: 1;
+    transform: scale(.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cool {
+  margin-top: -10px;
+  margin-bottom: -50px;
+  background-image: url(../style/1511.jpg);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.floatcard {
+  margin-top: -450px;
+  margin-left: 100px;
+  max-width: 350px;
+  height: 700px;
+  box-shadow: 120px 2px 24px 10px rgba(5, 5, 5, 1.15);
+}
+
+
+/*********************Search Page User************/
+.displayName{
+  margin-left: 500px;
+  margin-top: -150px;
+}
+
+.displaylastName{
+  margin-left: 500px;
+}
 .search {
   width: 500px;
-  height: 35px;
-  position: fixed;
-  margin-top: 350px;
-  margin-left: -220px;
+  height: 30px;
+  margin-left: 900px;
+  margin-top: 270px;
+  position: absolute;
   
 }
 
@@ -84,6 +135,7 @@ html, body {
   border-radius: 5px;
   outline: none;
   color: #9DBFAF;
+  box-shadow: 0px 2px 24px 0px rgba(5, 5, 5, 1.15);
 }
 
 .searchTerm:focus{
@@ -168,7 +220,7 @@ html, body {
 /*******************- FlipInfo Page -*******************/
 .allflip{
   width: 100%;
-  margin-top: -207px;
+  margin-top: -150px;
 }
 .scene {
   width: 25%;
@@ -2011,7 +2063,7 @@ section {
   }
 }
 
-/*******************- HEADER -*******************/
+/*******************- HEADER toggle button -*******************/
 
 
 /***********business***************/
@@ -2795,6 +2847,9 @@ input {
 
   /**********************Footer*************************/
 
+  .lastFooter {
+    margin-bottom: -20px;
+  }
   .media3 {
     margin-top: -50px;
     margin-left: -5px;

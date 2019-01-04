@@ -224,11 +224,10 @@ class Profile extends Component {
             <div position="static" className={classes.grow}>
               <img src={logo} width="122px" height="62px" style={{ marginTop: "10px", marginLeft: "-20px" }} />
             </div>
-            <Button color="inherit" href="/">Log Out</Button>
+            <Button color="inherit" href="/user">Log Out</Button>
           </Toolbar>
         </AppBar>
-
-        <Card className="profile">
+        <Card className="card33">
           <CardHeader
             avatar={
               <Avatar aria-label="Recipe" className={classes.avatar}>
@@ -326,7 +325,7 @@ class Profile extends Component {
               <h2>Ticket List:</h2>
               <List>
 
-       {this.state.TicketList.map((ticket) => (
+              {this.state.TicketList.map((ticket) => (
              <ListItem key = {ticket.nameOfQueeu} ticket = {ticket.nameOfQueeu}
                   button
                   divider

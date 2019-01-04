@@ -28,7 +28,8 @@ class App extends Component {
     super(props);
     this.state = {
       isOpenSignUp: false,
-      isOpenSignIn: false
+      isOpenSignIn: false,
+      loading: false
     };
   }
 
@@ -53,9 +54,13 @@ class App extends Component {
 
   componentDidMount() {
     addResponseMessage("Welcome to QLine chat!");
+    setTimeout(()=> {
+      this.setState({
+        loading: !this.state.loading
+      })
+    }, 3000)
   }
-  
-  
+
   toggleSignup = () => {
     this.setState({
       isOpenSignUp: !this.state.isOpenSignUp,
@@ -71,6 +76,9 @@ class App extends Component {
   }
   render() {
     return (
+      <Grid>
+        <Loading/>
+      {this.state.loading &&
       <Grid>
       <Grid className="container center">
       <IntroPage/>
@@ -91,6 +99,7 @@ class App extends Component {
       <Footer/>
       <Login show={this.state.isOpenSignIn} onClose={this.toggleLogin}></Login>
       <SignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></SignUp>
+      </Grid>}
       </Grid>
     );
   }
