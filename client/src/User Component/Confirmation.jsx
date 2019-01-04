@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
+import $ from "jquery";
 
 
 
@@ -22,10 +23,31 @@ class Confirmation extends Component {
       super();
       this.state = {
         value: props.value,
+        TicketList:[],
      
       };
+      // console.log("deleeeeet",this.props);
     }
-  
+   
+
+    // onDelete =() =>{
+    //   $.ajax({
+    //           url: "/confirm",
+    //           type : "DELETE",
+    //           contentType : 'application/json',
+    //           data : JSON.stringify({'queue_id' : this.props.user_queue.queue_id}),
+    //           success: function (data) {
+    //             window.localStorage.setItem("DeleteInfo", data)
+    //             console.log("delelte", data);
+    //           console.log("deleeeeet",this.props.ticket);
+
+    //           },
+    //           error: function (error) {
+    //             console.error("dont delete", error);
+    //           }
+    //       });
+    // }
+   
   
     // handleCancel = () => {
     //     console.log('hiiiii',this.props)
@@ -61,10 +83,10 @@ class Confirmation extends Component {
           </DialogContent>
   
           <DialogActions>
-            <Button onClick={this.props.cancel} color="primary">
+            <Button onClick={this.props.onDelete} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleOk} color="primary">
+            <Button onClick={this.props.cancel} color="primary">
               Ok
             </Button>
             <Button onClick={this.handleOk} color="primary">
@@ -83,3 +105,28 @@ class Confirmation extends Component {
   };
 
   export default Confirmation;
+
+
+
+
+  // handle single row deletion
+// onDelete: function(e){
+ 
+//   // product to delete
+//   var productId = this.props.productId;
+
+//   // submit form data to api
+//   $.ajax({
+//       url: "http://localhost/api/product/delete.php",
+//       type : "POST",
+//       contentType : 'application/json',
+//       data : JSON.stringify({'id' : productId}),
+//       success : function(response) {
+//           this.props.changeAppMode('read');
+//       }.bind(this),
+//       error: function(xhr, resp, text){
+//           // show error in console
+//           console.log(xhr, resp, text);
+//       }
+//   });
+// },

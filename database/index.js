@@ -449,9 +449,18 @@ module.exports.deletefromWaiting = deletefromWaiting;deletefromqueue
 module.exports.deletefromqueue = deletefromqueue;deletefromqueueB
 module.exports.deletefromqueueA = deletefromqueueA;
 module.exports.deletefromqueueB = deletefromqueueB;
+
+module.exports.getUserTickets = getUserTickets;
+module.exports.Delete = Delete;
+
 module.exports.getUserDataEmail = getUserDataEmail;
 module.exports.getUserTickets = getUserTickets;
+<<<<<<< HEAD
 module.exports.grtQueueUsingId = grtQueueUsingId;
 module.exports.deleteFromuser_queue = deleteFromuser_queue;
 module.exports.UPDATEtickt = UPDATEtickt;
 module.exports.deleteTickt = deleteTickt;
+=======
+
+
+>>>>>>> b70c6fa4e4d4d7e9b0166b00384f42dfddcda2d1

@@ -91,7 +91,7 @@ export default class BusinessDashBord extends React.Component {
       newsername: "",
       emailnew:"",
       queueDetalse:{},
-      arr: [{},{},{},{},{},{},{}],
+      arr: [{id:"louding..."},{id:"louding..."},{id:"louding..."},{id:"louding..."},{id:"louding..."},{id:"louding..."},{}],
     };
   }
 componentDidMount(match){
