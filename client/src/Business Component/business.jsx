@@ -16,10 +16,12 @@ import BusinessGridList from './businessGridList.jsx';
 import logo from '../style/qline.png';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 import {Link} from 'react-router';
-import { browserHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import businessvid from '../style/business.mp4';
 import $ from "jquery";
 import Footer from '../First Page Component/Footer.jsx';
+
+
 
 const styles = {
   root: {
@@ -109,6 +111,21 @@ export default class business extends React.Component {
       } 
   }
 
+  logOut() {
+    $.ajax({
+      url: '/log-out',
+      type: 'GET',
+      contentType: 'application/json',
+      success: (data) => {
+        console.log(data);
+        browserHistory.push('/')
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
   render() {
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
@@ -134,7 +151,7 @@ export default class business extends React.Component {
                 </Grid>
                 <Grid className="menu__right">
                     <ul className="menu__list">
-                    <li class="menu__list-item"><a  class="menu__link" href="/">Logout</a></li>
+                    <li class="menu__list-item"><a  class="menu__link" onClick={this.logOut.bind(this)}>Logout</a></li>
                     </ul>
                 </Grid>
             </nav>

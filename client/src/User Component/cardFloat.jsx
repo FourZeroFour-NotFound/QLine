@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import logo1 from '../style/logo1.png';
+import flatpng from '../style/flatpng.png';
 const styles = {
   media: {
     height: 350,
@@ -19,9 +19,8 @@ function CardFloat(props) {
   const { classes } = props;
   return (
       <div>
-    <img src={logo1} style={{marginLeft: "60px", marginTop: "50px"}} width="500px" height="500px"/>
+    <img src={flatpng} style={{marginLeft: "60px", marginTop: "-10px"}} width="800px" height="500px"/>
     <Card className="floatcard">
-    
       <CardActionArea>
         <CardMedia
           className={classes.media}
