@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 var MySQLStore = require('express-mysql-session')(session);
 var router = express.Router();
+const multer = require("multer");
 const app = express();
 app.use(express.static(__dirname + '/../client/public'));
 const port = process.env.PORT || 5000;
@@ -749,6 +750,24 @@ app.get('/customer-message', function(req, res){
     } 
   })
 })
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __dirname + '/../client/public/profileImages')
+  },
+  filename: function (req, file, cb) {
+    cb(null, "IMAGE-" + Date.now() + file.originalname);
+  }
+});
+
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 },
+}).single('myImage')
+
+
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;

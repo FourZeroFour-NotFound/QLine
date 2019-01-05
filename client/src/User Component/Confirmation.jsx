@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import Button from '@material-ui/core/Button';
 import $ from "jquery";
-
-
-
 import Avatar from '@material-ui/core/Avatar';
-
 import Grid from '@material-ui/core/Grid';
 import '../style/App.css';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 
@@ -107,26 +101,3 @@ class Confirmation extends Component {
   export default Confirmation;
 
 
-
-
-  // handle single row deletion
-// onDelete: function(e){
- 
-//   // product to delete
-//   var productId = this.props.productId;
-
-//   // submit form data to api
-//   $.ajax({
-//       url: "http://localhost/api/product/delete.php",
-//       type : "POST",
-//       contentType : 'application/json',
-//       data : JSON.stringify({'id' : productId}),
-//       success : function(response) {
-//           this.props.changeAppMode('read');
-//       }.bind(this),
-//       error: function(xhr, resp, text){
-//           // show error in console
-//           console.log(xhr, resp, text);
-//       }
-//   });
-// },

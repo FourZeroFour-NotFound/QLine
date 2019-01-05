@@ -30,8 +30,13 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import logo from '../style/qlinewhite.png';
 import { Router, Route, browserHistory } from 'react-router';
 import sample from '../style/sample.jpg';
-import gradient from '../style/gradient.png';
+import mountain from '../style/mountain.png';
 import backgroundpic from '../style/backgroundpic.png';
+import PhotoAddforProf from './photoAddforProf.jsx';
+import PopBox from './popBox.jsx';
+
+
+
 
 
 const styles = theme => ({
@@ -89,14 +94,17 @@ class Profile extends Component {
     lastName: '',
     email: '',
     phoneNumber: '',
-    
       TicketList:[],
     expanded: false,
     open: false,
-    open1: false
+    open1: false,
+    img: null,
+    clicks: 0,
+    show: true
   };
   /* send data after edit the information*/
-  EditInfo = () => {
+  EditInfo = (e) => {
+    this.onFormSubmit(e)
     const InfObj = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -148,10 +156,7 @@ class Profile extends Component {
     this.setState({ open: false });
   };
 
-// this function to open the  ticketList arrow  
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
+
   /*  these functions for ticket list elements*/
   handleClickListItem = () => {
     console.log("jjjjjj")
@@ -229,63 +234,70 @@ class Profile extends Component {
       }
     });
   }
+
  
+  getImg(Img) {
+    this.setState({ img: Img })
+  };
+
+  onFormSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('myImage', this.state.img);
+    console.log(this.img)
+  }
+
+  // addItems(formData) {
+  //   this.props.addItems(formData);
+  // }
+
+  IncrementItem = () => {
+    this.setState({ 
+      clicks: this.state.clicks + 1,
+      show: !this.state.show
+    });
+  }
+
 
   render() {
     const { classes } = this.props;
     return (
       // navbar place
       <div className="back">
-      <img src={gradient} width="100%" height="100%"/>
+     
         <div className="prof">
 
-         <nav className="menu5"  style={{backgroundColor: "transparent", width:"1500px", marginTop: "10px", marginLeft: "-150px"}}>
-                            <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
+         <nav className="menu7">
                             <Grid className="menu__right">
                                 <ul className="menu__list">
                                 <li class="menu__list-item"><a  style={{color: "white"}} class="menu__link" href="/user">Search</a></li>
                                 <li class="menu__list-item"><a  style={{color: "white"}} class="menu__link" href="/">Logout</a></li>
                                 </ul>
                             </Grid>
-                        </nav>   
-        <Card className="newCard">
-            < img className="media12"
-         src={backgroundpic}/>
+                        </nav>  
+                        <img src={mountain} className="mountain" /> 
+        <Card className="newCard" style={{backgroundColor: "#ccc"}}>
          <CardContent>
-            <ul className="order" style={{marginLeft: "450px", marginTop: "-210px", color: "white"}}>
+            <ul className="order" style={{marginLeft: "450px", marginTop: "170px", color: "white", position: "absolute"}}>
             <li><h1>{this.state.firstName}</h1></li>
               <li><h1>{this.state.lastName}</h1></li>
               <li>{this.state. email}</li>
               <li>{this.state.phoneNumber}</li>
-              <Button variant="outlined" style={{color:"white", border: "1px solid white", borderRadius: "999px", width: "100px"}} onClick={this.handleClickOpen}>
+              </ul>
+              <Button variant="outlined" style={{color:"white", border: "1px solid white", borderRadius: "999px", width: "100px", marginLeft: "450px", marginTop: "330px"}} onClick={this.handleClickOpen}>
               Edit
-        </Button>
-            </ul>
+             </Button>
           </CardContent>
-          <CardActionArea>
-            <CardContent style={{width: "300px", marginLeft: "40px", marginTop: "520px"}}>
-              <Typography gutterBottom variant="h5" component="h2">
-                Queue Management System
-              </Typography>
-              <Typography component="p">
-              This ‘waste of time’ might seem as inevitable as having to sleep, or having lunch, but with QLine, 
-              you can reclaim those wasted hours and use them more productively, to benefit yourself. Get started today!
-              </Typography>
-            </CardContent>
-          </CardActionArea>
         </Card>
         <Card className="card33">
           <CardMedia
             className={classes.media}
-         image={sample}
-
+            image={sample}
           />
-
           <CardActions className={classes.actions} disableActionSpacing>
             <Dialog
               open={this.state.open}
             >
-
               <DialogContent>
                 <DialogContentText>
                   <h2>Edit Information</h2>
@@ -323,7 +335,7 @@ class Profile extends Component {
                   variant="filled"
                   fullWidth
                 />
-
+                   {/* <PhotoAddforProf getImg={this.getImg.bind(this)} /> */}
               </DialogContent>
               <DialogActions>
                 <Button onClick={this.handleClose} color="primary">
@@ -334,49 +346,22 @@ class Profile extends Component {
             </Button>
               </DialogActions>
             </Dialog>
-           
-            <IconButton
-              style={{marginLeft: "-100px"}}
-              className={classnames(classes.expand, {
-                //  [classes.expandOpen]: this.state.expanded,
-              })}
-               onClick={this.handleExpandClick}
-              aria-label="Show more"
-            > your tickets 
-              <ExpandMoreIcon />
-            </IconButton>
+              <Button onClick={this.IncrementItem} style={{width: "200px",color:"rgba(0, 0, 0, 0.5);", backgroundColor: "white", border: "1px solid white", borderRadius: "999px", marginTop: "-70px", marginLeft: "50px"}}>
+                FOLLOW {this.state.firstName}
+              </Button>
+              <i style={{width: "40px", height:"40px",color:"white", border: "1px solid white", borderRadius: "999px", marginTop: "-70px", marginLeft: "12px", padding: "5px"}} class="fa fa-ellipsis-h fa-2x"></i>
           </CardActions>
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <h2>Ticket List:</h2>
-              <List>
-
-              {this.state.TicketList.map((ticket) => (
-             <ListItem key = {ticket.nameOfQueeu} ticket = {ticket.nameOfQueeu}
-                  button
-                  divider
-                  aria-haspopup="true"
-                  aria-label={ticket}
-                  onClick={this.handleClickListItem}
-                >
-          
-                  < ListItemText primary={ticket.nameOfQueeu} /> 
-               
-
-                <Confirmation
-                  classes={{
-                    paper: classes.paper,
-                  }}
-                  open={this.state.open1}
-                  onClose={this.handleClose}
-                  cancel={this.handleClickListItem.bind(this)}
-                  onDelete={this.onDelete.bind(this,ticket.queue_id)}
-                />
-                 </ListItem>))}
-              </List>
-            </CardContent>
-          </Collapse>
-        </Card>
+          <div>
+          <h4 style={{marginLeft: "20px"}}>About</h4>
+          <p style={{marginLeft: "30px", textAlign: "left", width: "280px"}}>I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. 
+            I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise 
+            in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face. </p>
+          </div>
+            <h5 style={{marginLeft: "30px", marginTop: "80px"}}>FOLLOWERS<span style={{marginLeft: "155px", marginTop: "100px"}}>{ this.state.clicks }</span></h5>
+            <h5 style={{marginLeft: "30px",marginTop: "20px"}}>FOLLOWING<span style={{marginLeft: "160px"}}>4</span></h5>
+            <h5 style={{marginLeft: "30px",marginTop: "20px"}}>TICKETS<span style={{marginLeft: "185px"}}>{this.state.TicketList.length}</span></h5>
+          </Card>
+          <PopBox/>
       </div>
     </div>
     

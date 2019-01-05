@@ -81,12 +81,12 @@ class App extends Component {
       {this.state.loading &&
       <Grid>
       <Grid className="container center">
-      <IntroPage/>
+      <IntroPage toggleSignup={this.toggleSignup}/>
         <Header logo={logo} toggleSignup={this.toggleSignup} toggleLogin={this.toggleLogin} />
       </Grid>
       <Grid>
         <FlipInfo/>
-        <AboutQLine/>
+        <AboutQLine toggleSignup={this.toggleSignup} />
         <HowItWorks/>
         <KeyFeatures/>
       </Grid>
