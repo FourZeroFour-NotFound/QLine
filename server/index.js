@@ -282,12 +282,14 @@ app.post('/sign-up-fake', function (req, res) {
 
 //post function to sign in 
 app.post('/sign-in', function (req, res) {
-  console.log(req.body)
-  db.isacountExest(req.body.email, function (err, result) {
+  console.log("here",req.body)
+  let email = req.body.email
+  db.isacountExest(email, function (err, result) {
+    console.log('this is the result',result)
     if (err) {
       console.log("server", err)
     } else {
-      if (result.length == 0) {
+      if (result.length === 0) {
         res.send({
           status: 404,
           success: "email is wrong",
@@ -314,13 +316,11 @@ app.post('/sign-in', function (req, res) {
       }
     }
   })
-
-
 })
 
 // log out function // will 
 app.get('/log-out', function (req, res) {
-  //console.log("zaiiiiid",req.user)
+  console.log("zaiiiiid",req.logOut)
   //console.log(req.isAuthenticated());
   var x = req.user
   req.logOut()

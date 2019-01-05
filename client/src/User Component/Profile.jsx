@@ -11,6 +11,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import {Grid, CardActionArea, Typography} from '@material-ui/core';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
@@ -26,10 +27,11 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import logo from '../style/qline.png';
-
-
-
+import logo from '../style/qlinewhite.png';
+import { Router, Route, browserHistory } from 'react-router';
+import sample from '../style/sample.jpg';
+import gradient from '../style/gradient.png';
+import backgroundpic from '../style/backgroundpic.png';
 
 
 const styles = theme => ({
@@ -40,11 +42,14 @@ const styles = theme => ({
     flexGrow: 1,
   },
   color: {
-    background: '#a077a7'
+    background: 'transparent'
   },
   media: {
-    height: 0,
+    height: 500,
     paddingTop: '56.25%', // 16:9
+  },
+  media1: {
+    height: 300
   },
   actions: {
     display: 'flex',
@@ -210,53 +215,73 @@ class Profile extends Component {
  
         }
      
-        
+  logOut() {
+    $.ajax({
+      url: '/log-out',
+      type: 'GET',
+      contentType: 'application/json',
+      success: (data) => {
+        console.log(data);
+        browserHistory.push('/')
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
  
 
   render() {
     const { classes } = this.props;
     return (
       // navbar place
-     
-      <div className="prof">
-        <AppBar position="static" className={classes.color}>
-          <Toolbar>
-            <div position="static" className={classes.grow}>
-              <img src={logo} width="122px" height="62px" style={{ marginTop: "10px", marginLeft: "-20px" }} />
-            </div>
-            <Button color="inherit" href="/user">Log Out</Button>
-          </Toolbar>
-        </AppBar>
-        <Card className="card33">
-          <CardHeader
-            avatar={
-              <Avatar aria-label="Recipe" className={classes.avatar}>
-               QLine
-            </Avatar>
-            }
+      <div className="back">
+      <img src={gradient} width="100%" height="100%"/>
+        <div className="prof">
 
-            title="Welcome"
-
-          />
-          <CardMedia
-            className={classes.media}
-            //image="https://previews.123rf.com/images/epic22/epic221603/epic22160300029/55638804-abstract-vector-logo-design-template-creative-3d-concept-icon-letter-q-stylization.jpg"
-         image="https://i.pinimg.com/originals/5c/e9/11/5ce9118d3ba22ad7b39b602d48296973.jpg"
-
-          />
-          <CardContent>
-            <ul className="order">
-            <li>First Name : {this.state.firstName}</li>
-              <li>Last Name : {this.state.lastName}</li>
-              <li>Email : {this.state. email}</li>
-              <li>Phone Num : {this.state.phoneNumber}</li>
-            </ul>
-          </CardContent>
-
-          <CardActions className={classes.actions} disableActionSpacing>
-            <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
+         <nav className="menu5"  style={{backgroundColor: "transparent", width:"1500px", marginTop: "10px", marginLeft: "-150px"}}>
+                            <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
+                            <Grid className="menu__right">
+                                <ul className="menu__list">
+                                <li class="menu__list-item"><a  style={{color: "white"}} class="menu__link" href="/user">Search</a></li>
+                                <li class="menu__list-item"><a  style={{color: "white"}} class="menu__link" href="/">Logout</a></li>
+                                </ul>
+                            </Grid>
+                        </nav>   
+        <Card className="newCard">
+            < img className="media12"
+         src={backgroundpic}/>
+         <CardContent>
+            <ul className="order" style={{marginLeft: "450px", marginTop: "-210px", color: "white"}}>
+            <li><h1>{this.state.firstName}</h1></li>
+              <li><h1>{this.state.lastName}</h1></li>
+              <li>{this.state. email}</li>
+              <li>{this.state.phoneNumber}</li>
+              <Button variant="outlined" style={{color:"white", border: "1px solid white", borderRadius: "999px", width: "100px"}} onClick={this.handleClickOpen}>
               Edit
         </Button>
+            </ul>
+          </CardContent>
+          <CardActionArea>
+            <CardContent style={{width: "300px", marginLeft: "40px", marginTop: "520px"}}>
+              <Typography gutterBottom variant="h5" component="h2">
+                Queue Management System
+              </Typography>
+              <Typography component="p">
+              This ‘waste of time’ might seem as inevitable as having to sleep, or having lunch, but with QLine, 
+              you can reclaim those wasted hours and use them more productively, to benefit yourself. Get started today!
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+        <Card className="card33">
+          <CardMedia
+            className={classes.media}
+         image={sample}
+
+          />
+
+          <CardActions className={classes.actions} disableActionSpacing>
             <Dialog
               open={this.state.open}
             >
@@ -311,6 +336,7 @@ class Profile extends Component {
             </Dialog>
            
             <IconButton
+              style={{marginLeft: "-100px"}}
               className={classnames(classes.expand, {
                 //  [classes.expandOpen]: this.state.expanded,
               })}
@@ -352,6 +378,7 @@ class Profile extends Component {
           </Collapse>
         </Card>
       </div>
+    </div>
     
     );
   }

@@ -38,17 +38,38 @@ html, body {
 
 /*********************Profile User************/
 
+.newCard {
+  height: 1000px;
+  width: 1600px;
+  margin-left: -200px;
+  box-shadow: 100px 102px 124px 100px rgba(5, 5, 5, 5.15);
+}
+
+.back {
+  background-image: url(./gradient.png);
+}
+
 .prof {
-  margin-top: 100px;
+  margin-top: -1000px;
   position: absolute;
   margin-left: 350px;
-  width: 700px;
+  width: 1200px;
   height: 700px;
 }
 
+.media12 {
+  width: 100%;
+  height: 300px;
+  display: block; 
+  
+}
+
 .card33 {
-  height: 700px;
-  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.15);
+  margin-top: -900px;
+  margin-left: -100px;
+  width: 350px;
+  height: 720px;
+  position: absolute;
 }
 
 .theSearch {
@@ -99,22 +120,109 @@ html, body {
 }
 
 .floatcard {
-  margin-top: -450px;
+  margin-top: -350px;
   margin-left: 100px;
   max-width: 350px;
   height: 700px;
   box-shadow: 120px 2px 24px 10px rgba(5, 5, 5, 1.15);
 }
 
+.ctv {
+  height: 600px;
+  margin-top: 500px;
+}
+/********************* Counter Page **************/
+
+.videoComp1 {
+  margin: 150px;
+  width: 50%;
+  float: left;
+  height: 260px;
+  margin: 40px 0;
+  perspective: 600px;
+  margin-left: 200px;
+}
+
+#shiva
+{
+  width: 150px;
+	height: 150px;
+	background: #f6be6e;
+	-moz-border-radius: 999px;
+	-webkit-border-radius: 999px;
+	border-radius: 999px;
+  float:left;
+  text-align: left;
+  margin:5px;
+  margin-top: -200px;
+  margin-left: -20px;
+}
+
+#shiva1
+{
+  width: 300px;
+	height: 300px;
+	background: #aa1256;
+	-moz-border-radius: 999px;
+	-webkit-border-radius: 999px;
+	border-radius: 999px;
+  float:left;
+  text-align: left;
+  margin:5px;
+}
+
+#shiva2
+{
+  width: 200px;
+	height: 200px;
+	background: #e33a2e;
+	-moz-border-radius: 999px;
+	-webkit-border-radius: 999px;
+	border-radius: 999px;
+  float:left;
+  text-align: left;
+  margin:5px;
+  margin-left: 200px;
+}
+
+.count
+{
+  line-height: 300px;
+  color:white;
+  margin-left:100px;
+  font-size:85px;
+  text-align: center;
+}
+
+.count2
+{
+  line-height: 200px;
+  color:white;
+  margin-left:70px;
+  font-size:45px;
+  text-align: center;
+}
+
+.count1
+{
+  line-height: 150px;
+  color:white;
+  margin-left:50px;
+  font-size:25px;
+  text-align: center;
+}
+
+
 
 /*********************Search Page User************/
 .displayName{
-  margin-left: 500px;
-  margin-top: -150px;
+  margin-left: 900px;
+  color: white;
 }
 
 .displaylastName{
-  margin-left: 500px;
+  margin-left: 900px;
+  color: white;
 }
 .search {
   width: 500px;
@@ -268,7 +376,11 @@ html, body {
 .mainDp {
   width: 100%;
   height: 1300px;
-  
+}
+
+.mainDp1 {
+  width: 100%;
+  height: 1000px;
 }
 
 .videoComp {
@@ -289,6 +401,12 @@ html, body {
   margin-bottom: 30px;
   border-bottom: 4px solid #aa1256;
   padding: 50px 0;
+}
+
+.title1 {
+  margin-bottom: 30px;
+  border-bottom: 4px solid #aa1256;
+  padding: 10px 0;
 }
 /*******************-How It Works Page-****************/
 
@@ -374,6 +492,9 @@ html, body {
   opacity: 0.5;
 }
 
+
+
+
 .page1 .icon1 .title1 {
   line-height: 2;
 }
@@ -430,13 +551,23 @@ html, body {
   display: block;
 }
 
+.title1, .hint1 {
+  display: block;
+}
+
 .title1 {
   font-size: 38px;
 }
 
 .hint {
   font-size: 13px;
+  width: 200px;
 }
+
+.hint1 {
+  font-size: 13px;
+}
+
 
 #p4 .hint {
   display: inherit !important;
@@ -496,6 +627,86 @@ html, body {
   -o-transform: translateX(0) !important;
   transition-delay: 1s;
 }
+
+.icon33 {
+  color: #fff;
+  font-size: 32px;
+  display: block;
+}
+
+.google {
+  outline: none;
+  background: url('./google.png');
+  cursor:pointer;
+  border: none;
+  background-size: cover;
+  border-radius: 20px;
+  height: 65px;
+  width: 200px;
+  padding: 1px 1px 1px 1px;
+}
+.apple {
+  outline: none;
+  background: url('./apple.png');
+  cursor:pointer;
+  border: none;
+  background-size: cover;
+  border-radius: 20px;
+  height: 65px;
+  width: 200px;
+  padding: 1px 1px 1px 1px;
+}
+
+.page1 .icon33 .title1 {
+  line-height: 2;
+}
+
+
+#menu3 .icon33 {
+  margin: 30px 0;
+  transition: all .5s ease-out !important;
+  -webkit-transition: all .5s ease-out;
+  -moz-transition: all .5s ease-out;
+  -o-transition: all .5s ease-out;
+}
+
+
+
+.line-trough {
+  text-decoration: line-through;
+}
+
+.page1 .icon33 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10%;
+  left: 0;
+  width: 270px;
+  height: 170px;
+  margin: auto;
+  text-align: center;
+  font-size: 80px;
+  line-height: 1.3;
+  transform: translateX(360%);
+  -webkit-transform: translateX(360%);
+  -moz-transform: translateX(360%);
+  -o-transform: translateX(360%);
+  transition: all .5s cubic-bezier(.25, 1, .5, 1.25);
+  -webkit-transition: all .5s cubic-bezier(.25, 1, .5, 1.25);
+  -moz-transition: all .5s cubic-bezier(.25, 1, .5, 1.25);
+  -o-transition: all .5s cubic-bezier(.25, 1, .5, 1.25);
+}
+
+.page1#p1 .icon33 {
+  height: 220px;
+}
+
+.page1#p1 .icon33 {
+  transform: translateX(10%) !important;
+}
+
+
 
 
 /*******************-Scroll-**********************/

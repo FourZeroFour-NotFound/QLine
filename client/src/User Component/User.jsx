@@ -18,6 +18,12 @@ import uservideo from '../style/user.mp4';
 import Footer from '../First Page Component/Footer.jsx';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 import CardFloat from './cardFloat.jsx';
+import { Router, Route, browserHistory } from 'react-router';
+import vio from '../style/qlinevio.png';
+import Counter from './counter.jsx';
+import DownloadApp from "./downloadApp.jsx";
+import CustomerService from '../First Page Component/ContactUs.jsx';
+
 
 const styles = () => ({
 
@@ -100,6 +106,20 @@ class User extends Component {
     });
   }
 
+  logOut() {
+    $.ajax({
+      url: '/log-out',
+      type: 'GET',
+      contentType: 'application/json',
+      success: (data) => {
+        console.log(data);
+        browserHistory.push('/')
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
 
 
   render() {
@@ -126,7 +146,7 @@ class User extends Component {
                             </Grid>
                             <Grid className="menu__right">
                                 <ul className="menu__list">
-                                <li class="menu__list-item"><a  class="menu__link" href="/">Logout</a></li>
+                                <li class="menu__list-item"><a  class="menu__link" onClick={this.logOut.bind(this)}>Logout</a></li>
                                 </ul>
                             </Grid>
                         </nav>
@@ -140,22 +160,25 @@ class User extends Component {
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
-                                    <a href="#" style={{color: "black"}} hover={{color: "#7aeac2"}}><i  style={{ marginTop: "40px", marginLeft: "1500px"}} class="fa fa-facebook"></i></a>
-                                    <a href="#" style={{color: "black"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}} class="fa fa-twitter"></i></a>
-                                    <a href="#" style={{color: "black"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}} class="fa fa-linkedin"></i></a>
-                                    <a href="/profile" style={{color: "black"}}><AccountCircle  style={{marginLeft: "60px", marginBottom: "-5px"}}/></a>
-                                
+                                    <a href="#" style={{color: "white"}} hover={{color: "#7aeac2"}}><i  style={{ marginTop: "40px", marginLeft: "1500px"}} class="fa fa-facebook"></i></a>
+                                    <a href="#" style={{color: "white"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}} class="fa fa-twitter"></i></a>
+                                    <a href="#" style={{color: "white"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}} class="fa fa-linkedin"></i></a>
+                                    <a href="/profile" style={{color: "white"}}><AccountCircle  style={{marginLeft: "60px", marginBottom: "-5px"}}/></a>
+                                    <h1 className="displayName">{this.state.firstName}</h1>
+                                    <h1 className="displaylastName">{this.state.lastName}</h1>
+                                    <h3 className="displaylastName">{this.state.email}</h3>
+                                {/* <img src={vio} height="300px" style={{marginLeft: "800px"}}/> */}
                                 <CardFloat/>
                                 
                               </div>
-                              <h1 className="displayName">{this.state.firstName}</h1>
-                              <h1 className="displaylastName">{this.state.lastName}</h1>
-                              <h3 className="displaylastName">{this.state.email}</h3>
                               <Grid className="searchdesign" style = {{height: "800px",marginTop:"-150px", marginLeft: "500px"}}>
                               <SearchResult queues = {this.state.searchResult}/>   
                               </Grid>
+                              <Counter/>
+                              </div>
+                              <DownloadApp/>
                               <Widget/>
-                          </div>
+                              <CustomerService/>
                       <Footer/>
              </div>
     );
