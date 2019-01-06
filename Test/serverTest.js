@@ -50,6 +50,7 @@
 //   });
 // });
 
+<<<<<<< HEAD
 // describe('GET LogOut', () => {
 //   it('it should GET Logout', (done) => {
 //     chai.request(server)
@@ -82,3 +83,50 @@
 //     });
 //   });
 // });
+=======
+describe('GET LogOut', () => {
+  it('it should GET Logout', (done) => {
+    chai.request(server)
+    .get('/log-out')
+    .end((err,res) => {
+      res.body.should.be.a('object');
+      done();
+    });
+  });
+});
+ // test used to get data for user using id
+describe('GET Profile', () => {
+  it('it should Get information for user', (done) => {
+    chai.request(server)
+    .get('/profile')
+    .end((err,res) => {
+  res.body.should.be.a('object');
+  done();
+    });
+  });
+});
+//this test used to update data for user using id
+describe('PUT Profile', () => {
+  it('it should Update information for the user', (done) => {
+    chai.request(server)
+    .put('/profile')
+    .end((err,res) => {
+      res.body.should.be.a('object')
+      done();
+    });
+  });
+});
+
+
+ // test used to get all tickets  for user using id
+ describe('GET ticket', () => {
+  it('it should Get all tickets for user', (done) => {
+    chai.request(server)
+    .get('/ticket')
+    .end((err,res) => {
+  res.body.should.be.a('object');
+  done();
+    });
+  });
+});
+>>>>>>> 544fca0d44dac5fa195ee45ca790b1bf82bd0e86
