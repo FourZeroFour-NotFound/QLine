@@ -18,12 +18,12 @@ class PopLogIn extends React.Component {
         organizationName: "",
         errorPhone: "",
         errorPassword: "",
+        errorEmail: "",
         validation: false
        }
   }
 
   handleChange(e) {
-    const email = this.state.email;
     let target = e.target;
     this.setState({ [target.name]: target.value });
 
@@ -60,6 +60,18 @@ class PopLogIn extends React.Component {
         validation: true
       });
     }
+
+    if (this.state.email.length < 5) {
+      this.setState({
+        errorEmail: "The email should be more than 5 characters",
+        validation: false
+      });
+    } else {
+      this.setState({
+        errorEmail: "",
+        validation: true
+      });
+    }
   }
 
 
@@ -80,15 +92,20 @@ class PopLogIn extends React.Component {
         email: this.state.email,
         password : this.state.password
       }),
+      
       success: (res) => {
-        console.log("Welcome, Nice to see you again!")
+        console.log("Welcome, Nice to see you again!", res)
           // redirect to main page
+          if (res.success === "Successed!") {
           setTimeout ( () => {
             browserHistory.push({
               pathname: "/user",
               state: { user: res.data }
             });
           }, 4000)
+        } else {
+          alert("kindly sign up with us, thank you")
+        }
       },
       error: (err) => {
         console.log('err', err);
@@ -96,6 +113,7 @@ class PopLogIn extends React.Component {
     });
    }
   }
+  
 
   handleOnClick1(e) {
     e.preventDefault();

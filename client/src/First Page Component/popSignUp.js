@@ -96,7 +96,6 @@ class PopSignUp extends React.Component {
           console.log('Thank you for being with us')
           if(res.success !== 'userExist') {
             browserHistory.push({
-
               pathname: "/user",
               state: { user: res.data }
             });
@@ -127,14 +126,16 @@ class PopSignUp extends React.Component {
         password : this.state.password
       }),
       success: (res) => {
-        console.log("Welcome, Nice to see you again!")
-          // redirect to main page
-          setTimeout ( () => {
-            browserHistory.push({
-              pathname: "/user",
-              state: { user: res.data }
-            });
-          }, 4000)
+        console.log('Thank you for being with us')
+        if(res.success !== 'userExist') {
+          browserHistory.push({
+
+            pathname: "/user",
+            state: { user: res.data }
+          });
+        } else {
+          alert("This user is exist");
+        }
       },
       error: (err) => {
         console.log('err', err);

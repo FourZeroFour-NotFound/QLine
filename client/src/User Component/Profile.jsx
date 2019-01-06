@@ -11,6 +11,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import {Grid, CardActionArea, Typography} from '@material-ui/core';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
@@ -26,9 +27,15 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import logo from '../style/qline.png';
-
-
+import logo from '../style/qlinewhite.png';
+import { Router, Route, browserHistory } from 'react-router';
+import sample from '../style/sample.jpg';
+import mountain from '../style/mountain.png';
+import backgroundpic from '../style/backgroundpic.png';
+import PhotoAddforProf from './photoAddforProf.jsx';
+import PopBox from './popBox.jsx';
+import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
+import GridList from '@material-ui/core/GridList';
 
 
 
@@ -40,11 +47,14 @@ const styles = theme => ({
     flexGrow: 1,
   },
   color: {
-    background: '#a077a7'
+    background: 'transparent'
   },
   media: {
-    height: 0,
+    height: 500,
     paddingTop: '56.25%', // 16:9
+  },
+  media1: {
+    height: 300
   },
   actions: {
     display: 'flex',
@@ -84,14 +94,20 @@ class Profile extends Component {
     lastName: '',
     email: '',
     phoneNumber: '',
-    
-      TicketList:[],
+    user_id:"",
+    user_queue:[],
+    TicketList:[],
     expanded: false,
     open: false,
-    open1: false
+    open1: false,
+    img: null,
+    clicks: 0,
+    show: true,
+    name2 :[]
   };
   /* send data after edit the information*/
-  EditInfo = () => {
+  EditInfo = (e) => {
+    this.onFormSubmit(e)
     const InfObj = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -143,10 +159,7 @@ class Profile extends Component {
     this.setState({ open: false });
   };
 
-// this function to open the  ticketList arrow  
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
+
   /*  these functions for ticket list elements*/
   handleClickListItem = () => {
     console.log("jjjjjj")
@@ -169,6 +182,7 @@ class Profile extends Component {
         lastName: data.success[0].lastName,
         email: data.success[0].email,
         phoneNumber: data.success[0].phoneNumber,
+        user_id: data.success[0].user_id
         })
       }
     });
@@ -183,85 +197,133 @@ class Profile extends Component {
       })
         
       }
-    });
+    }).then( ()=>{
+      for(var i = 0 ; i<this.state.TicketList.length ;i++){
+          $.ajax({
+            url: '/getQueueInfo',
+            type: "Post",
+            contentType : 'application/json',
+            data: JSON.stringify({queue_id:this.state.TicketList[i].queue_id}),
+            success:  (data) => {
+          console.log("queue Info", data.data[0].nameOfQueeu)
+             
+             this.setState(previousState => ({
+              name2: [...previousState.name2, data.data[0].nameOfQueeu]
+          }));
+            }
+          
+          })}
+          
+          
+          
+          
+          ;}
+          )
+          console.log(this.state.name2)
 
 
   }
 
 // this function used to delete items from ticket list in profile by using queue_id 
  
-        onDelete =(queue_id) =>{
-          console.log("deleeeeet",queue_id);
+        // onDelete =(queue_id) =>{
+        //   console.log("deleeeeet",queue_id);
 
-          $.ajax({
-                  url: `/confirm/${queue_id}`,
-                  type : "DELETE",
-                  contentType : 'application/json',
+        //   $.ajax({
+        //           url: `/confirm/${queue_id}`,
+        //           type : "DELETE",
+        //           contentType : 'application/json',
             
-                  success: function (data) {
-                    window.localStorage.setItem("DeleteInfo", data)
-                    console.log("delelte", data);
+        //           success: function (data) {
+        //             window.localStorage.setItem("DeleteInfo", data)
+        //             console.log("delelte", data);
     
-                  },
-                  error: function (error) {
-                    console.error("dont delete", error);
-                  }
-              });
+        //           },
+        //           error: function (error) {
+        //             console.error("dont delete", error);
+        //           }
+        //       });
  
-        }
+        // }
      
-        
+  logOut() {
+    $.ajax({
+      url: '/log-out',
+      type: 'GET',
+      contentType: 'application/json',
+      success: (data) => {
+        console.log(data);
+        browserHistory.push('/')
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
  
+  getImg(Img) {
+    this.setState({ img: Img })
+  };
+
+  onFormSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('myImage', this.state.img);
+    console.log(this.img)
+  }
+
+  // addItems(formData) {
+  //   this.props.addItems(formData);
+  // }
+
+  IncrementItem = () => {
+    this.setState({ 
+      clicks: this.state.clicks + 1,
+      show: !this.state.show
+    });
+  }
+
 
   render() {
     const { classes } = this.props;
     return (
       // navbar place
-     
-      <div className="prof">
-        <AppBar position="static" className={classes.color}>
-          <Toolbar>
-            <div position="static" className={classes.grow}>
-              <img src={logo} width="122px" height="62px" style={{ marginTop: "10px", marginLeft: "-20px" }} />
-            </div>
-            <Button color="inherit" href="/">Log Out</Button>
-          </Toolbar>
-        </AppBar>
-
-        <Card className="profile">
-          <CardHeader
-            avatar={
-              <Avatar aria-label="Recipe" className={classes.avatar}>
-               QLine
-            </Avatar>
-            }
-
-            title="Welcome"
-
-          />
+    <div>
+      <div className="back">
+        <div className="prof">
+         <nav className="menu7">
+                            <Grid className="menu__right">
+                                <ul className="menu__list">
+                                <li class="menu__list-item"><a  style={{color: "white"}} class="menu__link" href="/user">Search</a></li>
+                                <li class="menu__list-item"><a  style={{color: "white"}} class="menu__link" href="/">Logout</a></li>
+                                </ul>
+                            </Grid>
+                        </nav>  
+                        <img src={mountain} className="mountain" /> 
+        <Card className="newCard" style={{backgroundColor: "#ccc"}}>
+         <CardContent>
+            <ul className="order" style={{marginLeft: "450px", marginTop: "170px", color: "white", position: "absolute"}}>
+            <li><h1>{this.state.firstName}</h1></li>
+              <li><h1>{this.state.lastName}</h1></li>
+              <li>{this.state. email}</li>
+              <li>{this.state.phoneNumber}</li>
+              </ul>
+              <Button variant="outlined" style={{color:"white", border: "1px solid white", borderRadius: "999px", width: "100px", marginLeft: "450px", marginTop: "330px"}} onClick={this.handleClickOpen}>
+              Edit
+             </Button>
+          </CardContent>
+        </Card>
+        
+        <Card className="card33">
           <CardMedia
             className={classes.media}
-            //image="https://previews.123rf.com/images/epic22/epic221603/epic22160300029/55638804-abstract-vector-logo-design-template-creative-3d-concept-icon-letter-q-stylization.jpg"
-         image="https://i.pinimg.com/originals/5c/e9/11/5ce9118d3ba22ad7b39b602d48296973.jpg"
-
+            image={sample}
           />
-          <CardContent>
-            <ul className="order">
-            <li>First Name : {this.state.firstName}</li>
-              <li>Last Name : {this.state.lastName}</li>
-              <li>Email : {this.state. email}</li>
-              <li>Phone Num : {this.state.phoneNumber}</li>
-            </ul>
-          </CardContent>
-
           <CardActions className={classes.actions} disableActionSpacing>
-            <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-              Edit
-        </Button>
             <Dialog
               open={this.state.open}
             >
-
               <DialogContent>
                 <DialogContentText>
                   <h2>Edit Information</h2>
@@ -299,7 +361,7 @@ class Profile extends Component {
                   variant="filled"
                   fullWidth
                 />
-
+                   {/* <PhotoAddforProf getImg={this.getImg.bind(this)} /> */}
               </DialogContent>
               <DialogActions>
                 <Button onClick={this.handleClose} color="primary">
@@ -310,50 +372,28 @@ class Profile extends Component {
             </Button>
               </DialogActions>
             </Dialog>
-           
-            <IconButton
-              className={classnames(classes.expand, {
-                //  [classes.expandOpen]: this.state.expanded,
-              })}
-               onClick={this.handleExpandClick}
-              aria-label="Show more"
-            > your tickets 
-              <ExpandMoreIcon />
-            </IconButton>
+              <Button onClick={this.IncrementItem} style={{width: "200px",color:"rgba(0, 0, 0, 0.5);", backgroundColor: "white", border: "1px solid white", borderRadius: "999px", marginTop: "-70px", marginLeft: "50px"}}>
+                FOLLOW {this.state.firstName}
+              </Button>
+              <i style={{width: "40px", height:"40px",color:"white", border: "1px solid white", borderRadius: "999px", marginTop: "-70px", marginLeft: "12px", padding: "5px"}} class="fa fa-ellipsis-h fa-2x"></i>
           </CardActions>
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <h2>Ticket List:</h2>
-              <List>
-
-       {this.state.TicketList.map((ticket) => (
-             <ListItem key = {ticket.nameOfQueeu} ticket = {ticket.nameOfQueeu}
-                  button
-                  divider
-                  aria-haspopup="true"
-                  aria-label={ticket}
-                  onClick={this.handleClickListItem}
-                >
-          
-                  < ListItemText primary={ticket.nameOfQueeu} /> 
-               
-
-                <Confirmation
-                  classes={{
-                    paper: classes.paper,
-                  }}
-                  open={this.state.open1}
-                  onClose={this.handleClose}
-                  cancel={this.handleClickListItem.bind(this)}
-                  onDelete={this.onDelete.bind(this,ticket.queue_id)}
-                />
-                 </ListItem>))}
-              </List>
-            </CardContent>
-          </Collapse>
-        </Card>
+          <div>
+          <h4 style={{marginLeft: "20px"}}>About</h4>
+          <p style={{marginLeft: "30px", textAlign: "left", width: "280px"}}>I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. 
+            I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise 
+            in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face. </p>
+          </div>
+            <h5 style={{marginLeft: "30px", marginTop: "80px"}}>FOLLOWERS<span style={{marginLeft: "155px", marginTop: "100px"}}>{ this.state.clicks }</span></h5>
+            <h5 style={{marginLeft: "30px",marginTop: "20px"}}>FOLLOWING<span style={{marginLeft: "160px"}}>4</span></h5>
+            <h5 style={{marginLeft: "30px",marginTop: "20px"}}>TICKETS<span style={{marginLeft: "185px"}}>{this.state.TicketList.length}</span></h5>
+          </Card>
+          <GridList cols={3}>
+          <PopBox/>
+          </GridList>
+          <Widget/>
       </div>
-    
+    </div>
+  </div>
     );
   }
 }
@@ -366,3 +406,31 @@ Profile.propTypes = {
 
 
 export default withStyles(styles)(Profile);
+
+
+
+{/* <List>
+
+{this.state.TicketList.map((ticket) => (
+<ListItem key = {ticket.nameOfQueeu} ticket = {ticket.nameOfQueeu}
+    button
+    divider
+    aria-haspopup="true"
+    aria-label={ticket}
+    onClick={this.handleClickListItem}
+  >
+
+    < ListItemText primary={ticket.nameOfQueeu} /> 
+ 
+
+  <Confirmation
+    classes={{
+      paper: classes.paper,
+    }}
+    open={this.state.open1}
+    onClose={this.handleClose}
+    cancel={this.handleClickListItem.bind(this)}
+    onDelete={this.onDelete.bind(this,ticket.queue_id)}
+  />
+   </ListItem>))}
+</List> */}

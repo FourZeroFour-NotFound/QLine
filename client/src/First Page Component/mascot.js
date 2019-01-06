@@ -1,12 +1,8 @@
 import React from 'react';
-import './style/App.css';
+import '../style/App.css';
 import {Helmet} from 'react-helmet';
-// import THREE from "https://cdn.rawgit.com/Verlangieri/robot-animation/master/app/vendor/three.min.js";
-// import dat from "https://cdn.rawgit.com/Verlangieri/robot-animation/master/app/vendor/three.min.js";
-// import TimelineMax from "https://cdn.rawgit.com/Verlangieri/robot-animation/master/app/vendor/three.min.js";
-// import TweenMax from "https://cdn.rawgit.com/Verlangieri/robot-animation/master/app/vendor/three.min.js";
-// import Power2 from "https://cdn.rawgit.com/Verlangieri/robot-animation/master/app/vendor/three.min.js";
-// import Bounce from "https://cdn.rawgit.com/Verlangieri/robot-animation/master/app/vendor/three.min.js";
+
+
 
 
 export default class Robot extends React.Component {
@@ -37,14 +33,14 @@ export default class Robot extends React.Component {
             window.addEventListener('resize', this.onWindowResize);
             window.addEventListener('mousemove', this.onMouseMove);
     
-            this.init();
+            //this.init();
             }
                 
             /**
              * Init functions.
              */
     
-            init() {
+            componentDidMount() {
             this.scene = new THREE.Scene();
             this.mouse = new THREE.Vector2(window.innerWidth, window.innerWidth);
     
@@ -214,27 +210,27 @@ export default class Robot extends React.Component {
             /**
              * animation: Turn off.
              */
-            turnOffAnimation() {
-            TweenMax.to(this.mesh.position, 1.5, { y: this.ground.position.y + this.box.max.y / 2, ease: Bounce.easeOut });
-            TweenMax.to(this.mesh.rotation, 2, {
-                x: THREE.Math.degToRad(getRandom(-20, 0)),
-                y: THREE.Math.degToRad(getRandom(-30, 30)),
-                z: THREE.Math.degToRad(getRandom(-20, 20)),
-                ease: Power2.easeOut
-            });
-            }
+            // turnOffAnimation() {
+            // TweenMax.to(this.mesh.position, 1.5, { y: this.ground.position.y + this.box.max.y / 2, ease: Bounce.easeOut });
+            // TweenMax.to(this.mesh.rotation, 2, {
+            //     x: THREE.Math.degToRad(getRandom(-20, 0)),
+            //     y: THREE.Math.degToRad(getRandom(-30, 30)),
+            //     z: THREE.Math.degToRad(getRandom(-20, 20)),
+            //     ease: Power2.easeOut
+            // });
+            // }
     
             /**
              * animation: Turn on.
              */
-            turnOnAnimation() {
-            TweenMax.to(this.mesh.position, 1.5, { y: this.animation.flyingHeight, ease: Power2.easeOut });
-            TweenMax.to(this.mesh.rotation, 1, { x: 0, y: 0, z: 0, ease: Power2.easeOut });
-            TweenMax.to(this.eyelidTop.rotation, .5, { x: THREE.Math.degToRad(-75), ease: Power2.easeOut }, 1.5);
-            TweenMax.to(this.eyelidBottom.rotation, .5, { x: THREE.Math.degToRad(-100), ease: Power2.easeOut, onStart: () => {
-                this.parameters.introComplete = true;
-                } }, 1.5);
-            }
+            // turnOnAnimation() {
+            // TweenMax.to(this.mesh.position, 1.5, { y: this.animation.flyingHeight, ease: Power2.easeOut });
+            // TweenMax.to(this.mesh.rotation, 1, { x: 0, y: 0, z: 0, ease: Power2.easeOut });
+            // TweenMax.to(this.eyelidTop.rotation, .5, { x: THREE.Math.degToRad(-75), ease: Power2.easeOut }, 1.5);
+            // TweenMax.to(this.eyelidBottom.rotation, .5, { x: THREE.Math.degToRad(-100), ease: Power2.easeOut, onStart: () => {
+            //     this.parameters.introComplete = true;
+            //     } }, 1.5);
+            // }
     
             /**
              * animation: Flying effect.
