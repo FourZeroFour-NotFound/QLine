@@ -35,7 +35,7 @@ import backgroundpic from '../style/backgroundpic.png';
 import PhotoAddforProf from './photoAddforProf.jsx';
 import PopBox from './popBox.jsx';
 import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
-
+import GridList from '@material-ui/core/GridList';
 
 
 
@@ -94,13 +94,16 @@ class Profile extends Component {
     lastName: '',
     email: '',
     phoneNumber: '',
-      TicketList:[],
+    user_id:"",
+    user_queue:[],
+    TicketList:[],
     expanded: false,
     open: false,
     open1: false,
     img: null,
     clicks: 0,
-    show: true
+    show: true,
+    name2 :[]
   };
   /* send data after edit the information*/
   EditInfo = (e) => {
@@ -179,6 +182,7 @@ class Profile extends Component {
         lastName: data.success[0].lastName,
         email: data.success[0].email,
         phoneNumber: data.success[0].phoneNumber,
+        user_id: data.success[0].user_id
         })
       }
     });
@@ -193,32 +197,54 @@ class Profile extends Component {
       })
         
       }
-    });
+    }).then( ()=>{
+      for(var i = 0 ; i<this.state.TicketList.length ;i++){
+          $.ajax({
+            url: '/getQueueInfo',
+            type: "Post",
+            contentType : 'application/json',
+            data: JSON.stringify({queue_id:this.state.TicketList[i].queue_id}),
+            success:  (data) => {
+          console.log("queue Info", data.data[0].nameOfQueeu)
+             
+             this.setState(previousState => ({
+              name2: [...previousState.name2, data.data[0].nameOfQueeu]
+          }));
+            }
+          
+          })}
+          
+          
+          
+          
+          ;}
+          )
+          console.log(this.state.name2)
 
 
   }
 
 // this function used to delete items from ticket list in profile by using queue_id 
  
-        onDelete =(queue_id) =>{
-          console.log("deleeeeet",queue_id);
+        // onDelete =(queue_id) =>{
+        //   console.log("deleeeeet",queue_id);
 
-          $.ajax({
-                  url: `/confirm/${queue_id}`,
-                  type : "DELETE",
-                  contentType : 'application/json',
+        //   $.ajax({
+        //           url: `/confirm/${queue_id}`,
+        //           type : "DELETE",
+        //           contentType : 'application/json',
             
-                  success: function (data) {
-                    window.localStorage.setItem("DeleteInfo", data)
-                    console.log("delelte", data);
+        //           success: function (data) {
+        //             window.localStorage.setItem("DeleteInfo", data)
+        //             console.log("delelte", data);
     
-                  },
-                  error: function (error) {
-                    console.error("dont delete", error);
-                  }
-              });
+        //           },
+        //           error: function (error) {
+        //             console.error("dont delete", error);
+        //           }
+        //       });
  
-        }
+        // }
      
   logOut() {
     $.ajax({
@@ -260,7 +286,80 @@ class Profile extends Component {
 
 
   render() {
+    var onDelete =(queue_id) =>{
+      console.log("deleeeeet",queue_id);
+      var that = this
+
+      $.ajax({
+              url: `/confirm/${queue_id}`,
+              type : "DELETE",
+              contentType : 'application/json',
+        
+              success: function (data) {
+            
+                console.log("delelte", data);
+            
+                $.ajax({
+                  url: "/ticket1",
+                  type: "Get",
+                  success: function (data) {
+                   
+               that.setState({
+                    TicketList:data.success
+                  })
+                    
+                  }
+                }).then( ()=>{
+                  for(var i = 0 ; i<this.state.TicketList.length ;i++){
+                      $.ajax({
+                        url: '/getQueueInfo',
+                        type: "Post",
+                        contentType : 'application/json',
+                        data: JSON.stringify({queue_id:this.state.TicketList[i].queue_id}),
+                        success:  (data) => {
+                      console.log("queue Info", data.data[0].nameOfQueeu)
+                         
+                         this.setState(previousState => ({
+                          name2: [...previousState.name2, data.data[0].nameOfQueeu]
+                      }));
+                        }
+                      
+                      })}
+                      ;}
+                      )
+
+              },
+              error: function (error) {
+                console.error("dont delete", error);
+              }
+          });
+
+    }
     const { classes } = this.props;
+    var time = (queue_id) => {
+      var x = 0
+            $.ajax({
+              url: '/get-users-in-queue',
+              type: "Post",
+              contentType : 'application/json',
+              data: JSON.stringify({queueid:queue_id}),
+              success:  (data ) => {
+            console.log("queue ticket", data)
+               for(var i= 0; i<data.data.length; i++){
+                 console.log( "dataaaa",data.data[i].user_id)
+                  console.log("this.state.user_id ",this.state.user_id )
+                 if(data.data[i].user_id !== this.state.user_id ){
+                 x++
+                   console.log("xxxxxxxxxx",x)
+                 }else{
+                   i = 10000000000
+                 }
+               }
+              }
+            
+            });
+       return x
+          }
     return (
       // navbar place
     <div>
@@ -378,3 +477,31 @@ Profile.propTypes = {
 
 
 export default withStyles(styles)(Profile);
+
+
+
+{/* <List>
+
+{this.state.TicketList.map((ticket) => (
+<ListItem key = {ticket.nameOfQueeu} ticket = {ticket.nameOfQueeu}
+    button
+    divider
+    aria-haspopup="true"
+    aria-label={ticket}
+    onClick={this.handleClickListItem}
+  >
+
+    < ListItemText primary={ticket.nameOfQueeu} /> 
+ 
+
+  <Confirmation
+    classes={{
+      paper: classes.paper,
+    }}
+    open={this.state.open1}
+    onClose={this.handleClose}
+    cancel={this.handleClickListItem.bind(this)}
+    onDelete={this.onDelete.bind(this,ticket.queue_id)}
+  />
+   </ListItem>))}
+</List> */}
