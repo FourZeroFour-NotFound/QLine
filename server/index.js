@@ -53,6 +53,28 @@ app.get('/all_queue',function(req,res){
     
   })
 })
+
+// git function to bring all the queuefor one user using his id 
+//dose not take any thing just the user id from his req
+app.post('/queue-data',function(req,res){
+  db.grtQueueUsingId(req.body.queue_id , function(err,result){
+    if (err){
+      res.send({
+        status: 404,
+        success: result,
+       
+      });
+      console.log("server error giting data " , err)
+    }else{
+      res.send({
+        status: 200,
+        success: result,
+       
+      });
+    }
+    
+  })
+})
 // this function used to get data for user using id
 app.get('/profile', function(req,res){
   console.log(" lllllllll",req.user)
@@ -68,6 +90,40 @@ app.get('/profile', function(req,res){
     }
   })
 })
+
+// this function used to get data for user using id
+app.post('/profile1', function(req,res){
+  db.getUserData(req.body.id,function(err,result){
+    if(err){
+      console.log("server error", err)
+    }else{
+      res.send({
+        status:200,
+        success:result
+
+      })
+    }
+  })
+})
+// this function used to get data for user email
+app.post('/profile2', function(req,res){
+  db.getUserDataEmail(req.body.email,function(err,result){
+    if(err){
+      console.log("server error", err)
+      res.send({
+        status:404,
+        success:err
+      })
+    }else{
+      res.send({
+        status:200,
+        success:result
+
+      })
+    }
+  })
+})
+
 // this function is used to update data for user using id
 app.put('/profile', function(req,res){
   console.log(" ddddddd",req.user)
@@ -84,6 +140,38 @@ app.put('/profile', function(req,res){
   })
 })
 
+  // this request used to get all tickets for user using id 
+app.get('/ticket1', function(req,res){
+  console.log(" lllllllll",req.user)
+  db.getUserTickets(req.user,function(err,result){
+    if(err){
+      console.log("server error", err)
+    }else{
+      res.send({
+        status:200,
+        success:result
+
+      })
+    }
+  })
+})
+
+ // this function is used to delete data from the user tickets 
+app.delete( '/confirm/:queue_id', function(req,res){
+  console.log(" ddddddd",req.params.queue_id)
+  db.DeleteTicket(req.params.queue_id, function(err, result){
+    if(err){
+      console.log("server error", err)
+    }else{
+      res.send({
+        status:200,
+        success:result
+        // type:"Delete"
+      
+      })
+    }
+  })
+})
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
   console.log(req.body)
@@ -161,7 +249,35 @@ app.post('/sign-up', function (req, res) {
     }
   })
 })
+// add fake user 
+app.post('/sign-up-fake', function (req, res) {
+  console.log(req.body)
+  // orderthe data in the same way it sabous to be 
+  var user = {
+    "firstName": req.body.firstName,
+    "lastName": req.body.lastName,
+    "email": req.body.email,
+    "password": req.body.password,
+    "organization": req.body.organizationName,
+    "phoneNumber": req.body.phoneNumber,
+  }
 
+
+  db.insertNewUser(user, function (err, result) {
+    if (err) {
+      console.log(err)
+    } else {
+    
+        user.id = result.insertId // add the id to the object user and send it to the front end //this way is esyer to know the user id 
+        res.send({
+          status: 200,
+          success: "Successed!",
+          data: user
+        });
+     
+    }
+  })
+})
 ////////////////////////////////////////////////////////////////
 
 //post function to sign in 
@@ -258,6 +374,225 @@ app.post('/add-userto-queue',function(req,res){
   })
 })
 
+//////////////////////////////////////////////////////////
+//function to insert user in serten queue useng the kiosk machen
+
+
+app.post('/add-userto-queue1',function(req,res){
+  db.insertinUserQueue(req.body.user_id,req.body.queue_id,"i joind from kiosk", function(err,result){
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+//////////////////////////////////////////////////////////
+//function to insert user in serten queue
+//give it the queue id and notes
+//{
+// "queueid":"1",
+// "notes":"1"
+// }
+
+app.post('/add-userto-queue1',function(req,res){
+  db.insertinUserQueue(req.body.user_id,req.body.queue_id,req.body.notes, function(err,result){
+    console.log("zzzzzzzzzzzzzzzzzz" , req.body.user_id,req.body.queue_id,req.body.notes)
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+//////////////////////////////////////////////////////////
+//function to delet from waiting lest 
+
+
+
+app.post('/deleteWaiting',function(req,res){
+  db.deletefromWaiting(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+//////////////////////////////////////////////////////////
+//function to delet from waiting lest 
+
+
+
+app.post('/deletequeue',function(req,res){
+  db.deletefromqueue(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+/////////////////////////////////////////////////////////
+//function to delet from waiting lest 
+
+
+
+app.post('/deletequeueA',function(req,res){
+  db.deletefromqueueA(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+/////////////////////////////////////////////////////////
+//function to delet from waiting lest 
+
+
+
+app.post('/UPDATEtickt',function(req,res){
+  db.UPDATEtickt(req.body.id,req.body.counter ,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+
+
+/////////////////////////////////////////////////////////
+//function to delet from waiting lest 
+
+
+
+app.post('/deleteTickt',function(req,res){
+  db.deleteTickt(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+/////////////////////////////////////////////////////////
+//function to delet from waiting lest 
+
+
+
+app.post('/deletequeueB',function(req,res){
+  db.deletefromqueueB(req.body.id,function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
 ////////////////////////////////////////////////////////////
 //function to get all users in serten queue
 app.post('/get-users-in-queue',function(req,res){
@@ -284,6 +619,31 @@ app.post('/get-users-in-queue',function(req,res){
   })
 })
 
+////////////////////////////////////////////////////////////
+//function to get all users in serten queue from the wating lest
+app.post('/get-users-in-waitingList',function(req,res){
+  console.log("ddfdsfdsf",req.body)
+  db.getUsersInWaiting(req.body.queueid, function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
 ///////////////////////////////////////////////////////////
 //function to insert user in the waitng lst for queue
 //give it the queue id and notes
