@@ -24,7 +24,6 @@ function CardFloat(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          title="Contemplative Reptile"
         />
         <CardContent style={{width: "300px", marginLeft: "40px", marginTop: "20px"}}>
           <Typography gutterBottom variant="h5" component="h2">

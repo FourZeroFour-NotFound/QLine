@@ -16,6 +16,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Confirmation from './Confirmation.jsx';
+import Popup from "reactjs-popup";
 import $ from 'jquery';
 
 
@@ -108,9 +109,6 @@ class PopBox extends Component  {
   };
 
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
 
 
   /*  these functions for ticket list elements*/
@@ -179,12 +177,9 @@ class PopBox extends Component  {
                   onClick={this.handleClickListItem}
                 >
                   < ListItemText primary={ticket.nameOfQueeu} /> 
-                <Confirmation
-                  open={this.state.open1}
-                  onClose={this.handleClose}
-                  cancel={this.handleClickListItem.bind(this)}
-                  onDelete={this.onDelete.bind(this,ticket.queue_id)}
-                />
+                  <Popup trigger={<button> Trigger</button>} position="right center">
+                     <Confirmation/>
+                  </Popup>
                  </ListItem>))}
                </List>
             </CardContent>

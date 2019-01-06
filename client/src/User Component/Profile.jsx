@@ -34,7 +34,7 @@ import mountain from '../style/mountain.png';
 import backgroundpic from '../style/backgroundpic.png';
 import PhotoAddforProf from './photoAddforProf.jsx';
 import PopBox from './popBox.jsx';
-
+import { Widget, addResponseMessage, addLinkSnippet, addUserMessage } from 'react-chat-widget';
 
 
 
@@ -263,10 +263,9 @@ class Profile extends Component {
     const { classes } = this.props;
     return (
       // navbar place
+    <div>
       <div className="back">
-     
         <div className="prof">
-
          <nav className="menu7">
                             <Grid className="menu__right">
                                 <ul className="menu__list">
@@ -289,6 +288,7 @@ class Profile extends Component {
              </Button>
           </CardContent>
         </Card>
+        
         <Card className="card33">
           <CardMedia
             className={classes.media}
@@ -362,9 +362,10 @@ class Profile extends Component {
             <h5 style={{marginLeft: "30px",marginTop: "20px"}}>TICKETS<span style={{marginLeft: "185px"}}>{this.state.TicketList.length}</span></h5>
           </Card>
           <PopBox/>
+          <Widget/>
       </div>
     </div>
-    
+  </div>
     );
   }
 }

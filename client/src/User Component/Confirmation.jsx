@@ -17,77 +17,40 @@ class Confirmation extends Component {
       super();
       this.state = {
         value: props.value,
-      
-     
       };
-      // console.log("deleeeeet",this.props);
     }
    
-
-    // onDelete =() =>{
-    //   $.ajax({
-    //           url: "/confirm",
-    //           type : "DELETE",
-    //           contentType : 'application/json',
-    //           data : JSON.stringify({'queue_id' : this.props.user_queue.queue_id}),
-    //           success: function (data) {
-    //             window.localStorage.setItem("DeleteInfo", data)
-    //             console.log("delelte", data);
-    //           console.log("deleeeeet",this.props.ticket);
-
-    //           },
-    //           error: function (error) {
-    //             console.error("dont delete", error);
-    //           }
-    //       });
-    // }
-   
-  
-    // handleCancel = () => {
-    //     console.log('hiiiii',this.props)
-    //     this.props.onClose(this.state.value);
-    //       };
-    
-    // handleClose = value => {
-    //     console.log('value', value)
-    //     this.setState({ value, open: false });
-    //   };
-  
-    // handleOk = () => {
-    //     console.log('what is it',this.state.value)
-    //   this.props.onClose(this.state.value);
-    // };
   
     render() {
       const { value, ...other } = this.props;
 
-  
       return (
-        <Dialog
-          maxWidth="xs"
-          {...other}
-      
-        >
-          <DialogTitle id="confirmation-dialog-title">Arabic Bank</DialogTitle>
-          <DialogContent>
-            <Grid container justify="center" alignItems="center">
-              <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#CE93D8' }}>H105</Avatar>
-            </Grid>
-            <span style={{ marginTop: '50px' }}>Estimated time: 1 hour</span>
-          </DialogContent>
-  
+        <div class="blog-card spring-fever">
+        <div class="title-content">
+          <h3>Arab Bank</h3>
+          <hr />
+          <div class="intro">QLine Management System</div>
+        </div>
+        <div class="card-info">
+        <DialogContent>
+             <Grid container justify="center" alignItems="center">
+               <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#CE93D8' }}>H105</Avatar>
+             </Grid>
+             <span style={{ marginTop: '50px' }}>Estimated time: 1 hour</span>
+           </DialogContent>
+        </div>
+        <div class="utility-info">
+          <ul class="utility-list">
           <DialogActions>
-            <Button onClick={(x)=> this.props.onDelete(x)} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.props.cancel} color="primary">
-              Ok
-            </Button>
-            <Button onClick={this.handleOk} color="primary">
-              Delay
-            </Button>
+          <Button onClick={(x)=> this.props.onDelete(x)} color="primary">Cancel</Button>
+          <Button onClick={this.props.cancel} color="primary">Ok</Button>
+          <Button onClick={this.handleOk} color="primary">Delay</Button>
           </DialogActions>
-        </Dialog>
+          </ul>
+        </div>
+        <div class="gradient-overlay"></div>
+        <div class="color-overlay"></div>
+        </div>
       );
     }
   }
@@ -101,3 +64,24 @@ class Confirmation extends Component {
   export default Confirmation;
 
 
+  // >
+        //   <DialogTitle id="confirmation-dialog-title">Arabic Bank</DialogTitle>
+        //   <DialogContent>
+        //     <Grid container justify="center" alignItems="center">
+        //       <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#CE93D8' }}>H105</Avatar>
+        //     </Grid>
+        //     <span style={{ marginTop: '50px' }}>Estimated time: 1 hour</span>
+        //   </DialogContent>
+  
+        //   <DialogActions>
+        //     <Button onClick={(x)=> this.props.onDelete(x)} color="primary">
+        //       Cancel
+        //     </Button>
+        //     <Button onClick={this.props.cancel} color="primary">
+        //       Ok
+        //     </Button>
+        //     <Button onClick={this.handleOk} color="primary">
+        //       Delay
+        //     </Button>
+        //   </DialogActions>
+        // </Dialog>
