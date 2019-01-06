@@ -387,7 +387,9 @@ class Profile extends Component {
             <h5 style={{marginLeft: "30px",marginTop: "20px"}}>FOLLOWING<span style={{marginLeft: "160px"}}>4</span></h5>
             <h5 style={{marginLeft: "30px",marginTop: "20px"}}>TICKETS<span style={{marginLeft: "185px"}}>{this.state.TicketList.length}</span></h5>
           </Card>
+          <GridList cols={3}>
           <PopBox/>
+          </GridList>
           <Widget/>
       </div>
     </div>
