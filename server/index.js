@@ -155,14 +155,30 @@ app.get('/ticket1', function(req,res){
     }
   })
 })
+// this request to get the number of the queue (your turn)
+app.get('/ticket', function(req,res){
+  console.log(" queue id",req.queue_id)
+  db.getUserQueue(req.queue_id,function(err,result){
+    if(err){
+      console.log("server error", err)
+    }else{
+      res.send({
+        status:200,
+        success:result
 
- // this function is used to delete data from the user tickets 
+      })
+    }
+  })
+})
+
+// this function  is used to delete specific ticket for user using queue_id
 app.delete( '/confirm/:queue_id', function(req,res){
-  console.log(" ddddddd",req.params.queue_id)
+  console.log(" zzzzzzz",req.params.queue_id)
   db.DeleteTicket(req.params.queue_id, function(err, result){
     if(err){
       console.log("server error", err)
     }else{
+      console.log("rrrrr", result)
       res.send({
         status:200,
         success:result
@@ -172,6 +188,7 @@ app.delete( '/confirm/:queue_id', function(req,res){
     }
   })
 })
+
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
   console.log(req.body)
@@ -644,6 +661,35 @@ app.post('/get-users-in-waitingList',function(req,res){
     
   })
 })
+
+// this function used to get data from user_queue 
+app.post('/getQueueInfo',function(req,res){
+  console.log("zaiiiiiiiiiiid",req.body.queueid)
+  db.getQueueInfo(req.body.queue_id, function(err,result){
+
+    if (err){
+     
+      console.log("server error giting data " , err)
+      res.send({
+        status: 404,
+        success: "err",
+        data : err
+      });
+    }else{
+      
+      res.send({
+        status: 200,
+        success: result,
+        data : result
+      });
+    }
+    
+  })
+})
+
+
+
+
 ///////////////////////////////////////////////////////////
 //function to insert user in the waitng lst for queue
 //give it the queue id and notes

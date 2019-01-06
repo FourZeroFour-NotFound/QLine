@@ -290,10 +290,42 @@ const getUserData = function (id, callback) {
     }
   })
 }
+
+// this function used to get queue details using queue id
+const getQueueInfo = function (id, callback) {
+  var sqlquery = `select * from queue where queue_id = '${id}'`
+
+  connection.query(sqlquery, function (err, result) {
+    if (err) {
+      console.log("db error to get data ", err)
+      callback(err, null)
+    } else {
+      console.log("db i found it (user exist )", id)
+      callback(null, result)
+    }
+  })
+}
+
+// this function used to get data from user_queue 
+const getUserQueue = function (id, callback) {
+  var sqlquery = `select id from user_queue where user_queue.queue_id = '${id}' `
+
+  connection.query(sqlquery, function (err, result) {
+    if (err) {
+      console.log("db error to get data ", err)
+      callback(err, null)
+    } else {
+      console.log("db i found it (user_queue )", id)
+      callback(null, result)
+    }
+  })
+}
+
+
 // this function used to get all tickets for user using id
 const getUserTickets = function (id, callback) {
-  var sqlquery =`select queue.*, user_queue.queue_id from user_queue inner join queue on user_queue.queue_id = queue.queue_id `
-
+  // var sqlquery =`select queue.*, user_queue.queue_id from user_queue inner join queue on user_queue.queue_id = queue.queue_id `
+  var sqlquery = `select * from user_queue where user_id = '${id}'`
   connection.query(sqlquery, function (err, result) {
     if (err) {
       console.log("db error to get data ", err)
@@ -352,9 +384,10 @@ const UPDATEtickt = function (id,counter, callback){
     }
   })
 }
-// this function is used to update user ticket
+ // this function  is used to delete specific ticket for user using queue_id
 
-const deleteTickt = function (id, callback){
+
+const DeleteTickt = function (id, callback){
   var sqlquery = `DELETE FROM user_queue WHERE user_queue.id = ${id};  `
   connection.query(sqlquery, function(err, result){
     if(err){
@@ -459,4 +492,6 @@ module.exports.getUserTickets = getUserTickets;
 module.exports.grtQueueUsingId = grtQueueUsingId;
 module.exports.deleteFromuser_queue = deleteFromuser_queue;
 module.exports.UPDATEtickt = UPDATEtickt;
-module.exports.deleteTickt = deleteTickt;
+module.exports.DeleteTickt = DeleteTickt;
+module.exports.getQueueInfo = getQueueInfo;
+module.exports.getUserQueue = getUserQueue;
