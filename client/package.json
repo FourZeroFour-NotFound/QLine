@@ -23,7 +23,7 @@
     "reactjs-popup": "^1.3.2"
   },
   "scripts": {
-    "save":"npm install",
+   
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
