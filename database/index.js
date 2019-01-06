@@ -387,7 +387,7 @@ const UPDATEtickt = function (id,counter, callback){
  // this function  is used to delete specific ticket for user using queue_id
 
 
-const DeleteTickt = function (id, callback){
+const deleteTickt = function (id, callback){
   var sqlquery = `DELETE FROM user_queue WHERE user_queue.id = ${id};  `
   connection.query(sqlquery, function(err, result){
     if(err){
@@ -492,6 +492,20 @@ module.exports.getUserTickets = getUserTickets;
 module.exports.grtQueueUsingId = grtQueueUsingId;
 module.exports.deleteFromuser_queue = deleteFromuser_queue;
 module.exports.UPDATEtickt = UPDATEtickt;
-module.exports.DeleteTickt = DeleteTickt;
+module.exports.deleteTickt = deleteTickt;
 module.exports.getQueueInfo = getQueueInfo;
 module.exports.getUserQueue = getUserQueue;
+/////////////////////////////
+const DeleteTicket =function(id,callback){
+  var sqlquery = `Delete from user_queue where id = '${id}' `
+  connection.query(sqlquery, function(err, result){
+    if(err){
+      console.log('db error', err)
+      callback(err,null)
+    }else{
+      console.log( result.affectedRows ,"db update")
+      callback(null,result)
+    }
+  })
+}
+module.exports.DeleteTicket = DeleteTicket;
