@@ -171,8 +171,9 @@ export default class business extends React.Component {
         <FormGroup>
           {auth && (
             <div style={{marginLeft: "40px"}}>
-            <p href="#" className="scroll-down" address="true"><span style={{color: "white", marginTop: "-20px"}}>Start Your Queue Here</span></p>
-            <div className="cool1" style={{marginLeft: "-50px", marginTop: "-40px"}}>
+            <p href="#" className="scroll-down1" address="true">Start Here</p>
+            <p href="#" className="scroll-down" address="true"></p>
+            <div className="cool1" style={{marginLeft: "-50px", marginTop: "100px"}}>
                                 <div  style={{background: "#7aeac2", marginTop: "-15px", height: "300px"}}>
                                     <a href="http://www.facebook.com"  style={{color: "black"}} hover={{color: "#7aeac2"}}><i  style={{ marginTop: "40px", marginLeft: "1500px"}} class="fa fa-facebook"></i></a>
                                     <a href="http://www.twitter.com" style={{color: "black"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}}  class="fa fa-twitter"></i></a>
