@@ -18,7 +18,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Confirmation from './Confirmation.jsx';
 import Popup from "reactjs-popup";
 import $ from 'jquery';
-
+import Avatar from '@material-ui/core/Avatar';
+import GridList from '@material-ui/core/GridList';
 
 const styles = theme => ({
     root: {
@@ -137,28 +138,83 @@ class PopBox extends Component  {
       });
   }
 
-  onDelete =(queue_id) =>{
-    console.log("deleeeeet",queue_id);
-
-    $.ajax({
-            url: `/confirm/${queue_id}`,
-            type : "DELETE",
-            contentType : 'application/json',
-      
-            success: function (data) {
-              window.localStorage.setItem("DeleteInfo", data)
-              console.log("delelte", data);
-
-            },
-            error: function (error) {
-              console.error("dont delete", error);
-            }
-        });
-
-  }
 
 
   render () {
+    var onDelete =(queue_id) =>{
+      console.log("deleeeeet",queue_id);
+      var that = this
+
+      $.ajax({
+              url: `/confirm/${queue_id}`,
+              type : "DELETE",
+              contentType : 'application/json',
+        
+              success: function (data) {
+            
+                console.log("delelte", data);
+            
+                $.ajax({
+                  url: "/ticket1",
+                  type: "Get",
+                  success: function (data) {
+                   
+               that.setState({
+                    TicketList:data.success
+                  })
+                    
+                  }
+                }).then( ()=>{
+                  for(var i = 0 ; i<this.state.TicketList.length ;i++){
+                      $.ajax({
+                        url: '/getQueueInfo',
+                        type: "Post",
+                        contentType : 'application/json',
+                        data: JSON.stringify({queue_id:this.state.TicketList[i].queue_id}),
+                        success:  (data) => {
+                      console.log("queue Info", data.data[0].nameOfQueeu)
+                         
+                         this.setState(previousState => ({
+                          name2: [...previousState.name2, data.data[0].nameOfQueeu]
+                      }));
+                        }
+                      
+                      })}
+                      ;}
+                      )
+
+              },
+              error: function (error) {
+                console.error("dont delete", error);
+              }
+          });
+
+    }
+    const { classes } = this.props;
+    var time = (queue_id) => {
+      var x = 0
+            $.ajax({
+              url: '/get-users-in-queue',
+              type: "Post",
+              contentType : 'application/json',
+              data: JSON.stringify({queueid:queue_id}),
+              success:  (data ) => {
+            console.log("queue ticket", data)
+               for(var i= 0; i<data.data.length; i++){
+                 console.log( "dataaaa",data.data[i].user_id)
+                  console.log("this.state.user_id ",this.state.user_id )
+                 if(data.data[i].user_id !== this.state.user_id ){
+                 x++
+                   console.log("xxxxxxxxxx",x)
+                 }else{
+                   i = 10000000000
+                 }
+               }
+              }
+            
+            });
+       return x
+          }
   return (
     <Card className="cardpop">
       <CardActionArea>
@@ -166,7 +222,6 @@ class PopBox extends Component  {
              <Button onClick={this.handleExpandClick} variant="outlined" style={{color:"white", backgroundColor: "#aa1256", borderRadius: "5px", width: "200px", marginTop:"20px", marginLeft: "50px"}}>MY TICKET</Button>
             <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-              <h2>Ticket List:</h2>
                <List>
                {this.state.TicketList.map((ticket) => (
                <ListItem key = {ticket.nameOfQueeu} ticket = {ticket.nameOfQueeu}
@@ -177,9 +232,34 @@ class PopBox extends Component  {
                   onClick={this.handleClickListItem}
                 >
                   < ListItemText primary={ticket.nameOfQueeu} /> 
-                  <Popup trigger={<button> Trigger</button>} position="right center">
-                     <Confirmation/>
-                  </Popup>
+                  <GridList cols={1} >
+       {this.state.TicketList.map((ticket,i) => (
+
+<Card style={{margin : "5px", width:"100%", height: "400px"}} >
+           <CardActionArea>
+           <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
+               {/* <h2>{this.state.name2[i]} </h2> */}
+              
+               </Typography>
+             <CardContent>
+             <CardMedia />
+             <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#CE93D8' }} >{ticket.id}</Avatar>
+               <Typography  styles={{paddingBottom: 50,}} variant="h7" component="p">
+               <h2> Estimated time: {(time(ticket.queue_id)/ticket.windows)*ticket.timeforone} </h2>
+               <h2> user notes  :  </h2>
+               <Button  styles={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" onClick= {()=>{onDelete(ticket.id)}} color="primary" type="submit">
+                              Delete 
+                            </Button>
+               </Typography>
+             </CardContent>
+           </CardActionArea>
+           <CardActions>
+           </CardActions>
+         </Card>
+          ))}
+
+       
+            </GridList>
                  </ListItem>))}
                </List>
             </CardContent>
