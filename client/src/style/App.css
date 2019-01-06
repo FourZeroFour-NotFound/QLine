@@ -160,7 +160,7 @@ hr {
 
 /*********************Profile User************/
 
-.cardpop {
+/* .cardpop {
   -moz-box-shadow:    inset 0 0 10px #000000;
   -webkit-box-shadow: inset 0 0 10px #000000;
   box-shadow:         inset 0 0 10px #000000;
@@ -171,8 +171,7 @@ hr {
   margin-bottom: 300px;
   background: #ccc;
   position: absolute;
-
-}
+} */
 .mountain {
   position: static;
   width: 1600px;
