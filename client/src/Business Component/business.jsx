@@ -20,6 +20,9 @@ import { Router, Route, browserHistory } from 'react-router';
 import businessvid from '../style/business.mp4';
 import $ from "jquery";
 import Footer from '../First Page Component/Footer.jsx';
+import CardFloatBusiness from './cardFloatBusiness.jsx';
+import CreateQueue from './creatQueue.jsx';
+import CreateQueueCard from './createQueueCard.jsx';
 
 
 
@@ -111,6 +114,15 @@ export default class business extends React.Component {
       } 
   }
 
+  componentWillMount () {
+    $(function() {
+      $('.scroll-down').click (function() {
+        $('html, body').animate({scrollTop: $('.cool1').offset().top }, 'slow');
+        return false;
+      });
+    });
+  }
+
   logOut() {
     $.ajax({
       url: '/log-out',
@@ -159,16 +171,24 @@ export default class business extends React.Component {
         <FormGroup>
           {auth && (
             <div style={{marginLeft: "40px"}}>
-            <Button
-            href="/CreatQueue"
-            aria-owns={open ? 'menu-appbar' : undefined}
-            aria-haspopup="true"
-            onClick={this.handleMenu}
-            color="inherit"
-            size="large" style={{ backgroundColor: "#7aeac2", marginLeft: "600px", font: "white", marginTop: "-500px", marginBottom: "50px"}} >
-            + Create New Queue
-            </Button>
-              <BusinessGridList/>
+            <p href="#" className="scroll-down" address="true"><span style={{color: "white", marginTop: "-20px"}}>Start Your Queue Here</span></p>
+            <div className="cool1" style={{marginLeft: "-50px", marginTop: "-40px"}}>
+                                <div  style={{background: "#7aeac2", marginTop: "-15px", height: "300px"}}>
+                                    <a href="http://www.facebook.com"  style={{color: "black"}} hover={{color: "#7aeac2"}}><i  style={{ marginTop: "40px", marginLeft: "1500px"}} class="fa fa-facebook"></i></a>
+                                    <a href="http://www.twitter.com" style={{color: "black"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}}  class="fa fa-twitter"></i></a>
+                                    <a href="http://www.linkedin.com" style={{color: "black"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}}  class="fa fa-linkedin"></i></a>
+                                    <a hhref="http://www.instagram.com" style={{color: "black"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}}  class="fa fa-instagram"></i></a>
+                                    <h1 className="displayName">{this.state.firstName}</h1>
+                                    <h1 className="displaylastName">{this.state.lastName}</h1>
+                                    <h3 className="displaylastName">{this.state.email}</h3>
+                                {/* <img src={vio} height="300px" style={{marginLeft: "800px"}}/> */}
+                                <CardFloatBusiness/>
+                                <CreateQueueCard/>
+                              </div>
+                              <Grid className="searchdesign" style = {{height: "800px",marginTop:"150px", marginLeft: "500px"}}> 
+                              <BusinessGridList/>
+                              </Grid>
+                      </div>
               <Widget/>
               </div>
         )}

@@ -10,7 +10,7 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import $ from 'jquery';
 import logo from '../style/qline.png';
-import { BottomNavigation } from '@material-ui/core';
+import { BottomNavigation, Card } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
@@ -110,12 +110,10 @@ export default class CreatQueue extends React.Component {
   render() {
     const { take_premum, accept_join } = this.state;
     return (
+
       <div>
-      <nav className="menu"  style={{backgroundColor: "#aa1256",marginTop: "10px", marginLeft: "50px"}}>
-                <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
-      </nav>
       <FormGroup>
-      <form style={{marginTop:"100px", marginLeft:"100px"}} noValidate autoComplete="off">
+      <form style={{marginTop:"10px", marginLeft:"10px"}} noValidate autoComplete="off">
       <p> Queue Name: </p>
       <TextField
           style={styles.textField}
@@ -266,7 +264,7 @@ export default class CreatQueue extends React.Component {
          >create</Button>
       </FormGroup>
       </div>
-      
+
     )
   }
 

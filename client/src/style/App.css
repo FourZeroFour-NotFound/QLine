@@ -259,6 +259,15 @@ hr {
   background-size: cover;
 }
 
+.cool1 {
+  margin-top: -10px;
+  margin-bottom: -50px;
+  background-image: url(../style/1511.jpg);
+  height: 1500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .floatcard {
   margin-top: -350px;
   margin-left: 100px;
