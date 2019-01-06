@@ -26,15 +26,15 @@ class Header extends Component {
                 </Grid>
                 <Grid className="centerNav">
                     <ul className="centerNavMenu">
-                    <li className="menuItem"><a className="itemLink">Home</a></li>
-                    <li className="menuItem"><a className="itemLink">Features</a></li>
-                    <li className="menuItem"><a className="itemLink" href="#serv">Contact Us</a></li>
+                    <li className="menuItem"><a className="itemLink1" href="/">Home</a></li>
+                    <li className="menuItem"><a className="itemLink1">Features</a></li>
+                    <li className="menuItem"><a className="itemLink1" href="#serv">Contact Us</a></li>
                     
                     </ul>
                 </Grid>
                 <Grid className="menu__right">
                     <ul className="menu__list">
-                    <li class="menu__list-item"><Link to ="/sign-in" class="menu__link" onClick={this.props.toggleLogin}>LogIn</Link></li>
+                    <li class="menu__list-item"><Link to ="/sign-in" class="menu__link1" onClick={this.props.toggleLogin}>LogIn</Link></li>
                     <li class="menu__list-item"><Link to ="/sign-up" class="menu__link menu__link--active" onClick={this.props.toggleSignup}>Sign Up</Link></li>
                     </ul>
                 </Grid>

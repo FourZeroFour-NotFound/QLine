@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../style/App.css';
 import {Grid, Button} from '@material-ui/core';
 import show from '../style/show.png';
+import {Link} from 'react-router';
 
 class AboutQLine extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class AboutQLine extends Component {
                             QLine is an intelligent system that can monitor data related to queues in real time, and collect 
                             customer feedback. Our software can then assess this data to speed up the performance of your agents and services.
                         </p>
-                        <Button id="btn22" style={{backgroundColor: "#aa1256", width: "100px", marginTop: "30px", color: "white"}} href="/sign-up"> Start Free</Button>
+                       <Button id="btn22" style={{backgroundColor: "#aa1256", height:"50px" ,width: "100px", marginTop: "30px", color: "white"}} onClick={this.props.toggleSignup}> Start Free</Button>
                     </Grid>
                 </div>
             </Grid>

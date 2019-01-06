@@ -146,6 +146,7 @@ class User extends Component {
                             </Grid>
                             <Grid className="menu__right">
                                 <ul className="menu__list">
+                                <a href="/profile" style={{color: "white"}}><AccountCircle  style={{marginRight: "60px", marginBottom: "-5px"}}/></a>
                                 <li class="menu__list-item"><a  class="menu__link" onClick={this.logOut.bind(this)}>Logout</a></li>
                                 </ul>
                             </Grid>
@@ -160,10 +161,10 @@ class User extends Component {
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
-                                    <a href="#" style={{color: "white"}} hover={{color: "#7aeac2"}}><i  style={{ marginTop: "40px", marginLeft: "1500px"}} class="fa fa-facebook"></i></a>
-                                    <a href="#" style={{color: "white"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}} class="fa fa-twitter"></i></a>
-                                    <a href="#" style={{color: "white"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}} class="fa fa-linkedin"></i></a>
-                                    <a href="/profile" style={{color: "white"}}><AccountCircle  style={{marginLeft: "60px", marginBottom: "-5px"}}/></a>
+                                    <a href="http://www.facebook.com"  style={{color: "white"}} hover={{color: "#7aeac2"}}><i  style={{ marginTop: "40px", marginLeft: "1500px"}} class="fa fa-facebook"></i></a>
+                                    <a href="http://www.twitter.com" style={{color: "white"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}}  class="fa fa-twitter"></i></a>
+                                    <a href="http://www.linkedin.com" style={{color: "white"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}}  class="fa fa-linkedin"></i></a>
+                                    <a hhref="http://www.instagram.com" style={{color: "white"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}}  class="fa fa-instagram"></i></a>
                                     <h1 className="displayName">{this.state.firstName}</h1>
                                     <h1 className="displaylastName">{this.state.lastName}</h1>
                                     <h3 className="displaylastName">{this.state.email}</h3>
