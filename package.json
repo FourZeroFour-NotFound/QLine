@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "build":"cd client  && npm build ",
-    "start": "cd client && npm start",
+    "start": "cd client && npm run save && npm start",
     "server": "nodemon server",
     "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
     "test": "mocha"
