@@ -174,7 +174,7 @@ class Profile extends Component {
   componentDidMount = () =>{
     var that = this
     $.ajax({
-      url: "/profile",
+      url: "/profile_info",
       type: "Get",
       success: function (data) {
         console.log("kkkkk", data.success[0])
