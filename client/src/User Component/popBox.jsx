@@ -99,45 +99,8 @@ class PopBox extends Component {
     numUser: [[], [], [], [], [], [], [], [], [], []],
     TicketListid: []
   };
-  /* send data after edit the information*/
 
-
-  /*when edit full name call the function */
-  handleChange = (e) => {
-    this.setState({
-      firstName: e.target.value,
-    });
-  };
-  handleChangeLast = (e) => {
-    this.setState({
-      lastName: e.target.value,
-    });
-  };
-
-  /* when edit phone number call this function*/
-  handleChangeNum = (e) => {
-    this.setState({
-      phoneNumber: e.target.value,
-    });
-  };
-
-  handleClickOpen = () => {
-    this.setState({ open: !this.state.open });
-  };
-
-
-
-
-  /*  these functions for ticket list elements*/
-  handleClickListItem = () => {
-    console.log("jjjjjj")
-    this.setState({ open1: !this.state.open1 });
-  };
-
-  handleClose = value => {
-    console.log('value', value)
-    this.setState({ value, open: false });
-  };
+  
 
   componentDidMount() {
     var that = this
