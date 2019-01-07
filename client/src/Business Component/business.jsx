@@ -23,7 +23,7 @@ import Footer from '../First Page Component/Footer.jsx';
 import CardFloatBusiness from './cardFloatBusiness.jsx';
 import CreateQueue from './creatQueue.jsx';
 import CreateQueueCard from './createQueueCard.jsx';
-
+import GridListTile from '@material-ui/core/GridListTile';
 
 
 const styles = {
@@ -186,7 +186,7 @@ export default class business extends React.Component {
                                 <CardFloatBusiness/>
                                 <CreateQueueCard/>
                               </div>
-                              <Grid className="searchdesign" style = {{height: "800px",marginTop:"150px", marginLeft: "500px"}}> 
+                              <Grid className="searchdesign" style = {{height: "800px",marginTop:"250px", marginLeft: "100px"}}> 
                               <BusinessGridList/>
                               </Grid>
                       </div>

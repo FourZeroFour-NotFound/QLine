@@ -11,6 +11,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 import $ from "jquery";
+
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -27,15 +29,13 @@ const styles = {
   },
   card: {
     width: "600px",
-    height: "350px",
+    height: "450px",
     margin: 7,
 
   },
   media: {
-    height: 150,
-    width: 700,
-    marginLeft: -30,
-    marginTop: -60
+    height: 190,
+    width: '100%',
   },
 };
 
@@ -152,31 +152,31 @@ export default class BusinessQueue extends React.Component {
               style={styles.media}
               image={this.props.queue.imgUrl}
             />
-              <Typography  style={{paddingBottom: 50, marginTop: "30px", }} variant="h7" component="p">
-              {"customer in queue:  " + this.state.allusersinqueue.length}<br />
-                {"Start Time:  " + this.props.queue.start_time.split(":00.")[0]}<br />
-                {"End Time:  " + this.props.queue.end_time.split(":00.")[0]}<br />
+              <Typography  style={{paddingBottom: 50, marginTop: "20px"}} variant="h7" component="p">
+              {"customer in queue  :  " + this.state.allusersinqueue.length}<br />
+                {"Start Time :  " + this.props.queue.start_time.split(":00.")[0]}<br />
+                {"End Time :  " + this.props.queue.end_time.split(":00.")[0]}<br />
                 {"Date :  " + this.props.queue.date.split("T")[0]}<br />
-                {" Time for each customer :  " + this.props.queue.timeforone}<br />
-                {"Number of windows :  " + this.props.queue.windows}<br />
+                {" Time per customer :  " + this.props.queue.timeforone}<br />
+                {"No. of windows :  " + this.props.queue.windows}<br />
                 
                 {/* {"Premium permission :  " + acept(this.props.queue.take_premum)}<br /> */}
                 {"Accept customers :  " + acept(this.props.queue.accept_join) }<br />
-                {"Requirements for attending this queue :  " + this.props.queue.requierment}<br />
+                {"Requirements  :  " + this.props.queue.requierment}<br />
               </Typography>
             </CardContent>
           </CardActionArea>
           <CardActions>
 
             <Button href = {`/BusinessDashBord/${this.props.queue.queue_id}`}
-            style={{ backgroundColor: "#7aeac2", marginTop: "180px", marginLeft: "400px", font: "white" }}>
+            style={{ backgroundColor: "#7aeac2", marginTop: "350px", marginLeft: "400px", font: "white" }}>
               Manage
              
         </Button> 
         <Button 
             onClick={this.delete}
           
-            style={{ backgroundColor: "#aa1256", marginTop: "180px", marginLeft: "20px", font: "white" }}>
+            style={{ backgroundColor: "#aa1256", marginTop: "350px", marginLeft: "20px", font: "white" }}>
               delete
              
         </Button>

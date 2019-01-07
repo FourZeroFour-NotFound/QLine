@@ -25,7 +25,7 @@ function CardFloatBusiness(props) {
         <CardMedia
           className={classes.media}
         />
-        <CardContent style={{width: "300px", marginLeft: "40px", marginTop: "20px"}}>
+        <CardContent style={{width: "300px", marginLeft: "900px", marginTop: "-340px"}}>
           <Typography gutterBottom variant="h5" component="h2">
           Know how long your customers
           have been waiting
