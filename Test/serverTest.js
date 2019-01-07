@@ -50,7 +50,7 @@
 //   });
 // });
 
-<<<<<<< HEAD
+
 // describe('GET LogOut', () => {
 //   it('it should GET Logout', (done) => {
 //     chai.request(server)
@@ -83,7 +83,7 @@
 //     });
 //   });
 // });
-=======
+
 describe('GET LogOut', () => {
   it('it should GET Logout', (done) => {
     chai.request(server)
@@ -129,4 +129,16 @@ describe('PUT Profile', () => {
     });
   });
 });
->>>>>>> 544fca0d44dac5fa195ee45ca790b1bf82bd0e86
+
+// test used to delete specific ticket  for user using queue_id
+describe('DELETE /confirm/:queue_id', () => {
+  it('it should delete specific ticket for user', (done) => {
+    chai.request(server)
+    .get('/confirm/:queue_id')
+    .end((err,res) => {
+  res.body.should.be.a('object');
+  done();
+    });
+  });
+});
+

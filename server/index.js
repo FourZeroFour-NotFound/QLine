@@ -832,7 +832,7 @@ app.post('/queue-data',function(req,res){
   })
 })
 // this function used to get data for user using id
-app.get('/profile', function(req,res){
+app.get('/profile_info', function(req,res){
   console.log(" lllllllll",req.user)
   db.getUserData(req.user,function(err,result){
     if(err){
