@@ -69,7 +69,7 @@ export default class SearchQueue extends React.Component {
   //this function to handel conferm button it will add user to queue
   addUser = () => {
     console.log(this.state.allqueue.accept_join)
-    //this will chick if the queue have wating list to be conferm from the manger of queue or add him directly to the queue
+    //this will chick if the queue have wating list to be confirm from the manger of queue or add him directly to the queue
     if (this.state.allqueue.accept_join) {
       console.log(true)
 
