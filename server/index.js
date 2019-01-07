@@ -8,12 +8,22 @@ var MySQLStore = require('express-mysql-session')(session);
 var router = express.Router();
 const multer = require("multer");
 const app = express();
-app.disable('Etag')
+
 app.use(express.static(__dirname + '/../client/public'));
-const port = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  // Handle React routing, return all requests to React app
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
+
 }));
 
 
@@ -813,12 +823,12 @@ const upload = multer({
   limits: { fileSize: 1000000 },
 }).single('myImage')
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '/../client/public', 'index.html'));
- });
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '/../client/public', 'index.html'));
+//  });
 
 
 
-
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;
