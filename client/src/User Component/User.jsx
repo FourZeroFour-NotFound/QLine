@@ -172,7 +172,7 @@ class User extends Component {
                                 <CardFloat/>
                                 
                               </div>
-                              <Grid className="searchdesign" style = {{height: "800px",marginTop:"-150px", marginLeft: "500px"}}>
+                              <Grid className="searchdesign" style = {{height: "400px",marginTop:"-150px", marginLeft: "500px"}}>
                               <SearchResult queues = {this.state.searchResult}/>   
                               </Grid>
                               <Counter/>

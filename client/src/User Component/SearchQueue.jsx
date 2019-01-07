@@ -248,8 +248,8 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
                 {"Date :" + date[0]}<br />
                 {/* {"The time for each customer: " + this.state.allqueue.timeforone + " m"}  <br />  */}
                 {"Number of windows:" + this.state.allqueue.windows}<br />
-                {"Number of peaple in line now:" + this.state.allusers.length}<br />
-                {"the estmated time untel they finsh:   " + estmatedTime()  +" minutes" }<br />
+                {"Number of people in line now:" + this.state.allusers.length}<br />
+                {"the estimated time until finish:   " + estmatedTime()  +" minutes" }<br />
                 {"Remaining tickets :" + Math.floor(remaningTicits) }<br />
               </DialogContent>
               <DialogActions>
