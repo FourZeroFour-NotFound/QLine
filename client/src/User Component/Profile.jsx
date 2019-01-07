@@ -116,7 +116,7 @@ class Profile extends Component {
     }
 
     $.ajax({
-      url: "/profile",
+      url: "/Profile_info",
       type: "Put",
       data: JSON.stringify(InfObj),
       contentType: "application/json",
@@ -174,7 +174,7 @@ class Profile extends Component {
   componentDidMount = () =>{
     var that = this
     $.ajax({
-      url: "/profile",
+      url: "/Profile_info",
       type: "Get",
       success: function (data) {
         console.log("kkkkk", data.success[0])

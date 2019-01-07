@@ -294,8 +294,17 @@ describe('GET get-users-in-waitingList', () => {
   });
 });
 
-
-
+// test for search about the queues by sending name of organization
+describe('POST search', () => {
+  it('it should return all the queues that have the same name of organaization', (done) => {
+    chai.request(server)
+    .put('/search')
+    .end((err,res) => {
+      res.body.should.be.a('object')
+      done();
+    });
+  });
+});
 
 
 

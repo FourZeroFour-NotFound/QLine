@@ -42,8 +42,6 @@ const styles = () => ({
 
 class User extends Component {
   state = {
-    auth: true,
-    anchorEl: null,
     value:"",
     searchResult:[],
     firstName: "",
@@ -51,15 +49,8 @@ class User extends Component {
     email: ""
   };
 
-  handleChange = event => {
-    this.setState({ auth: event.target.checked });
-  };
-
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
+  
+// this function for search about the queues  by add the name of  the queue
   handleSearch = () => { 
      var that= this;
     $.ajax({
@@ -83,7 +74,7 @@ class User extends Component {
         setTimeout(() => {window.location.href="/business"}, 1000)
        });
       } 
-      $.ajax({
+      $.ajax({// this rquest to get all the user informations and render them once the user open his profile 
         url: "/profile_info",
         type: "Get",
         success: function (data) {
@@ -123,7 +114,7 @@ class User extends Component {
 
 
   render() {
-    const { auth } = this.state;
+    
     return (
             <div>
                   <video width="100%"  style={{marginTop: "-60px"}}  autoPlay>
