@@ -1,13 +1,14 @@
 # Project Name
 QLine
 
-> Pithy project description
+
  QLine is a mobile and web queue management system for your customers to book tickets and queuing spots in your branches/locations different services. The customer app is for customers to download into their own devices. This is ideal for returning and loyal customers. Your business will also have walk-in customers who don't know or not interested in using the app. For these customers, you can set-up an onsite tablet app. Set up the tablet near the queues and customers are able to book or sign-up without having to wait in line to interact with a human agent.
 ## Team
 
-  - __Product Owner__: Zaid Raddad
-  - __Scrum Master__: Radwan Abdoh
-  - __Development Team Members__: Esraa Zaitoun, Ghosoun Aldabea
+  - __Product Owner__: [Zaid Raddad](https://github.com/zaidraddad94)
+  - __Scrum Master__: [Radwan Abdoh](https://github.com/radwan-1)
+  - __Development Team Members__: [Esraa Zaitoun](https://github.com/esraazaitoun1991)
+                                , [Ghosoun Aldabea](https://github.com/ghosoun89)
 
 ## Table of Contents
 
