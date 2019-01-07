@@ -95,3 +95,14 @@ describe('PUT Profile', () => {
     });
   });
 });
+// test used to delete specific ticket  for user using queue_id
+describe('DELETE /confirm/:queue_id', () => {
+  it('it should delete specific ticket for user', (done) => {
+    chai.request(server)
+    .get('/confirm/:queue_id')
+    .end((err,res) => {
+  res.body.should.be.a('object');
+  done();
+    });
+  });
+});
