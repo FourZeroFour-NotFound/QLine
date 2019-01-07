@@ -194,10 +194,9 @@ app.delete( '/confirm/:queue_id', function(req,res){
 
   // this function to create  new queue
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 67c2c9848b555cdb032784cc45b02de65844c601
+
+
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
   console.log(req.body)
