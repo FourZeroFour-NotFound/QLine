@@ -457,7 +457,7 @@ module.exports.grtQueueUsingId = grtQueueUsingId;
 module.exports.deleteFromuser_queue = deleteFromuser_queue;
 module.exports.UPDATEtickt = UPDATEtickt;
 module.exports.deleteTickt = deleteTickt;
-=======
+
 var mysql = require('mysql');
 
 
