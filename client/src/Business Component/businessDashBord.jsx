@@ -385,11 +385,15 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
         </Card>
 
           {this.state.arr.map((queue ,i) => (
-           <Card style={{margin : 5, width: "1000px", height: "150px", borderRadius: "999px", border: "4px solid #7aeac2" }} >
-           <CardActionArea>
-           <Typography gutterBottom variant="h5" component="h2" style={{color:"black", backgroundColor:"#7aeac2"}}>
+            <Card>
+            <Card style={{margin : 5, width: "300px", height: "150px", borderRadius: "999px", border: "4px solid #7aeac2" }} >
+                <Typography gutterBottom variant="h5" component="h2" style={{color:"black", backgroundColor:"#7aeac2"}}>
                <h2>counter : {i +1} </h2>
                </Typography>
+            </Card>
+           <Card style={{margin : 5, width: "1000px", height: "150px", borderRadius: "999px", border: "4px solid #7aeac2" }} >
+           <CardActionArea>
+        
              <CardContent>
              <CardMedia />
                <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
@@ -399,6 +403,7 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
            </CardActionArea>
            <CardActions>
            </CardActions>
+         </Card>
          </Card>
           ))}
 
