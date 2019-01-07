@@ -26,7 +26,7 @@ class IntroPage extends Component {
       <Grid className="anyCont" >
        <Grid  className="content">
        <video width="100%" height="100%" loop autoPlay>
-       <source src={intro} type="video/mp4"/></video>
+       {/* <source src={intro} type="video/mp4"/></video> */}
        <p href="#" className="scroll-down" address="true"></p>
         <Grid className="titleDesc">Queue Management System <span className="imp">Implemented</span>
         <p className="qlinedesc">QLine is the world's most effecient queue management system and it's completely FREE. See how it can help your life today.</p>
