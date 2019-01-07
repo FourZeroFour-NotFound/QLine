@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/../client/public'));
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: false
 }));
 
 
