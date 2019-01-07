@@ -85,7 +85,7 @@ export default class SearchQueue extends React.Component {
         }),
         success: (data) => {
           console.log(data);
-          alert("u joind the queue sucssfuly ")
+          alert("You Joined The Queue Successfully ")
         }
       });
 
@@ -102,7 +102,7 @@ export default class SearchQueue extends React.Component {
         }),
         success: (data) => {
           console.log(data);
-          alert("u joined the waiting lest sucssfuly")
+          alert("You Joined the Waiting List Successfuly")
         }
       });
     }
@@ -180,7 +180,7 @@ export default class SearchQueue extends React.Component {
     if (remaningTicits > 0) {
       this.setState({ open1: !this.state.open1 });
     } else {
-      alert("this queue is full try leater")
+      alert("this queue is full try later")
     }
   };
 

@@ -20,7 +20,7 @@ function CardFloat(props) {
   return (
       <div>
     <img src={flatpng} style={{marginLeft: "60px", marginTop: "-10px"}} width="800px" height="500px"/>
-    <Card className="floatcard">
+    <Card className="floatcard1">
       <CardActionArea>
         <CardMedia
           className={classes.media}

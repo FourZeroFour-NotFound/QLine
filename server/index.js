@@ -397,7 +397,7 @@ app.post('/add-userto-queue',function(req,res){
 
 
 app.post('/add-userto-queue1',function(req,res){
-  db.insertinUserQueue(req.body.user_id,req.body.queue_id,"i joind from kiosk", function(err,result){
+  db.insertinUserQueue(req.body.user_id,req.body.queue_id,"I Joined From kiosk", function(err,result){
     if (err){
      
       console.log("server error giting data " , err)
@@ -670,7 +670,7 @@ app.post('/getQueueInfo',function(req,res){
 
     if (err){
      
-      console.log("server error giting data " , err)
+      console.log("server error geting data " , err)
       res.send({
         status: 404,
         success: "err",

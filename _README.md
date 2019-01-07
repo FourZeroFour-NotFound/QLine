@@ -1,12 +1,13 @@
 # Project Name
+QLine
 
 > Pithy project description
-
+ QLine is a mobile and web queue management system for your customers to book tickets and queuing spots in your branches/locations different services. The customer app is for customers to download into their own devices. This is ideal for returning and loyal customers. Your business will also have walk-in customers who don't know or not interested in using the app. For these customers, you can set-up an onsite tablet app. Set up the tablet near the queues and customers are able to book or sign-up without having to wait in line to interact with a human agent.
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Zaid Raddad
+  - __Scrum Master__: Radwan Abdoh
+  - __Development Team Members__: Esraa Zaitoun, Ghosoun Aldabea
 
 ## Table of Contents
 
@@ -20,15 +21,27 @@
 
 ## Usage
 
-> Some usage instructions
+ Step 1: Customers Free
+         You can download or access our website and make your own account
+
+ Step 2 : Customer Usage
+         After downloading and having your account, you can access the services for your convenient and you can either create your own queue system or book and join for your own preferences.
+
+ Step 3 : Customer / Business Preferences
+         When User booked queue anywhere anytime, our system can help the user also to remind his/her queue, easy and simple!
+
+ Step 4: Business Conveniency and statistics
+         Business Personnel can access the datas of there business queue for the betterment of there services and for business decision making.  
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node v10.13.0
+- React JS
+- Material Ui for React JS Library
+- MySQL Database
+- Passport JS for Authentication
+- React Native (Mobile App)
+- Chai and Jest (Testing)
 
 ## Development
 
@@ -44,7 +57,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://waffle.io/FourZeroFour-NotFound/QLine)
 
 
 ## Contributing
