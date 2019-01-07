@@ -37,7 +37,7 @@ class HomePage extends React.Component {
     }
   }
 
-ReactDOM.render(<HomePage/>, document.getElementById('root1'));
+ReactDOM.render(<HomePage/>, document.getElementById('root'));
 
 // setTimeout(()=>{
 //   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
