@@ -84,7 +84,7 @@ class User extends Component {
        });
       } 
       $.ajax({
-        url: "/profile",
+        url: "/profile_info",
         type: "Get",
         success: function (data) {
           console.log(data)
