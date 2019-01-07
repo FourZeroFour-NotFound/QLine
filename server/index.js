@@ -126,7 +126,7 @@ app.post('/profile2', function(req,res){
 })
 
 // this function is used to update data for user using id
-app.put('/profile', function(req,res){
+app.put('/profile_info', function(req,res){
   console.log(" ddddddd",req.user)
   db.UPDATE(req.body,req.user, function(err, result){
     if(err){
@@ -156,21 +156,7 @@ app.get('/ticket1', function(req,res){
     }
   })
 })
-// this request to get the number of the queue (your turn)
-app.get('/ticket', function(req,res){
-  console.log(" queue id",req.queue_id)
-  db.getUserQueue(req.queue_id,function(err,result){
-    if(err){
-      console.log("server error", err)
-    }else{
-      res.send({
-        status:200,
-        success:result
 
-      })
-    }
-  })
-})
 
 // this function  is used to delete specific ticket for user using queue_id
 app.delete( '/confirm/:queue_id', function(req,res){
@@ -189,7 +175,7 @@ app.delete( '/confirm/:queue_id', function(req,res){
     }
   })
 })
-
+  // this function to create  new queue
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
   console.log(req.body)
