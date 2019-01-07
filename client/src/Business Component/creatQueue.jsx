@@ -10,20 +10,20 @@ import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import $ from 'jquery';
 import logo from '../style/qline.png';
-import { BottomNavigation } from '@material-ui/core';
+import { BottomNavigation, Card } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    marginTop:'500px'
+    marginTop:'500px',
+
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    padding: 20,
+    maxWidth: 300
   },
+ 
   Time: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
@@ -110,18 +110,22 @@ export default class CreatQueue extends React.Component {
   render() {
     const { take_premum, accept_join } = this.state;
     return (
+
       <div>
-      <nav className="menu"  style={{backgroundColor: "#aa1256",marginTop: "10px", marginLeft: "50px"}}>
-                <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
-      </nav>
       <FormGroup>
-      <form style={{marginTop:"100px", marginLeft:"100px"}} noValidate autoComplete="off">
-      <p> Queue Name: </p>
+      <form style={{marginTop:"10px", marginLeft:"30px", width: "500px", alignItems: "center"}} noValidate autoComplete="off">
+      <p> Queue Name: 
       <TextField
-          style={styles.textField}
+      InputProps={{
+        classes: {
+          input: styles.resize,
+        },
+      }}
+          style={{marginTop: "-10px", marginLeft: "30px"}}
           type="input"
           name="Queue Name"
-          margin="normal"
+          margin="dense"
+
           onChange={(e)=>{
            
             this.setState({
@@ -129,8 +133,9 @@ export default class CreatQueue extends React.Component {
             })
 
           }}
-        />
-        <p> Start Time: </p>
+        /></p>
+        
+        <p style={{marginTop: "30px"}}> Start Time:
         <TextField
         onChange={(e)=>{
            
@@ -140,16 +145,17 @@ export default class CreatQueue extends React.Component {
         }}
         id="time"
         type="time"
+        margin='normal'
         defaultValue= {this.state.end_time}
-        style={styles.textField}
+        style={{marginLeft: "110px", marginTop: "-10px"}}
         InputLabelProps={{
           shrink: true,
         }}
         inputProps={{
           step: 300,
         }}
-      />
-        <p> End Time: </p>
+      /> </p>
+        <p style={{marginTop: "30px"}}> End Time: 
         <TextField
          onChange={(e)=>{
            
@@ -160,15 +166,15 @@ export default class CreatQueue extends React.Component {
         id="time"
         type="time"
         defaultValue= {this.state.end_time}
-        style={styles.textField}
+        style={{marginLeft: "115px", marginTop: "-10px"}}
         InputLabelProps={{
           shrink: true,
         }}
         inputProps={{
           step: 300,
         }}
-      />
-        <p> Date: </p>
+      /></p>
+        <p style={{marginTop: "30px"}}> Date: 
         <TextField
         onChange={(e)=>{
            
@@ -178,12 +184,12 @@ export default class CreatQueue extends React.Component {
         }}
         id="date"
         type="date"
-        style={styles.textField}
+        style={{marginTop: "-10px", marginLeft: "90px"}}
         InputLabelProps={{
           shrink: true,
         }}
-      />
-        <p> Time for each customer per minutes: </p>
+      /></p>
+        <p style={{marginTop: "30px"}}> Time <p>per customer:</p>
       <TextField
       onChange={(e)=>{
            
@@ -191,12 +197,13 @@ export default class CreatQueue extends React.Component {
           timeforone : e.target.value
         })
       }}
-          style={styles.textField}
+      style={{marginTop: "-30px", marginLeft: "130px"}}
           type="input"
           name="Queue Name"
           margin="normal"
-        />
-        <p> Number of windows: </p>
+
+        /></p>
+        <p style={{marginTop: "30px"}}> No. of windows: 
       <TextField
        onChange={(e)=>{
            
@@ -204,12 +211,13 @@ export default class CreatQueue extends React.Component {
           windows : e.target.value
         })
       }}
-          style={styles.textField}
+      style={{marginTop: "-10px",  marginLeft: "20px"}}
           type="input"
           name="Queue Name"
           margin="normal"
-        />
-        <p> Photo for this queue: </p>
+
+        /></p>
+        <p style={{marginTop: "30px"}}>  Queue Photo: 
       <TextField
       onChange={(e)=>{
            
@@ -218,12 +226,13 @@ export default class CreatQueue extends React.Component {
         })
       }}
       
-          style={styles.textField}
+      style={{marginTop: "-10px",  marginLeft: "30px"}}
           type="input"
           name="Queue Name"
           margin="normal"
-        />
-        <p> Accept premium: </p>
+
+        /></p>
+        <p style={{marginTop: "30px"}}> Accept premium: </p>
         <FormControlLabel
             control={
         <Switch
@@ -234,7 +243,7 @@ export default class CreatQueue extends React.Component {
       }
       label={take_premum ? 'Yes' : 'No'}
     />
-        <p> Accept customer: </p>
+        <p style={{marginTop: "30px"}}> Accept customer: </p>
         <FormControlLabel
             control={
         <Switch
@@ -245,7 +254,7 @@ export default class CreatQueue extends React.Component {
       }
       label={accept_join ? 'Yes' : 'No'}
     />
-        <p> Requirements: </p>
+        <p style={{marginTop: "30px"}}> Requirements: 
       <TextField
       onChange={(e)=>{
            
@@ -253,20 +262,21 @@ export default class CreatQueue extends React.Component {
           requierment : !e.target.value
         })
       }}
-          style={styles.textField}
-          type="input"
+          
+          
           name="Queue Name"
           margin="normal"
-        />
+          style={{marginTop: "-10px",  marginLeft: "50px"}}
+        /></p>
        
       </form>
       <Button
-         style={{ backgroundColor: "#7aeac2",marginLeft : "100px" , font: "white", marginTop:"50px" }}
+         style={{ backgroundColor: "#7aeac2",marginLeft : "50px" , font: "white", marginTop:"50px" }}
          onClick={this.submet}
          >create</Button>
       </FormGroup>
       </div>
-      
+
     )
   }
 

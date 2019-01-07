@@ -937,8 +937,8 @@ app.delete( '/confirm/:queue_id', function(req,res){
       console.log("rrrrr", result)
       res.send({
         status:200,
-        success:result
-        // type:"Delete"
+         success:result
+        //  type:"Delete"
       
       })
     }
@@ -1152,7 +1152,7 @@ app.post('/add-userto-queue',function(req,res){
 
 
 app.post('/add-userto-queue1',function(req,res){
-  db.insertinUserQueue(req.body.user_id,req.body.queue_id,"i joind from kiosk", function(err,result){
+  db.insertinUserQueue(req.body.user_id,req.body.queue_id,"I Joined From kiosk", function(err,result){
     if (err){
      
       console.log("server error giting data " , err)
@@ -1420,12 +1420,12 @@ app.post('/get-users-in-waitingList',function(req,res){
 
 // this function used to get data from user_queue 
 app.post('/getQueueInfo',function(req,res){
-  console.log("zaiiiiiiiiiiid",req.body.queueid)
+  console.log("zaiiiiiiiiiiid",req.body.queue_id)
   db.getQueueInfo(req.body.queue_id, function(err,result){
 
     if (err){
      
-      console.log("server error giting data " , err)
+      console.log("server error geting data " , err)
       res.send({
         status: 404,
         success: "err",
