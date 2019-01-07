@@ -10,7 +10,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-
+// this popup component it should be related to ticketlist for user
 
 class Confirmation extends Component {
     constructor(props) {
@@ -64,24 +64,3 @@ class Confirmation extends Component {
   export default Confirmation;
 
 
-  // >
-        //   <DialogTitle id="confirmation-dialog-title">Arabic Bank</DialogTitle>
-        //   <DialogContent>
-        //     <Grid container justify="center" alignItems="center">
-        //       <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#CE93D8' }}>H105</Avatar>
-        //     </Grid>
-        //     <span style={{ marginTop: '50px' }}>Estimated time: 1 hour</span>
-        //   </DialogContent>
-  
-        //   <DialogActions>
-        //     <Button onClick={(x)=> this.props.onDelete(x)} color="primary">
-        //       Cancel
-        //     </Button>
-        //     <Button onClick={this.props.cancel} color="primary">
-        //       Ok
-        //     </Button>
-        //     <Button onClick={this.handleOk} color="primary">
-        //       Delay
-        //     </Button>
-        //   </DialogActions>
-        // </Dialog>
