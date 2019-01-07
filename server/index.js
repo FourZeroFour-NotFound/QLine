@@ -8,6 +8,7 @@ var MySQLStore = require('express-mysql-session')(session);
 var router = express.Router();
 const multer = require("multer");
 const app = express();
+app.disable('Etag')
 app.use(express.static(__dirname + '/../client/public'));
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
@@ -817,7 +818,7 @@ app.get('/*', (req, res) => {
  });
 
 
-app.disable('etag')
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;
