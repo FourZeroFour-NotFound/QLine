@@ -32,6 +32,9 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import { Router, Route, browserHistory } from 'react-router';
+import blankTV from '../style/blankTV.png';
+import GridListTile from '@material-ui/core/GridListTile';
 
 const style = theme => ({
   root: {
@@ -91,7 +94,7 @@ export default class BusinessDashBord extends React.Component {
       newsername: "",
       emailnew:"",
       queueDetalse:{},
-      arr: [{id:"louding..."},{id:"louding..."},{id:"louding..."},{id:"louding..."},{id:"louding..."},{id:"louding..."},{}],
+      arr: [{id:"Loading..."},{id:"Loading..."},{id:"Loading..."},{id:"Loading..."},{id:"Loading..."},{id:"Loading..."},{}],
     };
   }
 componentDidMount(match){
@@ -158,7 +161,7 @@ addme=() => {
       }),
       success: (data) => {
         console.log(data);
-        alert("u joind the queue sucssfuly ")
+        alert("you joined the queue successfully ")
       }
     });
     
@@ -285,6 +288,21 @@ $.ajax({
     });
   }
 
+  logOut() {
+    $.ajax({
+      url: '/log-out',
+      type: 'GET',
+      contentType: 'application/json',
+      success: (data) => {
+        console.log(data);
+        browserHistory.push('/')
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
   render() {
    var next = (x ,y)=>{
       console.log(x ,y)
@@ -329,14 +347,22 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
     const { value } = this.state;
     return (
       <div>
-      <nav className="menu"  style={{backgroundColor: "#aa1256",marginTop: "10px", marginLeft: "50px"}}>
-                <img src={logo} width="122px" height="62px" style={{marginTop: "10px", marginLeft: "-20px"}}/>
-                <Grid className="menu__right">
-                    <ul className="menu__list">
-                    <li class="menu__list-item"><a  class="menu__link" href="/">Logout</a></li>
+       <nav className="menu6"  style={{backgroundColor: "transparent",  marginTop: "10px", marginLeft: "50px"}}>
+                <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
+                <Grid className="centerNav">
+                    <ul className="centerNavMenu">
+                    <li className="menuItem" ><a className="itemLink" style={{color: "black"}} href="/business">Home</a></li>
+                    <li className="menuItem" ><a style={{color: "black"}} className="itemLink">Features</a></li>
+                    <li className="menuItem" ><a style={{color: "black"}} className="itemLink">Contact Us</a></li>
+                    
                     </ul>
                 </Grid>
-      </nav>
+                <Grid className="menu__right">
+                    <ul className="menu__list">
+                    <li class="menu__list-item" ><a  style={{color: "black"}} class="menu__link" onClick={this.logOut.bind(this)}>Logout</a></li>
+                    </ul>
+                </Grid>
+            </nav>
       <Paper style={{paddingTop:"100px"}}>
         <Tabs
           value={this.state.value}
@@ -353,56 +379,59 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
         </Tabs>
       </Paper>
       {value === 0 && <TabContainer>
-        <h1 style={ {lineHeight: 1.5,}} >Customers in waiting : {this.state.allusersinqueue.length - this.state.queueDetalse.windows }</h1>
-        <h1 style={ {lineHeight: 1.5,}} >Upcoming ticket  : { nextTickit ()}</h1>
-        <GridList cols={1} style={style.gridList}>
+        <Card style={{width: "500px", marginTop: "-755px", position: "absolute", backgroundColor: "black"}}>
+        <h1 style={ {lineHeight: 1.5, marginLeft: "50px", color: "white"}} >Customer's waiting : <span style={{color: "#7aeac2"}}>{this.state.allusersinqueue.length - this.state.queueDetalse.windows }</span></h1>
+        <h1 style={ {lineHeight: 1.5, marginLeft: "50px", color: "white"}} >Upcoming ticket  :<span style={{color: "#7aeac2"}}> { nextTickit ()}</span></h1>
+        </Card>
+
           {this.state.arr.map((queue ,i) => (
-           <Card style={{margin : 5 ,}} >
-           <CardActionArea>
-           <Typography gutterBottom variant="h5" component="h2" style={{color:"black", backgroundColor:"#e54d27"}}>
+            <div>
+            <Card style={{margin : 5, width: "300px", height: "150px", borderRadius: "999px", border: "4px solid #7aeac2" }} >
+                <Typography gutterBottom variant="h5" component="h2" style={{color:"black", backgroundColor:"#7aeac2"}}>
                <h2>counter : {i +1} </h2>
                </Typography>
+            </Card>
+           <Card style={{margin : 5, width: "1000px", height: "150px", borderRadius: "999px", border: "4px solid #7aeac2", marginLeft: "500px" }} >
+           <CardActionArea>
              <CardContent>
              <CardMedia />
                <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
-               <h2> tickit number :{this.state.arr[i].id} </h2>
-               
-               
+               <h2> Ticket Number :{this.state.arr[i].id} </h2>
                </Typography>
              </CardContent>
            </CardActionArea>
            <CardActions>
            </CardActions>
          </Card>
+         </div>
           ))}
-          </GridList>
 
         
       </TabContainer>}
       {value === 1 && <TabContainer>
-        <h1 style={ {lineHeight: 1.5,}} >Custmers in queue now : {this.state.allusersinqueue.length  - this.state.queueDetalse.windows}</h1>
-        <h1 style={ {lineHeight: 1.5,}} >Custmers on counter : {this.state.queueDetalse.windows}</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Customers in queue : {this.state.allusersinqueue.length  - this.state.queueDetalse.windows}</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Customers in counter : {this.state.queueDetalse.windows}</h1>
         <h1 style={ {lineHeight: 1.5,}} >Estimated time until your turn  :  { estmatedTime() } m</h1>
-        <h2 style={ {lineHeight: 1.5,}} >Choose what suits u :</h2>
+        <h2 style={ {lineHeight: 1.5,}} >Choose what suits you :</h2>
         <div >
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography><h3> you use Qline and u have ur phone ? </h3> </Typography>
+          <Typography><h3> you use Qline and you have your phone ? </h3> </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-          <h2 style={ {lineHeight: 1.5,}}>inter queue id in your mobile app : { this.props.params.queue_id}<br /> or scan the barcode :</h2>
+          <h2 style={ {lineHeight: 1.5,}}>enter queue id in your mobile app : { this.props.params.queue_id}<br /> or scan the barcode :</h2>
           <Barcode  value ={this.props.params.queue_id} />
           </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography > <h3>you use Qline but u dont have ur phone ? </h3></Typography>
+          <Typography > <h3>you use Qline but you dont have your phone ? </h3></Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-          <h3 style={ {lineHeight: 1.5,}}> input ur email :</h3>
+          <h3 style={ {lineHeight: 1.5,}}> input your email :</h3>
           <input style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({email:e.target.value})}} type="text"   placeholder="input ur email ..."/>
                               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addme} type="submit">
                                 add me !!
@@ -412,18 +441,18 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
       </ExpansionPanel>
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography><h3> you never heard of Qline and u need tickit ?</h3></Typography>
+          <Typography><h3> you never heard of Qline and you need ticket ?</h3></Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
           
           
-          <h3> inter ur name :</h3>
+          <h3> enter your name :</h3>
           <input  style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({newsername:e.target.value})}} type="text"   placeholder="input ur name . . ."/>
-          <h3>and ur email:</h3>
+          <h3>and your email:</h3>
           <input  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , width : 500,}} onChange={e => {this.setState({emailnew:e.target.value})}} type="text"   placeholder="input ur email . . ."/>
                               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addnewuser} type="submit">
-                                give me tickit !!
+                                give me ticket !!
                             </Button>
           </Typography>
         </ExpansionPanelDetails>
@@ -433,7 +462,7 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
         
        </TabContainer>}
       {value === 2 && <TabContainer>
-        <h1 style={ {lineHeight: 1.5,}} >unserved customers : {this.state.allusersinqueue.length - this.state.queueDetalse.windows}</h1>
+        <h1 style={ {lineHeight: 1.5,}} >Unserved Customers : {this.state.allusersinqueue.length - this.state.queueDetalse.windows}</h1>
         <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" onClick={this.start}  color="primary" type="submit">
                             start 
                             </Button>
@@ -447,7 +476,7 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
              <CardContent>
              <CardMedia />
                <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
-               <h2> tickit number   :{this.state.arr[i].id} </h2>
+               <h2> ticket number   :{this.state.arr[i].id} </h2>
                <h2> user notes  : {this.state.arr[i].Notes} </h2>
                <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" onClick={()=>{next(i,this.state.arr[i] )}}  color="primary" type="submit">
                               next custumer >>

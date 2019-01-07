@@ -6,7 +6,6 @@ const session = require('express-session');
 const passport = require('passport');
 var MySQLStore = require('express-mysql-session')(session);
 var router = express.Router();
-const multer = require("multer");
 const app = express();
 app.use(express.static(__dirname + '/../client/public'));
 const port = process.env.PORT || 5000;
@@ -77,7 +76,7 @@ app.post('/queue-data',function(req,res){
   })
 })
 // this function used to get data for user using id
-app.get('/profile_info', function(req,res){
+app.get('/profile', function(req,res){
   console.log(" lllllllll",req.user)
   db.getUserData(req.user,function(err,result){
     if(err){
@@ -158,24 +157,27 @@ app.get('/ticket1', function(req,res){
 })
 
 
+
 // this function  is used to delete specific ticket for user using queue_id
+
 app.delete( '/confirm/:queue_id', function(req,res){
-  console.log(" zzzzzzz",req.params.queue_id)
+  console.log(" ddddddd",req.params.queue_id)
   db.DeleteTicket(req.params.queue_id, function(err, result){
     if(err){
       console.log("server error", err)
     }else{
-      console.log("rrrrr", result)
       res.send({
         status:200,
-         success:result
-        //  type:"Delete"
+        success:result
+        // type:"Delete"
       
       })
     }
   })
 })
+
   // this function to create  new queue
+
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
   console.log(req.body)
@@ -286,14 +288,12 @@ app.post('/sign-up-fake', function (req, res) {
 
 //post function to sign in 
 app.post('/sign-in', function (req, res) {
-  console.log("here",req.body)
-  let email = req.body.email
-  db.isacountExest(email, function (err, result) {
-    console.log('this is the result',result)
+  console.log(req.body)
+  db.isacountExest(req.body.email, function (err, result) {
     if (err) {
       console.log("server", err)
     } else {
-      if (result.length === 0) {
+      if (result.length == 0) {
         res.send({
           status: 404,
           success: "email is wrong",
@@ -320,11 +320,13 @@ app.post('/sign-in', function (req, res) {
       }
     }
   })
+
+
 })
 
 // log out function // will 
 app.get('/log-out', function (req, res) {
-  console.log("zaiiiiid",req.logOut)
+  //console.log("zaiiiiid",req.user)
   //console.log(req.isAuthenticated());
   var x = req.user
   req.logOut()
@@ -648,35 +650,6 @@ app.post('/get-users-in-waitingList',function(req,res){
     
   })
 })
-
-// this function used to get data from user_queue 
-app.post('/getQueueInfo',function(req,res){
-  console.log("zaiiiiiiiiiiid",req.body.queue_id)
-  db.getQueueInfo(req.body.queue_id, function(err,result){
-
-    if (err){
-     
-      console.log("server error giting data " , err)
-      res.send({
-        status: 404,
-        success: "err",
-        data : err
-      });
-    }else{
-      
-      res.send({
-        status: 200,
-        success: result,
-        data : result
-      });
-    }
-    
-  })
-})
-
-
-
-
 ///////////////////////////////////////////////////////////
 //function to insert user in the waitng lst for queue
 //give it the queue id and notes
@@ -782,24 +755,6 @@ app.get('/customer-message', function(req, res){
     } 
   })
 })
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, __dirname + '/../client/public/profileImages')
-  },
-  filename: function (req, file, cb) {
-    cb(null, "IMAGE-" + Date.now() + file.originalname);
-  }
-});
-
-
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1000000 },
-}).single('myImage')
-
-
-
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;

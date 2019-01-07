@@ -20,6 +20,8 @@ import Popup from "reactjs-popup";
 import $ from 'jquery';
 import Avatar from '@material-ui/core/Avatar';
 import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+
 
 const styles = theme => ({
  
@@ -298,13 +300,13 @@ class PopBox extends Component {
     return (
       <div className="cardpop">
         <Button onClick={this.handleExpandClick} variant="outlined" style={{ color: "white", backgroundColor: "#aa1256", borderRadius: "5px", width: "200px", marginTop: "20px", marginLeft: "50px" }}>MY TICKET</Button>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+        
           <CardContent>
 
 
-            <GridList cols={3} >
+            <GridList  cellHeight={460} style={{width: 980, height: 450}}cols={2} >
               {this.state.TicketList.map((ticket, i) => (
-
+                  <GridListTile key={ticket} cols={ticket.cols || 1}>
                 <Card style={{ margin: "5px", width: "500px", height: "400px" }} >
                   <CardActionArea>
                     <Typography gutterBottom variant="h5" component="h2" style={{ color: "defult" }}>
@@ -314,16 +316,16 @@ class PopBox extends Component {
                     </Typography>
                     <CardContent>
                       <CardMedia />
-                      <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#CE93D8' }} >{ticket.id}</Avatar>
+                      <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#aa1256' }} >{ticket.id}</Avatar>
                       <Typography styles={{ paddingBottom: 50, }} variant="h7" component="p">
-                        <h2>estmated time : {timeForOne(i) * numOfUser(i, ticket.id)} minutes</h2>
-                        <h2> clients befor u : {numOfUser(i, ticket.id)}
+                        <h2>estimated time : {timeForOne(i) * numOfUser(i, ticket.id)} minutes</h2>
+                        <h2> clients before you : {numOfUser(i, ticket.id)}
                         </h2>
                         <h2> user notes  : {ticket.Notes} </h2>
-                        <Button styles={{ lineHeight: 1.5, margin: 10, padding: 10, border: 10, }} variant="contained" onClick={() => { onDelete(ticket.id) }} color="primary" type="submit">
+                        <Button style={{ marginTop: "50px", marginLeft: '100px', width: "100px", padding: 10, color: "white",backgroundColor: "red"}} variant="contained" onClick={() => { onDelete(ticket.id) }}  type="submit">
                           Delete
                             </Button>
-                        <Button styles={{ lineHeight: 1.5, margin: 10, padding: 10, border: 10, }} variant="contained" onClick={() => { delay(ticket, ticket.id) }} color="primary" type="submit">
+                        <Button style={{ marginTop: "50px", marginLeft: '30px',width: "100px",padding: 10, color: "white",backgroundColor: "blue"}} variant="contained" onClick={() => { delay(ticket, ticket.id) }}  type="submit">
                         delay
                             </Button>
                       </Typography>
@@ -332,6 +334,7 @@ class PopBox extends Component {
                   <CardActions>
                   </CardActions>
                 </Card>
+                </GridListTile>
               ))}
 
 
@@ -339,7 +342,7 @@ class PopBox extends Component {
 
 
           </CardContent>
-        </Collapse>
+      
       </div>
     );
   }

@@ -22,10 +22,10 @@ describe('/POST SingIn', () => {
   });
 });
 
-// it('should take less than 10000ms', function(done){
-//   this.timeout(10000);
-//   setTimeout(done, 3000);
-// });
+it('should take less than 10000ms', function(done){
+  this.timeout(10000);
+  setTimeout(done, 3000);
+});
 
 // describe('/POST SingUp', () => {
 //   it('it should POST SingUp responce return status code equal 200 and the success object', (done) => {
@@ -42,6 +42,9 @@ describe('/POST SingIn', () => {
 //       .post('/sign-up')
 //       .send(UserInfo)
 //       .end((err, res) => {
+
+//         res.body.should.have.status(200);
+
 //         res.body.should.be.a('object');
 //         res.body.data.should.have.property('firstName');
 //         res.body.data.should.have.property('lastName');
@@ -52,6 +55,11 @@ describe('/POST SingIn', () => {
 //       });
 //   });
 // });
+
+
+
+
+
 
 describe('GET LogOut', () => {
   it('it should GET Logout', (done) => {
@@ -98,6 +106,7 @@ describe('PUT Profile_info', () => {
     });
   });
 });
+
 // test used to delete specific ticket  for user using queue_id
 describe('DELETE confirm/:queue_id', () => {
   it('it should delete specific ticket for user', (done) => {
@@ -110,18 +119,19 @@ describe('DELETE confirm/:queue_id', () => {
   });
 });
 
-// test used to get all the information for the queue using queue_id
-describe('POST getQueueInfo', () => {
-  it('it should get all the information for the queue that its id is sended , return status code equal 200', (done) =>{
-    chai.request(server)
-    .post('/getQueueInfo')
-    .end((err,res)=>{
-      res.should.have.status(200);
-      res.body.should.be.a('object');
-      done();
-    });
-  });
-}) ;
+
+// // test used to get all the information for the queue using queue_id
+// describe('POST getQueueInfo', () => {
+//   it('it should get all the information for the queue that its id is sended , return status code equal 200', (done) =>{
+//     chai.request(server)
+//     .post('/getQueueInfo')
+//     .end((err,res)=>{
+//       res.should.have.status(200);
+//       res.body.should.be.a('object');
+//       done();
+//     });
+//   });
+// }) ;
 
 // test used to get all the users inside specific queue
 describe('POST get-users-in-queue',() => {
@@ -283,6 +293,7 @@ describe('GET get-users-in-waitingList', () => {
     });
   });
 });
+
 
 
 

@@ -8,30 +8,31 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import flatpng from '../style/flatpng.png';
+import businessFlat from '../style/businessFlat.png';
 const styles = {
   media: {
     height: 350,
   },
 };
 
-function CardFloat(props) {
+function CardFloatBusiness(props) {
   const { classes } = props;
   return (
       <div>
-    <img src={flatpng} style={{marginLeft: "60px", marginTop: "-10px"}} width="800px" height="500px"/>
-    <Card className="floatcard1">
+    <img src={businessFlat} style={{marginLeft: "60px", marginTop: "-10px"}} width="900px" height="500px"/>
+    <Card className="floatcard">
       <CardActionArea>
         <CardMedia
           className={classes.media}
         />
-        <CardContent style={{width: "300px", marginLeft: "40px", marginTop: "20px"}}>
+        <CardContent style={{width: "300px", marginLeft: "900px", marginTop: "-340px"}}>
           <Typography gutterBottom variant="h5" component="h2">
-            Queue Management System
+          Know how long your customers
+          have been waiting
           </Typography>
           <Typography component="p">
-          This ‘waste of time’ might seem as inevitable as having to sleep, or having lunch, but with QLine, 
-          you can reclaim those wasted hours and use them more productively, to benefit yourself. Get started today!
+          The ability to see the length of your customers’ waiting times allows you to take a proactive, empathetic approach. 
+          As well as welcoming them warmly, you can make them feel appreciated by acknowledging how long they’ve been queuing for.
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -40,8 +41,8 @@ function CardFloat(props) {
   );
 }
 
-CardFloat.propTypes = {
+CardFloatBusiness.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CardFloat);
+export default withStyles(styles)(CardFloatBusiness);
