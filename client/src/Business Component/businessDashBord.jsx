@@ -379,7 +379,7 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
         </Tabs>
       </Paper>
       {value === 0 && <TabContainer>
-        <Card style={{width: "500px", marginTop: "-755px", position: "absolute", backgroundColor: "black"}}>
+        <Card style={{width: "500px", marginTop: "5px", position: "absolute", backgroundColor: "black"}}>
         <h1 style={ {lineHeight: 1.5, marginLeft: "50px", color: "white"}} >Customer's waiting : <span style={{color: "#7aeac2"}}>{this.state.allusersinqueue.length - this.state.queueDetalse.windows }</span></h1>
         <h1 style={ {lineHeight: 1.5, marginLeft: "50px", color: "white"}} >Upcoming ticket  :<span style={{color: "#7aeac2"}}> { nextTickit ()}</span></h1>
         </Card>
