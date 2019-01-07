@@ -161,7 +161,7 @@ addme=() => {
       }),
       success: (data) => {
         console.log(data);
-        alert("u joind the queue sucssfuly ")
+        alert("you joined the queue successfully ")
       }
     });
     
@@ -379,15 +379,13 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
         </Tabs>
       </Paper>
       {value === 0 && <TabContainer>
-        <img src={blankTV} style={{marginLeft: "300px"}}/>
         <Card style={{width: "500px", marginTop: "-755px", position: "absolute", backgroundColor: "black"}}>
         <h1 style={ {lineHeight: 1.5, marginLeft: "50px", color: "white"}} >Customer's waiting : <span style={{color: "#7aeac2"}}>{this.state.allusersinqueue.length - this.state.queueDetalse.windows }</span></h1>
         <h1 style={ {lineHeight: 1.5, marginLeft: "50px", color: "white"}} >Upcoming ticket  :<span style={{color: "#7aeac2"}}> { nextTickit ()}</span></h1>
         </Card>
-        <GridList cols={2} cellHeight={160} style={{marginTop: "-700px", width: "1000px", height: "500px", marginLeft: "400px"}}>
+
           {this.state.arr.map((queue ,i) => (
-             <GridListTile key={queue} cols={queue.cols || 1}>
-           <Card style={{margin : 5 , height: "300px"}} >
+           <Card style={{margin : 5, width: "1000px", height: "150px", borderRadius: "999px", border: "4px solid #7aeac2" }} >
            <CardActionArea>
            <Typography gutterBottom variant="h5" component="h2" style={{color:"black", backgroundColor:"#7aeac2"}}>
                <h2>counter : {i +1} </h2>
@@ -396,17 +394,13 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
              <CardMedia />
                <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
                <h2> Ticket Number :{this.state.arr[i].id} </h2>
-               
-               
                </Typography>
              </CardContent>
            </CardActionArea>
            <CardActions>
            </CardActions>
          </Card>
-         </GridListTile>
           ))}
-          </GridList>
 
         
       </TabContainer>}

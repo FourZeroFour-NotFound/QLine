@@ -187,6 +187,7 @@ export default class business extends React.Component {
                                 <CreateQueueCard/>
                               </div>
                               <Grid className="searchdesign" style = {{height: "800px",marginTop:"250px", marginLeft: "100px"}}> 
+                              <h2 style={{marginLeft: "-700px", fontSize: "50px", marginBottom: "50px" }}>MANAGE<span style={{color: "#7aeac2"}}> QUEUE</span></h2>
                               <BusinessGridList/>
                               </Grid>
                       </div>

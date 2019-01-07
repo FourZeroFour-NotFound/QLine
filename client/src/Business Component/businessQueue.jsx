@@ -31,7 +31,6 @@ const styles = {
     width: "600px",
     height: "450px",
     margin: 7,
-
   },
   media: {
     height: 190,
