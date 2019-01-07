@@ -9,7 +9,8 @@
     "client": "cd client && npm start",
     "server-dev": "nodemon server",
     "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
-    "test": "mocha"
+    "test": "mocha",
+    "build": "react-scripts build"
   },
   "author": "",
   "license": "ISC",
