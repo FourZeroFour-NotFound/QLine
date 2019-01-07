@@ -50,7 +50,7 @@ Once the project moves into development, the press release can be used as a touc
   > Describe how easy it is to get started.
 
  Step 1: Customers Free
-         You can download or access our website and ake your own account
+         You can download or access our website and make your own account
  Step 2 : Customer Usage
          After downloading and having your account, you can access the services for your convenient and you can either create your own queue system or book and join for your own preferences.
  Step 3 : Customer / Business Preferences

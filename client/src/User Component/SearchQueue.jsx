@@ -85,7 +85,7 @@ export default class SearchQueue extends React.Component {
         }),
         success: (data) => {
           console.log(data);
-          alert("u joind the queue sucssfuly ")
+          alert("You Joined The Queue Successfully ")
         }
       });
 
@@ -102,7 +102,7 @@ export default class SearchQueue extends React.Component {
         }),
         success: (data) => {
           console.log(data);
-          alert("u joined the waiting lest sucssfuly")
+          alert("You Joined the Waiting List Successfuly")
         }
       });
     }
@@ -180,7 +180,7 @@ export default class SearchQueue extends React.Component {
     if (remaningTicits > 0) {
       this.setState({ open1: !this.state.open1 });
     } else {
-      alert("this queue is full try leater")
+      alert("this queue is full try later")
     }
   };
 
@@ -248,8 +248,8 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
                 {"Date :" + date[0]}<br />
                 {/* {"The time for each customer: " + this.state.allqueue.timeforone + " m"}  <br />  */}
                 {"Number of windows:" + this.state.allqueue.windows}<br />
-                {"Number of peaple in line now:" + this.state.allusers.length}<br />
-                {"the estmated time untel they finsh:   " + estmatedTime()  +" minutes" }<br />
+                {"Number of people in line now:" + this.state.allusers.length}<br />
+                {"the estimated time until finish:   " + estmatedTime()  +" minutes" }<br />
                 {"Remaining tickets :" + Math.floor(remaningTicits) }<br />
               </DialogContent>
               <DialogActions>
