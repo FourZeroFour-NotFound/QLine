@@ -383,25 +383,32 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
         <h1 style={ {lineHeight: 1.5, marginLeft: "50px", color: "white"}} >Customer's waiting : <span style={{color: "#7aeac2"}}>{this.state.allusersinqueue.length - this.state.queueDetalse.windows }</span></h1>
         <h1 style={ {lineHeight: 1.5, marginLeft: "50px", color: "white"}} >Upcoming ticket  :<span style={{color: "#7aeac2"}}> { nextTickit ()}</span></h1>
         </Card>
-
-          {this.state.arr.map((queue ,i) => (
-            <div>
-            <Card style={{margin : 5, width: "300px", height: "150px", borderRadius: "999px", border: "4px solid #7aeac2" }} >
-                <Typography gutterBottom variant="h5" component="h2" style={{color:"black", backgroundColor:"#7aeac2"}}>
-               <h2>counter : {i +1} </h2>
+        <Card style={{margin : 5, width: "300px",marginTop: "30px",marginLeft: "150px", height: "80px", borderRadius: "999px",  backgroundColor:"#e33a2e" }} >
+                <Typography gutterBottom variant="h5" component="h2" >
+               <h2 style={{color: "white", marginTop: "20px"}}>counter</h2>
                </Typography>
             </Card>
-           <Card style={{margin : 5, width: "1000px", height: "150px", borderRadius: "999px", border: "4px solid #7aeac2", marginLeft: "500px" }} >
+            <Card style={{margin : 5, width: "1000px", height: "80px",marginTop: "-80px", borderRadius: "999px", backgroundColor: "#e33a2e", marginLeft: "500px", color: "white" }} >
+            <Typography  variant="h7" component="p">
+               <h2 style={{marginTop: "30px"}}> Ticket Number</h2>
+               </Typography>
+            </Card>
+          {this.state.arr.map((queue ,i) => (
+            <div>
+            <Card style={{margin : 5, width: "300px",marginTop: "50px",marginLeft: "150px", height: "80px", borderRadius: "999px", border: "4px solid #e33a2e", }} >
+         
+               <h2 style={{color: "#e33a2e", marginTop: "20px"}}> {i +1} </h2>
+
+            </Card>
+           <Card style={{margin : 5, width: "1000px", height: "80px", marginTop: "-85px", borderRadius: "999px", border: "4px solid #e33a2e", marginLeft: "500px" }} >
            <CardActionArea>
              <CardContent>
              <CardMedia />
-               <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
-               <h2> Ticket Number :{this.state.arr[i].id} </h2>
+               <Typography  variant="h7" component="p">
+               <h2 style={{color: "#e33a2e"}}>{this.state.arr[i].id} </h2>
                </Typography>
              </CardContent>
            </CardActionArea>
-           <CardActions>
-           </CardActions>
          </Card>
          </div>
           ))}

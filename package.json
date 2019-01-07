@@ -4,10 +4,10 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "client": "cd client && npm start",
-    "server": "nodemon server",
-    "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
-    "test": "mocha"
+    "start": "node server/index.js",
+    "heroku-postbuild": "cd react-client && npm install && npm run build",
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon server/index.js"
   },
   "author": "",
   "license": "ISC",
