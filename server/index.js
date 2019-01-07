@@ -812,10 +812,9 @@ const upload = multer({
   limits: { fileSize: 1000000 },
 }).single('myImage')
 
-app.get('/', function (req, res) {
-   res.sendFile(path.join(__dirname, 'build', 'index.html'));
- });
-
+app.get('*', function (req, res){
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;
