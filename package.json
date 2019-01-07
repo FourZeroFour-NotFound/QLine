@@ -10,7 +10,7 @@
     "server-dev": "nodemon server",
     "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
     "test": "mocha",
-    "build": "react-scripts build"
+    "build": "./node_modules/.bin/webpack --config webpack.conf.js",
   },
   "author": "",
   "license": "ISC",
