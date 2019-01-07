@@ -10,7 +10,8 @@
     "client-install": "cd client && npm install",
     "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
     "test": "mocha",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "homepage": "https://zaidraddad94.github.io/Qline"
   },
   "cacheDirectories": [
     "node_modules",
