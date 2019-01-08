@@ -9,8 +9,7 @@
     "client": "cd client && npm start",
     "server-dev": "nodemon server",
     "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
-    "test": "mocha",
-    "build": "./node_modules/.bin/webpack --config webpack.conf.js"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",

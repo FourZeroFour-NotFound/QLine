@@ -12,7 +12,7 @@ import Loading from './First Page Component/Loading.js';
 import BusinessDashBord from './Business Component/businessDashBord.jsx';
 import ContactUs from "./First Page Component/ContactUs.jsx";
 import AdminDash from './First Page Component/AdminDashboard.jsx'
-
+import FeaturePage from './First Page Component/FeaturesHomePage.jsx';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -32,6 +32,7 @@ class HomePage extends React.Component {
               <Route path="/BusinessDashBord/:queue_id" exact component={BusinessDashBord} />
               <Route path="/ContactUs" exact component={ContactUs} />
               <Route path="/admin" exact component={AdminDash} />
+              <Route path="/feature" exact component={FeaturePage}/>
         </Router>
       );
     }
