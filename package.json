@@ -5,10 +5,6 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-<<<<<<< HEAD
-    "heroku-postbuild": "cd client && npm install && npm run build",
-=======
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
     "client": "cd client && npm start",
     "server-dev": "nodemon server",
     "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",

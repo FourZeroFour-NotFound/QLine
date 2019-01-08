@@ -11,10 +11,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 // this popup component it should be related to ticketlist for user
-<<<<<<< HEAD
-=======
-
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
 
 class Confirmation extends Component {
     constructor(props) {

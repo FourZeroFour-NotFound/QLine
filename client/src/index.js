@@ -33,11 +33,7 @@ class HomePage extends React.Component {
               <Route path="/feature" exact component={FeaturePage}/>
               <Route path="/ContactUs" exact component={ContactUs} />
               <Route path="/admin" exact component={AdminDash} />
-<<<<<<< HEAD
               <Route path="/feature" exact component={FeaturePage}/>
-=======
-              
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
         </Router>
       );
     }

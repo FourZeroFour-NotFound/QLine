@@ -12,7 +12,6 @@ import Avatar from '@material-ui/core/Avatar';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
-<<<<<<< HEAD
 
 const styles = theme => ({
  
@@ -50,10 +49,6 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
   },
 });
-=======
-
-
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
 
 class PopBox extends Component {
 
@@ -83,13 +78,8 @@ class PopBox extends Component {
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
-<<<<<<< HEAD
   
 // this function to render  for user all his tickets
-=======
-
-  // this function to render  for user all his tickets
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
   componentDidMount() {
     var that = this
     $.ajax({
@@ -112,11 +102,7 @@ class PopBox extends Component {
           name2: []
         })
         // // make iterate through all tickets that we have to save all the queue details for each ticket
-<<<<<<< HEAD
          // we uses it to show the name of the queue for this ticket
-=======
-        // we uses it to show the name of the queue for this ticket
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
         for (var i = 0; i < that.state.TicketList.length; i++) {
           $.ajax({
             url: '/getQueueInfo',
@@ -167,13 +153,8 @@ class PopBox extends Component {
 
 
   render() {
-<<<<<<< HEAD
 // this function if the user wants to delete (cancel) one of his ticket 
 // 
-=======
-    // this function if the user wants to delete (cancel) one of his ticket 
-    // 
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
     var onDelete = (queue_id) => {
       console.log("deleeeeet", queue_id);
       var that = this
@@ -274,20 +255,13 @@ class PopBox extends Component {
         }
       });
 
-<<<<<<< HEAD
 // call delete function to delete the ticket and update the page 
-=======
-      // call delete function to delete the ticket and update the page 
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
       onDelete(id)
     }
-<<<<<<< HEAD
     const { classes } = this.props;
 //this function to render the name of the tickets
-=======
 
     //this function to render the name of the tickets
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
     var name = (i) => {
       if (this.state.name2.length <= i) {
         return 'loading'
@@ -302,11 +276,8 @@ class PopBox extends Component {
       } else {
         return this.state.numUser[i].indexOf(id)
       }
-<<<<<<< HEAD
     } 
-=======
-    }
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
+    
     // this function to get the time for each client 
     var timeForOne = (i) => {
       if (this.state.name2[i] !== undefined) { return this.state.name2[i].timeforone }
@@ -314,19 +285,6 @@ class PopBox extends Component {
     return (
       <div className="cardpop">
         <Button onClick={this.handleExpandClick} variant="outlined" style={{ color: "white", backgroundColor: "#aa1256", borderRadius: "5px", width: "200px", marginTop: "20px", marginLeft: "50px" }}>MY TICKET</Button>
-<<<<<<< HEAD
-        
-          <CardContent>
-
-
-            <GridList  cellHeight={460} style={{width: 980, height: 450}}cols={2} >
-              {this.state.TicketList.map((ticket, i) => (
-                  <GridListTile key={ticket} cols={ticket.cols || 1}>
-                <Card style={{ margin: "5px", width: "500px", height: "400px" }} >
-                  <CardActionArea>
-                    <Typography gutterBottom variant="h5" component="h2" style={{ color: "defult" }}>
-                    {/* render the name of the ticket */}
-=======
 
         <CardContent>
           <GridList cellHeight={460} style={{ width: 980, height: 450 }} cols={2} >
@@ -336,7 +294,6 @@ class PopBox extends Component {
                   <CardActionArea>
                     <Typography gutterBottom variant="h5" component="h2" style={{ color: "defult" }}>
                       {/* render the name of the ticket */}
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
                       <h2>{name(i)} </h2>
 
                     </Typography>
@@ -348,19 +305,11 @@ class PopBox extends Component {
                         <h2> clients before you : {numOfUser(i, ticket.id)}
                         </h2>
                         <h2> user notes  : {ticket.Notes} </h2>
-<<<<<<< HEAD
                         <Button style={{ marginTop: "50px", marginLeft: '100px', width: "100px", padding: 10, color: "white",backgroundColor: "red"}} variant="contained" onClick={() => { onDelete(ticket.id) }}  type="submit">
                           Delete
                             </Button>
                         <Button style={{ marginTop: "50px", marginLeft: '30px',width: "100px",padding: 10, color: "white",backgroundColor: "blue"}} variant="contained" onClick={() => { delay(ticket, ticket.id) }}  type="submit">
                         delay
-=======
-                        <Button style={{ marginTop: "50px", marginLeft: '100px', width: "100px", padding: 10, color: "white", backgroundColor: "red" }} variant="contained" onClick={() => { onDelete(ticket.id) }} type="submit">
-                          Delete
-                            </Button>
-                        <Button style={{ marginTop: "50px", marginLeft: '30px', width: "100px", padding: 10, color: "white", backgroundColor: "blue" }} variant="contained" onClick={() => { delay(ticket, ticket.id) }} type="submit">
-                          delay
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
                             </Button>
                       </Typography>
                     </CardContent>
@@ -368,25 +317,14 @@ class PopBox extends Component {
                   <CardActions>
                   </CardActions>
                 </Card>
-<<<<<<< HEAD
                 </GridListTile>
               ))}
-=======
-              </GridListTile>
-            ))}
-
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
 
           </GridList>
 
 
         </CardContent>
 
-<<<<<<< HEAD
-          </CardContent>
-      
-=======
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
       </div>
     );
   }

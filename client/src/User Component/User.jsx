@@ -21,29 +21,17 @@ import $ from 'jquery';
 
 class User extends Component {
   state = {
-<<<<<<< HEAD
     value:"",
     searchResult:[],
-=======
-    value: "",
-    searchResult: [],
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
     firstName: "",
     lastName: "",
     email: ""
   };
 
-<<<<<<< HEAD
   
 // this function for search about the queues  by add the name of  the queue
   handleSearch = () => { 
      var that= this;
-=======
-
-  // this function for search about the queues  by add the name of  the queue
-  handleSearch = () => {
-    var that = this;
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
     $.ajax({
       url: "/search",
       type: "Post",
@@ -60,28 +48,9 @@ class User extends Component {
   componentDidMount() {
     let imgBtn = document.querySelector('#d');
     let that = this;
-<<<<<<< HEAD
-      if (imgBtn) {
-       imgBtn.addEventListener('change', function() {
-        setTimeout(() => {window.location.href="/business"}, 1000)
-       });
-      } 
-      $.ajax({// this rquest to get all the user informations and render them once the user open his profile 
-        url: "/profile_info",
-        type: "Get",
-        success: function (data) {
-          console.log(data)
-          that.setState({
-            firstName: data.success[0].firstName,
-            lastName: data.success[0].lastName,
-            email: data.success[0].email,
-          })
-        }
-=======
     if (imgBtn) {
       imgBtn.addEventListener('change', function () {
         setTimeout(() => { window.location.href = "/business" }, 1000)
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
       });
     }
     $.ajax({// this rquest to get all the user informations and render them once the user open his profile 
@@ -124,11 +93,6 @@ class User extends Component {
 
 
   render() {
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
     return (
       <div>
         <video width="100%" style={{ marginTop: "-60px" }} autoPlay>
@@ -186,7 +150,7 @@ class User extends Component {
         <Widget />
         <CustomerService />
         <Footer />
-      </div>
+      
 
             <div>
                   <video width="100%"  style={{marginTop: "-60px"}}  autoPlay>
@@ -245,23 +209,11 @@ class User extends Component {
                               <CustomerService/>
                       <Footer/>
              </div>
+             </div>
     );
   }
 }
 
 export default User;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
