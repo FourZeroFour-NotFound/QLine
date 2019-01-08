@@ -175,8 +175,6 @@ class Profile extends Component {
     }
     )
     console.log(this.state.name2)
-
-
   }
 
   logOut() {

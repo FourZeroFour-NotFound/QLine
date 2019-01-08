@@ -15,31 +15,30 @@ import AdminDash from './First Page Component/AdminDashboard.jsx'
 import FeaturePage from './First Page Component/FeaturesHomePage.jsx';
 
 class HomePage extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {};
-    }
-    render() {
-      return (
-        <Router history={browserHistory}>
-            <Route path="/" component={App} >
-              <Route path="/sign-in" exact component={Login} />
-              <Route path="/sign-up" exact component={SignUp} />
-            </Route>
-              <Route path="/profile" exact component={Profile} />
-              <Route path="/business" exact component={Business} />
-              <Route path="/user" exact component={User} />
-              <Route path="/BusinessDashBord/:queue_id" exact component={BusinessDashBord} />
-              <Route path="/feature" exact component={FeaturePage}/>
-              <Route path="/ContactUs" exact component={ContactUs} />
-              <Route path="/admin" exact component={AdminDash} />
-              
-        </Router>
-      );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
+  render() {
+    return (
+      <Router history={browserHistory}>
+        <Route path="/" component={App} >
+          <Route path="/sign-in" exact component={Login} />
+          <Route path="/sign-up" exact component={SignUp} />
+        </Route>
+        <Route path="/profile" exact component={Profile} />
+        <Route path="/business" exact component={Business} />
+        <Route path="/user" exact component={User} />
+        <Route path="/BusinessDashBord/:queue_id" exact component={BusinessDashBord} />
+        <Route path="/ContactUs" exact component={ContactUs} />
+        <Route path="/admin" exact component={AdminDash} />
+        <Route path="/feature" exact component={FeaturePage} />
+      </Router>
+    );
+  }
+}
 
-ReactDOM.render(<HomePage/>, document.getElementById('root'));
+ReactDOM.render(<HomePage />, document.getElementById('root'));
 
 // setTimeout(()=>{
 //   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
