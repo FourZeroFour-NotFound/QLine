@@ -36,7 +36,7 @@ class User extends Component {
       url: "/search",
       type: "Post",
       data: { org: this.state.value },
-      data: function (data) {
+      success: function (data) {
         that.setState({
           searchResult: data.data
         })
@@ -57,7 +57,7 @@ class User extends Component {
       url: "/profile_info",
       type: "Get",
       data: function (data) {
-        console.log(data)
+        console.log('profile information',data)
         that.setState({
           firstName: data.data[0].firstName,
           lastName: data.data[0].lastName,
