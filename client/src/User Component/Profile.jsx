@@ -131,7 +131,7 @@ class Profile extends Component {
     $.ajax({
       url: "/Profile_info",
       type: "Get",
-      success: function (data) {
+      data: function (data) {
         console.log("result", data.data[0])
         that.setState({
           firstName: data.data[0].firstName,
