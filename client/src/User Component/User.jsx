@@ -55,7 +55,7 @@ class User extends Component {
     }
     $.ajax({// this rquest to get all the user informations and render them once the user open his profile 
       url: "/Info",
-      type: "Get",
+      type: "POST",
       data: function (data) {
         console.log('data',data)
         that.setState({
