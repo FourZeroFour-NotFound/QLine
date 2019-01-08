@@ -22,7 +22,8 @@ var sessionStore = new MySQLStore({
   host: "db4free.net",
   user: "qlinedbdb",
   password: "qlinedbdb",
-  database: "qlinedbdb"
+  database: "qlinedbdb",
+  acquireTimeout: 1000000
  })
 
 
@@ -35,6 +36,15 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/../client/public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // git function to bring all the queuefor one user using his id 
@@ -46,7 +56,7 @@ app.get('/all_queue',function(req,res){
     }else{
       res.send({
         status: 200,
-        success: "data found sucssfuly",
+        success: "data found successfully",
         data : result
       });
     }
