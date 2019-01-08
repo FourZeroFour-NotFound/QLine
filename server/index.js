@@ -22,7 +22,8 @@ var sessionStore = new MySQLStore({
   host: "db4free.net",
   user: "qlinedbdb",
   password: "qlinedbdb",
-  database: "qlinedbdb"
+  database: "qlinedbdb",
+  acquireTimeout: 1000000
  })
 
 
@@ -46,7 +47,7 @@ app.get('/all_queue',function(req,res){
     }else{
       res.send({
         status: 200,
-        success: "data found sucssfuly",
+        success: "data found successfully",
         data : result
       });
     }
