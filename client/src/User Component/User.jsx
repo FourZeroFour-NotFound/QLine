@@ -54,7 +54,7 @@ class User extends Component {
       });
     }
     $.ajax({// this rquest to get all the user informations and render them once the user open his profile 
-      url: "/profile_info",
+      url: "/Profile_info",
       type: "Get",
       data: function (data) {
         console.log('data',data)
