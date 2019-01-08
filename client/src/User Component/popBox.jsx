@@ -49,8 +49,8 @@ class PopBox extends Component {
     var that = this
     $.ajax({
       url: "/ticket1",
-      type: "Get",
-      data: function (data) {
+      type: "POST",
+      success: function (data) {
         console.log("tttttt", data.data)
         that.setState({
           TicketList: data.data
@@ -135,8 +135,8 @@ class PopBox extends Component {
 
           $.ajax({// rerun all the functions in didamount  to update the page after delete 
             url: "/ticket1",
-            type: "Get",
-            data: function (data) {
+            type: "POST",
+            success: function (data) {
               console.log("tttttt", data.data)
               that.setState({
                 TicketList: data.data

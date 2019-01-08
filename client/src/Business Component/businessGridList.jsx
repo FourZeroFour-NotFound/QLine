@@ -40,7 +40,7 @@ class BusinessGridList extends React.Component {
 
 
     $.ajax({url: '/all_queue',
-    type: 'GET',
+    type: 'POST',
     
     contentType: 'application/json',
     success: (res) => {
@@ -50,7 +50,7 @@ class BusinessGridList extends React.Component {
     
     setInterval(()=>{
     $.ajax({url: '/all_queue',
-    type: 'GET',
+    type: 'POST',
     
     contentType: 'application/json',
     success: (res) => {

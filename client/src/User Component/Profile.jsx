@@ -129,8 +129,8 @@ class Profile extends Component {
   componentDidMount = () => {
     var that = this
     $.ajax({
-      url: "/Profile_info",
-      type: "Get",
+      url: "/Info",
+      type: "POST",
       data: function (data) {
         console.log("result", data.data[0])
         that.setState({
@@ -145,8 +145,8 @@ class Profile extends Component {
     // this request used to get all tickets for user using id  
     $.ajax({
       url: "/ticket1",
-      type: "Get",
-      data: function (data) {
+      type: "POST",
+      success: function (data) {
         console.log("tttttt", data.data)
         that.setState({
           TicketList: data.data

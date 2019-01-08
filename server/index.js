@@ -49,14 +49,14 @@ app.get('/*', function(req, res) {
 
 // git function to bring all the queuefor one user using his id 
 //dose not take any thing just the user id from his req
-app.get('/all_queue',function(req,res){
+app.post('/all_queue',function(req,res){
   db.getAllQueueForUser(req.user , function(err,result){
     if (err){
       console.log("server error giting data " , err)
     }else{
       res.send({
         status: 200,
-        success: "data found successfully",
+        success: result,
         data : result
       });
     }
@@ -151,7 +151,7 @@ app.put('/profile_info', function(req,res){
 })
 
   // this request used to get all tickets for user using id 
-app.get('/ticket1', function(req,res){
+app.post('/ticket1', function(req,res){
   console.log(" lllllllll",req.user)
   db.getUserTickets(req.user,function(err,result){
     if(err){
@@ -166,7 +166,7 @@ app.get('/ticket1', function(req,res){
   })
 })
 // this request to get the number of the queue (your turn)
-app.get('/ticket', function(req,res){
+app.post('/ticket', function(req,res){
   console.log(" queue id",req.queue_id)
   db.getUserQueue(req.queue_id,function(err,result){
     if(err){
