@@ -20,17 +20,13 @@ import Popup from "reactjs-popup";
 import $ from 'jquery';
 import Avatar from '@material-ui/core/Avatar';
 import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  color: {
-    background: 'transparent'
-  },
+ 
+
+
   media: {
     height: 500,
     paddingTop: '56.25%', // 16:9
@@ -66,22 +62,10 @@ const styles = theme => ({
 
 class PopBox extends Component {
 
-  // this function to open the  ticketList arrow  
-  handleExpandClick = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
-  };
 
   state = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-
     TicketList: [],
     expanded: false,
-    open: false,
-    open1: false,
-    img: null,
     name2: [{
       accept_join: 1,
       creator_id: 1,
@@ -99,46 +83,13 @@ class PopBox extends Component {
     numUser: [[], [], [], [], [], [], [], [], [], []],
     TicketListid: []
   };
-  /* send data after edit the information*/
 
-
-  /*when edit full name call the function */
-  handleChange = (e) => {
-    this.setState({
-      firstName: e.target.value,
-    });
+  // this function to open the  ticketList arrow  
+  handleExpandClick = () => {
+    this.setState(state => ({ expanded: !state.expanded }));
   };
-  handleChangeLast = (e) => {
-    this.setState({
-      lastName: e.target.value,
-    });
-  };
-
-  /* when edit phone number call this function*/
-  handleChangeNum = (e) => {
-    this.setState({
-      phoneNumber: e.target.value,
-    });
-  };
-
-  handleClickOpen = () => {
-    this.setState({ open: !this.state.open });
-  };
-
-
-
-
-  /*  these functions for ticket list elements*/
-  handleClickListItem = () => {
-    console.log("jjjjjj")
-    this.setState({ open1: !this.state.open1 });
-  };
-
-  handleClose = value => {
-    console.log('value', value)
-    this.setState({ value, open: false });
-  };
-
+  
+// this function to render  for user all his tickets
   componentDidMount() {
     var that = this
     $.ajax({
@@ -149,6 +100,7 @@ class PopBox extends Component {
         that.setState({
           TicketList: data.success
         })
+        // make array of queue id only for each ticket  
         var arr = []
         for (var i = 0; i < data.success.length; i++) {
           arr.push(data.success[i].id)
@@ -159,6 +111,8 @@ class PopBox extends Component {
         that.setState({
           name2: []
         })
+        // // make iterate through all tickets that we have to save all the queue details for each ticket
+         // we uses it to show the name of the queue for this ticket
         for (var i = 0; i < that.state.TicketList.length; i++) {
           $.ajax({
             url: '/getQueueInfo',
@@ -178,7 +132,7 @@ class PopBox extends Component {
           that.setState({
             numUser: []
           })
-          $.ajax({
+          $.ajax({// make request to get all the users in specific queue to show the user how many clients before him 
             url: '/get-users-in-queue',
             type: 'POST',
             contentType: 'application/json',
@@ -211,6 +165,8 @@ class PopBox extends Component {
 
 
   render() {
+// this function if the user wants to delete (cancel) one of his ticket 
+// 
     var onDelete = (queue_id) => {
       console.log("deleeeeet", queue_id);
       var that = this
@@ -224,7 +180,7 @@ class PopBox extends Component {
 
           console.log("delelte", data);
 
-          $.ajax({
+          $.ajax({// rerun all the functions in didamount  to update the page after delete 
             url: "/ticket1",
             type: "Get",
             success: function (data) {
@@ -295,10 +251,10 @@ class PopBox extends Component {
         }
       });
 
-    }
+    }// function to push user ticket to the end of the queue 
     var delay = (ticket, id) => {
 
-      $.ajax({//add to the queue dirictly
+      $.ajax({// create new tiket for him at the end of the queue
         url: '/add-userto-queue',
         type: 'POST',
         contentType: 'application/json',
@@ -314,14 +270,14 @@ class PopBox extends Component {
         }
       });
 
-
+// call delete function to delete the ticket and update the page 
       onDelete(id)
 
 
 
     }
     const { classes } = this.props;
-
+//this function to render the name of the tickets
     var name = (i) => {
       if (this.state.name2.length <= i) {
         return 'loading'
@@ -329,45 +285,47 @@ class PopBox extends Component {
         return this.state.name2[i].nameOfQueeu
       }
     }
+    // this function to know the place of user in the queue and to know how many clients before him and calculate the time for him
     var numOfUser = (i, id) => {
       if (this.state.numUser[i] == undefined) {
         return "loding ..."
       } else {
         return this.state.numUser[i].indexOf(id)
       }
-    }
+    } 
+    // this function to get the time for each client 
     var timeForOne = (i) => {
       if (this.state.name2[i] !== undefined) { return this.state.name2[i].timeforone }
     }
     return (
       <div className="cardpop">
         <Button onClick={this.handleExpandClick} variant="outlined" style={{ color: "white", backgroundColor: "#aa1256", borderRadius: "5px", width: "200px", marginTop: "20px", marginLeft: "50px" }}>MY TICKET</Button>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+        
           <CardContent>
 
 
-            <GridList cols={3} >
+            <GridList  cellHeight={460} style={{width: 980, height: 450}}cols={2} >
               {this.state.TicketList.map((ticket, i) => (
-
+                  <GridListTile key={ticket} cols={ticket.cols || 1}>
                 <Card style={{ margin: "5px", width: "500px", height: "400px" }} >
                   <CardActionArea>
                     <Typography gutterBottom variant="h5" component="h2" style={{ color: "defult" }}>
+                    {/* render the name of the ticket */}
                       <h2>{name(i)} </h2>
 
                     </Typography>
                     <CardContent>
                       <CardMedia />
-                      <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#CE93D8' }} >{ticket.id}</Avatar>
+                      <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#aa1256' }} >{ticket.id}</Avatar>
                       <Typography styles={{ paddingBottom: 50, }} variant="h7" component="p">
-                        <h2>estmated time : {timeForOne(i) * numOfUser(i, ticket.id)} minutes</h2>
-                        <h2> clients befor u : {numOfUser(i, ticket.id)}
+                        <h2>estimated time : {timeForOne(i) * numOfUser(i, ticket.id)} minutes</h2>
+                        <h2> clients before you : {numOfUser(i, ticket.id)}
                         </h2>
-                        {/* <h2>number of clients in the queue:{console.log("nummmmber",this.state.numUser[i].length)}</h2> */}
                         <h2> user notes  : {ticket.Notes} </h2>
-                        <Button styles={{ lineHeight: 1.5, margin: 10, padding: 10, border: 10, }} variant="contained" onClick={() => { onDelete(ticket.id) }} color="primary" type="submit">
+                        <Button style={{ marginTop: "50px", marginLeft: '100px', width: "100px", padding: 10, color: "white",backgroundColor: "red"}} variant="contained" onClick={() => { onDelete(ticket.id) }}  type="submit">
                           Delete
                             </Button>
-                        <Button styles={{ lineHeight: 1.5, margin: 10, padding: 10, border: 10, }} variant="contained" onClick={() => { delay(ticket, ticket.id) }} color="primary" type="submit">
+                        <Button style={{ marginTop: "50px", marginLeft: '30px',width: "100px",padding: 10, color: "white",backgroundColor: "blue"}} variant="contained" onClick={() => { delay(ticket, ticket.id) }}  type="submit">
                         delay
                             </Button>
                       </Typography>
@@ -376,6 +334,7 @@ class PopBox extends Component {
                   <CardActions>
                   </CardActions>
                 </Card>
+                </GridListTile>
               ))}
 
 
@@ -383,7 +342,7 @@ class PopBox extends Component {
 
 
           </CardContent>
-        </Collapse>
+      
       </div>
     );
   }

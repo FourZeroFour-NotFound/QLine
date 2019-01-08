@@ -116,7 +116,7 @@ class Profile extends Component {
     }
 
     $.ajax({
-      url: "/profile",
+      url: "/Profile_info",
       type: "Put",
       data: JSON.stringify(InfObj),
       contentType: "application/json",
@@ -174,7 +174,7 @@ class Profile extends Component {
   componentDidMount = () =>{
     var that = this
     $.ajax({
-      url: "/profile",
+      url: "/Profile_info",
       type: "Get",
       success: function (data) {
         console.log("kkkkk", data.success[0])
@@ -406,31 +406,3 @@ Profile.propTypes = {
 
 
 export default withStyles(styles)(Profile);
-
-
-
-{/* <List>
-
-{this.state.TicketList.map((ticket) => (
-<ListItem key = {ticket.nameOfQueeu} ticket = {ticket.nameOfQueeu}
-    button
-    divider
-    aria-haspopup="true"
-    aria-label={ticket}
-    onClick={this.handleClickListItem}
-  >
-
-    < ListItemText primary={ticket.nameOfQueeu} /> 
- 
-
-  <Confirmation
-    classes={{
-      paper: classes.paper,
-    }}
-    open={this.state.open1}
-    onClose={this.handleClose}
-    cancel={this.handleClickListItem.bind(this)}
-    onDelete={this.onDelete.bind(this,ticket.queue_id)}
-  />
-   </ListItem>))}
-</List> */}

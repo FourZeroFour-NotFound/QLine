@@ -42,8 +42,6 @@ const styles = () => ({
 
 class User extends Component {
   state = {
-    auth: true,
-    anchorEl: null,
     value:"",
     searchResult:[],
     firstName: "",
@@ -51,15 +49,8 @@ class User extends Component {
     email: ""
   };
 
-  handleChange = event => {
-    this.setState({ auth: event.target.checked });
-  };
-
-
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
+  
+// this function for search about the queues  by add the name of  the queue
   handleSearch = () => { 
      var that= this;
     $.ajax({
@@ -83,8 +74,8 @@ class User extends Component {
         setTimeout(() => {window.location.href="/business"}, 1000)
        });
       } 
-      $.ajax({
-        url: "/profile",
+      $.ajax({// this rquest to get all the user informations and render them once the user open his profile 
+        url: "/profile_info",
         type: "Get",
         success: function (data) {
           console.log(data)
@@ -123,7 +114,7 @@ class User extends Component {
 
 
   render() {
-    const { auth } = this.state;
+    
     return (
             <div>
                   <video width="100%"  style={{marginTop: "-60px"}}  autoPlay>
@@ -172,7 +163,7 @@ class User extends Component {
                                 <CardFloat/>
                                 
                               </div>
-                              <Grid className="searchdesign" style = {{height: "800px",marginTop:"-150px", marginLeft: "500px"}}>
+                              <Grid className="searchdesign" style = {{height: "400px",marginTop:"-150px", marginLeft: "500px"}}>
                               <SearchResult queues = {this.state.searchResult}/>   
                               </Grid>
                               <Counter/>

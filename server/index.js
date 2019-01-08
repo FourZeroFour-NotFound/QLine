@@ -8,24 +8,12 @@ var MySQLStore = require('express-mysql-session')(session);
 var router = express.Router();
 const multer = require("multer");
 const app = express();
-
-app.use(express.static(__dirname + '/../client/public'));
-
-if (process.env.NODE_ENV === 'production') {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, 'client/build')));
-  // Handle React routing, return all requests to React app
-  app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-}
-
+app.use(express.static(__dirname + '/../client/public/index.html'));
+const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
-
 }));
-
 
 
 
@@ -88,7 +76,7 @@ app.post('/queue-data',function(req,res){
   })
 })
 // this function used to get data for user using id
-app.get('/profile', function(req,res){
+app.get('/Profile_info', function(req,res){
   console.log(" lllllllll",req.user)
   db.getUserData(req.user,function(err,result){
     if(err){
@@ -137,7 +125,7 @@ app.post('/profile2', function(req,res){
 })
 
 // this function is used to update data for user using id
-app.put('/profile', function(req,res){
+app.put('/profile_info', function(req,res){
   console.log(" ddddddd",req.user)
   db.UPDATE(req.body,req.user, function(err, result){
     if(err){
@@ -184,6 +172,7 @@ app.get('/ticket', function(req,res){
 })
 
 // this function  is used to delete specific ticket for user using queue_id
+
 app.delete( '/confirm/:queue_id', function(req,res){
   console.log(" zzzzzzz",req.params.queue_id)
   db.DeleteTicket(req.params.queue_id, function(err, result){
@@ -200,6 +189,12 @@ app.delete( '/confirm/:queue_id', function(req,res){
     }
   })
 })
+
+
+  // this function to create  new queue
+
+
+
 
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
@@ -823,12 +818,8 @@ const upload = multer({
   limits: { fileSize: 1000000 },
 }).single('myImage')
 
-// app.get('/*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '/../client/public', 'index.html'));
-//  });
 
 
 
-const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;

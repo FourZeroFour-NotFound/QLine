@@ -12,7 +12,7 @@ import Loading from './First Page Component/Loading.js';
 import BusinessDashBord from './Business Component/businessDashBord.jsx';
 import ContactUs from "./First Page Component/ContactUs.jsx";
 import AdminDash from './First Page Component/AdminDashboard.jsx'
-import CreatQueue from './Business Component/creatQueue.jsx';
+import FeaturePage from './First Page Component/FeaturesHomePage.jsx';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -29,16 +29,16 @@ class HomePage extends React.Component {
               <Route path="/profile" exact component={Profile} />
               <Route path="/business" exact component={Business} />
               <Route path="/user" exact component={User} />
-              <Route path="/CreatQueue" exact component={CreatQueue} />
               <Route path="/BusinessDashBord/:queue_id" exact component={BusinessDashBord} />
               <Route path="/ContactUs" exact component={ContactUs} />
               <Route path="/admin" exact component={AdminDash} />
+              <Route path="/feature" exact component={FeaturePage}/>
         </Router>
       );
     }
   }
 
-ReactDOM.render(<HomePage/>, document.getElementById('root1'));
+ReactDOM.render(<HomePage/>, document.getElementById('root'));
 
 // setTimeout(()=>{
 //   window.responsiveVoice.speak("Welcome to Q Line........ How can I Help you?")
