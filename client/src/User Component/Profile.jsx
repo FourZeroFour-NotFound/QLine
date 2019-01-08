@@ -132,7 +132,7 @@ class Profile extends Component {
       url: "/Profile_info",
       type: "Get",
       success: function (data) {
-        console.log("kkkkk", data.success[0])
+        console.log("result", data.success[0])
         that.setState({
           firstName: data.success[0].firstName,
           lastName: data.success[0].lastName,
