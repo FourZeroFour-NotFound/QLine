@@ -36,6 +36,15 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/../client/public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // git function to bring all the queuefor one user using his id 
