@@ -6,10 +6,10 @@ import Adapter from 'enzyme-adapter-react-16';
 import { shallow, mount } from 'enzyme';
 import App from './App';
 import { expect } from 'chai';
-import Header from './First Page Component/Header.js';
+import Header from './Header.js';
 import renderer from 'react-test-renderer';
-import User from './User Component/User';
-
+import User from '../User Component/User.jsx';
+import IntroPage from './IntroPage.js';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -46,6 +46,30 @@ it('renders without crashing', () => {
 });
 
 
+
+// test for checking Category components and its functionality
+describe('<App />', () => {
+  it('renders one <IntroPage /> components', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find(IntroPage)).to.have.lengthOf(1);
+  });
+
+  it('renders an `.anyCont`', () => {
+    const wrapper = shallow(<IntroPage />);
+    expect(wrapper.find('.anyCont')).to.have.lengthOf(1);
+  });
+
+  it('click right in button', () => {
+    const wrapper = shallow(<div><IntroPage className="foo" /><div className="foo" /></div>);
+    expect(wrapper.find('.foo').hostNodes()).to.have.lengthOf(1);
+  })
+});
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<IntroPage />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
 
 
 
