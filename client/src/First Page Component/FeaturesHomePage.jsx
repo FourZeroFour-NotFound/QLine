@@ -4,7 +4,11 @@ import '../style/App.css';
 import $ from 'jquery';
 import logo from '../style/qline.png';
 import {Grid} from '@material-ui/core'; 
+<<<<<<< HEAD
  
+=======
+import {Link} from 'react-router';
+>>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
  
  
  
@@ -51,6 +55,7 @@ import {Grid} from '@material-ui/core';
     render () {
         return (
         <div>
+<<<<<<< HEAD
              <nav className="menu6"  style={{backgroundColor: "transparent",  marginTop: "-10px", marginLeft: "50px"}}>
                 <img src={logo} width="122px" height="62px" style={{marginTop: "20px", marginLeft: "-20px"}}/>
                 <Grid className="centerNav">
@@ -62,6 +67,8 @@ import {Grid} from '@material-ui/core';
                     </ul>
                 </Grid>
             </nav>
+=======
+>>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
             <div className="wrap44">
             <div className="back10">
               <div className="back10__slide active1">
@@ -95,6 +102,20 @@ import {Grid} from '@material-ui/core';
               </div>
             </div>
           </div>
+<<<<<<< HEAD
+=======
+          <div>
+            <nav className="menu5"  style={{backgroundColor: "transparent", position: "absolute",  marginTop: "-1000px", marginLeft: "50px"}} >
+                <img src={logo} width="122px" height="62px" style={{marginTop: "30px", marginLeft: "-20px"}}/>
+                <Grid className="menu__right">
+                    <ul className="menu__list">
+                    <li class="menu__list-item"><a class="menu__link" style={{color: "black"}} href="/BusinessDashBord/:queue_id">Back</a></li>
+                    <li class="menu__list-item"><a class="menu__link" style={{color: "black"}}  href="/" >Logout</a></li>
+                    </ul>
+                </Grid>
+            </nav>
+            </div>
+>>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
         </div>
             )
         }

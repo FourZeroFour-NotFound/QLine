@@ -293,6 +293,10 @@ describe('GET get-users-in-waitingList', () => {
     });
   });
 });
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 4a364926b3de7108ae2960f4b758d0a6f785db14
 
 // test for search about the queues by sending name of organization
 describe('POST search', () => {
