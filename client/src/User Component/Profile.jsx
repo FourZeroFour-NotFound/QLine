@@ -140,6 +140,14 @@ class Profile extends Component {
           phoneNumber: data.data[0].phoneNumber,
           user_id: data.data[0].user_id
         })
+      },
+      success: function (data) {
+        console.log(' success',data.success)
+        that.setState({
+          firstName: data.data[0].firstName,
+          lastName: data.data[0].lastName,
+          email: data.data[0].email,
+        })
       }
     });
     // this request used to get all tickets for user using id  

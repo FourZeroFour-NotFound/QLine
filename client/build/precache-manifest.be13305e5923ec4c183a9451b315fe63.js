@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/media/user.23841628.mp4"
   },
   {
-    "revision": "9e4ea65b5ddaa2ca305f",
+    "revision": "276354883c6e2b77062c",
     "url": "/static/css/main.c8065669.chunk.css"
   },
   {
@@ -32,12 +32,12 @@ self.__precacheManifest = [
     "url": "/static/media/apple.d6e7a43c.png"
   },
   {
-    "revision": "f4623a84b850f6d139929409e2b506da",
-    "url": "/static/media/bk.f4623a84.jpg"
-  },
-  {
     "revision": "1add0e3736ee22c17a1b3dea950b2843",
     "url": "/static/media/adv.1add0e37.jpg"
+  },
+  {
+    "revision": "f4623a84b850f6d139929409e2b506da",
+    "url": "/static/media/bk.f4623a84.jpg"
   },
   {
     "revision": "f0d7053450f7524082d57a2b26615792",
@@ -76,8 +76,8 @@ self.__precacheManifest = [
     "url": "/static/media/laptop2.4d59bbe5.png"
   },
   {
-    "revision": "9e4ea65b5ddaa2ca305f",
-    "url": "/static/js/main.9e4ea65b.chunk.js"
+    "revision": "276354883c6e2b77062c",
+    "url": "/static/js/main.27635488.chunk.js"
   },
   {
     "revision": "a340f1c80d96e7cbfffe67f35cc0f856",
@@ -148,7 +148,7 @@ self.__precacheManifest = [
     "url": "/static/css/1.f846d76a.chunk.css"
   },
   {
-    "revision": "246df18831a88acae7b8ac52a05ddd22",
+    "revision": "02c699a47626b40f51c7d5cd02dea314",
     "url": "/index.html"
   }
 ];
