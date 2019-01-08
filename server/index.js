@@ -86,7 +86,7 @@ app.post('/queue-data',function(req,res){
   })
 })
 // this function used to get data for user using id
-app.get('/Profile_info', function(req,res){
+app.get('/Info', function(req,res){
   console.log(" this request for user",req.user)
   db.getUserData(req.user,function(err,result){
     if(err){
