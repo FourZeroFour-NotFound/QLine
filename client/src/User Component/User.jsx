@@ -36,9 +36,9 @@ class User extends Component {
       url: "/search",
       type: "Post",
       data: { org: this.state.value },
-      success: function (data) {
+      data: function (data) {
         that.setState({
-          searchResult: data.success
+          searchResult: data.data
         })
         console.log("searchresult", that.state.searchResult)
       }
@@ -56,12 +56,12 @@ class User extends Component {
     $.ajax({// this rquest to get all the user informations and render them once the user open his profile 
       url: "/profile_info",
       type: "Get",
-      success: function (data) {
+      data: function (data) {
         console.log(data)
         that.setState({
-          firstName: data.success[0].firstName,
-          lastName: data.success[0].lastName,
-          email: data.success[0].email,
+          firstName: data.data[0].firstName,
+          lastName: data.data[0].lastName,
+          email: data.data[0].email,
         })
       }
     });
@@ -81,7 +81,7 @@ class User extends Component {
       url: '/log-out',
       type: 'GET',
       contentType: 'application/json',
-      success: (data) => {
+      data: (data) => {
         console.log(data);
         browserHistory.push('/')
       },

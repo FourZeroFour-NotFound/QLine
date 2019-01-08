@@ -72,14 +72,14 @@ app.post('/queue-data',function(req,res){
       res.send({
         status: 404,
         success: result,
-       
+        data: result
       });
       console.log("server error giting data " , err)
     }else{
       res.send({
         status: 200,
         success: result,
-       
+        data: result
       });
     }
     
@@ -94,8 +94,8 @@ app.get('/Profile_info', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -109,8 +109,8 @@ app.post('/profile1', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -127,8 +127,8 @@ app.post('/profile2', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -143,8 +143,8 @@ app.put('/profile_info', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-      
+        success:result,
+        data: result
       })
     }
   })
@@ -159,8 +159,8 @@ app.get('/ticket1', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -174,8 +174,8 @@ app.get('/ticket', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -192,9 +192,10 @@ app.delete( '/confirm/:queue_id', function(req,res){
       console.log("rrrrr", result)
       res.send({
         status:200,
-         success:result
+         success:result,
         //  type:"Delete"
-      
+        data: result
+
       })
     }
   })
@@ -257,6 +258,7 @@ app.post('/sign-up', function (req, res) {
         res.send({
           status: 404,
           success: "userExist",
+          data: "userExist"
         });
 
       } else { 
@@ -327,6 +329,7 @@ app.post('/sign-in', function (req, res) {
         res.send({
           status: 404,
           success: "email is wrong",
+          data: "email is wrong"
         });
       } else {
         if (req.body.password == result[0].password) {
@@ -359,7 +362,8 @@ app.get('/log-out', function (req, res) {
   var x = req.user
   req.logOut()
   res.send({
-    success: `user ${x} is log out `
+    success: `user ${x} is log out `,
+    data: `user ${x} is log out `
   })
 })
 // function for serch give it name of org and it return all queue for this org 

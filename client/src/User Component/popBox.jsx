@@ -50,15 +50,15 @@ class PopBox extends Component {
     $.ajax({
       url: "/ticket1",
       type: "Get",
-      success: function (data) {
-        console.log("tttttt", data.success)
+      data: function (data) {
+        console.log("tttttt", data.data)
         that.setState({
-          TicketList: data.success
+          TicketList: data.data
         })
         // make array of queue id only for each ticket  
         var arr = []
-        for (var i = 0; i < data.success.length; i++) {
-          arr.push(data.success[i].id)
+        for (var i = 0; i < data.data.length; i++) {
+          arr.push(data.data[i].id)
         }
         that.setState({
           TicketListid: arr
@@ -97,8 +97,8 @@ class PopBox extends Component {
             success: (data) => {
               var arrr = []
 
-              for (var j = 0; j < data.success.length; j++) {
-                arrr.push(data.success[j].id)
+              for (var j = 0; j < data.data.length; j++) {
+                arrr.push(data.data[j].id)
               }
 
               that.setState(previousState => ({
@@ -136,14 +136,14 @@ class PopBox extends Component {
           $.ajax({// rerun all the functions in didamount  to update the page after delete 
             url: "/ticket1",
             type: "Get",
-            success: function (data) {
-              console.log("tttttt", data.success)
+            data: function (data) {
+              console.log("tttttt", data.data)
               that.setState({
-                TicketList: data.success
+                TicketList: data.data
               })
               var arr = []
-              for (var i = 0; i < data.success.length; i++) {
-                arr.push(data.success[i].id)
+              for (var i = 0; i < data.data.length; i++) {
+                arr.push(data.data[i].id)
               }
               that.setState({
                 TicketListid: arr
@@ -180,8 +180,8 @@ class PopBox extends Component {
                   success: (data) => {
                     var arrr = []
 
-                    for (var j = 0; j < data.success.length; j++) {
-                      arrr.push(data.success[j].id)
+                    for (var j = 0; j < data.data.length; j++) {
+                      arrr.push(data.data[j].id)
                     }
 
                     that.setState(previousState => ({
