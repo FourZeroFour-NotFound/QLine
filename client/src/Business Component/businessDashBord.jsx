@@ -35,6 +35,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { Router, Route, browserHistory } from 'react-router';
 import blankTV from '../style/blankTV.png';
 import GridListTile from '@material-ui/core/GridListTile';
+import Swiper from 'react-id-swiper';
+
 
 const style = theme => ({
   root: {
@@ -303,6 +305,7 @@ $.ajax({
     });
   }
 
+
   render() {
    var next = (x ,y)=>{
       console.log(x ,y)
@@ -352,7 +355,7 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
                 <Grid className="centerNav">
                     <ul className="centerNavMenu">
                     <li className="menuItem" ><a className="itemLink" style={{color: "black"}} href="/business">Home</a></li>
-                    <li className="menuItem" ><a style={{color: "black"}} className="itemLink">Features</a></li>
+                    <li className="menuItem" ><a style={{color: "black"}} className="itemLink" href="/feature">Features</a></li>
                     <li className="menuItem" ><a style={{color: "black"}} className="itemLink">Contact Us</a></li>
                     
                     </ul>
@@ -379,41 +382,48 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
         </Tabs>
       </Paper>
       {value === 0 && <TabContainer>
-        <Card style={{width: "500px", marginTop: "-755px", position: "absolute", backgroundColor: "black"}}>
-        <h1 style={ {lineHeight: 1.5, marginLeft: "50px", color: "white"}} >Customer's waiting : <span style={{color: "#7aeac2"}}>{this.state.allusersinqueue.length - this.state.queueDetalse.windows }</span></h1>
-        <h1 style={ {lineHeight: 1.5, marginLeft: "50px", color: "white"}} >Upcoming ticket  :<span style={{color: "#7aeac2"}}> { nextTickit ()}</span></h1>
+        <Card style={{width: "300px",height: "400px", marginTop: "100px", position: "absolute", backgroundColor: "#e33a2e", marginLeft: "1550px"}}>
+        <h1 style={ {lineHeight: 1.5, marginLeft: "10px", color: "white",marginTop: "50px", textAlign: "center"}} >Customer's waiting  <h1 style={{color: "#7aeac2"}}>{this.state.allusersinqueue.length - this.state.queueDetalse.windows }</h1></h1>
+        <h1 style={ {lineHeight: 1.5, marginLeft: "10px", color: "white", marginTop: "50px", textAlign: "center"}} >Upcoming ticket  <h1 style={{color: "#7aeac2"}}> { nextTickit ()}</h1></h1>
         </Card>
-
-          {this.state.arr.map((queue ,i) => (
-            <div>
-            <Card style={{margin : 5, width: "300px", height: "150px", borderRadius: "999px", border: "4px solid #7aeac2" }} >
-                <Typography gutterBottom variant="h5" component="h2" style={{color:"black", backgroundColor:"#7aeac2"}}>
-               <h2>counter : {i +1} </h2>
+        <Card style={{margin : 5, width: "300px",marginTop: "30px",marginLeft: "150px", height: "80px", borderRadius: "999px",  backgroundColor:"#e33a2e" }} >
+                <Typography gutterBottom variant="h5" component="h2" >
+               <h2 style={{color: "white", marginTop: "20px"}}>counter</h2>
                </Typography>
             </Card>
-           <Card style={{margin : 5, width: "1000px", height: "150px", borderRadius: "999px", border: "4px solid #7aeac2", marginLeft: "500px" }} >
+            <Card style={{margin : 5, width: "1000px", height: "80px",marginTop: "-80px", borderRadius: "999px", backgroundColor: "#e33a2e", marginLeft: "500px", color: "white" }} >
+            <Typography  variant="h7" component="p">
+               <h2 style={{marginTop: "30px"}}> Ticket Number</h2>
+               </Typography>
+            </Card>
+          {this.state.arr.map((queue ,i) => (
+            <div>
+            <Card style={{margin : 5, width: "300px",marginTop: "50px",marginLeft: "150px", height: "80px", borderRadius: "999px", border: "4px solid #e33a2e", }} >
+         
+               <h2 style={{color: "#e33a2e", marginTop: "20px"}}> {i +1} </h2>
+
+            </Card>
+           <Card style={{margin : 5, width: "1000px", height: "80px", marginTop: "-85px", borderRadius: "999px", border: "4px solid #e33a2e", marginLeft: "500px" }} >
            <CardActionArea>
              <CardContent>
              <CardMedia />
-               <Typography  style={{paddingBottom: 50,}} variant="h7" component="p">
-               <h2> Ticket Number :{this.state.arr[i].id} </h2>
+               <Typography  variant="h7" component="p">
+               <h2 style={{color: "#e33a2e"}}>{this.state.arr[i].id} </h2>
                </Typography>
              </CardContent>
            </CardActionArea>
-           <CardActions>
-           </CardActions>
          </Card>
          </div>
           ))}
 
         
       </TabContainer>}
-      {value === 1 && <TabContainer>
-        <h1 style={ {lineHeight: 1.5,}} >Customers in queue : {this.state.allusersinqueue.length  - this.state.queueDetalse.windows}</h1>
-        <h1 style={ {lineHeight: 1.5,}} >Customers in counter : {this.state.queueDetalse.windows}</h1>
-        <h1 style={ {lineHeight: 1.5,}} >Estimated time until your turn  :  { estmatedTime() } m</h1>
-        <h2 style={ {lineHeight: 1.5,}} >Choose what suits you :</h2>
-        <div >
+      {value === 1 && 
+      <div>
+        <div>
+                    <h3 style={ {lineHeight: 1.5,}} >Customers in queue : {this.state.allusersinqueue.length  - this.state.queueDetalse.windows}</h3>
+              <h3 style={ {lineHeight: 1.5,}} >Customers in counter : {this.state.queueDetalse.windows}</h3>
+                <h3 style={ {lineHeight: 1.5,}} >Estimated time until your turn  :  { estmatedTime() } m</h3>
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography><h3> you use Qline and you have your phone ? </h3> </Typography>
@@ -459,8 +469,7 @@ var nextTickit = () => {if (this.state.allusersinqueue[this.state.arr.length  ] 
       </ExpansionPanel>
       
     </div>
-        
-       </TabContainer>}
+    </div>}
       {value === 2 && <TabContainer>
         <h1 style={ {lineHeight: 1.5,}} >Unserved Customers : {this.state.allusersinqueue.length - this.state.queueDetalse.windows}</h1>
         <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" onClick={this.start}  color="primary" type="submit">

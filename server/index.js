@@ -8,13 +8,12 @@ var MySQLStore = require('express-mysql-session')(session);
 var router = express.Router();
 const multer = require("multer");
 const app = express();
-app.use(express.static(__dirname + '/../client/public'));
+app.use(express.static(__dirname + '/../client/public/index.html'));
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
 
 
 
