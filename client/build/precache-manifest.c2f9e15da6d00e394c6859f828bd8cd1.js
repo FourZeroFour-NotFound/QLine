@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/media/user.23841628.mp4"
   },
   {
-    "revision": "4c35ced460d8445561b3",
+    "revision": "d8b01d6d151ca45c985b",
     "url": "/static/css/main.c8065669.chunk.css"
   },
   {
@@ -32,6 +32,10 @@ self.__precacheManifest = [
     "url": "/static/media/apple.d6e7a43c.png"
   },
   {
+    "revision": "f4623a84b850f6d139929409e2b506da",
+    "url": "/static/media/bk.f4623a84.jpg"
+  },
+  {
     "revision": "1add0e3736ee22c17a1b3dea950b2843",
     "url": "/static/media/adv.1add0e37.jpg"
   },
@@ -42,10 +46,6 @@ self.__precacheManifest = [
   {
     "revision": "b695b1252e0c089713efc9478c358eb4",
     "url": "/static/media/queue.b695b125.jpg"
-  },
-  {
-    "revision": "f4623a84b850f6d139929409e2b506da",
-    "url": "/static/media/bk.f4623a84.jpg"
   },
   {
     "revision": "b22778599a288cf0ed1febab7d25ce0d",
@@ -76,8 +76,8 @@ self.__precacheManifest = [
     "url": "/static/media/laptop2.4d59bbe5.png"
   },
   {
-    "revision": "4c35ced460d8445561b3",
-    "url": "/static/js/main.4c35ced4.chunk.js"
+    "revision": "d8b01d6d151ca45c985b",
+    "url": "/static/js/main.d8b01d6d.chunk.js"
   },
   {
     "revision": "a340f1c80d96e7cbfffe67f35cc0f856",
@@ -148,7 +148,7 @@ self.__precacheManifest = [
     "url": "/static/css/1.f846d76a.chunk.css"
   },
   {
-    "revision": "8e642df1645badeccd6d4278e85c9054",
+    "revision": "fb733841f6eb1474a570a4d2192ee5a2",
     "url": "/index.html"
   }
 ];

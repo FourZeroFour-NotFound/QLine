@@ -1,14 +1,14 @@
 {
   "main.css": "/static/css/main.c8065669.chunk.css",
-  "main.js": "/static/js/main.4c35ced4.chunk.js",
-  "main.js.map": "/static/js/main.4c35ced4.chunk.js.map",
+  "main.js": "/static/js/main.d8b01d6d.chunk.js",
+  "main.js.map": "/static/js/main.d8b01d6d.chunk.js.map",
   "static/css/1.f846d76a.chunk.css": "/static/css/1.f846d76a.chunk.css",
   "static/js/1.697c808a.chunk.js": "/static/js/1.697c808a.chunk.js",
   "static/js/1.697c808a.chunk.js.map": "/static/js/1.697c808a.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
   "static/media/kiosk.png": "/static/media/kiosk.065cac88.png",
-  "static/media/App.css": "/static/media/bk.f4623a84.jpg",
+  "static/media/App.css": "/static/media/queue.b695b125.jpg",
   "static/media/qline.png": "/static/media/qline.b2277859.png",
   "static/media/logo1.png": "/static/media/logo1.4ad62dc1.png",
   "static/media/phoneinfo.png": "/static/media/phoneinfo.18960a86.png",
@@ -37,6 +37,6 @@
   "static/css/1.f846d76a.chunk.css.map": "/static/css/1.f846d76a.chunk.css.map",
   "static/css/main.c8065669.chunk.css.map": "/static/css/main.c8065669.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.8ee9ad81118b35cb07ddeb725bcf3193.js": "/precache-manifest.8ee9ad81118b35cb07ddeb725bcf3193.js",
+  "precache-manifest.c2f9e15da6d00e394c6859f828bd8cd1.js": "/precache-manifest.c2f9e15da6d00e394c6859f828bd8cd1.js",
   "service-worker.js": "/service-worker.js"
 }

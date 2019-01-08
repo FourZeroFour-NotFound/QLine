@@ -57,7 +57,15 @@ class User extends Component {
       url: "/profile_info",
       type: "Get",
       data: function (data) {
-        console.log('profile information',data)
+        console.log('data',data)
+        that.setState({
+          firstName: data.data[0].firstName,
+          lastName: data.data[0].lastName,
+          email: data.data[0].email,
+        })
+      },
+      success: function (data) {
+        console.log(' success',data)
         that.setState({
           firstName: data.data[0].firstName,
           lastName: data.data[0].lastName,
