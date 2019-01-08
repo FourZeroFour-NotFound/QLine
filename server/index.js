@@ -76,7 +76,7 @@ app.post('/queue-data',function(req,res){
   })
 })
 // this function used to get data for user using id
-app.get('/profile', function(req,res){
+app.get('/Profile_info', function(req,res){
   console.log(" lllllllll",req.user)
   db.getUserData(req.user,function(err,result){
     if(err){
@@ -125,7 +125,7 @@ app.post('/profile2', function(req,res){
 })
 
 // this function is used to update data for user using id
-app.put('/profile', function(req,res){
+app.put('/profile_info', function(req,res){
   console.log(" ddddddd",req.user)
   db.UPDATE(req.body,req.user, function(err, result){
     if(err){
@@ -172,6 +172,7 @@ app.get('/ticket', function(req,res){
 })
 
 // this function  is used to delete specific ticket for user using queue_id
+
 app.delete( '/confirm/:queue_id', function(req,res){
   console.log(" zzzzzzz",req.params.queue_id)
   db.DeleteTicket(req.params.queue_id, function(err, result){
@@ -188,6 +189,12 @@ app.delete( '/confirm/:queue_id', function(req,res){
     }
   })
 })
+
+
+  // this function to create  new queue
+
+
+
 
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
