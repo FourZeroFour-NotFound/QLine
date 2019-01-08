@@ -132,13 +132,13 @@ class Profile extends Component {
       url: "/Profile_info",
       type: "Get",
       success: function (data) {
-        console.log("result", data.success[0])
+        console.log("result", data.data[0])
         that.setState({
-          firstName: data.success[0].firstName,
-          lastName: data.success[0].lastName,
-          email: data.success[0].email,
-          phoneNumber: data.success[0].phoneNumber,
-          user_id: data.success[0].user_id
+          firstName: data.data[0].firstName,
+          lastName: data.data[0].lastName,
+          email: data.data[0].email,
+          phoneNumber: data.data[0].phoneNumber,
+          user_id: data.data[0].user_id
         })
       }
     });
@@ -147,9 +147,9 @@ class Profile extends Component {
       url: "/ticket1",
       type: "Get",
       success: function (data) {
-        console.log("tttttt", data.success)
+        console.log("tttttt", data.data)
         that.setState({
-          TicketList: data.success
+          TicketList: data.data
         })
 
       }
