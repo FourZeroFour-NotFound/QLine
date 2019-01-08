@@ -1,44 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import TextField from '@material-ui/core/TextField';
-import classNames from 'classnames';
 import $ from 'jquery';
 
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-  uper: {
-    backgroundColor: "#7aeac2",
-  },
-  card: {
-    width: "600px",
-    height: "350px",
-   
-
-  },
   media: {
     height: 20,
     maxWidth: 20,
@@ -133,22 +109,11 @@ export default class SearchQueue extends React.Component {
   }
 
 
-
-
-
   handleClickOpen = () => {
-
-
     this.setState({ open: !this.state.open });
-
-
-
   };
 
   handleClick = () => {
-
-
-
     this.setState({
       allqueue: this.props.queue
     })
