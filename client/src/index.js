@@ -30,9 +30,10 @@ class HomePage extends React.Component {
               <Route path="/business" exact component={Business} />
               <Route path="/user" exact component={User} />
               <Route path="/BusinessDashBord/:queue_id" exact component={BusinessDashBord} />
+              <Route path="/feature" exact component={FeaturePage}/>
               <Route path="/ContactUs" exact component={ContactUs} />
               <Route path="/admin" exact component={AdminDash} />
-              <Route path="/feature" exact component={FeaturePage}/>
+              
         </Router>
       );
     }
