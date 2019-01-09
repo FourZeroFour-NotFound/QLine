@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Confirmation from './Confirmation.jsx';
 import $ from "jquery";
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import { Grid } from '@material-ui/core';
-import red from '@material-ui/core/colors/red';
 import '../style/App.css';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -31,7 +29,7 @@ const styles = theme => ({
   },
   media: {
     height: 500,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   },
   
   actions: {
@@ -129,27 +127,35 @@ class Profile extends Component {
   componentDidMount = () => {
     var that = this
     $.ajax({
-      url: "/Profile_info",
-      type: "Get",
-      success: function (data) {
-        console.log("result", data.success[0])
+      url: "/Info",
+      type: "POST",
+      data: function (data) {
+        console.log("result", data.data[0])
         that.setState({
-          firstName: data.success[0].firstName,
-          lastName: data.success[0].lastName,
-          email: data.success[0].email,
-          phoneNumber: data.success[0].phoneNumber,
-          user_id: data.success[0].user_id
+          firstName: data.data[0].firstName,
+          lastName: data.data[0].lastName,
+          email: data.data[0].email,
+          phoneNumber: data.data[0].phoneNumber,
+          user_id: data.data[0].user_id
+        })
+      },
+      success: function (data) {
+        console.log(' success',data.success)
+        that.setState({
+          firstName: data.data[0].firstName,
+          lastName: data.data[0].lastName,
+          email: data.data[0].email,
         })
       }
     });
     // this request used to get all tickets for user using id  
     $.ajax({
       url: "/ticket1",
-      type: "Get",
+      type: "POST",
       success: function (data) {
-        console.log("tttttt", data.success)
+        console.log("tttttt", data.data)
         that.setState({
-          TicketList: data.success
+          TicketList: data.data
         })
 
       }
@@ -182,7 +188,7 @@ class Profile extends Component {
       url: '/log-out',
       type: 'GET',
       contentType: 'application/json',
-      success: (data) => {
+      data: (data) => {
         console.log(data);
         browserHistory.push('/')
       },
@@ -204,9 +210,6 @@ class Profile extends Component {
     console.log(this.img)
   }
 
-  // addItems(formData) {
-  //   this.props.addItems(formData);
-  // }
 
   IncrementItem = () => {
     this.setState({
@@ -227,7 +230,7 @@ class Profile extends Component {
               <Grid className="menu__right">
                 <ul className="menu__list">
                   <li class="menu__list-item"><a style={{ color: "white" }} class="menu__link" href="/user">Search</a></li>
-                  <li class="menu__list-item"><a style={{ color: "white" }} class="menu__link" href="/">Logout</a></li>
+                  <li class="menu__list-item"><a style={{ color: "white" }} class="menu__link" onClick={this.logOut.bind(this)}>Logout</a></li>
                 </ul>
               </Grid>
             </nav>

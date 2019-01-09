@@ -39,7 +39,7 @@ app.use(passport.session());
 
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/../client/public/index.html'), function(err) {
+  res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
     if (err) {
       res.status(500).send(err)
     }
@@ -49,14 +49,14 @@ app.get('/*', function(req, res) {
 
 // git function to bring all the queuefor one user using his id 
 //dose not take any thing just the user id from his req
-app.get('/all_queue',function(req,res){
+app.post('/all_queue',function(req,res){
   db.getAllQueueForUser(req.user , function(err,result){
     if (err){
       console.log("server error giting data " , err)
     }else{
       res.send({
         status: 200,
-        success: "data found successfully",
+        success: result,
         data : result
       });
     }
@@ -72,30 +72,30 @@ app.post('/queue-data',function(req,res){
       res.send({
         status: 404,
         success: result,
-       
+        data: result
       });
       console.log("server error giting data " , err)
     }else{
       res.send({
         status: 200,
         success: result,
-       
+        data: result
       });
     }
     
   })
 })
 // this function used to get data for user using id
-app.get('/Profile_info', function(req,res){
-  console.log(" lllllllll",req.user)
+app.post('/Info', function(req,res){
+  console.log(" this request for user",req.user)
   db.getUserData(req.user,function(err,result){
     if(err){
       console.log("server error", err)
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -109,8 +109,8 @@ app.post('/profile1', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -127,8 +127,8 @@ app.post('/profile2', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -143,15 +143,15 @@ app.put('/profile_info', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-      
+        success:result,
+        data: result
       })
     }
   })
 })
 
   // this request used to get all tickets for user using id 
-app.get('/ticket1', function(req,res){
+app.post('/ticket1', function(req,res){
   console.log(" lllllllll",req.user)
   db.getUserTickets(req.user,function(err,result){
     if(err){
@@ -159,14 +159,14 @@ app.get('/ticket1', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
 })
 // this request to get the number of the queue (your turn)
-app.get('/ticket', function(req,res){
+app.post('/ticket', function(req,res){
   console.log(" queue id",req.queue_id)
   db.getUserQueue(req.queue_id,function(err,result){
     if(err){
@@ -174,8 +174,8 @@ app.get('/ticket', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -192,9 +192,10 @@ app.delete( '/confirm/:queue_id', function(req,res){
       console.log("rrrrr", result)
       res.send({
         status:200,
-         success:result
+         success:result,
         //  type:"Delete"
-      
+        data: result
+
       })
     }
   })
@@ -257,6 +258,7 @@ app.post('/sign-up', function (req, res) {
         res.send({
           status: 404,
           success: "userExist",
+          data: "userExist"
         });
 
       } else { 
@@ -327,6 +329,7 @@ app.post('/sign-in', function (req, res) {
         res.send({
           status: 404,
           success: "email is wrong",
+          data: "email is wrong"
         });
       } else {
         if (req.body.password == result[0].password) {
@@ -359,7 +362,8 @@ app.get('/log-out', function (req, res) {
   var x = req.user
   req.logOut()
   res.send({
-    success: `user ${x} is log out `
+    success: `user ${x} is log out `,
+    data: `user ${x} is log out `
   })
 })
 // function for serch give it name of org and it return all queue for this org 

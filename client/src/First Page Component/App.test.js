@@ -6,7 +6,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { shallow, mount } from 'enzyme';
 import App from './App';
 import { expect } from 'chai';
-import Header from './Header.js';
+import FlipInfo from './flipInfo.jsx';
 import renderer from 'react-test-renderer';
 import User from '../User Component/User.jsx';
 import IntroPage from './IntroPage.js';
@@ -23,18 +23,18 @@ it('renders without crashing', () => {
 
 // test for checking Category components and its functionality
 describe('<App />', () => {
-  it('renders one <Category /> components', () => {
+  it('renders one <FlipInfo /> components', () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find(Header)).to.have.lengthOf(1);
+    expect(wrapper.find(FlipInfo)).to.have.lengthOf(1);
   });
 
-  it('renders an `.centerNav`', () => {
-    const wrapper = shallow(<Header />);
-    expect(wrapper.find('.centerNav')).to.have.lengthOf(1);
+  it('renders an `.allflip`', () => {
+    const wrapper = shallow(<FlipInfo />);
+    expect(wrapper.find('.allflip')).to.have.lengthOf(1);
   });
 
   it('click right in button', () => {
-    const wrapper = shallow(<div><Header className="foo" /><div className="foo" /></div>);
+    const wrapper = shallow(<div><FlipInfo className="foo" /><div className="foo" /></div>);
     expect(wrapper.find('.foo').hostNodes()).to.have.lengthOf(1);
   })
 });
