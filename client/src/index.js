@@ -15,7 +15,7 @@ import AdminDash from './First Page Component/AdminDashboard.jsx'
 import FeaturePage from './First Page Component/FeaturesHomePage.jsx';
 import FeaturePage1 from './First Page Component/FeaturesHomePage.1.jsx';
 import FeaturePage2 from './First Page Component/FeaturesHomePage.2.jsx';
-
+import FeaturePage3 from './First Page Component/FeaturesHomePage.3.jsx';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -36,6 +36,7 @@ class HomePage extends React.Component {
               <Route path="/feature" exact component={FeaturePage}/>
               <Route path="/feature_" exact component={FeaturePage1}/>
               <Route path="/feature__" exact component={FeaturePage2}/>
+              <Route path="/feature__1" exact component={FeaturePage3}/>
               <Route path="/ContactUs" exact component={ContactUs} />
               <Route path="/admin" exact component={AdminDash} />
               

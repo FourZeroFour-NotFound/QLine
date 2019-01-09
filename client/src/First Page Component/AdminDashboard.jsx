@@ -31,7 +31,7 @@ export default class AdminDash extends React.Component {
       url: "/customer-services",
       type: "GET",
       contentType: "application/json",
-      success: res => {
+      data: res => {
           console.log("this",res)
         if (res) {
           console.log(res)
@@ -49,7 +49,7 @@ export default class AdminDash extends React.Component {
       url: "/customer-message",
       type: "GET",
       contentType: "application/json",
-      success: res => {
+      data1: res => {
           console.log("this",res)
         if (res) {
           console.log(res)
