@@ -8,24 +8,13 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
+
 import $ from "jquery";
 
 
 // Direct styling of components usage 
 const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-  uper: {
-    backgroundColor: "#7aeac2",
-  },
   card: {
     width: "600px",
     height: "450px",
@@ -46,8 +35,8 @@ export default class BusinessQueue extends React.Component {
     this.state = {
       auth: true,
       anchorEl: null,
-      allusers:[],
-      allusersinqueue :[]
+      allusers: [],
+      allusersinqueue: []
     }
   }
 
@@ -133,6 +122,7 @@ export default class BusinessQueue extends React.Component {
       }
     }
 
+
     return (
       <div>
         {/*** Queue Management Card for GridList Component rendered in Business Main Page ***/}
@@ -141,6 +131,7 @@ export default class BusinessQueue extends React.Component {
               <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
                     {this.props.queue.nameOfQueeu}
               </Typography>
+
             <CardContent>
               <CardMedia
                 style={styles.media}

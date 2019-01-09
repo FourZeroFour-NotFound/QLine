@@ -14,31 +14,12 @@ import CardFloatBusiness from './cardFloatBusiness.jsx';
 import CreateQueueCard from './createQueueCard.jsx';
 
 
+
 // direct styling of components usage and here you can avoid confussion and can easily adjust styles for 
 // this specific component
 const styles = {
   root: {
     flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-  uper: {
-    backgroundColor: "#7aeac2",
-  },
-  card: {
-    width: "500px",
-    height: "250px",
-    margin: 7,
-
-  },
-  media: {
-    height: 50,
-    maxWidth: 50,
   },
 };
 
@@ -61,6 +42,7 @@ const style = theme => ({
     height: '100%',
   },
 });
+
 
 
 // business page component that contains resources that has been imported 
@@ -190,6 +172,7 @@ export default class business extends React.Component {
                                   <h2 style={{marginLeft: "-700px", fontSize: "50px", marginBottom: "50px" }}>MANAGE<span style={{color: "#7aeac2"}}> QUEUE</span></h2>
                                   <BusinessGridList/>
                               </Grid>
+
                             </div>
 
                              {/*** Chatbox installed from npm for customer usage ***/}

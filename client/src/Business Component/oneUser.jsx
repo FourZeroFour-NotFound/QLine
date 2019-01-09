@@ -10,6 +10,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import $ from "jquery";
 
+
 // direct styling of components instead going from other css file
 const styles = {
   root: {
@@ -30,7 +31,7 @@ const styles = {
     height: "350px",
     margin: 7,
 
-  },
+const styles = {
   media: {
     height: 100,
     maxWidth: 100,
@@ -46,7 +47,7 @@ export default class oneUser extends React.Component {
     this.state = {
       auth: true,
       anchorEl: null,
-      user:{}
+      user: {}
     }
   }
 

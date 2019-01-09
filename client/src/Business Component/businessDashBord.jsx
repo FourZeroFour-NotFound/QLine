@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import {Grid} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import $ from 'jquery';
@@ -24,23 +24,13 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import {browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
+
 
 // direct styling of components usage and here you can avoid confussion and can easily adjust styles for 
 // this specific component
 const style = theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
-  },
-  table: {
-    minWidth: 700,
-  },
-  margin: {
-    margin: theme.spacing.unit,
 
-  },
 });
 
 const styles = theme => ({
@@ -56,7 +46,7 @@ const styles = theme => ({
 let id = 0;
 function createData(TiccketNumber, WindowNumber, QueueName) {
   id += 1;
-  return { id, TiccketNumber, WindowNumber, QueueName};
+  return { id, TiccketNumber, WindowNumber, QueueName };
 }
 const rows = [
   createData(1, 'window Number. : 2', 'Arabic Bank'),
@@ -86,8 +76,8 @@ export default class BusinessDashBord extends React.Component {
     super(props);
     this.state = {
       value: 0,
-      allusers:[],
-      allusersinqueue :[{},{},{},{},{},{},{}],
+      allusers: [],
+      allusersinqueue: [{}, {}, {}, {}, {}, {}, {}],
       email: "",
       newsername: "",
       emailnew:"",
@@ -195,6 +185,68 @@ start = () => {
         for (var i = 0; i < this.state.allusersinqueue.length; i++) {
           arrr[this.state.allusersinqueue[i].onwindow] = this.state.allusersinqueue[i]
         }
+      }
+    });
+  }
+  start = () => {
+    setInterval(() => {
+      $.ajax({
+        url: '/queue-data',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          queue_id: this.props.params.queue_id,
+        }),
+        success: (data) => {
+          this.setState({
+            queueDetalse: data.success[0]
+          })
+
+          var arrr = []
+          for (var i = 0; i < this.state.allusersinqueue.length; i++) {
+            arrr[this.state.allusersinqueue[i].onwindow] = this.state.allusersinqueue[i]
+          }
+
+          arrr.splice(0, 1)
+
+          if (arrr.length == 0) {
+            if (this.state.allusersinqueue.length == 0) {
+              alert("no one in the queue")
+            } else {
+              for (var i = 0; i < this.state.queueDetalse.windows; i++) {
+                $.ajax({
+                  url: '/UPDATEtickt',
+                  type: 'POST',
+                  contentType: 'application/json',
+                  data: JSON.stringify({
+                    id: this.state.allusersinqueue[i].id,
+                    counter: i + 1
+                  }),
+                  success: (data) => {
+                  }
+                })
+
+              }
+            }
+          }
+
+          if (arrr.length == 0) {
+            arrr = [{ id: "no users in this queue" }]
+
+          }
+          this.setState({ arr: arrr })
+        }
+      })
+
+    }, 3000);
+  }
+  addnewuser = () => {
+    console.log(this.state.newsername)
+    if (this.state.newsername == "" || this.state.emailnew == "") {
+      alert("email or name cant be empty .. try agean ")
+
+    } else {
+
 
         arrr.splice(0, 1)
      
@@ -236,6 +288,7 @@ console.log(this.state.newsername)
     if (this.state.newsername == "" || this.state.emailnew == ""  ){
       alert("Email or Name can't be Empty ... Please try agian " )  
     }else{
+
       $.ajax({
         url: '/sign-up-fake',
         type: 'POST',
@@ -268,6 +321,7 @@ console.log(this.state.newsername)
       }); 
     }
 }
+
 
 handleChange = (event, value) => {
   this.setState({ value });
@@ -312,6 +366,7 @@ render() {
       })
       .then (  
         $.ajax({
+
             url: '/deleteTickt',
             type: 'POST',
             contentType: 'application/json',
@@ -519,6 +574,7 @@ render() {
             Item Five
         </TabContainer>
         }
+
       </div>
     );
   }
