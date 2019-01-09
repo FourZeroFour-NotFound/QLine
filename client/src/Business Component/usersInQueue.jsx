@@ -1,14 +1,12 @@
+// import files and installed libraries such as Material UI for better UI experience
+// styles and logos and Components to render in this main file for business page
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import OneUser from './oneUser.jsx';
 
-import $ from 'jquery';
 
+// direct styling of components usage and here you can avoid confussion and can easily adjust styles for 
+// this specific component
 const style = theme => ({
   margin: {
     margin: theme.spacing.unit,
@@ -30,6 +28,9 @@ const style = theme => ({
   },
 });
 
+// Renders the Gridlist for <OneUser/> Component
+// this component will show information for the business owner for the list of controlled
+// waiting list users
 export default class usersInQueue extends React.Component {
   constructor(props) {
     super(props);
@@ -41,10 +42,11 @@ export default class usersInQueue extends React.Component {
   render() {
     return (
         <div style={style.roots}>
+        {/*** GridList of Waiting List ***/}
           <GridList cols={3} style={style.gridList}>
-          {this.props.users.map((user) => (
-            <OneUser  user = {user} />
-          ))}
+              {this.props.users.map((user) => (
+                <OneUser  user = {user} />
+              ))}
           </GridList>
         </div>
     );

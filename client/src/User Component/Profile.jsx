@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Confirmation from './Confirmation.jsx';
 import $ from "jquery";
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import { Grid } from '@material-ui/core';
-import red from '@material-ui/core/colors/red';
 import '../style/App.css';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -31,7 +29,7 @@ const styles = theme => ({
   },
   media: {
     height: 500,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   },
   
   actions: {
@@ -212,9 +210,6 @@ class Profile extends Component {
     console.log(this.img)
   }
 
-  // addItems(formData) {
-  //   this.props.addItems(formData);
-  // }
 
   IncrementItem = () => {
     this.setState({
