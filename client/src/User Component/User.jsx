@@ -160,68 +160,7 @@ class User extends Component {
             <CustomerService />
             <Footer />
           </div>
-
-                <div>
-                      <video width="100%"  style={{marginTop: "-60px"}}  autoPlay>
-                      <source src={uservideo} type="video/mp4"/></video>
-                          <nav className="menu5"  style={{backgroundColor: "transparent",  marginTop: "-1000px", marginLeft: "50px"}}>
-                                <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
-                                <Grid class="can-toggle1 demo-rebrand-2" style={{marginTop: "-8px", marginLeft: "50px"}}>
-                                            <input id="d" type="checkbox"/>
-                                                <label for="d">
-                                                    <Grid class="can-toggle1__switch1" data-checked="USER" data-unchecked="Business"></Grid>
-                                                </label>
-                                          </Grid>
-                                <Grid className="centerNav">
-                                    <ul className="centerNavMenu">
-                                    <li className="menuItem"><a className="itemLink">Home</a></li>
-                                    <li className="menuItem"><a className="itemLink" href="/feature__">Features</a></li>
-                                    <li className="menuItem"><a className="itemLink">Contact Us</a></li>
-                                    
-                                    </ul>
-                                </Grid>
-                                <Grid className="menu__right">
-                                    <ul className="menu__list">
-                                    <a href="/profile" style={{color: "white"}}><AccountCircle  style={{marginRight: "60px", marginBottom: "-5px"}}/></a>
-                                    <li class="menu__list-item"><a  class="menu__link" onClick={this.logOut.bind(this)}>Logout</a></li>
-                                    </ul>
-                                </Grid>
-                            </nav>
-                            <div className="cool">
-                                <Button className="searchQueue" style={{backgroundColor: "#aa1256", marginTop: "-600px", marginLeft: "600px"}}>SEARCH QUEUE</Button>
-                                    <div  style={{background: "#aa1256", marginTop: "-15px", height: "300px"}}>
-                                    
-                                      <div class="search">
-                                          <input  onChange={e => {this.setState({value:e.target.value})}} type="text" class="searchTerm"  placeholder="Search..."/>
-                                          <button  onClick={this.handleSearch} type="submit" className="searchButton">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
-                                        <a href="http://www.facebook.com"  style={{color: "white"}} hover={{color: "#7aeac2"}}><i  style={{ marginTop: "40px", marginLeft: "1500px"}} class="fa fa-facebook"></i></a>
-                                        <a href="http://www.twitter.com" style={{color: "white"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}}  class="fa fa-twitter"></i></a>
-                                        <a href="http://www.linkedin.com" style={{color: "white"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}}  class="fa fa-linkedin"></i></a>
-                                        <a hhref="http://www.instagram.com" style={{color: "white"}}><i  style={{ marginTop: "40px", marginLeft: "60px"}}  class="fa fa-instagram"></i></a>
-                                        <h1 className="displayName">{this.state.firstName}</h1>
-                                        <h1 className="displaylastName">{this.state.lastName}</h1>
-                                        <h3 className="displaylastName">{this.state.email}</h3>
-                                    {/* <img src={vio} height="300px" style={{marginLeft: "800px"}}/> */}
-                                    <CardFloat/>
-                                    
-                                  </div>
-                                  <Grid className="searchdesign" style = {{height: "400px",marginTop:"-150px", marginLeft: "500px"}}>
-                                  <SearchResult queues = {this.state.searchResult}/>   
-                                  </Grid>
-                                  <Counter/>
-                                  </div>
-                                  <DownloadApp/>
-                                  <Widget/>
-                                  <CustomerService/>
-                          <Footer/>
-                </div>
         </div>
-      
-
-           
     );
   }
 }
