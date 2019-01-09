@@ -637,9 +637,7 @@ app.post('/deletequeueB',function(req,res){
 app.post('/get-users-in-queue',function(req,res){
   console.log("ddfdsfdsf",req.body)
   db.getUsersInQueue(req.body.queueid, function(err,result){
-
     if (err){
-     
       console.log("server error giting data " , err)
       res.send({
         status: 404,
