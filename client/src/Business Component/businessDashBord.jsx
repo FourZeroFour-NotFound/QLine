@@ -270,7 +270,7 @@ handleChange = (event, value) => {
 logOut() {
   $.ajax({
       url: '/log-out',
-      type: 'GET',
+      type: 'POST',
       contentType: 'application/json',
       success: (data) => {
         console.log(data);

@@ -98,7 +98,7 @@ export default class business extends React.Component {
     logOut() {
       $.ajax({
         url: '/log-out',
-        type: 'GET',
+        type: 'POST',
         contentType: 'application/json',
         success: (data) => {
           console.log(data);
@@ -137,7 +137,7 @@ export default class business extends React.Component {
                     <Grid className="centerNav">
                           <ul className="centerNavMenu">
                           <li className="menuItem"><a className="itemLink">Home</a></li>
-                          <li className="menuItem"><a className="itemLink" href="/feature__">Features</a></li>
+                          <li className="menuItem"><a className="itemLink" href="/feature_">Features</a></li>
                           <li className="menuItem"><a className="itemLink">Contact Us</a></li>
                           </ul>
                       </Grid>

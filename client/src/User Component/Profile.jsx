@@ -186,7 +186,7 @@ class Profile extends Component {
   logOut() {
     $.ajax({
       url: '/log-out',
-      type: 'GET',
+      type: 'POST',
       contentType: 'application/json',
       data: (data) => {
         console.log(data);

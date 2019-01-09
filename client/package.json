@@ -6,6 +6,8 @@
     "@material-ui/core": "^3.7.1",
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
+    "chai": "^4.2.0",
+    "jest-enzyme": "^7.0.1",
     "material-ui-search-bar-enhanced": "^0.5.1",
     "mdbreact": "^4.8.6",
     "react": "^16.6.3",

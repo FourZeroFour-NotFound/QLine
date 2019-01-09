@@ -87,7 +87,7 @@ class User extends Component {
   logOut() {
     $.ajax({
       url: '/log-out',
-      type: 'GET',
+      type: 'POST',
       contentType: 'application/json',
       data: (data) => {
         console.log(data);
@@ -117,7 +117,7 @@ class User extends Component {
               <Grid className="centerNav">
                 <ul className="centerNavMenu">
                   <li className="menuItem"><a className="itemLink">Home</a></li>
-                  <li className="menuItem"><a className="itemLink" href="/feature_">Features</a></li>
+                  <li className="menuItem"><a className="itemLink" href="/feature__">Features</a></li>
                   <li className="menuItem"><a className="itemLink">Contact Us</a></li>
 
                 </ul>
@@ -146,9 +146,7 @@ class User extends Component {
                 <h1 className="displayName">{this.state.firstName}</h1>
                 <h1 className="displaylastName">{this.state.lastName}</h1>
                 <h3 className="displaylastName">{this.state.email}</h3>
-                {/* <img src={vio} height="300px" style={{marginLeft: "800px"}}/> */}
                 <CardFloat />
-
               </div>
               <Grid className="searchdesign" style={{ height: "400px", marginTop: "-150px", marginLeft: "500px" }}>
                 <SearchResult queues={this.state.searchResult} />

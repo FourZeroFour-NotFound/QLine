@@ -1,3 +1,5 @@
+// import files and installed libraries such as Material UI for better UI experience
+// styles and logos and Components to render in this main file for business page
 import React from 'react';
 import '../style/App.css';
 import { Grid, GridList } from '@material-ui/core';
@@ -5,6 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import logo from '../style/logo1.png';
 
 
+// Footer section for all pages that contains information of how to reach us and address information as well as
+// links for our public pages that user can access any where they want
 class Footer extends React.Component {
   render() {
     return (
