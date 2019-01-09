@@ -8,10 +8,6 @@ import OneUser from './oneUser.jsx';
 // direct styling of components usage and here you can avoid confussion and can easily adjust styles for 
 // this specific component
 const style = theme => ({
-  margin: {
-    margin: theme.spacing.unit,
-    backgroundColor: "#7aeac2",
-  },
   roots: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -24,7 +20,6 @@ const style = theme => ({
   gridList: {
     width: '100%',
     height: '100%',
-  
   },
 });
 
@@ -35,10 +30,10 @@ export default class usersInQueue extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users:[]
+      users: []
     }
   }
- 
+
   render() {
     return (
         <div style={style.roots}>

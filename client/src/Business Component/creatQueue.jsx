@@ -11,6 +11,9 @@ import Button from '@material-ui/core/Button';
 
 // direct styling of components usage and here you can avoid confussion for component styling 
 const styles = theme => ({
+  textField: {
+    maxWidth: 300
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -30,6 +33,7 @@ const styles = theme => ({
   menu: {
     width: 200,
   },
+
 });
 
 // This component is in type form which allow user to fill up in order for them to create there own queue
@@ -44,11 +48,11 @@ export default class CreatQueue extends React.Component {
       auth1: true,
       auth2: true,
       nameOfQueeu: "",
-      start_time :"07:30",
-      end_time :"08:00",
-      date :"",
+      start_time: "07:30",
+      end_time: "08:00",
+      date: "",
       timeforone: "",
-      windows :"",
+      windows: "",
       imgUrl: "",
       take_premum:0,
       accept_join :false,
@@ -74,6 +78,7 @@ export default class CreatQueue extends React.Component {
   // Submit function with ajax request from the server to post submited values and information of the
   // user, here you can see all the info to be passed in the server to be rendered on other component
   submit = () => {
+
     console.log(this.state)
     $.ajax({
       // add information to the queue
@@ -90,7 +95,7 @@ export default class CreatQueue extends React.Component {
         imgUrl: this.state.imgUrl,
         take_premum: this.state.take_premum,
         accept_join: this.state.accept_join,
-        requierment: this.state.requierment, 
+        requierment: this.state.requierment,
       }),
       success: (data) => {
         console.log(data);

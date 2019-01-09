@@ -33,7 +33,7 @@ class BusinessGridList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      queues:[]
+      queues: []
     }
   }
 
@@ -69,13 +69,14 @@ class BusinessGridList extends React.Component {
     return (
       // GridList View to be use in Business Main Page
       <div className={classes.root}>
-          <GridList cellHeight={460} className={classes.gridList} cols={2}>
-              {this.state.queues.map(queue => (
-                <GridListTile key={queue} cols={queue.cols || 1}>
-                    <BusinessQueue key = {queue} queue = {queue}/>
-                </GridListTile>
-              ))}
-          </GridList>
+
+        <GridList cellHeight={460} className={classes.gridList} cols={2}>
+          {this.state.queues.map(queue => (
+            <GridListTile key={queue} cols={queue.cols || 1}>
+              <BusinessQueue key={queue} queue={queue} />
+            </GridListTile>
+          ))}
+        </GridList>
       </div>
     );
   }

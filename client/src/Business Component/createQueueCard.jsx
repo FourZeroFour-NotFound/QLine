@@ -10,7 +10,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Q from '../style/qline.jpg';
 import CreateQueue from './creatQueue.jsx';
@@ -71,25 +70,25 @@ class CreateQueueCard extends React.Component {
             <Typography component="p">
               Want to improve your Business Revenue? Click, Create, and Manage your Queue Now!
             </Typography>
-          </CardContent>
-          <CardActions className={classes.actions} disableActionSpacing>
-            <Button
-              className={classnames(classes.expand, {
-                [classes.expandOpen]: this.state.expanded,
-              })}
-              onClick={this.handleExpandClick}
-              aria-expanded={this.state.expanded}
-              aria-label="Show more"
-            > Create Your Queue Here
+        </CardContent>
+        <CardActions className={classes.actions} disableActionSpacing>
+          <Button
+            className={classnames(classes.expand, {
+              [classes.expandOpen]: this.state.expanded,
+            })}
+            onClick={this.handleExpandClick}
+            aria-expanded={this.state.expanded}
+            aria-label="Show more"
+          > Create Your Queue Here
               <ExpandMoreIcon />
-            </Button>
-          </CardActions>
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <CreateQueue/>
-            </CardContent>
-          </Collapse>
-        </Card>
+          </Button>
+        </CardActions>
+        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <CreateQueue />
+          </CardContent>
+        </Collapse>
+      </Card>
     );
   }
 }
