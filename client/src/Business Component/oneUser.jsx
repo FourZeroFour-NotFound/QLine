@@ -30,13 +30,14 @@ const styles = {
     width: "600px",
     height: "350px",
     margin: 7,
-
-const styles = {
+  },
   media: {
     height: 100,
     maxWidth: 100,
   },
-};
+}
+
+
 
 // component that holds Business User to accept or add Users that registers in the queue
 // in the waiting list, this hold the card that renders in Business Dashboard Page

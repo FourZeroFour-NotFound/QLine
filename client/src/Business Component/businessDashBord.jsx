@@ -185,27 +185,6 @@ start = () => {
         for (var i = 0; i < this.state.allusersinqueue.length; i++) {
           arrr[this.state.allusersinqueue[i].onwindow] = this.state.allusersinqueue[i]
         }
-      }
-    });
-  }
-  start = () => {
-    setInterval(() => {
-      $.ajax({
-        url: '/queue-data',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-          queue_id: this.props.params.queue_id,
-        }),
-        success: (data) => {
-          this.setState({
-            queueDetalse: data.success[0]
-          })
-
-          var arrr = []
-          for (var i = 0; i < this.state.allusersinqueue.length; i++) {
-            arrr[this.state.allusersinqueue[i].onwindow] = this.state.allusersinqueue[i]
-          }
 
           arrr.splice(0, 1)
 
@@ -225,7 +204,6 @@ start = () => {
                   success: (data) => {
                   }
                 })
-
               }
             }
           }
@@ -237,49 +215,10 @@ start = () => {
           this.setState({ arr: arrr })
         }
       })
-
     }, 3000);
   }
-  addnewuser = () => {
-    console.log(this.state.newsername)
-    if (this.state.newsername == "" || this.state.emailnew == "") {
-      alert("email or name cant be empty .. try agean ")
-
-    } else {
-
-
-        arrr.splice(0, 1)
-     
-        if (arrr.length == 0 ){
-          if ( this.state.allusersinqueue.length == 0 ){
-            alert("Queue is Empty")
-          }else{
-            for (var i = 0 ; i < this.state.queueDetalse.windows; i++){
-              $.ajax({
-                url: '/UPDATEtickt',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                  id: this.state.allusersinqueue[i].id,
-                  counter: i+1
-                }),
-                success: (data) => {
-                }
-              })
-            }
-          }
-        }
-
-        if (arrr.length == 0 ){
-          arrr= [{id:"No Users in this Queue"}]  
-        }
-        this.setState({ arr: arrr })
-      }
-    })
-  }, 3000);
-}
-
-
+  
+  
 addnewuser = () => {
 // function for adding new users in the queue so that even if they don't have ticket they can have our services
 // this function allows the user to use the service by sending details in our database and can validate the request of the
@@ -410,7 +349,7 @@ render() {
                       <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
                       <Grid className="centerNav">
                           <ul className="centerNavMenu">
-                          <li className="menuItem" ><a className="itemLink" style={{color: "black"}} href="/">Home</a></li>
+                          <li className="menuItem" ><a className="itemLink" style={{color: "black"}} href="/business">Home</a></li>
                           <li className="menuItem" ><a style={{color: "black"}} className="itemLink" href="/feature__1">Features</a></li>
                           <li className="menuItem" ><a style={{color: "black"}} className="itemLink">Contact Us</a></li>
                           </ul>
