@@ -70,6 +70,7 @@ export default class CustomerService extends React.Component {
             } 
         }
 
+        // state function with usage of state that help button to load 
         toggleButtonNow () {
            setTimeout( () => {
             this.setState({
@@ -87,6 +88,7 @@ export default class CustomerService extends React.Component {
                 })
         }
           
+        // reset the input after entered
         reset () {
           this.setState({
           name: "",
@@ -95,6 +97,9 @@ export default class CustomerService extends React.Component {
           comments: ""})
         }
 
+  // Contact us services where this components helps users for there queries
+  // this part where ajax request will be requested in the server and info will be stored in the admin page
+  // where as admin will call or email the users by our email 
   render() {
     return (
 
@@ -105,7 +110,6 @@ export default class CustomerService extends React.Component {
           <div className="customer" style={{marginTop: "-600px"}}>
                 <form>    
                     <FormGroup>
-                        
                             <Grid className="headCustomer">
                                 <h1>Find out more today</h1>
                                     <p>
@@ -117,18 +121,15 @@ export default class CustomerService extends React.Component {
                             <Grid>
                                 <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="text" name="name"  value={this.state.name} onChange={this.handleChange.bind(this)}  placeholder="Name" required={true}/>
                             </Grid>
-                    
-                        <Grid>
-                                <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="email" name="email" id="exampleEmail" value={this.state.email} onChange={this.handleChange.bind(this)} placeholder="Email" required={true}/>
-                        </Grid>
-                    
-                        <Grid>
-                                <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="number" name="phoneNumber" id="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange.bind(this)} placeholder="Phone Number" required={true}/>
-                        </Grid>
-                    
-                        <Grid>
-                                <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px", marginTop: "-100px"}} type="textarea" name="comments" id="exampleText" value={this.state.comments} onChange={this.handleChange.bind(this)}  placeholder="Comments" required={true}/>
-                        </Grid>
+                            <Grid>
+                                    <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="email" name="email" id="exampleEmail" value={this.state.email} onChange={this.handleChange.bind(this)} placeholder="Email" required={true}/>
+                            </Grid>
+                            <Grid>
+                                    <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="number" name="phoneNumber" id="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange.bind(this)} placeholder="Phone Number" required={true}/>
+                            </Grid>
+                            <Grid>
+                                    <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px", marginTop: "-100px"}} type="textarea" name="comments" id="exampleText" value={this.state.comments} onChange={this.handleChange.bind(this)}  placeholder="Comments" required={true}/>
+                            </Grid>
                     </FormGroup>
                     <FormGroup  handleOnClick={this.handleOnClick} >
                             <Button type = "submit" id="submit" onClick={this.handleOnClick.bind(this)}>{this.state.toggleButtonSpin && <i className="fa fa-spinner fa-spin"></i>}SEND</Button>

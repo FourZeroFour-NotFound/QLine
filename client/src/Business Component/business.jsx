@@ -101,8 +101,7 @@ export default class business extends React.Component {
         type: 'GET',
         contentType: 'application/json',
         success: (data) => {
-          console.log(data);
-          browserHistory.push('/')
+          console.log('data',data);
         },
         error: (err) => {
           console.log(err);
@@ -137,7 +136,7 @@ export default class business extends React.Component {
                     <Grid className="centerNav">
                           <ul className="centerNavMenu">
                           <li className="menuItem"><a className="itemLink">Home</a></li>
-                          <li className="menuItem"><a className="itemLink" href="/feature__">Features</a></li>
+                          <li className="menuItem"><a className="itemLink" href="/feature_">Features</a></li>
                           <li className="menuItem"><a className="itemLink">Contact Us</a></li>
                           </ul>
                       </Grid>

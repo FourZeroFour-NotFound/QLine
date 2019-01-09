@@ -4,6 +4,9 @@ import { Grid } from '@material-ui/core';
 import {Link} from 'react-router';
 import logo from '../style/qline.png';
 
+
+// Header components for all pages to be rendered that has a functionality which can help user to navigate from page to page
+// Header will help users with the functionality of toggle sign in sign up
 class Header extends Component {
     constructor ( props ) {
         super( props );

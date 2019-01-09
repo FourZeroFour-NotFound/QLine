@@ -366,6 +366,7 @@ app.get('/log-out', function (req, res) {
     data: `user ${x} is log out `
   })
 })
+
 // function for serch give it name of org and it return all queue for this org 
 app.post('/search',function(req,res){
   console.log('nnnnn',req.body)
@@ -636,9 +637,7 @@ app.post('/deletequeueB',function(req,res){
 app.post('/get-users-in-queue',function(req,res){
   console.log("ddfdsfdsf",req.body)
   db.getUsersInQueue(req.body.queueid, function(err,result){
-
     if (err){
-     
       console.log("server error giting data " , err)
       res.send({
         status: 404,

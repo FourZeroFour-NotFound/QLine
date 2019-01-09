@@ -189,8 +189,7 @@ class Profile extends Component {
       type: 'GET',
       contentType: 'application/json',
       data: (data) => {
-        console.log(data);
-        browserHistory.push('/')
+        console.log('data',data);
       },
       error: (err) => {
         console.log(err);

@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createShallow } from '@material-ui/core/test-utils';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, mount } from 'enzyme';
 import App from './App';
 import { expect } from 'chai';
 import FlipInfo from './flipInfo.jsx';
-import renderer from 'react-test-renderer';
 import User from '../User Component/User.jsx';
 import IntroPage from './IntroPage.js';
 
@@ -24,7 +22,7 @@ it('renders without crashing', () => {
 // test for checking Category components and its functionality
 describe('<App />', () => {
   it('renders one <FlipInfo /> components', () => {
-    const wrapper = shallow(<App />);
+    const wrapper = mount(<App />);
     expect(wrapper.find(FlipInfo)).to.have.lengthOf(1);
   });
 
@@ -50,7 +48,7 @@ it('renders without crashing', () => {
 // test for checking Category components and its functionality
 describe('<App />', () => {
   it('renders one <IntroPage /> components', () => {
-    const wrapper = shallow(<App />);
+    const wrapper = mount(<App />);
     expect(wrapper.find(IntroPage)).to.have.lengthOf(1);
   });
 

@@ -1,12 +1,15 @@
+// importing files to be used in this components
 import React, { Component } from 'react';
 import '../style/App.css';
-import {Grid, Button} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import pinfo from '../style/phoneinfo.png';
 import tab from '../style/tab.png';
 import laptop from '../style/laptop.png';
 import tv from '../style/tv.png';
 import laptop2 from '../style/laptop2.png';
 
+
+// 
 class HowItWorks extends Component {
   constructor(props) {
     super(props);
@@ -78,9 +81,6 @@ class HowItWorks extends Component {
                 </div>
             </div>
         </div>
-
-
-
     )
   }
 }

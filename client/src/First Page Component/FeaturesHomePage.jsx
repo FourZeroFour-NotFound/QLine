@@ -8,10 +8,11 @@ import {Link} from 'react-router';
  
  
  
- 
+  // this component refers with the feature page file where static information has been implied
+ // for customer information for our application
  export default class FeaturePage extends React.Component {
  
- 
+     // javascript components functionality for feature page animation where jquery functionality has been Implemented
    componentDidMount () {
         const slideElements = ['.back10__slide', '.card19__slide', '.content52__slide'];
         let inProgress = false;
