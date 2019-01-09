@@ -351,7 +351,7 @@ render() {
                           <ul className="centerNavMenu">
                           <li className="menuItem" ><a className="itemLink" style={{color: "black"}} href="/">Home</a></li>
                           <li className="menuItem" ><a style={{color: "black"}} className="itemLink" href="/feature__1">Features</a></li>
-                          <li className="menuItem" ><a style={{color: "black"}} className="itemLink" href="/business">Contact Us</a></li>
+                          <li className="menuItem" ><a style={{color: "black"}} className="itemLink" href="/ContactUsSection__1">Contact Us</a></li>
                           </ul>
                       </Grid>
                       <Grid className="menu__right">

@@ -18,7 +18,7 @@ import FeaturePage3 from './First Page Component/FeaturesHomePage.3.jsx';
 import ContactUsSection from './First Page Component/ContactUsSection.jsx';
 import ContactUsSection1 from './First Page Component/ContactUsSection.1.jsx';
 import ContactUsSection2 from './First Page Component/ContactUsSection.2.jsx';
-
+import ContactUsSection3 from './First Page Component/ContactUsSection.3.jsx';
 
 // all router are presented here to be rendered directly tro the root file of the page/ html
 // this page allow pages and functionality to move from page to page
@@ -48,6 +48,7 @@ class HomePage extends React.Component {
               <Router path="/ContactUsSection" exact component={ContactUsSection}/>
               <Router path="/ContactUsSection_" exact component={ContactUsSection1}/>
               <Router path="/ContactUsSection__" exact component={ContactUsSection2}/>
+              <Router path="/ContactUsSection__1" exact component={ContactUsSection3}/>
         </Router>
       );
     }
