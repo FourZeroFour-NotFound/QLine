@@ -87,11 +87,10 @@ class User extends Component {
   logOut() {
     $.ajax({
       url: '/log-out',
-      type: 'POST',
+      type: 'GET',
       contentType: 'application/json',
       data: (data) => {
-        console.log(data);
-        browserHistory.push('/')
+        console.log('logout',data);
       },
       error: (err) => {
         console.log(err);

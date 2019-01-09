@@ -357,15 +357,10 @@ app.post('/sign-in', function (req, res) {
 
 // log out function // will 
 app.get('/log-out', function (req, res) {
-  console.log("zaiiiiid",req.logOut)
-  //console.log(req.isAuthenticated());
-  var x = req.user
-  req.logOut()
-  res.send({
-    success: `user ${x} is log out `,
-    data: `user ${x} is log out `
-  })
+  req.session = null
+  res.redirect("/")
 })
+
 // function for serch give it name of org and it return all queue for this org 
 app.post('/search',function(req,res){
   console.log('nnnnn',req.body)

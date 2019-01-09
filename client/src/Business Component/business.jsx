@@ -101,8 +101,7 @@ export default class business extends React.Component {
         type: 'POST',
         contentType: 'application/json',
         success: (data) => {
-          console.log(data);
-          browserHistory.push('/')
+          console.log('data',data);
         },
         error: (err) => {
           console.log(err);
