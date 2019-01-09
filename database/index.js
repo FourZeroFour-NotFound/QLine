@@ -2,26 +2,26 @@ var mysql = require('mysql');
 
 
 
-var connection = mysql.createConnection({
-  host: "db4free.net",
-  user: "qlinedbdb",
-  password: "qlinedbdb",
-  database: "qlinedbdb"
- });
-
-//  var connection = mysql.createConnection({
+// var connection = mysql.createConnection({
 //   host: "db4free.net",
 //   user: "qlinedbdb",
 //   password: "qlinedbdb",
 //   database: "qlinedbdb"
-// });
-// var del = connection._protocol._delegateError;
-// connection._protocol._delegateError = function(err, sequence){
-// if (err.fatal) {
-// console.trace('fatal error: ' + err.message);
-// }
-// return del.call(this, err, sequence);
-// };
+//  });
+
+ var connection = mysql.createConnection({
+  host: "db4free.net",
+  user: "qlinedbdb",
+  password: "qlinedbdb",
+  database: "qlinedbdb"
+});
+var del = connection._protocol._delegateError;
+connection._protocol._delegateError = function(err, sequence){
+if (err.fatal) {
+console.trace('fatal error: ' + err.message);
+}
+return del.call(this, err, sequence);
+};
 
 
 connection.connect(function (err) {
@@ -32,14 +32,6 @@ connection.connect(function (err) {
   }
 });
 
-var connection = mysql.createConnection(...);
-var del = connection._protocol._delegateError;
-connection._protocol._delegateError = function(err, sequence){
-  if (err.fatal) {
-    console.trace('fatal error: ' + err.message);
-  }
-  return del.call(this, err, sequence);
-};
 
 
 
