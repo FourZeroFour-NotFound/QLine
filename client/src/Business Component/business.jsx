@@ -137,7 +137,7 @@ export default class business extends React.Component {
                           <ul className="centerNavMenu">
                           <li className="menuItem"><a className="itemLink">Home</a></li>
                           <li className="menuItem"><a className="itemLink" href="/feature_">Features</a></li>
-                          <li className="menuItem"><a className="itemLink">Contact Us</a></li>
+                          <li className="menuItem"><a className="itemLink" href='/ContactUsSection'>Contact Us</a></li>
                           </ul>
                       </Grid>
                       <Grid className="menu__right">

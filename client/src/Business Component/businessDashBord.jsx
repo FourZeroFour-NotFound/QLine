@@ -349,15 +349,15 @@ render() {
                       <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
                       <Grid className="centerNav">
                           <ul className="centerNavMenu">
-                          <li className="menuItem" ><a className="itemLink" style={{color: "black"}} href="/business">Home</a></li>
+                          <li className="menuItem" ><a className="itemLink" style={{color: "black"}} href="/">Home</a></li>
                           <li className="menuItem" ><a style={{color: "black"}} className="itemLink" href="/feature__1">Features</a></li>
-                          <li className="menuItem" ><a style={{color: "black"}} className="itemLink">Contact Us</a></li>
+                          <li className="menuItem" ><a style={{color: "black"}} className="itemLink" href="/business">Contact Us</a></li>
                           </ul>
                       </Grid>
                       <Grid className="menu__right">
                           <ul className="menu__list">
                           <li class="menu__list-item" ><a  style={{color: "black"}} class="menu__link" href="/business">Back</a></li>
-                          <li class="menu__list-item" ><a  style={{color: "black"}} class="menu__link" onClick={this.logOut.bind(this)}>Logout</a></li>
+                          <li class="menu__list-item" ><a  style={{color: "black"}} class="menu__link" href="/">Logout</a></li>
                           </ul>
                       </Grid>
             </nav>

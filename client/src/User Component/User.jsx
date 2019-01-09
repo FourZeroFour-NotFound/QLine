@@ -115,9 +115,9 @@ class User extends Component {
               </Grid>
               <Grid className="centerNav">
                 <ul className="centerNavMenu">
-                  <li className="menuItem"><a className="itemLink">Home</a></li>
+                  <li className="menuItem"><a className="itemLink" href="/">Home</a></li>
                   <li className="menuItem"><a className="itemLink" href="/feature__">Features</a></li>
-                  <li className="menuItem"><a className="itemLink">Contact Us</a></li>
+                  <li className="menuItem"><a className="itemLink" href="/ContactUsSection_">Contact Us</a></li>
 
                 </ul>
               </Grid>
