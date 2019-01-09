@@ -229,7 +229,7 @@ class Profile extends Component {
               <Grid className="menu__right">
                 <ul className="menu__list">
                   <li class="menu__list-item"><a style={{ color: "white" }} class="menu__link" href="/user">Search</a></li>
-                  <li class="menu__list-item"><a style={{ color: "white" }} class="menu__link" onClick={this.logOut.bind(this)}>Logout</a></li>
+                  <li class="menu__list-item"><a style={{ color: "white" }} class="menu__link" href="/">Logout</a></li>
                 </ul>
               </Grid>
             </nav>

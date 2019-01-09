@@ -124,7 +124,7 @@ class User extends Component {
               <Grid className="menu__right">
                 <ul className="menu__list">
                   <a href="/profile" style={{ color: "white" }}><AccountCircle style={{ marginRight: "60px", marginBottom: "-5px" }} /></a>
-                  <li class="menu__list-item"><a class="menu__link" onClick={this.logOut.bind(this)}>Logout</a></li>
+                  <li class="menu__list-item"><a class="menu__link" href="/">Logout</a></li>
                 </ul>
               </Grid>
             </nav>

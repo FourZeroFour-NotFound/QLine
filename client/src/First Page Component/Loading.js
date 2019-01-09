@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import '../style/App.css';
 import $ from 'jquery';
 
+// First loading page effect that first render in home page of the all the repositories
+// Loading component is for user to experience visual effect
 class Loading extends Component {
 
 	componentDidMount () {
-		// imitation of new page loading
+        // imitation of new page loading
+        // JS functionality for rendering animation using jquery
             window.onload = function() {
                 let $body = $('body');
                 let $btn  = $('.btn');
@@ -38,6 +41,7 @@ class Loading extends Component {
 	}
 
     render() {
+        // loading page that has effect by top componentDidMount functionality
         return (
             <div>
                 <svg class="loader" viewBox="0 0 100 100" overflow="visible">

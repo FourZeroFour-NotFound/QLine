@@ -142,7 +142,7 @@ export default class business extends React.Component {
                       </Grid>
                       <Grid className="menu__right">
                           <ul className="menu__list">
-                          <li class="menu__list-item"><a  class="menu__link" onClick={this.logOut.bind(this)}>Logout</a></li>
+                          <li class="menu__list-item"><a  class="menu__link" href="/">Logout</a></li>
                           </ul>
                       </Grid>
               </nav>

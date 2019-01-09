@@ -3,7 +3,10 @@ import '../style/App.css';
 import { Grid, Button } from '@material-ui/core';
 import $ from 'jquery';
 
-
+// A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
+// In this section of the component is the main part since it help to show datas in our DOM to be used and visualize for our users
+// direct styling is possible as well in any component , videos, nav bar and direct calling of components is one of the good benefits using react js
+// since that the main purpose of an JSX , adopting styles with app.css has been implemented
 class Counter extends Component {
     constructor(props) {
         super(props);

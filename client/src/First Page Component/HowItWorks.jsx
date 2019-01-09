@@ -9,7 +9,8 @@ import tv from '../style/tv.png';
 import laptop2 from '../style/laptop2.png';
 
 
-// 
+// rendering page with static information that helps users to aquire information
+// this component helps user to be well informed about our app 
 class HowItWorks extends Component {
   constructor(props) {
     super(props);

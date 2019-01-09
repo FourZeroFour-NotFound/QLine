@@ -4,7 +4,9 @@ import {browserHistory} from 'react-router';
 import $ from "jquery";
 import {Typography} from '@material-ui/core';
 
-
+// Sign Up component with authentication using passport in the back end of our website
+// This component use validation as well as ajax request to send datas inside our server
+// Main part like input all of informastion will be rendered inside the other files in order to use all the info
 class PopSignUp extends React.Component {
   constructor(props) {
     super(props);

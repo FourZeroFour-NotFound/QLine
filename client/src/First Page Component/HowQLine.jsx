@@ -1,9 +1,9 @@
 import React from 'react';
 import "../style/App.css";
-import {FormGroup, Grid, Button} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import bank from '../style/bank.png';
 
-
+// This part will help passenger to know information about the step by step process of how does our page works
 export default class HowQLine extends React.Component {
     
   render() {

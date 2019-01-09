@@ -35,7 +35,8 @@ connection.connect(function (err) {
 
 
 
-// function to git al the data in one table 
+// function to get all the data in one table
+// this query help to select tables information at one time  
 const selectAll = function (tableName, callback) {
   connection.query(`SELECT * FROM ${tableName}`, function (err, results) {
     if (err) {
@@ -61,16 +62,6 @@ const search = function (org, callback) {
 ///////////////////////////////////////////////////
 
 // function to add new user to the user table
-//user should look like this 
-// var user = {
-//   firstName :"zaid",
-//   lastName:"raddad",
-//   email: "zaid@gmail.com",
-//   password:"zaid",
-//   organization:"zaiiis",
-//   phoneNumber:"0799795083",
-//   primum:0
-// }
 const insertNewUser = function (user, callback) {
   var sqlquery = `insert into user (firstName,lastName,email,password,organization,phoneNumber,primum) values("${user.firstName}","${user.lastName}","${user.email}","${user.password}","${user.organization}","${user.phoneNumber}","0")`
   connection.query(sqlquery, function (err, result) {
@@ -99,7 +90,7 @@ const insertinUserQueue = function (userid,queueid,notes, callback) {
   })
 }
 
-//this function to delet from waiting list
+//this function to delete from waiting list
 const deletefromWaiting = function (id, callback) {
   var sqlquery =` DELETE FROM waitingList WHERE id = ${id};`
   connection.query(sqlquery, function (err, result) {
@@ -136,7 +127,7 @@ const deletefromqueueB = function (id, callback) {
      }
    })
  }
- //delet from user_queue using id
+ //delete from user_queue using id
  const deleteFromuser_queue = function (id, callback) {
   var b = ` DELETE FROM user_queue WHERE id = ${id};`
     connection.query(b , function (err, result) {
@@ -149,7 +140,7 @@ const deletefromqueueB = function (id, callback) {
       }
     })
   }
-//this function to delet from queue
+//this function to delete from queue
 const deletefromqueue = function (id, callback) {
   var sqlquery =` DELETE FROM queue WHERE queue_id = ${id};`
 
@@ -228,7 +219,7 @@ const getAllQueueForUser = function (user_id , callback){
 }
 
 ///////////////////////////////////////////////////
-//function to get   queue using queue id 
+//function to get queue using queue id 
 const grtQueueUsingId = function (queue_id , callback){
   var sqlquery = `select * from queue where queue_id = ${queue_id}`
   connection.query(sqlquery, function(err,result){
@@ -275,7 +266,7 @@ const getUsersInWaiting = function (queue_id , callback){
 
 
 ///////////////////////////////////////////////////
-// function to chick if the user exest useing his email if he exest send back his acount detalse else send back err
+// function to check if the user exist using his email if he exist send back his account details else send back err
 const isacountExest = function (email, callback) {
   var sqlquery = `select * from user where email = '${email}'`
   connection.query(sqlquery, function (err, result) {
@@ -415,22 +406,6 @@ const deleteTickt = function (id, callback){
 
 
 
-// this function return all the queues for the given organization
-// const search = function (id, callback) {
-//   var sqlquery = `select * from queue where creator_id = '${}'`
-
-//   connection.query(sqlquery, function (err, result) {
-//     if (err) {
-//       console.log("db error to get data ", err)
-//       callback(err, null)
-//     } else {
-//       console.log("db i found it (user exist )", id)
-//       callback(null, result)
-//     }
-//   })
-// }
-
-
 const saveMessageCustomer = (customer, callback) => {
   
   let message = `insert into customer (name,email,phoneNumber,comments) values("${customer.name}","${customer.email}","${customer.phoneNumber}","${customer.comments}")`
@@ -475,6 +450,19 @@ const getAllMessageChat = (callback) => {
   });
 }
 
+const DeleteTicket =function(id,callback){
+  var sqlquery = `Delete from user_queue where id = '${id}' `
+  connection.query(sqlquery, function(err, result){
+    if(err){
+      console.log('db error', err)
+      callback(err,null)
+    }else{
+      console.log( result.affectedRows ,"db update")
+      callback(null,result)
+    }
+  })
+}
+
 module.exports.getAllMessageChat = getAllMessageChat;
 module.exports.saveMessageChat = saveMessageChat;
 module.exports.getAllMessage = getAllMessage;
@@ -495,11 +483,7 @@ module.exports.deletefromWaiting = deletefromWaiting;deletefromqueue
 module.exports.deletefromqueue = deletefromqueue;deletefromqueueB
 module.exports.deletefromqueueA = deletefromqueueA;
 module.exports.deletefromqueueB = deletefromqueueB;
-
 module.exports.getUserTickets = getUserTickets;
-
-
-
 module.exports.getUserDataEmail = getUserDataEmail;
 module.exports.getUserTickets = getUserTickets;
 module.exports.grtQueueUsingId = grtQueueUsingId;
@@ -508,17 +492,4 @@ module.exports.UPDATEtickt = UPDATEtickt;
 module.exports.deleteTickt = deleteTickt;
 module.exports.getQueueInfo = getQueueInfo;
 module.exports.getUserQueue = getUserQueue;
-/////////////////////////////
-const DeleteTicket =function(id,callback){
-  var sqlquery = `Delete from user_queue where id = '${id}' `
-  connection.query(sqlquery, function(err, result){
-    if(err){
-      console.log('db error', err)
-      callback(err,null)
-    }else{
-      console.log( result.affectedRows ,"db update")
-      callback(null,result)
-    }
-  })
-}
 module.exports.DeleteTicket = DeleteTicket;
