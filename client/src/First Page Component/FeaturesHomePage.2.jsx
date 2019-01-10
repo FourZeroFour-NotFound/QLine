@@ -89,7 +89,7 @@ import {Grid} from '@material-ui/core';
                 <img src={logo} width="122px" height="62px" style={{marginTop: "20px", marginLeft: "-20px"}}/>
                 <Grid className="menu__right">
                     <ul className="menu__list">
-                    <li class="menu__list-item"><a class="menu__link" style={{color: "black"}}  href="/" >Back</a></li>
+                    <li class="menu__list-item"><a class="menu__link" style={{color: "black"}}  href="/user" >Back</a></li>
                     </ul>
                 </Grid>
             </nav>

@@ -349,7 +349,7 @@ render() {
                       <img src={logo} width="122px" height="62px" style={{marginTop: "1px", marginLeft: "-20px"}}/>
                       <Grid className="centerNav">
                           <ul className="centerNavMenu">
-                          <li className="menuItem" ><a className="itemLink" style={{color: "black"}} href="/">Home</a></li>
+                          <li className="menuItem" ><a className="itemLink" style={{color: "black"}} href="/business">Home</a></li>
                           <li className="menuItem" ><a style={{color: "black"}} className="itemLink" href="/feature__1">Features</a></li>
                           <li className="menuItem" ><a style={{color: "black"}} className="itemLink" href="/ContactUsSection__1">Contact Us</a></li>
                           </ul>
