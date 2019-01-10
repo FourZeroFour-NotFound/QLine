@@ -105,7 +105,7 @@ export default class CustomerService extends React.Component {
 
       <div className="customerService" id="serv">
          <div id="advertisement">
-            <img src={Customer} width="450px" height="500px" style={{marginLeft: "300px", marginTop: "150px"}}/>
+            <img src={Customer} width="450px" height="500px" style={{marginLeft: "300px", marginTop: "250px"}}/>
           </div>
           <div className="customer" style={{marginTop: "-600px"}}>
                 <form>    
@@ -128,7 +128,7 @@ export default class CustomerService extends React.Component {
                                     <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="number" name="phoneNumber" id="phoneNumber" value={this.state.phoneNumber} onChange={this.handleChange.bind(this)} placeholder="Phone Number" required={true}/>
                             </Grid>
                             <Grid>
-                                    <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px", marginTop: "-100px"}} type="textarea" name="comments" id="exampleText" value={this.state.comments} onChange={this.handleChange.bind(this)}  placeholder="Comments" required={true}/>
+                                    <input style={{width: "650px", textAlign: "left",  marginLeft: "1000px", marginBottom: "20px"}} type="textarea" name="comments" id="exampleText" value={this.state.comments} onChange={this.handleChange.bind(this)}  placeholder="Comments" required={true}/>
                             </Grid>
                     </FormGroup>
                     <FormGroup  handleOnClick={this.handleOnClick} >

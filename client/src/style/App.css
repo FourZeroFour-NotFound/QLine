@@ -1659,7 +1659,7 @@ section {
 
 .scroll-down1 {
   font-size: 23px;
-  margin-top: -130px;
+  margin-top: -170px;
   color: white;
   bottom: 30px;
   left: 50%;
@@ -1803,14 +1803,14 @@ section {
 
 .customerService{
   background: white;
-	height: 800px;;
+	height: 1000px;;
   width: 100%;
 }
 
 .headCustomer {
   width: 400px;
   text-align: center;
-  margin-top: 100px;
+  margin-top: -50px;
   margin-bottom: 20px;
   margin-left: 1120px;
 }
