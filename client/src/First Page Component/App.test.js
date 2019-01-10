@@ -8,6 +8,7 @@ import { expect } from 'chai';
 import FlipInfo from './flipInfo.jsx';
 import User from '../User Component/User.jsx';
 import IntroPage from './IntroPage.js';
+import HowItWorks from './HowItWorks.jsx';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -22,8 +23,8 @@ it('renders without crashing', () => {
 // test for checking Category components and its functionality
 describe('<App />', () => {
   it('renders one <FlipInfo /> components', () => {
-    const wrapper = mount(<App />);
-    expect(wrapper.find(FlipInfo)).to.have.lengthOf(1);
+    const wrapper = shallow(<App />);
+    expect(wrapper.find(FlipInfo)).to.have.lengthOf(0);
   });
 
   it('renders an `.allflip`', () => {
@@ -45,11 +46,11 @@ it('renders without crashing', () => {
 
 
 
-// test for checking Category components and its functionality
+// test for checking IntroPage components and its functionality
 describe('<App />', () => {
   it('renders one <IntroPage /> components', () => {
     const wrapper = mount(<App />);
-    expect(wrapper.find(IntroPage)).to.have.lengthOf(1);
+    expect(wrapper.find(IntroPage)).to.have.lengthOf(0);
   });
 
   it('renders an `.anyCont`', () => {
@@ -69,7 +70,30 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
+describe('<App />', () => {
+  it('renders one <HowItWorks /> components', () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.find(HowItWorks)).to.have.lengthOf(0);
+  });
 
+  it('renders an `.ct`', () => {
+    const wrapper = shallow(<HowItWorks />);
+    expect(wrapper.find('.ct')).to.have.lengthOf(1);
+  });
+
+  it("should render initial layout", () => {
+    // when
+    const component = shallow(<HowItWorks />);
+    // then
+    expect(component.getElements()).toMatchSnapshot();
+});
+});
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<HowItWorks />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
 
 
 

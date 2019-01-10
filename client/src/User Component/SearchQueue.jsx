@@ -16,8 +16,8 @@ import $ from 'jquery';
 
 const styles = theme => ({
   media: {
-    height: 20,
-    maxWidth: 20,
+    height: 190,
+    width: '100%',
   },
   textField: {
     marginLeft: theme.spacing.unit,
