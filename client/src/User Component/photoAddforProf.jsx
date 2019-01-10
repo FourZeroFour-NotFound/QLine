@@ -3,7 +3,7 @@ import "../style/App.css";
 
 
 export default class PhotoAddforProf extends React.Component {
- constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       img: null
@@ -11,8 +11,8 @@ export default class PhotoAddforProf extends React.Component {
     this.fileChangedHandler = this.fileChangedHandler.bind(this);
   }
 
-	  //file choosing
-	fileChangedHandler(event) {
+  //file choosing
+  fileChangedHandler(event) {
     this.setState({
       img: event.target.files[0],
     })
@@ -22,14 +22,14 @@ export default class PhotoAddforProf extends React.Component {
 
 
 
-	render(){
-		return(
-			<div>
+  render() {
+    return (
+      <div>
         <p className="imgTxt"></p>
-        <input className="imgBtn" type="file" 
-        accept="image/x-png,image/gif,image/jpeg"
-        onChange={this.fileChangedHandler}/>
+        <input className="imgBtn" type="file"
+          accept="image/x-png,image/gif,image/jpeg"
+          onChange={this.fileChangedHandler} />
       </div>
-		)
-	}
+    )
+  }
 }

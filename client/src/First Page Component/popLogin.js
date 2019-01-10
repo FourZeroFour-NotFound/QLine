@@ -5,7 +5,9 @@ import {Typography} from '@material-ui/core';
 import {browserHistory} from 'react-router';
 
 
-
+// Login component with authentication using passport in the back end of our website
+// This component use validation as well as ajax request to send datas inside our server
+// Main part like input all of informastion will be rendered inside the other files in order to use all the info
 class PopLogIn extends React.Component {
   constructor(props) {
        super(props)
@@ -27,7 +29,7 @@ class PopLogIn extends React.Component {
     let target = e.target;
     this.setState({ [target.name]: target.value });
 
-    // validation to  password
+    // validation for password
     if (this.state.password.length < 8) {
       this.setState({
         errorPassword: "The password should be more than 8 character!",
@@ -78,9 +80,6 @@ class PopLogIn extends React.Component {
   handleOnClick() {
     this.toggleButtonNow();
     this.toggleButtonSpinNow();
-    // setTimeout ( () => {
-    // window.responsiveVoice.speak("Thank you for being with us again, Enjoy our Features, i'm always here to serve you")
-    // }, 4000)
     this.reset()
 
     if (this.state.validation) {
@@ -119,9 +118,6 @@ class PopLogIn extends React.Component {
     e.preventDefault();
     this.toggleButtonNow();
     this.toggleButtonSpinNow();
-    // setTimeout ( () => {
-    //   window.responsiveVoice.speak("Warm Welcome Again, it was nice having you to be part of our community, let me guide you")
-    //   }, 3000)
     this.reset();
     if (this.state.validation) {
       $.ajax({

@@ -22,7 +22,8 @@ var sessionStore = new MySQLStore({
   host: "db4free.net",
   user: "qlinedbdb",
   password: "qlinedbdb",
-  database: "qlinedbdb"
+  database: "qlinedbdb",
+  acquireTimeout: 1000000
  })
 
 
@@ -35,18 +36,27 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // git function to bring all the queuefor one user using his id 
 //dose not take any thing just the user id from his req
-app.get('/all_queue',function(req,res){
+app.post('/all_queue',function(req,res){
   db.getAllQueueForUser(req.user , function(err,result){
     if (err){
       console.log("server error giting data " , err)
     }else{
       res.send({
         status: 200,
-        success: "data found sucssfuly",
+        success: result,
         data : result
       });
     }
@@ -62,30 +72,30 @@ app.post('/queue-data',function(req,res){
       res.send({
         status: 404,
         success: result,
-       
+        data: result
       });
       console.log("server error giting data " , err)
     }else{
       res.send({
         status: 200,
         success: result,
-       
+        data: result
       });
     }
     
   })
 })
 // this function used to get data for user using id
-app.get('/Profile_info', function(req,res){
-  console.log(" lllllllll",req.user)
+app.post('/Info', function(req,res){
+  console.log(" this request for user",req.user)
   db.getUserData(req.user,function(err,result){
     if(err){
       console.log("server error", err)
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -99,8 +109,8 @@ app.post('/profile1', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -117,8 +127,8 @@ app.post('/profile2', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
@@ -133,15 +143,15 @@ app.put('/profile_info', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-      
+        success:result,
+        data: result
       })
     }
   })
 })
 
   // this request used to get all tickets for user using id 
-app.get('/ticket1', function(req,res){
+app.post('/ticket1', function(req,res){
   console.log(" lllllllll",req.user)
   db.getUserTickets(req.user,function(err,result){
     if(err){
@@ -149,14 +159,14 @@ app.get('/ticket1', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
 })
 // this request to get the number of the queue (your turn)
-app.get('/ticket', function(req,res){
+app.post('/ticket', function(req,res){
   console.log(" queue id",req.queue_id)
   db.getUserQueue(req.queue_id,function(err,result){
     if(err){
@@ -164,14 +174,14 @@ app.get('/ticket', function(req,res){
     }else{
       res.send({
         status:200,
-        success:result
-
+        success:result,
+        data: result
       })
     }
   })
 })
 
-// this function  is used to delete specific ticket for user using queue_id
+// this function is used to delete specific ticket for user using queue_id
 
 app.delete( '/confirm/:queue_id', function(req,res){
   console.log(" zzzzzzz",req.params.queue_id)
@@ -182,20 +192,16 @@ app.delete( '/confirm/:queue_id', function(req,res){
       console.log("rrrrr", result)
       res.send({
         status:200,
-         success:result
-        //  type:"Delete"
-      
+         success:result,
+        data: result
+
       })
     }
   })
 })
 
 
-  // this function to create  new queue
-
-
-
-
+// this function to create  new queue
 app.post('/add-queue', function (req, res) {
   console.log(req.user)
   console.log(req.body)
@@ -229,7 +235,7 @@ console.log("queue",queue)
 
 app.post('/sign-up', function (req, res) {
   console.log(req.body)
-  // orderthe data in the same way it sabous to be 
+  // order the data in the same way it suppose to be 
   var user = {
     "firstName": req.body.firstName,
     "lastName": req.body.lastName,
@@ -238,7 +244,7 @@ app.post('/sign-up', function (req, res) {
     "organization": req.body.organizationName,
     "phoneNumber": req.body.phoneNumber,
   }
-  //check if the account is already exist befor add him if its exist alredy redirict him to sign in page 
+  //check if the account is already exist before adding them,  if its exist alredy redirect him to sign in page 
   db.isacountExest(req.body.email, function (err, result) {
     if (err) {
       console.log("server", err)
@@ -247,6 +253,7 @@ app.post('/sign-up', function (req, res) {
         res.send({
           status: 404,
           success: "userExist",
+          data: "userExist"
         });
 
       } else { 
@@ -259,8 +266,8 @@ app.post('/sign-up', function (req, res) {
             //creat session for him using login 
             req.login(result.insertId, function (err) {
               console.log("server user data after creat and log in ", user)
-
-              user.id = result.insertId // add the id to the object user and send it to the front end //this way is esyer to know the user id 
+              // add the id to the object user and send it to the front end //this way is esyer to know the user id
+              user.id = result.insertId  
               res.send({
                 status: 200,
                 success: "Successed!",
@@ -273,10 +280,11 @@ app.post('/sign-up', function (req, res) {
     }
   })
 })
+
 // add fake user 
 app.post('/sign-up-fake', function (req, res) {
   console.log(req.body)
-  // orderthe data in the same way it sabous to be 
+  // order the data in the same way it suppose to be 
   var user = {
     "firstName": req.body.firstName,
     "lastName": req.body.lastName,
@@ -291,8 +299,8 @@ app.post('/sign-up-fake', function (req, res) {
     if (err) {
       console.log(err)
     } else {
-    
-        user.id = result.insertId // add the id to the object user and send it to the front end //this way is esyer to know the user id 
+        // add the id to the object user and send it to the front end //this way is esyer to know the user id
+        user.id = result.insertId  
         res.send({
           status: 200,
           success: "Successed!",
@@ -317,10 +325,11 @@ app.post('/sign-in', function (req, res) {
         res.send({
           status: 404,
           success: "email is wrong",
+          data: "email is wrong"
         });
       } else {
         if (req.body.password == result[0].password) {
-          //if the password corect creat session 
+          //if the password correct create session 
           req.login(result[0].user_id, function (err) {
             console.log("server user data after creat and log in ", result[0])
             res.send({
@@ -342,16 +351,18 @@ app.post('/sign-in', function (req, res) {
   })
 })
 
-// log out function // will 
+// log out function
 app.get('/log-out', function (req, res) {
   console.log("zaiiiiid",req.logOut)
   //console.log(req.isAuthenticated());
   var x = req.user
   req.logOut()
   res.send({
-    success: `user ${x} is log out `
+    success: `user ${x} is log out `,
+    data: `user ${x} is log out `
   })
 })
+
 // function for serch give it name of org and it return all queue for this org 
 app.post('/search',function(req,res){
   console.log('nnnnn',req.body)
@@ -369,13 +380,8 @@ app.post('/search',function(req,res){
   })
 })
 ///////////////////////////////////////////////////////////
-//function to insert user in serten queue
+//function to insert user in certain queue
 //give it the queue id and notes
-//{
-// "queueid":"1",
-// "notes":"1"
-// }
-
 app.post('/add-userto-queue',function(req,res){
   db.insertinUserQueue(req.user,req.body.queueid,req.body.notes, function(err,result){
     if (err){
@@ -399,9 +405,7 @@ app.post('/add-userto-queue',function(req,res){
 })
 
 //////////////////////////////////////////////////////////
-//function to insert user in serten queue useng the kiosk machen
-
-
+//function to insert user in certain queue using the kiosk machine
 app.post('/add-userto-queue1',function(req,res){
   db.insertinUserQueue(req.body.user_id,req.body.queue_id,"i joind from kiosk", function(err,result){
     if (err){
@@ -424,16 +428,11 @@ app.post('/add-userto-queue1',function(req,res){
   })
 })
 //////////////////////////////////////////////////////////
-//function to insert user in serten queue
+//function to insert user in certain queue
 //give it the queue id and notes
-//{
-// "queueid":"1",
-// "notes":"1"
-// }
-
 app.post('/add-userto-queue1',function(req,res){
   db.insertinUserQueue(req.body.user_id,req.body.queue_id,req.body.notes, function(err,result){
-    console.log("zzzzzzzzzzzzzzzzzz" , req.body.user_id,req.body.queue_id,req.body.notes)
+    console.log("notes is here" , req.body.user_id,req.body.queue_id,req.body.notes)
     if (err){
      
       console.log("server error giting data " , err)
@@ -454,10 +453,7 @@ app.post('/add-userto-queue1',function(req,res){
   })
 })
 //////////////////////////////////////////////////////////
-//function to delet from waiting lest 
-
-
-
+//function to delete from waiting lest 
 app.post('/deleteWaiting',function(req,res){
   db.deletefromWaiting(req.body.id,function(err,result){
 
@@ -481,10 +477,7 @@ app.post('/deleteWaiting',function(req,res){
   })
 })
 //////////////////////////////////////////////////////////
-//function to delet from waiting lest 
-
-
-
+//function to delete from waiting list 
 app.post('/deletequeue',function(req,res){
   db.deletefromqueue(req.body.id,function(err,result){
 
@@ -508,10 +501,7 @@ app.post('/deletequeue',function(req,res){
   })
 })
 /////////////////////////////////////////////////////////
-//function to delet from waiting lest 
-
-
-
+//function to delete from waiting list 
 app.post('/deletequeueA',function(req,res){
   db.deletefromqueueA(req.body.id,function(err,result){
 
@@ -535,10 +525,7 @@ app.post('/deletequeueA',function(req,res){
   })
 })
 /////////////////////////////////////////////////////////
-//function to delet from waiting lest 
-
-
-
+//function to delete from waiting list 
 app.post('/UPDATEtickt',function(req,res){
   db.UPDATEtickt(req.body.id,req.body.counter ,function(err,result){
 
@@ -564,10 +551,7 @@ app.post('/UPDATEtickt',function(req,res){
 
 
 /////////////////////////////////////////////////////////
-//function to delet from waiting lest 
-
-
-
+//function to delete from waiting list 
 app.post('/deleteTickt',function(req,res){
   db.deleteTickt(req.body.id,function(err,result){
 
@@ -591,10 +575,7 @@ app.post('/deleteTickt',function(req,res){
   })
 })
 /////////////////////////////////////////////////////////
-//function to delet from waiting lest 
-
-
-
+//function to delete from waiting list 
 app.post('/deletequeueB',function(req,res){
   db.deletefromqueueB(req.body.id,function(err,result){
 
@@ -618,13 +599,11 @@ app.post('/deletequeueB',function(req,res){
   })
 })
 ////////////////////////////////////////////////////////////
-//function to get all users in serten queue
+//function to get all users in certain queue
 app.post('/get-users-in-queue',function(req,res){
   console.log("ddfdsfdsf",req.body)
   db.getUsersInQueue(req.body.queueid, function(err,result){
-
     if (err){
-     
       console.log("server error giting data " , err)
       res.send({
         status: 404,
@@ -644,7 +623,7 @@ app.post('/get-users-in-queue',function(req,res){
 })
 
 ////////////////////////////////////////////////////////////
-//function to get all users in serten queue from the wating lest
+//function to get all users in certain queue from the waiting list
 app.post('/get-users-in-waitingList',function(req,res){
   console.log("ddfdsfdsf",req.body)
   db.getUsersInWaiting(req.body.queueid, function(err,result){
@@ -698,13 +677,8 @@ app.post('/getQueueInfo',function(req,res){
 
 
 ///////////////////////////////////////////////////////////
-//function to insert user in the waitng lst for queue
+//function to insert user in the waitng list for queue
 //give it the queue id and notes
-//{
-// "queueid":"1",
-// "notes":"1"
-// }
-
 app.post('/add-waitingList',function(req,res){
  
   db.insertinWaitinglist(req.user,req.body.queueid,req.body.Notes, function(err,result){
@@ -729,14 +703,7 @@ app.post('/add-waitingList',function(req,res){
 })
 
 
-
-
-
-
-
-
-
-//stor data in session data base  using id and it will be saved in cookies 
+//store data in session data base  using id and it will be saved in cookies 
 passport.serializeUser(function (user_id, done) {
   done(null, user_id);
 });
@@ -745,7 +712,7 @@ passport.deserializeUser(function (user_id, done) {
   done(null, user_id);
 });
 
-//use this function to control acsses to some get reqest and post requst 
+//use this function to control acsses to some get request and post request 
 function authenticationMiddleware() {
   return (req, res, next) => {
     console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
@@ -812,14 +779,10 @@ const storage = multer.diskStorage({
   }
 });
 
-
 const upload = multer({
   storage: storage,
   limits: { fileSize: 1000000 },
 }).single('myImage')
-
-
-
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 module.exports = app;

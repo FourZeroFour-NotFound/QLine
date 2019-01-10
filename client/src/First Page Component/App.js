@@ -33,6 +33,7 @@ class App extends Component {
     };
   }
 
+  // function that handles messages in chat box
   handleNewUserMessage = (newMessage) => {
     console.log(`New message incoming! ${newMessage}`);
     // Now send the message throught the backend API
@@ -52,6 +53,7 @@ class App extends Component {
     });
   }
 
+  // Welcoming message in our app
   componentDidMount() {
     addResponseMessage("Welcome to QLine chat!");
     setTimeout(()=> {
@@ -61,6 +63,7 @@ class App extends Component {
     }, 3000)
   }
 
+  // sign up toggle or modal effect function
   toggleSignup = () => {
     this.setState({
       isOpenSignUp: !this.state.isOpenSignUp,
@@ -68,38 +71,43 @@ class App extends Component {
     });
   }
 
+  // login toggle or modal effect function
   toggleLogin = () => {
     this.setState({
       isOpenSignIn: !this.state.isOpenSignIn,
       isOpenSignUp: false
     });
   }
+
+  // every component in this folder is presented in this page as this is the page where user
+  // will experience UI and all of the information will be presented in this page
+  // learning all the steps and ways to use our app will be here
   render() {
     return (
       <Grid>
-        <Loading/>
-      {this.state.loading &&
-      <Grid>
-      <Grid className="container center">
-      <IntroPage toggleSignup={this.toggleSignup}/>
-        <Header logo={logo} toggleSignup={this.toggleSignup} toggleLogin={this.toggleLogin} />
-      </Grid>
-      <Grid>
-        <FlipInfo/>
-        <AboutQLine toggleSignup={this.toggleSignup} />
-        <HowItWorks/>
-        <KeyFeatures/>
-      </Grid>
-      <Widget handleNewUserMessage={this.handleNewUserMessage} profileAvatar={logo1}
-          color={"#aa1256"}
-          title="QLine Queue Management System"
-          subtitle="Your Queue Our Service"/>
-        <HowQLine/>
-        <ContactUs/>
-      <Footer/>
-      <Login show={this.state.isOpenSignIn} onClose={this.toggleLogin}></Login>
-      <SignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></SignUp>
-      </Grid>}
+          <Loading/>
+            {this.state.loading &&
+                <Grid>
+                  <Grid className="container center">
+                    <IntroPage toggleSignup={this.toggleSignup}/>
+                    <Header logo={logo} toggleSignup={this.toggleSignup} toggleLogin={this.toggleLogin} />
+                  </Grid>
+                  <Grid>
+                    <FlipInfo/>
+                    <AboutQLine toggleSignup={this.toggleSignup} />
+                    <HowItWorks/>
+                    <KeyFeatures/>
+                  </Grid>
+                    <Widget handleNewUserMessage={this.handleNewUserMessage} profileAvatar={logo1}
+                    color={"#aa1256"}
+                    title="QLine Queue Management System"
+                    subtitle="Your Queue Our Service"/>
+                    <HowQLine/>
+                    <ContactUs/>
+                    <Footer/>
+                    <Login show={this.state.isOpenSignIn} onClose={this.toggleLogin}></Login>
+                    <SignUp show={this.state.isOpenSignUp} onClose={this.toggleSignup}></SignUp>
+            </Grid>}
       </Grid>
     );
   }

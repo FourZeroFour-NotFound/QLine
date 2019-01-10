@@ -4,6 +4,9 @@ import { Grid } from '@material-ui/core';
 import {Link} from 'react-router';
 import logo from '../style/qline.png';
 
+
+// Header components for all pages to be rendered that has a functionality which can help user to navigate from page to page
+// Header will help users with the functionality of toggle sign in sign up
 class Header extends Component {
     constructor ( props ) {
         super( props );
@@ -28,7 +31,7 @@ class Header extends Component {
                     <ul className="centerNavMenu">
                     <li className="menuItem"><a className="itemLink1" href="/">Home</a></li>
                     <li className="menuItem"><a className="itemLink1" href="/feature">Features</a></li>
-                    <li className="menuItem"><a className="itemLink1" href="#serv">Contact Us</a></li>
+                    <li className="menuItem"><a className="itemLink1" href="/ContactUsSection__">Contact Us</a></li>
                     
                     </ul>
                 </Grid>

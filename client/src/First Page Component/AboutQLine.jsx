@@ -1,16 +1,18 @@
+// import files and installed libraries such as Material UI for better UI experience
+// styles and logos and Components to render in this main file for business page
 import React, { Component } from 'react';
 import '../style/App.css';
 import {Grid, Button} from '@material-ui/core';
 import show from '../style/show.png';
-import {Link} from 'react-router';
 
+// Component that shows static information for user in order to show the goal of our website to help them
 class AboutQLine extends Component {
   constructor(props) {
     super(props);
-   
   }
 
- 
+  // renders image and information for the user to realize and be inform of our goal and services
+  // missions and vissions as well
   render() {
     return (
         <Grid className="mainDp">

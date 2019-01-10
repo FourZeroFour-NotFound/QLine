@@ -13,42 +13,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
 
-const styles = theme => ({
- 
 
-
-  media: {
-    height: 500,
-    paddingTop: '56.25%', // 16:9
-  },
-  media1: {
-    height: 300
-  },
-  actions: {
-    display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    marginLeft: 400,
-    [theme.breakpoints.up('md')]: {
-      marginRight: -8,
-    },
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-
-  button: {
-    margin: theme.spacing.unit,
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-});
 
 class PopBox extends Component {
 
@@ -78,22 +43,22 @@ class PopBox extends Component {
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
-  
-// this function to render  for user all his tickets
+
+  // this function to render  for user all his tickets
   componentDidMount() {
     var that = this
     $.ajax({
       url: "/ticket1",
-      type: "Get",
+      type: "POST",
       success: function (data) {
-        console.log("tttttt", data.success)
+        console.log("tttttt", data.data)
         that.setState({
-          TicketList: data.success
+          TicketList: data.data
         })
         // make array of queue id only for each ticket  
         var arr = []
-        for (var i = 0; i < data.success.length; i++) {
-          arr.push(data.success[i].id)
+        for (var i = 0; i < data.data.length; i++) {
+          arr.push(data.data[i].id)
         }
         that.setState({
           TicketListid: arr
@@ -102,7 +67,7 @@ class PopBox extends Component {
           name2: []
         })
         // // make iterate through all tickets that we have to save all the queue details for each ticket
-         // we uses it to show the name of the queue for this ticket
+        // we uses it to show the name of the queue for this ticket
         for (var i = 0; i < that.state.TicketList.length; i++) {
           $.ajax({
             url: '/getQueueInfo',
@@ -132,8 +97,8 @@ class PopBox extends Component {
             success: (data) => {
               var arrr = []
 
-              for (var j = 0; j < data.success.length; j++) {
-                arrr.push(data.success[j].id)
+              for (var j = 0; j < data.data.length; j++) {
+                arrr.push(data.data[j].id)
               }
 
               that.setState(previousState => ({
@@ -153,8 +118,8 @@ class PopBox extends Component {
 
 
   render() {
-// this function if the user wants to delete (cancel) one of his ticket 
-// 
+    // this function if the user wants to delete (cancel) one of his ticket 
+    // 
     var onDelete = (queue_id) => {
       console.log("deleeeeet", queue_id);
       var that = this
@@ -170,15 +135,15 @@ class PopBox extends Component {
 
           $.ajax({// rerun all the functions in didamount  to update the page after delete 
             url: "/ticket1",
-            type: "Get",
+            type: "POST",
             success: function (data) {
-              console.log("tttttt", data.success)
+              console.log("tttttt", data.data)
               that.setState({
-                TicketList: data.success
+                TicketList: data.data
               })
               var arr = []
-              for (var i = 0; i < data.success.length; i++) {
-                arr.push(data.success[i].id)
+              for (var i = 0; i < data.data.length; i++) {
+                arr.push(data.data[i].id)
               }
               that.setState({
                 TicketListid: arr
@@ -215,8 +180,8 @@ class PopBox extends Component {
                   success: (data) => {
                     var arrr = []
 
-                    for (var j = 0; j < data.success.length; j++) {
-                      arrr.push(data.success[j].id)
+                    for (var j = 0; j < data.data.length; j++) {
+                      arrr.push(data.data[j].id)
                     }
 
                     that.setState(previousState => ({
@@ -255,11 +220,9 @@ class PopBox extends Component {
         }
       });
 
-// call delete function to delete the ticket and update the page 
+      // call delete function to delete the ticket and update the page 
       onDelete(id)
     }
-    const { classes } = this.props;
-//this function to render the name of the tickets
 
     //this function to render the name of the tickets
     var name = (i) => {
@@ -276,8 +239,7 @@ class PopBox extends Component {
       } else {
         return this.state.numUser[i].indexOf(id)
       }
-    } 
-    
+    }
     // this function to get the time for each client 
     var timeForOne = (i) => {
       if (this.state.name2[i] !== undefined) { return this.state.name2[i].timeforone }
@@ -305,11 +267,11 @@ class PopBox extends Component {
                         <h2> clients before you : {numOfUser(i, ticket.id)}
                         </h2>
                         <h2> user notes  : {ticket.Notes} </h2>
-                        <Button style={{ marginTop: "50px", marginLeft: '100px', width: "100px", padding: 10, color: "white",backgroundColor: "red"}} variant="contained" onClick={() => { onDelete(ticket.id) }}  type="submit">
+                        <Button style={{ marginTop: "50px", marginLeft: '100px', width: "100px", padding: 10, color: "white", backgroundColor: "red" }} variant="contained" onClick={() => { onDelete(ticket.id) }} type="submit">
                           Delete
                             </Button>
-                        <Button style={{ marginTop: "50px", marginLeft: '30px',width: "100px",padding: 10, color: "white",backgroundColor: "blue"}} variant="contained" onClick={() => { delay(ticket, ticket.id) }}  type="submit">
-                        delay
+                        <Button style={{ marginTop: "50px", marginLeft: '30px', width: "100px", padding: 10, color: "white", backgroundColor: "blue" }} variant="contained" onClick={() => { delay(ticket, ticket.id) }} type="submit">
+                          delay
                             </Button>
                       </Typography>
                     </CardContent>
@@ -317,8 +279,9 @@ class PopBox extends Component {
                   <CardActions>
                   </CardActions>
                 </Card>
-                </GridListTile>
-              ))}
+              </GridListTile>
+            ))}
+
 
           </GridList>
 

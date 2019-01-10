@@ -6,13 +6,15 @@ import building from '../style/building.png';
 import msg from '../style/msg.png';
 import bar from '../style/bar.png';
 
+
+// static component with CSS effects and allows user to view information of QLine in order to have an idea with our app
+// this information located in the first page after the video presentation of our page
 class FlipInfo extends Component {
   constructor(props) {
-    super(props);
-   
+    super(props); 
   }
 
- 
+  // rendering flip CSS effect with phone, laptop, sms and a like with styling and css file on the back style
   render() {
     return (
     

@@ -4,14 +4,15 @@ import '../style/App.css';
 import $ from 'jquery';
 import logo from '../style/qline.png';
 import {Grid} from '@material-ui/core'; 
+import {Link} from 'react-router';
  
  
  
- 
- 
+  // this component refers with the feature page file where static information has been implied
+ // for customer information for our application
  export default class FeaturePage extends React.Component {
  
- 
+     // javascript components functionality for feature page animation where jquery functionality has been Implemented
    componentDidMount () {
         const slideElements = ['.back10__slide', '.card19__slide', '.content52__slide'];
         let inProgress = false;
@@ -85,12 +86,11 @@ import {Grid} from '@material-ui/core';
             </div>
           </div>
           <div>
-            <nav className="menu5"  style={{backgroundColor: "transparent", position: "absolute",  marginTop: "-1000px", marginLeft: "50px"}} >
+            <nav className="menu5"  style={{backgroundColor: "transparent", position: "absolute",  marginTop: "-970px", marginLeft: "50px"}} >
                 <img src={logo} width="122px" height="62px" style={{marginTop: "30px", marginLeft: "-20px"}}/>
                 <Grid className="menu__right">
                     <ul className="menu__list">
-                    <li class="menu__list-item"><a class="menu__link" style={{color: "black"}} href="/BusinessDashBord/:queue_id">Back</a></li>
-                    <li class="menu__list-item"><a class="menu__link" style={{color: "black"}}  href="/" >Logout</a></li>
+                    <li class="menu__list-item"><a class="menu__link" style={{color: "black"}} href="/">Back</a></li>
                     </ul>
                 </Grid>
             </nav>

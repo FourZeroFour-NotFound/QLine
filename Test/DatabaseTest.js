@@ -141,4 +141,17 @@ describe('Database ', function () {
     });
   });
   
+  
+  it('should insert in queue user table', function (done) {
+    db.insertinWaitinglist(1, 1, "test", function (err, result) {
+      if (err) {
+        throw err
+      } else {
+        expect(result).to.not.be.null;
+        done();
+      }
+    });
+  });
+  
+  
 })
