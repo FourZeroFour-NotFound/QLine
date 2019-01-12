@@ -19,6 +19,8 @@ import ContactUsSection from './First Page Component/ContactUsSection.jsx';
 import ContactUsSection1 from './First Page Component/ContactUsSection.1.jsx';
 import ContactUsSection2 from './First Page Component/ContactUsSection.2.jsx';
 import ContactUsSection3 from './First Page Component/ContactUsSection.3.jsx';
+import SearchQueue from './User Component/SearchQueue'
+
 
 // all router are presented here to be rendered directly tro the root file of the page/ html
 // this page allow pages and functionality to move from page to page

@@ -76,17 +76,15 @@ describe('<App />', () => {
     expect(wrapper.find(HowItWorks)).to.have.lengthOf(0);
   });
 
-  it('renders an `.ct`', () => {
+  it('renders an `.steps`', () => {
     const wrapper = shallow(<HowItWorks />);
-    expect(wrapper.find('.ct')).to.have.lengthOf(1);
+    expect(wrapper.find('.steps')).to.have.lengthOf(5);
   });
 
-  it("should render initial layout", () => {
-    // when
-    const component = shallow(<HowItWorks />);
-    // then
-    expect(component.getElements()).toMatchSnapshot();
-});
+  it('click right in button', () => {
+    const wrapper = shallow(<div><HowItWorks className="foo" /><div className="foo" /></div>);
+    expect(wrapper.find('.foo').hostNodes()).to.have.lengthOf(1);
+  })
 });
 
 it('renders without crashing', () => {
