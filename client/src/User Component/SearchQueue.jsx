@@ -186,7 +186,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
               style={styles.media}
               image={this.props.queue.imgUrl}
             />
-              <Typography component="p">
+              <Typography style={{paddingBottom: 50, marginTop: "20px"}} variant="h7" component="p">
                 {"Start Time: " + start[0]}<br />
                 {"End Time: " + end[0]}<br />
                 {"Date: " + date[0]}<br />
