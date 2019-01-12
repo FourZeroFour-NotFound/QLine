@@ -14,22 +14,18 @@ import TextField from '@material-ui/core/TextField';
 import $ from 'jquery';
 
 
-const styles = theme => ({
+const styles = {
   media: {
     height: 190,
     width: '100%',
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    fontSize: '20px'
-  },
+  
   card: {
     width: "600px",
     height: "450px",
     margin: 7,
   }
-});
+};
 
 
 export default class SearchQueue extends React.Component {
