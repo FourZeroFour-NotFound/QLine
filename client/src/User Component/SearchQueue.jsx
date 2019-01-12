@@ -23,6 +23,11 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     fontSize: '20px'
+  },
+  card: {
+    width: "600px",
+    height: "450px",
+    margin: 7,
   }
 });
 
@@ -174,9 +179,16 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
   theestmatedtimeM=0
 }
     const { classes } = this.props;
+    var requierment = ()=>{
+      if (this.state.allqueue.requierment){
+        return this.state.allqueue.requierment
+      }else{
+        return "Nothing ^_^"
+      }
+    }
     return (
       <div>
-        <Card className="card2">
+        <Card style={styles.card}>
           <CardActionArea>
           <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
                 {this.props.queue.nameOfQueeu}
@@ -208,14 +220,15 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
                 <DialogContentText>
                   <h2>    {this.state.allqueue.nameOfQueeu}</h2>
                 </DialogContentText>
-               {"Start Time: " + start[0]}<br />
+               {/* {"Start Time: " + start[0]}<br />
                 {"End Time: " + end[0]}<br />
-                {"Date :" + date[0]}<br />
+                {"Date :" + date[0]}<br /> */}
                 {/* {"The time for each customer: " + this.state.allqueue.timeforone + " m"}  <br />  */}
-                {"Number of windows:" + this.state.allqueue.windows}<br />
-                {"Number of people in line now:" + this.state.allusers.length}<br />
-                {"the estimated time until finish:   " + estmatedTime()  +" minutes" }<br />
-                {"Remaining tickets :" + Math.floor(remaningTicits) }<br />
+                
+                {"People in queue now: " + this.state.allusers.length}<br />
+                {"The estimated time until finish:   " + estmatedTime()  +" minutes" }<br />
+                {"working counters: " + this.state.allqueue.windows}<br />
+                {"Remaining tickets: " + Math.floor(remaningTicits) }<br />
               </DialogContent>
               <DialogActions>
                 <Button onClick={this.handleClose} color="primary">
@@ -234,7 +247,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
                   <h2>Requerments</h2>
                 </DialogContentText>
                  <h2> The requirements for attending this queue: </h2> 
-                 <h3> {this.state.allqueue.requierment}</h3><br />
+                 <h3> {requierment()}</h3><br />
                  <h4>Notes:</h4>
 
                    <TextField

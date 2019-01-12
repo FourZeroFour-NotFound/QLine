@@ -489,9 +489,9 @@ var Unserved = ()=>{
             {value === 1 && 
               <div>
                   <div  >
-                        <h3 style={ {lineHeight: 1.5, color:"black", padding : 10 ,}} >Customers in queue : {inqueue()}</h3>
-                        <h3 style={ {lineHeight: 1.5, color:"black", padding : 10 ,}} >Customers in counter : {win()}</h3>
-                        <h3 style={ {lineHeight: 1.5, color:"black", padding : 10 ,}} >Estimated time until your turn  :  { Estimated() } minutes</h3>
+                        <h3 style={ { color:"black", padding : 20 ,}} >Customers in queue : {inqueue()}</h3>
+                        <h3 style={ { color:"black", padding : 20 ,}} >Customers in counter : {win()}</h3>
+                        <h3 style={ { color:"black", padding : 20 ,}} >Estimated time until your turn  :  { Estimated() } minutes</h3>
                       <ExpansionPanel>
                           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                               <Typography><h3 style={ {lineHeight: 1.5, color:"black",}}> You use Qline and You have your Phone ? </h3> </Typography>
