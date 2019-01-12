@@ -180,7 +180,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
 }
     const { classes } = this.props;
     var requierment = ()=>{
-      if (this.state.allqueue.requierment){
+      if (this.state.allqueue.requierment == "false"){
         return this.state.allqueue.requierment
       }else{
         return "Nothing ^_^"
@@ -188,7 +188,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
     }
     return (
       <div>
-        <Card style={styles.card}>
+        <Card  className="card2">
           <CardActionArea>
           <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
                 {this.props.queue.nameOfQueeu}
