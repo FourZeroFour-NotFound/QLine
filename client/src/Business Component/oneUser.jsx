@@ -113,19 +113,43 @@ export default class oneUser extends React.Component {
   // render in DOM with card of info of the users queue to access control weather they will be
   // added or rejected, in here you can see that we use the info we get from the request in order to render
   render() {
+    var firstLast = ()=>{
+      if (this.state.user.firstName){
+        return "Name : " + this.state.user.firstName + " " +this.state.user.lastName
+      }else{
+        return "loading .."
+      }
+    }
+
+    var phoneNumber = ()=>{
+      if (this.state.user.phoneNumber){
+        return "Phone Number : " + this.state.user.phoneNumber
+      }else{
+        return "loading .."
+      }
+    }
+    var email = ()=>{
+      if (this.state.user.email){
+        return "Email : "+this.state.user.email
+      }else{
+        return "loading .."
+      }
+    }
+    
+
     return (
       <div>
         {/*** Waiting List Card to be ADDED or REJECT by owner ***/}
         <Card style={styles.card}>
             <CardActionArea>
               <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
-                  {"Name : " + this.state.user.firstName + " " +this.state.user.lastName}<br/>
+                  {firstLast()}<br/>
               </Typography>
               <CardContent>
                 <CardMedia style={styles.media}/>
                 <Typography variant="h6" component="p">
-                  {"Phone Number : " + this.state.user.phoneNumber }<br/>
-                  {"Email : "+this.state.user.email }<br/>
+                  {phoneNumber() }<br/>
+                  {email()}<br/>
                   {"Notes :"  + this.props.user.notes }<br/>
                 </Typography>
               </CardContent>

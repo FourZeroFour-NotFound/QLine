@@ -403,6 +403,13 @@ var Estimated = ()=>{
     return "loading .. "
   }
 }
+var Unserved = ()=>{
+  if (this.state.allusersinqueue.length - this.state.queueDetalse.windows){
+    return this.state.allusersinqueue.length - this.state.queueDetalse.windows
+  }else{
+    return "loading .. "
+  }
+}
 
   // rendering component tags as presented in JSX file of React to the DOM for User experience for the app
   return (
@@ -481,17 +488,17 @@ var Estimated = ()=>{
             {/*** 2nd tab Kiosk app for management ***/}
             {value === 1 && 
               <div>
-                  <div style={{color: "black"}} >
-                        <h3 style={ {lineHeight: 1.5,}} >Customers in queue : {inqueue()}</h3>
-                        <h3 style={ {lineHeight: 1.5,}} >Customers in counter : {win()}</h3>
-                        <h3 style={ {lineHeight: 1.5,}} >Estimated time until your turn  :  { Estimated() } minutes</h3>
+                  <div style={{fo: "black"}} >
+                        <h3  >Customers in queue : {inqueue()}</h3>
+                        <h3  >Customers in counter : {win()}</h3>
+                        <h3  >Estimated time until your turn  :  { Estimated() } minutes</h3>
                       <ExpansionPanel>
                           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                               <Typography><h3> You use Qline and You have your Phone ? </h3> </Typography>
                           </ExpansionPanelSummary>
                           <ExpansionPanelDetails>
                               <Typography>
-                                  <h2 style={{lineHeight: 1.5, color: "black"}}>Enter queue id in your Mobile app : { this.props.params.queue_id}<br /> or scan the barcode :</h2>
+                                  <h2 style={{ color: "black"}}>Enter queue id in your Mobile app : { this.props.params.queue_id}<br /> or scan the barcode :</h2>
                               <Barcode  value ={this.props.params.queue_id} />
                               </Typography>
                           </ExpansionPanelDetails>
@@ -502,7 +509,7 @@ var Estimated = ()=>{
                           </ExpansionPanelSummary>
                       <ExpansionPanelDetails>
                           <Typography>
-                          <h3 style={ {lineHeight: 1.5, color: "black"}}> Input your email :</h3>
+                          <h3 style={ { color: "black"}}> Input your email :</h3>
                           <input style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({email:e.target.value})}} type="text"   placeholder="input ur email ..."/>
                                               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addme} type="submit">
                                                 Add Me
@@ -517,9 +524,9 @@ var Estimated = ()=>{
                         <ExpansionPanelDetails>
                           <Typography>
                           <h3> enter your name :</h3>
-                          <input  style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({newsername:e.target.value})}} type="text"   placeholder="input ur name . . ."/>
+                          <input  style={ { margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({newsername:e.target.value})}} type="text"   placeholder="input ur name . . ."/>
                               <h3>and your email:</h3>
-                          <input  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , width : 500,}} onChange={e => {this.setState({emailnew:e.target.value})}} type="text"   placeholder="input ur email . . ."/>
+                          <input  style={ { margin : 10 , padding : 10 , width : 500,}} onChange={e => {this.setState({emailnew:e.target.value})}} type="text"   placeholder="input ur email . . ."/>
                                               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addnewuser} type="submit">
                                                 give me ticket !!
                                               </Button>
@@ -533,7 +540,7 @@ var Estimated = ()=>{
              {/*** 3nd tab Manage app for web or laptop usage for management ***/}
             {value === 2 && 
             <TabContainer>
-                  <h1 style={ {lineHeight: 1.5,}} >Unserved Customers : {this.state.allusersinqueue.length - this.state.queueDetalse.windows}</h1>
+                  <h1 style={ {lineHeight: 1.5,}} >Unserved Customers : {Unserved()}</h1>
                   <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" onClick={this.start}  color="primary" type="submit">
                                       Start 
                   </Button>
