@@ -488,28 +488,28 @@ var Unserved = ()=>{
             {/*** 2nd tab Kiosk app for management ***/}
             {value === 1 && 
               <div>
-                  <div style={{fo: "black"}} >
-                        <h3  >Customers in queue : {inqueue()}</h3>
-                        <h3  >Customers in counter : {win()}</h3>
-                        <h3  >Estimated time until your turn  :  { Estimated() } minutes</h3>
+                  <div  >
+                        <h3 style={ {lineHeight: 1.5, color:"black",}} >Customers in queue : {inqueue()}</h3>
+                        <h3 style={ {lineHeight: 1.5, color:"black",}} >Customers in counter : {win()}</h3>
+                        <h3 style={ {lineHeight: 1.5, color:"black",}} >Estimated time until your turn  :  { Estimated() } minutes</h3>
                       <ExpansionPanel>
                           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                              <Typography><h3> You use Qline and You have your Phone ? </h3> </Typography>
+                              <Typography><h3 style={ {lineHeight: 1.5, color:"black",}}> You use Qline and You have your Phone ? </h3> </Typography>
                           </ExpansionPanelSummary>
                           <ExpansionPanelDetails>
                               <Typography>
-                                  <h2 style={{ color: "black"}}>Enter queue id in your Mobile app : { this.props.params.queue_id}<br /> or scan the barcode :</h2>
+                                  <h2 style={ {lineHeight: 1.5, color:"black",}}>Enter queue id in your Mobile app : { this.props.params.queue_id}<br /> or scan the barcode :</h2>
                               <Barcode  value ={this.props.params.queue_id} />
                               </Typography>
                           </ExpansionPanelDetails>
                       </ExpansionPanel>
                       <ExpansionPanel>
                           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                              <Typography > <h3 style={{color: "black"}}>You use Qline but you dont have your phone ? </h3></Typography>
+                              <Typography > <h3 style={ {lineHeight: 1.5, color:"black",}}>You use Qline but you dont have your phone ? </h3></Typography>
                           </ExpansionPanelSummary>
                       <ExpansionPanelDetails>
                           <Typography>
-                          <h3 style={ { color: "black"}}> Input your email :</h3>
+                          <h3 style={ {lineHeight: 1.5, color:"black",}}> Input your email :</h3>
                           <input style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({email:e.target.value})}} type="text"   placeholder="input ur email ..."/>
                                               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addme} type="submit">
                                                 Add Me
@@ -519,13 +519,13 @@ var Unserved = ()=>{
                       </ExpansionPanel>
                       <ExpansionPanel>
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                              <Typography><h3> you never heard of Qline and you need ticket ?</h3></Typography>
+                              <Typography><h3 style={ {lineHeight: 1.5, color:"black",}}> you never heard of Qline and you need ticket ?</h3></Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
                           <Typography>
-                          <h3> enter your name :</h3>
+                          <h3 style={ {lineHeight: 1.5, color:"black",}}> enter your name :</h3>
                           <input  style={ { margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({newsername:e.target.value})}} type="text"   placeholder="input ur name . . ."/>
-                              <h3>and your email:</h3>
+                              <h3 style={ {lineHeight: 1.5, color:"black",}}>and your email:</h3>
                           <input  style={ { margin : 10 , padding : 10 , width : 500,}} onChange={e => {this.setState({emailnew:e.target.value})}} type="text"   placeholder="input ur email . . ."/>
                                               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addnewuser} type="submit">
                                                 give me ticket !!
