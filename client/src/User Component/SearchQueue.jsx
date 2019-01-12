@@ -204,7 +204,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
           <CardActions>
 
             <Button onClick={this.handleClickOpen}
-            style={{ backgroundColor: "#aa1256", marginTop: "90px", marginLeft: "200px", font: "white" }}>
+            style={{ backgroundColor: "#aa1256", marginTop: "250px", marginLeft: "200px", font: "white" }}>
              Join / More Details
              
         </Button>
