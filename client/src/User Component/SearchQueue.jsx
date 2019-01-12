@@ -16,7 +16,7 @@ import $ from 'jquery';
 
 const styles = {
   media: {
-    height: 190,
+    height: 170,
     width: '100%',
   },
   
