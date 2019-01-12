@@ -22,7 +22,7 @@ const styles = {
   
   card: {
     width: "600px",
-    height: "450px",
+    height: "400px",
     margin: 7,
   }
 };
@@ -177,9 +177,9 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
     const { classes } = this.props;
     var requierment = ()=>{
       if (this.state.allqueue.requierment == "false"){
-        return this.state.allqueue.requierment
-      }else{
         return "Nothing ^_^"
+      }else{
+        return this.state.allqueue.requierment
       }
     }
     return (
