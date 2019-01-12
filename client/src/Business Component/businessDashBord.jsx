@@ -96,6 +96,24 @@ export default class BusinessDashBord extends React.Component {
 
   componentDidMount(match){
 
+    $.ajax({
+      // displays users from the queue in the database list
+      // request to post in dashboard
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.params.queue_id,
+      }),
+      success: (data) => {
+
+        this.setState({
+          allusersinqueue: data.success
+        })
+
+      }
+    })
+
     setInterval(() => {
       $.ajax({
         // displays users from the queue in the database list
@@ -117,6 +135,22 @@ export default class BusinessDashBord extends React.Component {
     }, 3000);
 
  
+    $.ajax({
+      // add user to the waiting list to be approved by the admin
+      // request to post in dashboard
+      url: '/get-users-in-waitingList',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.params.queue_id,
+      }),
+      success: (data) => {
+        this.setState({
+          allusers: data.data
+        })
+      }
+    })
+
     setInterval(()=>{
       $.ajax({
         // add user to the waiting list to be approved by the admin
@@ -340,6 +374,35 @@ render() {
 
   // decalring value as a stateless value for shifting chice of user in this page, (total 4 pages/ values)
   const { value } = this.state;
+var inwaiting = ()=>{
+  if (this.state.allusersinqueue.length - this.state.queueDetalse.windows){
+   return this.state.allusersinqueue.length - this.state.queueDetalse.windows
+  }else{
+    return "loading .. "
+  }
+}
+var inqueue = ()=>{
+  if (this.state.allusersinqueue.length  - this.state.queueDetalse.windows){
+    return this.state.allusersinqueue.length  - this.state.queueDetalse.windows
+  }else{
+    return "loading .. "
+  }
+}
+var win = ()=>{
+  if (this.state.queueDetalse.windows){
+    return this.state.queueDetalse.windows
+  }else{
+    return "loading .. "
+  }
+}
+
+var Estimated = ()=>{
+  if (estimatedTime()){
+    return estimatedTime()
+  }else{
+    return "loading .. "
+  }
+}
 
   // rendering component tags as presented in JSX file of React to the DOM for User experience for the app
   return (
@@ -381,7 +444,8 @@ render() {
             {value === 0 && 
             <TabContainer>
               <Card style={{width: "300px",height: "400px", marginTop: "100px", position: "absolute", backgroundColor: "#e33a2e", marginLeft: "1550px"}}>
-                  <h1 style={ {lineHeight: 1.5, marginLeft: "10px", color: "white",marginTop: "50px", textAlign: "center"}} >Customer's waiting  <h1 style={{color: "#7aeac2"}}>{this.state.allusersinqueue.length - this.state.queueDetalse.windows }</h1></h1>
+                  <h1 style={ {lineHeight: 1.5, marginLeft: "10px", color: "white",marginTop: "50px", textAlign: "center"}} >Customer's waiting 
+                   <h1 style={{color: "#7aeac2"}}>{inwaiting() }</h1></h1>
                   <h1 style={ {lineHeight: 1.5, marginLeft: "10px", color: "white", marginTop: "50px", textAlign: "center"}} >Upcoming ticket  <h1 style={{color: "#7aeac2"}}> { nextTicket ()}</h1></h1>
               </Card>
             <Card style={{margin : 5, width: "300px",marginTop: "30px",marginLeft: "150px", height: "80px", borderRadius: "999px",  backgroundColor:"#e33a2e" }} >
@@ -417,10 +481,10 @@ render() {
             {/*** 2nd tab Kiosk app for management ***/}
             {value === 1 && 
               <div>
-                  <div>
-                        <h3 style={ {lineHeight: 1.5,}} >Customers in queue : {this.state.allusersinqueue.length  - this.state.queueDetalse.windows}</h3>
-                        <h3 style={ {lineHeight: 1.5,}} >Customers in counter : {this.state.queueDetalse.windows}</h3>
-                        <h3 style={ {lineHeight: 1.5,}} >Estimated time until your turn  :  { estimatedTime() } m</h3>
+                  <div style={{color: "black"}} >
+                        <h3 style={ {lineHeight: 1.5,}} >Customers in queue : {inqueue()}</h3>
+                        <h3 style={ {lineHeight: 1.5,}} >Customers in counter : {win()}</h3>
+                        <h3 style={ {lineHeight: 1.5,}} >Estimated time until your turn  :  { Estimated() } minutes</h3>
                       <ExpansionPanel>
                           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                               <Typography><h3> You use Qline and You have your Phone ? </h3> </Typography>
