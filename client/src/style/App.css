@@ -843,7 +843,7 @@ hr {
   transform: rotate(0deg) scale(1) translateZ(0);
   transition: all 0.4s cubic-bezier(.8,1.8,.75,.75);
   width: 500px;
-  height: 450px;
+  height: 400px;
 
 }
 
