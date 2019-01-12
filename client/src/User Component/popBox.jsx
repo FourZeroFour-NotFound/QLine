@@ -244,6 +244,14 @@ class PopBox extends Component {
     var timeForOne = (i) => {
       if (this.state.name2[i] !== undefined) { return this.state.name2[i].timeforone }
     }
+    var estimated  = ( i , id) =>{
+      if (!(timeForOne(i) * numOfUser(i,id))){
+        return "loading .. "
+
+      }else{
+        return timeForOne(i) * numOfUser(i,id)
+      }
+    }
     return (
       <div className="cardpop">
         <Button onClick={this.handleExpandClick} variant="outlined" style={{ color: "white", backgroundColor: "#aa1256", borderRadius: "5px", width: "200px", marginTop: "20px", marginLeft: "50px" }}>MY TICKET</Button>
@@ -263,7 +271,7 @@ class PopBox extends Component {
                       <CardMedia />
                       <Avatar style={{ width: '100px', height: '100px', backgroundColor: '#aa1256' }} >{ticket.id}</Avatar>
                       <Typography styles={{ paddingBottom: 50, }} variant="h7" component="p">
-                        <h2>estimated time : {timeForOne(i) * numOfUser(i, ticket.id)} minutes</h2>
+                        <h2>estimated time : {estimated(i, ticket.id)} minutes</h2>
                         <h2> clients before you : {numOfUser(i, ticket.id)}
                         </h2>
                         <h2> user notes  : {ticket.Notes} </h2>
