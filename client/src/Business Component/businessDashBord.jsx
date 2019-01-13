@@ -96,6 +96,22 @@ export default class BusinessDashBord extends React.Component {
 
   componentDidMount(match){
 
+    $.ajax({
+      // displays users from the queue in the database list
+      // request to post in dashboard
+      url: '/get-users-in-queue',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.params.queue_id,
+      }),
+      success: (data) => {
+
+  componentDidMount(match){
+
+      }
+    })
+
     setInterval(() => {
       $.ajax({
         // displays users from the queue in the database list
@@ -117,6 +133,22 @@ export default class BusinessDashBord extends React.Component {
     }, 3000);
 
  
+    $.ajax({
+      // add user to the waiting list to be approved by the admin
+      // request to post in dashboard
+      url: '/get-users-in-waitingList',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        queueid: this.props.params.queue_id,
+      }),
+      success: (data) => {
+        this.setState({
+          allusers: data.data
+        })
+      }
+    })
+
     setInterval(()=>{
       $.ajax({
         // add user to the waiting list to be approved by the admin
@@ -135,7 +167,6 @@ export default class BusinessDashBord extends React.Component {
       }) 
     },3000); 
   }
-
 
 addme = () => {
   console.log(this.state.email)
@@ -340,6 +371,42 @@ render() {
 
   // decalring value as a stateless value for shifting chice of user in this page, (total 4 pages/ values)
   const { value } = this.state;
+var inwaiting = ()=>{
+  if (this.state.allusersinqueue.length - this.state.queueDetalse.windows){
+   return this.state.allusersinqueue.length - this.state.queueDetalse.windows
+  }else{
+    return "loading .. "
+  }
+}
+var inqueue = ()=>{
+  if (this.state.allusersinqueue.length  - this.state.queueDetalse.windows){
+    return this.state.allusersinqueue.length  - this.state.queueDetalse.windows
+  }else{
+    return "loading .. "
+  }
+}
+var win = ()=>{
+  if (this.state.queueDetalse.windows){
+    return this.state.queueDetalse.windows
+  }else{
+    return "loading .. "
+  }
+}
+
+var Estimated = ()=>{
+  if (estimatedTime()){
+    return estimatedTime()
+  }else{
+    return "loading .. "
+  }
+}
+var Unserved = ()=>{
+  if (this.state.allusersinqueue.length - this.state.queueDetalse.windows){
+    return this.state.allusersinqueue.length - this.state.queueDetalse.windows
+  }else{
+    return "loading .. "
+  }
+}
 
   // rendering component tags as presented in JSX file of React to the DOM for User experience for the app
   return (
@@ -381,7 +448,8 @@ render() {
             {value === 0 && 
             <TabContainer>
               <Card style={{width: "300px",height: "400px", marginTop: "100px", position: "absolute", backgroundColor: "#e33a2e", marginLeft: "1550px"}}>
-                  <h1 style={ {lineHeight: 1.5, marginLeft: "10px", color: "white",marginTop: "50px", textAlign: "center"}} >Customer's waiting  <h1 style={{color: "#7aeac2"}}>{this.state.allusersinqueue.length - this.state.queueDetalse.windows }</h1></h1>
+                  <h1 style={ {lineHeight: 1.5, marginLeft: "10px", color: "white",marginTop: "50px", textAlign: "center"}} >Customer's waiting 
+                   <h1 style={{color: "#7aeac2"}}>{inwaiting() }</h1></h1>
                   <h1 style={ {lineHeight: 1.5, marginLeft: "10px", color: "white", marginTop: "50px", textAlign: "center"}} >Upcoming ticket  <h1 style={{color: "#7aeac2"}}> { nextTicket ()}</h1></h1>
               </Card>
             <Card style={{margin : 5, width: "300px",marginTop: "30px",marginLeft: "150px", height: "80px", borderRadius: "999px",  backgroundColor:"#e33a2e" }} >
@@ -417,28 +485,28 @@ render() {
             {/*** 2nd tab Kiosk app for management ***/}
             {value === 1 && 
               <div>
-                  <div>
-                        <h3 style={ {lineHeight: 1.5,}} >Customers in queue : {this.state.allusersinqueue.length  - this.state.queueDetalse.windows}</h3>
-                        <h3 style={ {lineHeight: 1.5,}} >Customers in counter : {this.state.queueDetalse.windows}</h3>
-                        <h3 style={ {lineHeight: 1.5,}} >Estimated time until your turn  :  { estimatedTime() } m</h3>
+                  <div  >
+                        <h3 style={ { color:"black", padding : 10 , paddingLeft:20,}} >Customers in queue : {inqueue()}</h3>
+                        <h3 style={ { color:"black", padding : 10 , paddingLeft:20,}} >Customers in counter : {win()}</h3>
+                        <h3 style={ { color:"black", padding : 10 , paddingLeft:20,}} >Estimated time until your turn  :  { Estimated() } minutes</h3>
                       <ExpansionPanel>
                           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                              <Typography><h3> You use Qline and You have your Phone ? </h3> </Typography>
+                              <Typography><h3 style={ {lineHeight: 1.5, color:"black",}}> You use Qline and You have your Phone ? </h3> </Typography>
                           </ExpansionPanelSummary>
                           <ExpansionPanelDetails>
                               <Typography>
-                                  <h2 style={{lineHeight: 1.5, color: "black"}}>Enter queue id in your Mobile app : { this.props.params.queue_id}<br /> or scan the barcode :</h2>
+                                  <h2 style={ {lineHeight: 1.5, color:"black",}}>Enter queue id in your Mobile app : { this.props.params.queue_id}<br /> or scan the barcode :</h2>
                               <Barcode  value ={this.props.params.queue_id} />
                               </Typography>
                           </ExpansionPanelDetails>
                       </ExpansionPanel>
                       <ExpansionPanel>
                           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                              <Typography > <h3 style={{color: "black"}}>You use Qline but you dont have your phone ? </h3></Typography>
+                              <Typography > <h3 style={ {lineHeight: 1.5, color:"black",}}>You use Qline but you dont have your phone ? </h3></Typography>
                           </ExpansionPanelSummary>
                       <ExpansionPanelDetails>
                           <Typography>
-                          <h3 style={ {lineHeight: 1.5, color: "black"}}> Input your email :</h3>
+                          <h3 style={ {lineHeight: 1.5, color:"black",}}> Input your email :</h3>
                           <input style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({email:e.target.value})}} type="text"   placeholder="input ur email ..."/>
                                               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addme} type="submit">
                                                 Add Me
@@ -448,14 +516,14 @@ render() {
                       </ExpansionPanel>
                       <ExpansionPanel>
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                              <Typography><h3> you never heard of Qline and you need ticket ?</h3></Typography>
+                              <Typography><h3 style={ {lineHeight: 1.5, color:"black",}}> you never heard of Qline and you need ticket ?</h3></Typography>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>
                           <Typography>
-                          <h3> enter your name :</h3>
-                          <input  style={ {lineHeight: 1.5, margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({newsername:e.target.value})}} type="text"   placeholder="input ur name . . ."/>
-                              <h3>and your email:</h3>
-                          <input  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , width : 500,}} onChange={e => {this.setState({emailnew:e.target.value})}} type="text"   placeholder="input ur email . . ."/>
+                          <h3 style={ {lineHeight: 1.5, color:"black",}}> enter your name :</h3>
+                          <input  style={ { margin : 10 , padding : 10 ,  width : 500,}} onChange={e => {this.setState({newsername:e.target.value})}} type="text"   placeholder="input ur name . . ."/>
+                              <h3 style={ {lineHeight: 1.5, color:"black",}}>and your email:</h3>
+                          <input  style={ { margin : 10 , padding : 10 , width : 500,}} onChange={e => {this.setState({emailnew:e.target.value})}} type="text"   placeholder="input ur email . . ."/>
                                               <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" color="primary" onClick={this.addnewuser} type="submit">
                                                 give me ticket !!
                                               </Button>
@@ -469,7 +537,7 @@ render() {
              {/*** 3nd tab Manage app for web or laptop usage for management ***/}
             {value === 2 && 
             <TabContainer>
-                  <h1 style={ {lineHeight: 1.5,}} >Unserved Customers : {this.state.allusersinqueue.length - this.state.queueDetalse.windows}</h1>
+                  <h1 style={ {lineHeight: 1.5,}} >Unserved Customers : {Unserved()}</h1>
                   <Button  style={ {lineHeight: 1.5, margin : 10 , padding : 10 , border: 10 ,}} variant="contained" onClick={this.start}  color="primary" type="submit">
                                       Start 
                   </Button>

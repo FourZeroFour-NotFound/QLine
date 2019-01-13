@@ -46,11 +46,19 @@ it('renders without crashing', () => {
 
 
 
+<<<<<<< HEAD
 // test for checking IntroPage components and its functionality
 describe('<App />', () => {
   it('renders one <IntroPage /> components', () => {
     const wrapper = mount(<App />);
     expect(wrapper.find(IntroPage)).to.have.lengthOf(0);
+=======
+// test for checking Category components and its functionality
+describe('<App />', () => {
+  it('renders one <IntroPage /> components', () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.find(IntroPage)).to.have.lengthOf(1);
+>>>>>>> 0c1cf9b734333ea1ed37f496114d4060926124cb
   });
 
   it('renders an `.anyCont`', () => {
@@ -69,6 +77,10 @@ it('renders without crashing', () => {
   ReactDOM.render(<IntroPage />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0c1cf9b734333ea1ed37f496114d4060926124cb
 
 describe('<App />', () => {
   it('renders one <HowItWorks /> components', () => {

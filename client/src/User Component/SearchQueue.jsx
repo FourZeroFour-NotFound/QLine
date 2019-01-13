@@ -14,17 +14,18 @@ import TextField from '@material-ui/core/TextField';
 import $ from 'jquery';
 
 
-const styles = theme => ({
+const styles = {
   media: {
-    height: 190,
+    height: 170,
     width: '100%',
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    fontSize: '20px'
+  
+  card: {
+    width: "600px",
+    height: "400px",
+    margin: 7,
   }
-});
+};
 
 
 export default class SearchQueue extends React.Component {
@@ -174,9 +175,16 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
   theestmatedtimeM=0
 }
     const { classes } = this.props;
+    var requierment = ()=>{
+      if (this.state.allqueue.requierment == "false"){
+        return "Nothing ^_^"
+      }else{
+        return this.state.allqueue.requierment
+      }
+    }
     return (
       <div>
-        <Card className="card2">
+        <Card  className="card2">
           <CardActionArea>
           <Typography gutterBottom variant="h5" component="h2" style={{color:"defult"}}>
                 {this.props.queue.nameOfQueeu}
@@ -186,7 +194,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
               style={styles.media}
               image={this.props.queue.imgUrl}
             />
-              <Typography component="p">
+              <Typography style={{paddingBottom: 50, marginTop: "20px"}} variant="h7" component="p">
                 {"Start Time: " + start[0]}<br />
                 {"End Time: " + end[0]}<br />
                 {"Date: " + date[0]}<br />
@@ -196,7 +204,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
           <CardActions>
 
             <Button onClick={this.handleClickOpen}
-            style={{ backgroundColor: "#aa1256", marginTop: "90px", marginLeft: "200px", font: "white" }}>
+            style={{ backgroundColor: "#aa1256", marginTop: "250px", marginLeft: "200px", font: "white" }}>
              Join / More Details
              
         </Button>
@@ -208,14 +216,15 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
                 <DialogContentText>
                   <h2>    {this.state.allqueue.nameOfQueeu}</h2>
                 </DialogContentText>
-               {"Start Time: " + start[0]}<br />
+               {/* {"Start Time: " + start[0]}<br />
                 {"End Time: " + end[0]}<br />
-                {"Date :" + date[0]}<br />
+                {"Date :" + date[0]}<br /> */}
                 {/* {"The time for each customer: " + this.state.allqueue.timeforone + " m"}  <br />  */}
-                {"Number of windows:" + this.state.allqueue.windows}<br />
-                {"Number of people in line now:" + this.state.allusers.length}<br />
-                {"the estimated time until finish:   " + estmatedTime()  +" minutes" }<br />
-                {"Remaining tickets :" + Math.floor(remaningTicits) }<br />
+                
+                {"People in queue now: " + this.state.allusers.length}<br />
+                {"The estimated time until finish:   " + estmatedTime()  +" minutes" }<br />
+                {"working counters: " + this.state.allqueue.windows}<br />
+                {"Remaining tickets: " + Math.floor(remaningTicits) }<br />
               </DialogContent>
               <DialogActions>
                 <Button onClick={this.handleClose} color="primary">
@@ -234,7 +243,7 @@ if (((theestmatedtimeH*60)+theestmatedtimeM)<(this.state.allqueue.timeforone *th
                   <h2>Requerments</h2>
                 </DialogContentText>
                  <h2> The requirements for attending this queue: </h2> 
-                 <h3> {this.state.allqueue.requierment}</h3><br />
+                 <h3> {requierment()}</h3><br />
                  <h4>Notes:</h4>
 
                    <TextField
