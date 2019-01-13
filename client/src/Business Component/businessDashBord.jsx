@@ -107,9 +107,7 @@ export default class BusinessDashBord extends React.Component {
       }),
       success: (data) => {
 
-        this.setState({
-          allusersinqueue: data.success
-        })
+  componentDidMount(match){
 
       }
     })
@@ -169,7 +167,6 @@ export default class BusinessDashBord extends React.Component {
       }) 
     },3000); 
   }
-
 
 addme = () => {
   console.log(this.state.email)
