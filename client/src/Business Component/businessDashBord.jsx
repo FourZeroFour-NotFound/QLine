@@ -106,9 +106,6 @@ export default class BusinessDashBord extends React.Component {
         queueid: this.props.params.queue_id,
       }),
       success: (data) => {
-
-  componentDidMount(match){
-
       }
     })
 
